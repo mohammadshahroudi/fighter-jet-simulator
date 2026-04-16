@@ -8,15 +8,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        
-        float moveAmount = -inputVector.y;
-        float turnAmount = -inputVector.x;
 
-        transform.position += transform.forward * moveAmount * moveSpeed * Time.deltaTime;
-        transform.Rotate(0f, turnAmount * rotateSpeed * Time.deltaTime, 0f);
-        //Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        //transform.position += moveDir * moveSpeed * Time.deltaTime;
-        //float rotateSpeed = 10f;
-        //transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
+        float upDown = 0f;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            upDown = 1f;
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            upDown = -1f;
+        }
+
+        Vector3 moveDir =
+            transform.forward * -inputVector.y +
+            transform.right * -inputVector.x +
+            Vector3.up * upDown;
+
+        moveDir = moveDir.normalized;
+
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 }
