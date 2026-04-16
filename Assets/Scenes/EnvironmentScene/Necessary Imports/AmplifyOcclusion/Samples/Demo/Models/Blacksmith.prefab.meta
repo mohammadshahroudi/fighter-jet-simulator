@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0d9bbc6c56779654e9c8e94f1fa6ed91
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.1.0
+  assetPath: Assets/AmplifyOcclusion/Samples/Demo/Models/Blacksmith.prefab
+  uploadId: 858870
