@@ -46,7 +46,7 @@ public class ShopUIController : MonoBehaviour
 
         if (moneyText != null)
         {
-            moneyText.text = "Money: \n" + data.points;
+            moneyText.text = "$" + data.points;
         }
 
         if (speedButtonText != null)
