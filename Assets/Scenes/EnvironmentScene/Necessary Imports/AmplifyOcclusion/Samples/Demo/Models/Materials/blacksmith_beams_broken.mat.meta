@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 03f39295dc3688048a460440fc042fdd
+timeCreated: 1431951610
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.1.0
+  assetPath: Assets/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_beams_broken.mat
+  uploadId: 858870
