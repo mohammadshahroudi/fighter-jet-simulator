@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +23,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -92,12 +100,16 @@
       <workItem from="1776286453520" duration="892000" />
       <workItem from="1776292738383" duration="1842000" />
       <workItem from="1776303207755" duration="10572000" />
+      <workItem from="1776397374286" duration="649000" />
+      <workItem from="1776416403289" duration="1425000" />
+      <workItem from="1776419157921" duration="6569000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
