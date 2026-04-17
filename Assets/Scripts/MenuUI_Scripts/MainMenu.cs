@@ -1,0 +1,23 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+   public void QuitGame() 
+   {
+      Application.Quit();
+      
+      Debug.Log("Game has been quit."); 
+   }
+
+   public void LoadGame()
+   {
+      // todo: replace with Alan's game scene. 
+      Loader.Load(Loader.Scene.Rhu_SampleScene);
+   }
+   
+   public void ToShop()
+   {
+      Loader.Load(Loader.Scene.ShopUI);
+   }
+}
