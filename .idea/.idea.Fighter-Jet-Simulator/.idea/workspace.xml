@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-    </list>
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,6 +96,7 @@
       <workItem from="1776397374286" duration="649000" />
       <workItem from="1776416403289" duration="1425000" />
       <workItem from="1776419157921" duration="6569000" />
+      <workItem from="1776441190204" duration="446000" />
     </task>
     <servers />
   </component>
