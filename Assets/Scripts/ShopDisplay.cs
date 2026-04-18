@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopDisplay : MonoBehaviour
@@ -13,6 +14,7 @@ public class ShopDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private string shopTitle = "Welcome To Dave's Plane Shop";
+    [SerializeField] private string mainMenuSceneName = "SampleScene";
     [SerializeField] private Button backButton;
     [SerializeField] private UnityEvent onBackPressed;
 
@@ -270,9 +272,6 @@ public class ShopDisplay : MonoBehaviour
         if (selected != null && selected.PlanePrefab != null)
         {
             GameObject instance = Instantiate(selected.PlanePrefab, centerDisplayParent, false);
-            instance.transform.localPosition = Vector3.zero;
-            instance.transform.localRotation = Quaternion.identity;
-            instance.transform.localScale = Vector3.one * 0.1f;
         }
     }
 
@@ -331,6 +330,12 @@ public class ShopDisplay : MonoBehaviour
 
     private void OnBackButtonPressed()
     {
+        if (!string.IsNullOrWhiteSpace(mainMenuSceneName))
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+            return;
+        }
+
         onBackPressed?.Invoke();
     }
 }

@@ -84,10 +84,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5987254853799731283, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
+    - target: {fileID: -2196762334120837841, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
     - target: {fileID: 919132149155446097, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
       propertyPath: m_Name
       value: Truck
       objectReference: {fileID: 0}
+    - target: {fileID: 3652865656434618951, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3029d829fd3584f3c8d97c8f8e391f8c, type: 2}
+    - target: {fileID: 4087252335296487312, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
+    - target: {fileID: 4880002018123797395, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
+    - target: {fileID: 5436410409422846701, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
+    - target: {fileID: 5688830224469102076, guid: bde5f1df7b05bf8468c376e58e607d03, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6922793697723135513, guid: cf887f6486c494b2dba7045cbfeb2fcb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

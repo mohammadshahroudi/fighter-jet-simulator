@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    // Handoff contract for other scenes:
-    // - Shop saves money, selected plane, equipped plane, and each plane state.
-    // - Save happens after successful shop actions and when initial data is created.
-    // - Other scenes can read equipped plane via GetSavedEquippedPlaneId/GetSavedEquippedPlaneIndex.
+
 
     [Header("Currency")]
     [SerializeField] private int startingMoney = 300;
