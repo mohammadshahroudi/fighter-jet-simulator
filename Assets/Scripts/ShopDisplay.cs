@@ -28,8 +28,7 @@ public class ShopDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI actionButtonText;
 
     [Header("Center Preview")]
-    [SerializeField] private TextMeshProUGUI previewText;
-    [SerializeField] private string noPreviewMessage = "No Preview Assigned";
+    [SerializeField] private Transform centerDisplayParent;
 
     [Header("Right Scrollable Plane List")]
     [SerializeField] private Transform planeListContainer;
@@ -40,6 +39,7 @@ public class ShopDisplay : MonoBehaviour
 
     private readonly List<Button> listButtons = new List<Button>();
     private readonly List<TextMeshProUGUI> listLabels = new List<TextMeshProUGUI>();
+    private bool pendingRefreshFromValidate;
 
     private void Awake()
     {
@@ -93,6 +93,17 @@ public class ShopDisplay : MonoBehaviour
             return;
         }
 
+        pendingRefreshFromValidate = true;
+    }
+
+    private void Update()
+    {
+        if (!pendingRefreshFromValidate)
+        {
+            return;
+        }
+
+        pendingRefreshFromValidate = false;
         Refresh();
     }
 
@@ -191,12 +202,12 @@ public class ShopDisplay : MonoBehaviour
 
         if (healthText != null)
         {
-            healthText.text = selected != null ? "Health: " + selected.Health : "Health: -";
+            healthText.text = selected != null ? "Health: " + selected.Health + " HP" : "Health: -";
         }
 
         if (damageText != null)
         {
-            damageText.text = selected != null ? "Damage: " + selected.Damage : "Damage: -";
+            damageText.text = selected != null ? "Damage: " + selected.Damage + " DMG" : "Damage: -";
         }
 
         if (priceText != null)
@@ -244,38 +255,25 @@ public class ShopDisplay : MonoBehaviour
 
     private void RefreshPreview(PlaneData selected)
     {
-        if (shopManager == null)
+        if (shopManager == null || centerDisplayParent == null)
         {
             return;
         }
 
-        IReadOnlyList<PlaneData> planes = shopManager.Planes;
-        for (int i = 0; i < planes.Count; i++)
+        // Destroy the previously displayed prefab
+        for (int i = centerDisplayParent.childCount - 1; i >= 0; i--)
         {
-            PlaneData plane = planes[i];
-            if (plane == null || plane.PreviewObject == null)
-            {
-                continue;
-            }
-
-            bool isSelected = i == shopManager.SelectedPlaneIndex;
-            plane.PreviewObject.SetActive(isSelected);
+            Destroy(centerDisplayParent.GetChild(i).gameObject);
         }
 
-        if (previewText == null)
+        // Instantiate the new plane prefab
+        if (selected != null && selected.PlanePrefab != null)
         {
-            return;
+            GameObject instance = Instantiate(selected.PlanePrefab, centerDisplayParent, false);
+            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localRotation = Quaternion.identity;
+            instance.transform.localScale = Vector3.one * 0.1f;
         }
-
-        if (selected == null)
-        {
-            previewText.text = noPreviewMessage;
-            return;
-        }
-
-        previewText.text = selected.PreviewObject != null
-            ? selected.PlaneName
-            : noPreviewMessage;
     }
 
     private void RefreshPlaneListVisuals()
