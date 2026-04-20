@@ -14,7 +14,7 @@ public class ShopDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private string shopTitle = "Welcome To Dave's Plane Shop";
-    [SerializeField] private string mainMenuSceneName = "SampleScene";
+    [SerializeField] private string mainMenuSceneName = "Rhu_MainMenu";
     [SerializeField] private Button backButton;
     [SerializeField] private UnityEvent onBackPressed;
 
