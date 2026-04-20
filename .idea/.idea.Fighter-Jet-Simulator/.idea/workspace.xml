@@ -52,9 +52,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1776978000000" />
+    <option name="spentUsd" value="0.0035283" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="9" />
+  </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -64,7 +71,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
