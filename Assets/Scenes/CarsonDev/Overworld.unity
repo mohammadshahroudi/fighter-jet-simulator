@@ -195,6 +195,7 @@ MonoBehaviour:
   moveSpeed: 7
   rotateSpeed: 100
   gameInput: {fileID: 134125989}
+  YawAmount: 120
 --- !u!4 &261342321
 Transform:
   m_ObjectHideFlags: 0
