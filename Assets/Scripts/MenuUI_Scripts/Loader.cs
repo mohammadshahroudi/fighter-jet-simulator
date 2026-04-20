@@ -8,6 +8,7 @@ public static class Loader
         Rhu_LoadingScene, 
         Rhu_MainMenu, 
         Rhu_SampleScene, 
+        Overworld,
         ShopUI
     }
     
