@@ -8,6 +8,7 @@ TagManager:
   - RunwayChunk
   - BaseChunk
   - WaterChunk
+  - redOrb
   layers:
   - Default
   - TransparentFX

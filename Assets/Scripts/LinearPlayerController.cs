@@ -24,5 +24,18 @@ public class PlayerController : MonoBehaviour
         float roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
         transform.localRotation = Quaternion.Euler(Vector3.up * Yaw + Vector3.right * pitch + Vector3.forward * roll);
+        
+        Debug.Log(verticalInput);
+    }
+    
+    private void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log(collider.gameObject.name);
+        if (collider.gameObject.CompareTag("rebOrb"))
+        {
+            this.transform.localScale = new Vector3(2f, 2f, 2f);
+            collider.gameObject.SetActive(false);
+            Debug.Log("Plane is now bigger!");
+        }
     }
 }
