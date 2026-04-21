@@ -1,0 +1,181 @@
+{
+    "version": 1,
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "cd863e4e-0351-4b80-973b-5811ac48018f",
+            "actions": [
+                {
+                    "name": "Roll",
+                    "type": "Value",
+                    "id": "959d79ac-ed58-4101-94c2-9758e4a13c16",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pitch",
+                    "type": "Value",
+                    "id": "18b750b4-12f5-487b-a629-78d2050e716b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Yaw",
+                    "type": "Value",
+                    "id": "8c66dd37-db6b-42bb-a5c4-c35a7bb00d6f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ThrottleUp",
+                    "type": "Button",
+                    "id": "1bb804dd-1ba6-4a78-b83a-77f18c6ef8a0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrottleDown",
+                    "type": "Button",
+                    "id": "ed76fe83-0bf6-4518-b488-78f3a5a46d4e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "d35b65bb-891e-4482-94ab-d0e401db535b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2b9b8b03-5382-4d79-b400-d30035366b1b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "75b11d4e-da02-40ca-8696-62111ed2e04b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c9b35f64-6331-41ce-b8e0-a63b15fd26e8",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrottleUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01db4076-d1a1-4634-9464-9156f1afd29c",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrottleDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "090d4536-4cf3-43ff-83b5-975c81cbd7a4",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "22c0645d-1ca8-4bb1-88a8-6f00a3856582",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9aa326f1-f973-470b-a1d6-2c35e936d454",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "80ccde2a-925a-41aa-8b1f-46de2155ca3f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ce2d8dd8-aad2-4ef1-8b12-94f5099debfc",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "08ca3191-0279-4af3-af7a-70dfbb7a0272",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
