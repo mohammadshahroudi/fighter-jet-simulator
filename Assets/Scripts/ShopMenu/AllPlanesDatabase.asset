@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e22dea3cec454290af3db47b6709f23, type: 3}
+  m_Name: AllPlanesDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::PlaneDatabase
+  allPlanes:
+  - planeId: 1
+    planeName: Plane 1
+    gunType: 0
+    speed: 0
+    health: 0
+    damage: 0
+    price: 0
+    state: 2
+    previewObject: {fileID: 0}
+    planePrefab: {fileID: 4880688868680380564, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
