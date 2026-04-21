@@ -760,6 +760,7 @@ MonoBehaviour:
   moveSpeed: 7
   rotateSpeed: 100
   gameInput: {fileID: 1347198918}
+  YawAmount: 120
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

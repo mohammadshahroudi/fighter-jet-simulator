@@ -5,29 +5,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 100f;
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private float YawAmount = 120;
+    private float Yaw;
+
+    void Start()
+    {
+        
+    }
     private void Update()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        transform.position -= transform.forward * moveSpeed * Time.deltaTime;
 
-        float upDown = 0f;
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        
+        Yaw += horizontalInput * YawAmount * Time.deltaTime;
+        float pitch = Mathf.Lerp(0, 20, Mathf.Abs(verticalInput)) * Mathf.Sign(verticalInput);
+        float roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            upDown = 1f;
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            upDown = -1f;
-        }
-
-        Vector3 moveDir =
-            transform.forward * -inputVector.y +
-            transform.right * -inputVector.x +
-            Vector3.up * upDown;
-
-        moveDir = moveDir.normalized;
-
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.localRotation = Quaternion.Euler(Vector3.up * Yaw + Vector3.right * pitch + Vector3.forward * roll);
     }
 }
