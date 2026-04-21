@@ -8,6 +8,7 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed = 100f;
+    
 
     private float nextFireTime = 0f;
 
