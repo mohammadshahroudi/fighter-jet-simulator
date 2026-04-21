@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59efb6e27b4b143afaf1c3e2b8c4a918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 7
+  moveSpeed: 10
   rotateSpeed: 100
   gameInput: {fileID: 134125989}
   YawAmount: 120
@@ -6826,6 +6826,10 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 134125989}
+    - target: {fileID: 7511852377615937362, guid: a8b542af073664546bafec00aaa2f164, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 9037600126708876702, guid: a8b542af073664546bafec00aaa2f164, type: 3}

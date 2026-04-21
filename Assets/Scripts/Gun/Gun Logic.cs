@@ -23,13 +23,14 @@ public class GunLogic : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Shooting!");
+        // For testing
+        Debug.Log("PEW!");
         GameObject spawnedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
         
         Rigidbody rb = spawnedBullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.linearVelocity = Vector3.back * bulletSpeed;
+            rb.linearVelocity = -firePoint.up * bulletSpeed;
         }
     }
 }
