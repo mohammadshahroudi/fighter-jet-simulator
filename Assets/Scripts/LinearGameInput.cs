@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameInput : MonoBehaviour
+public class LinearGameInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
     private void Awake()

@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class PlayerController : MonoBehaviour
+public class LinearPlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 100f;
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private LinearGameInput linearGameInput;
     [SerializeField] private float YawAmount = 120;
     private float Yaw;
 
@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
     {
         transform.position -= transform.forward * moveSpeed * Time.deltaTime;
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        
+        float horizontalInput = linearGameInput.GetMovementVectorNormalized().x;
+        float verticalInput = linearGameInput.GetMovementVectorNormalized().y;
+
         Yaw += horizontalInput * YawAmount * Time.deltaTime;
         float pitch = Mathf.Lerp(0, 20, Mathf.Abs(verticalInput)) * Mathf.Sign(verticalInput);
         float roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
