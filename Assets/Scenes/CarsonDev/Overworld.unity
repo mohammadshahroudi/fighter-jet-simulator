@@ -143,7 +143,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134125988}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edc75bc57ec3f4cc384e2ef78548a912, type: 3}
   m_Name: 
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 261342321}
-  - component: {fileID: 261342320}
+  - component: {fileID: 261342322}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -180,22 +180,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &261342320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7511852377615937362, guid: a8b542af073664546bafec00aaa2f164, type: 3}
-  m_PrefabInstance: {fileID: 1697491216}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 261342319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59efb6e27b4b143afaf1c3e2b8c4a918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 10
-  rotateSpeed: 100
-  gameInput: {fileID: 134125989}
-  YawAmount: 120
 --- !u!4 &261342321
 Transform:
   m_ObjectHideFlags: 0
@@ -216,6 +200,19 @@ Transform:
   - {fileID: 134125990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261342322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261342319}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43e23ad2bcf4464a17860ff5d3e349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
+  planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
 --- !u!1 &299268841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,7 +6884,8 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 9037600126708876702, guid: a8b542af073664546bafec00aaa2f164, type: 3}
     m_AddedGameObjects:
@@ -7148,6 +7146,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2535954103604261516, guid: 838c0bef810bfe94d8e33947c3cba7c6, type: 3}
+      propertyPath: reflectionPlane
+      value: 
+      objectReference: {fileID: 1632676501}
     - target: {fileID: 2535954103604261519, guid: 838c0bef810bfe94d8e33947c3cba7c6, type: 3}
       propertyPath: m_Name
       value: WaterReflectionCamera

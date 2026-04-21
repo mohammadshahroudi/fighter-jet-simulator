@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float inputDecaySpeed = 2f; // How fast input fades to 0
 
     [Header("References")]
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private Gameinput gameInput;
 
     private Rigidbody rb;
     private float throttle;
