@@ -15,6 +15,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.build-report-inspector": {
+      "version": "git+https://github.com/Unity-Technologies/BuildReportInspector.git?path=/com.unity.build-report-inspector",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "597080da07ba34651b56be11ba6baeca84d49d27"
+    },
     "com.unity.burst": {
       "version": "1.8.27",
       "depth": 2,
