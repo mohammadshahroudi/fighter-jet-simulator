@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 3610528320478421689}
   m_Layer: 0
   m_Name: ChunkHolder
-  m_TagString: Untagged
+  m_TagString: BaseChunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -488,9 +488,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   levelFile: {fileID: 4900000, guid: 4bf7c76b2d17809468fde639f95dc6a1, type: 3}
   levelRoot: {fileID: 7592725317305683915}
-  airportChunkPrefab: {fileID: 4352378007490018682, guid: f0668089f8253194896feba2c212aa4b, type: 3}
-  runwayChunkPrefab: {fileID: 4740377932302589478, guid: f33172727ee0de845a9bff137bc3c642, type: 3}
-  baseChunkPrefab: {fileID: 2127344494563608732, guid: 6ac02f89ad19607488237133eca69785, type: 3}
+  worldChunkPrefabs:
+  - key: 65
+    chunkPrefab: {fileID: 4352378007490018682, guid: f0668089f8253194896feba2c212aa4b, type: 3}
+    tagName: AirportChunk
+  - key: 66
+    chunkPrefab: {fileID: 2127344494563608732, guid: 6ac02f89ad19607488237133eca69785, type: 3}
+    tagName: AirportChunk
+  - key: 82
+    chunkPrefab: {fileID: 4740377932302589478, guid: f33172727ee0de845a9bff137bc3c642, type: 3}
+    tagName: RunwayChunk
   x_gap: 1000
   z_gap: 1000
 --- !u!1 &8165579396526937398
