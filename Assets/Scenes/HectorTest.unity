@@ -821,12 +821,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c4310b97d274e4cbeb58ab501d20d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 0
-  throttleIncrement: 25
-  maxThrottle: 600
-  responsiveness: 110
+  throttleIncrement: 100
+  maxThrottle: 800
+  responsiveness: 10
   responseModifierValue: 10
-  inputDecaySpeed: 2
+  inputDecaySpeed: 50
   gameInput: {fileID: 1954360741}
 --- !u!114 &1148225717
 MonoBehaviour:
