@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 100f;
     [SerializeField] private GameInput gameInput;
-    [SerializeField] private float YawAmount = 120;
+    [SerializeField] private float YawAmount = 180;
     private float Yaw;
 
     void Start()

@@ -48,10 +48,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4530141037321740077, guid: 9932b93aeb6e546a99b9ce7df8de4597, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530141037321740077, guid: 9932b93aeb6e546a99b9ce7df8de4597, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: f63d574838ccfb44f84acc05fed0af48, type: 3}
     - target: {fileID: 4540067409470664151, guid: 9932b93aeb6e546a99b9ce7df8de4597, type: 3}
       propertyPath: m_Name
-      value: MachineGunMK1 Variant
+      value: BurstGun
       objectReference: {fileID: 0}
+    - target: {fileID: 7393679510752320695, guid: 9932b93aeb6e546a99b9ce7df8de4597, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393679510752320695, guid: 9932b93aeb6e546a99b9ce7df8de4597, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: f63d574838ccfb44f84acc05fed0af48, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
