@@ -575,10 +575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c4310b97d274e4cbeb58ab501d20d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 10
-  throttleIncrement: 0.01
-  maxThrottle: 100
-  responsiveness: 40
+  speed: 0
+  throttleIncrement: 0.5
+  maxThrottle: 200
+  responsiveness: 20
   responseModifierValue: 10
   inputDecaySpeed: 100
   gameInput: {fileID: 1954360741}
@@ -620,9 +620,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148225714}
   serializedVersion: 5
-  m_Mass: 5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.01
+  m_Mass: 100
+  m_LinearDamping: 1.2
+  m_AngularDamping: 0.8
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

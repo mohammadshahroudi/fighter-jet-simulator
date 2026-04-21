@@ -47,8 +47,7 @@ public class PlayerController : MonoBehaviour
         float rawYaw   = gameInput.GetYaw();
 
         // If the player is providing input, snap to it.
-        // Otherwise, smoothly decay back to 0.
-        rb.AddRelativeTorque(newTorque);
+        // Otherwise, smoothly decay back to 0. 
         roll  = rawRoll  != 0 ? rawRoll  : Mathf.Lerp(roll,  0f, inputDecaySpeed * Time.deltaTime);
         pitch = rawPitch != 0 ? rawPitch : Mathf.Lerp(pitch, 0f, inputDecaySpeed * Time.deltaTime);
         yaw   = rawYaw   != 0 ? rawYaw   : Mathf.Lerp(yaw,   0f, inputDecaySpeed * Time.deltaTime);
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         float responseModifier = (rb.mass / responseModifierValue) * Time.fixedDeltaTime;
-        float thrustForce = speed;
+        float thrustForce = (throttle / 100f) * maxThrottle;
 
         rb.AddRelativeForce(Vector3.forward * thrustForce);
 
