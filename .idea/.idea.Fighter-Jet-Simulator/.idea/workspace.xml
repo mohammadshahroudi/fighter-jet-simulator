@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/AH64.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/AH64.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AH64.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AH64.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,10 +73,10 @@
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1776978000000" />
-    <option name="spentUsd" value="0.0825269" />
+    <option name="spentUsd" value="0.14929791" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="3" />
+    <option name="suspendCountdown" value="1" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -137,7 +130,7 @@
       <workItem from="1776397374286" duration="649000" />
       <workItem from="1776416403289" duration="1425000" />
       <workItem from="1776419157921" duration="6569000" />
-      <workItem from="1776731819190" duration="1465000" />
+      <workItem from="1776731819190" duration="2068000" />
     </task>
     <task id="LOCAL-00001" summary="adding gun variants, also changed MainMenu.cs and Loader.cs so that it loads my Overworld.unity scene while alan is still working on his scene">
       <option name="closed" value="true" />
