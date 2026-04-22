@@ -340,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &815138060
 Transform:
   m_ObjectHideFlags: 0
@@ -430,7 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c4310b97d274e4cbeb58ab501d20d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 0
   throttleIncrement: 100
   maxThrottle: 800
   responsiveness: 10
@@ -454,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &854001624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,6 +834,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 815138060}
+    - target: {fileID: 5538309908563416704, guid: 0c1574e446e42db40b4a3cce444e4a9e, type: 3}
+      propertyPath: worldChunkPrefabs.Array.data[1].tagName
+      value: BaseChunk
+      objectReference: {fileID: 0}
     - target: {fileID: 7963248216208210774, guid: 0c1574e446e42db40b4a3cce444e4a9e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -846,6 +849,10 @@ PrefabInstance:
     - target: {fileID: 8515815754375374578, guid: 0c1574e446e42db40b4a3cce444e4a9e, type: 3}
       propertyPath: m_Name
       value: -- Environment V2 --
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515815754375374578, guid: 0c1574e446e42db40b4a3cce444e4a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
