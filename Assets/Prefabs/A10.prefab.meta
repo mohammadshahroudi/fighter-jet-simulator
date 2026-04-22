@@ -1,14 +1,7 @@
 fileFormatVersion: 2
-guid: 34c610e4358d04441b5741a05a7284a1
+guid: 7702a6a0ffaaf5446ade03ee4f1d71fa
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 276939
-  packageName: Low Poly Military Vehicles
-  packageVersion: 1.0
-  assetPath: Assets/LowPolyMiliteryVehicles/Prefabs/A10.prefab
-  uploadId: 673747

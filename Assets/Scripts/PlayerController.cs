@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float inputDecaySpeed     = 50f;
 
     [Header("References")]
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private Gameinput gameInput;
 
     private Rigidbody rb;
     private float throttle = 0f;   // Fixed: was initialised to 300, clamped to 100
