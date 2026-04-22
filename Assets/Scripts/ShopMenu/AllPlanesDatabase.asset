@@ -22,7 +22,7 @@ MonoBehaviour:
     price: 0
     state: 2
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 3280384310271628014, guid: 871ec326cd83ebb46b99b01bf9237e1e, type: 3}
+    planePrefab: {fileID: 4880688868680380564, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
   - planeId: Swift L1
     planeName: Swift L1
     gunType: 4
@@ -30,9 +30,9 @@ MonoBehaviour:
     health: 90
     damage: 20
     price: 900
-    state: 0
+    state: 1
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 4880688868680380564, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
+    planePrefab: {fileID: 3280384310271628014, guid: 963d8e1cb5caec24e8b4f152eb355d3a, type: 3}
   - planeId: Viper ZX
     planeName: Viper ZX
     gunType: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     price: 1000
     state: 0
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}
+    planePrefab: {fileID: 835737604007996434, guid: 6db75d9b38254944bb2966743009a888, type: 3}
   - planeId: Titan MK2
     planeName: Titan MK2
     gunType: 2
@@ -50,9 +50,9 @@ MonoBehaviour:
     health: 160
     damage: 45
     price: 2000
-    state: 1
+    state: 0
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 835737604007996434, guid: 33d2fc1d0c07999469310c08d25cdf22, type: 3}
+    planePrefab: {fileID: 3202563847419061804, guid: 22b669ef1382edd45b93e8bc5cfb2724, type: 3}
   - planeId: Nova Rail 0
     planeName: Nova Rail 0
     gunType: 3
@@ -62,4 +62,4 @@ MonoBehaviour:
     price: 3000
     state: 0
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 3202563847419061804, guid: 8403b40cb52c1b34abb75577131ce87f, type: 3}
+    planePrefab: {fileID: 3223541147463892719, guid: 470c85604edf0114380d10fc2bb550ea, type: 3}

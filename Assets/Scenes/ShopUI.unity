@@ -3840,7 +3840,7 @@ MonoBehaviour:
   actionButtonText: {fileID: 2123770043}
   centerDisplayParent: {fileID: 896855117}
   planeListContainer: {fileID: 851640333}
-  planeListItemPrefab: {fileID: 3372578714043034553, guid: f371ce8adf3e647c8a637db2678d4427, type: 3}
+  planeListItemPrefab: {fileID: 3372578714043034553, guid: 9c78ccf2659cc4246a6b136102b180e1, type: 3}
   includeGunTypeInList: 1
   selectedListItemColor: {r: 0.25, g: 0.6, b: 1, a: 1}
   defaultListItemColor: {r: 1, g: 1, b: 1, a: 1}
