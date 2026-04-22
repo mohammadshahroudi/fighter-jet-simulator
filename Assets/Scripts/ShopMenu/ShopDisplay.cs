@@ -237,6 +237,8 @@ public class ShopDisplay : MonoBehaviour
                 return "Rail Cannon";
             case GunType.LightGun:
                 return "Light Gun";
+            case GunType.Missiles:
+                return "Missiles";
             default:
                 return gunType.ToString();
         }

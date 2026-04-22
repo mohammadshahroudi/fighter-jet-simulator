@@ -22,7 +22,7 @@ MonoBehaviour:
     price: 0
     state: 2
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 5019105235814286684, guid: aaa53019a713a4617adf3d574d72a6ea, type: 3}
+    planePrefab: {fileID: 3280384310271628014, guid: 871ec326cd83ebb46b99b01bf9237e1e, type: 3}
   - planeId: Swift L1
     planeName: Swift L1
     gunType: 4
