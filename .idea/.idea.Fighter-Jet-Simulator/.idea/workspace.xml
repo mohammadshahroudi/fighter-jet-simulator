@@ -11,24 +11,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="22" />
+    <option name="cachedIndexableFilesCount" value="28" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "CarkinSoft"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CarkinSoft&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MohammadShahroudi/Fighter-Jet-Simulator.git",
-    "accountId": "255c6fc2-3129-46e9-8922-d6d460fd198f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MohammadShahroudi/Fighter-Jet-Simulator.git&quot;,
+    &quot;accountId&quot;: &quot;255c6fc2-3129-46e9-8922-d6d460fd198f&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Weapons/BurstGun.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" root0="FORCE_HIGHLIGHTING" />
@@ -59,7 +59,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.github.patou.gitmoji.migration-offered": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "#25 on TheCarson-Branch",
+    "git-widget-placeholder": "TheCarson-Branch",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -131,6 +131,7 @@
       <workItem from="1776416403289" duration="1425000" />
       <workItem from="1776419157921" duration="6569000" />
       <workItem from="1776731819190" duration="2068000" />
+      <workItem from="1776824408858" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="adding gun variants, also changed MainMenu.cs and Loader.cs so that it loads my Overworld.unity scene while alan is still working on his scene">
       <option name="closed" value="true" />
