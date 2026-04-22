@@ -6,6 +6,9 @@ public class LinearPlayerController : MonoBehaviour
     [SerializeField] private float rotateSpeed = 100f;
     [SerializeField] private LinearGameInput linearGameInput;
     [SerializeField] private float YawAmount = 120;
+    [SerializeField] private float PitchAmount = 120;
+    [SerializeField] private float RollAmount = 120;
+    [SerializeField] private float Health = 100f;
     private float Yaw;
 
     void Start()

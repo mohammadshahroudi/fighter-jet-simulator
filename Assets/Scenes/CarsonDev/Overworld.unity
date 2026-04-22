@@ -173,6 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261342321}
   - component: {fileID: 261342322}
+  - component: {fileID: 261342323}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -213,6 +214,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
   planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
+--- !u!114 &261342323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261342319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59efb6e27b4b143afaf1c3e2b8c4a918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LinearPlayerController
+  moveSpeed: 7
+  rotateSpeed: 100
+  linearGameInput: {fileID: 134125989}
+  YawAmount: 120
 --- !u!1 &299268841
 GameObject:
   m_ObjectHideFlags: 0
