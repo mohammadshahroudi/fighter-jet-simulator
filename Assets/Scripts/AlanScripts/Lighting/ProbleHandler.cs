@@ -1,3 +1,6 @@
+// Notice: This file may contain project-specific implementation details.
+// Do not upload or share with external AI tools unless you have permission.
+
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -8,6 +11,8 @@ using UnityEngine.Rendering;
 // realtime updates are.
 
 // Here is where the Event Listener stuff should be added
+
+// As of 4-22-2026 this entire will be unused. Going to come back to it for the third milestone to make stuff look "good."
 
 public class ProbleHandler : MonoBehaviour
 {

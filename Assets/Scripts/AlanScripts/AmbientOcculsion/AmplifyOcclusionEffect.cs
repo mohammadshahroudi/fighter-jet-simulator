@@ -307,6 +307,7 @@ namespace AmplifyOcclusion
 		}
 
 
+		[Obsolete("Obsolete")]
 		void OnEnable()
 		{
 			m_myID = m_nextID;
