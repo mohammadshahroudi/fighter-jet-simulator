@@ -1,1 +1,0 @@
-These are assets from the hierarchy that I'm cutting. For now they will be environment only things such as the postprocessvolume and the probehandler.
