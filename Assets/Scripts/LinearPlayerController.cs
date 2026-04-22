@@ -1,4 +1,7 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,11 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float YawAmount = 120;
     private float Yaw;
-
-    void Start()
-    {
-        
-    }
+    private int altitude;
+    
+    [SerializeField] private TextMeshProUGUI altimeterText;
+    
     private void Update()
     {
         transform.position -= transform.forward * moveSpeed * Time.deltaTime;
@@ -24,8 +26,15 @@ public class PlayerController : MonoBehaviour
         float roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
         transform.localRotation = Quaternion.Euler(Vector3.up * Yaw + Vector3.right * pitch + Vector3.forward * roll);
-        
-        // Debug.Log(transform.position.y);
+        altitude = (int) transform.position.y;
+        // Debug.Log(altitude);
+        altimeterText.text = $"Altitude:\n{altitude.ToString()}\nfeet";
+    }
+    
+
+    public int GetAltitude()
+    {
+        return altitude;
     }
     
     /*private void OnTriggerEnter(Collider collider)
