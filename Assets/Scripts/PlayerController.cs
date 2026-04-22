@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private void HandleInputs()
     {
         float rawRoll  = gameInput.GetRoll()/3;
-        float rawPitch = gameInput.GetPitch();
-        float rawYaw   = gameInput.GetYaw();
+        float rawPitch = gameInput.GetPitch()/3;
+        float rawYaw   = gameInput.GetYaw()/3;
 
         roll  = rawRoll  != 0 ? rawRoll  : Mathf.Lerp(roll,  0f, inputDecaySpeed * Time.deltaTime);
         pitch = rawPitch != 0 ? rawPitch : Mathf.Lerp(pitch, 0f, inputDecaySpeed * Time.deltaTime);
