@@ -81,14 +81,15 @@ public class FPSCounter : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    void OnApplicationQuit()
-    {
-        //--------------
-
-        if (logWrite == true) StFPS.LogWrite();
-
-        //--------------
-    }
+    
+    // void OnApplicationQuit()
+    // {
+    //     //--------------
+    //
+    //     if (logWrite == true) StFPS.LogWrite();
+    //
+    //     //--------------
+    // }
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,22 +258,22 @@ public static class StFPS
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    public static void LogWrite()
-    {
-        //--------------
-
-        string filePath = Directory.GetCurrentDirectory() + "/fpslog/";
-        if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-        string date = System.DateTime.Now.ToString("_yyyy.MM.dd_HH.mm.ss");
-        filePath = filePath + "log" + date + ".csv";
-        StreamWriter writer = new StreamWriter(filePath);
-        writer.WriteLine("MIN;AVG;MAX");
-        for (int i = 0; i < logWrite.Count; ++i) writer.WriteLine(logWrite[i].x + ";" + logWrite[i].y + ";" + logWrite[i].z);
-        writer.Flush();
-        writer.Close();
-
-        //--------------
-    }
+    // public static void LogWrite()
+    // {
+    //     //--------------
+    //
+    //     string filePath = Directory.GetCurrentDirectory() + "/fpslog/";
+    //     if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+    //     string date = System.DateTime.Now.ToString("_yyyy.MM.dd_HH.mm.ss");
+    //     filePath = filePath + "log" + date + ".csv";
+    //     StreamWriter writer = new StreamWriter(filePath);
+    //     writer.WriteLine("MIN;AVG;MAX");
+    //     for (int i = 0; i < logWrite.Count; ++i) writer.WriteLine(logWrite[i].x + ";" + logWrite[i].y + ";" + logWrite[i].z);
+    //     writer.Flush();
+    //     writer.Close();
+    //
+    //     //--------------
+    // }
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
