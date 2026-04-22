@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float YawAmount = 120;
     private float Yaw;
     private int altitude;
+    private int heading;
     
     [SerializeField] private TextMeshProUGUI altimeterText;
+    [SerializeField] private TextMeshProUGUI headingText;
     
     private void Update()
     {
@@ -27,25 +29,12 @@ public class PlayerController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(Vector3.up * Yaw + Vector3.right * pitch + Vector3.forward * roll);
         altitude = (int) transform.position.y;
+        heading = (int) transform.position.x;
+        
         // Debug.Log(altitude);
+        // Debug.Log(heading);
+        
         altimeterText.text = $"Altitude:\n{altitude.ToString()}\nfeet";
+        headingText.text = $"Heading:\n{heading.ToString()}";
     }
-    
-
-    public int GetAltitude()
-    {
-        return altitude;
-    }
-    
-    /*private void OnTriggerEnter(Collider collider)
-    {
-        // Debug.Log("Object!");
-        Debug.Log(collider.gameObject.name);
-        if (collider.gameObject.CompareTag("rebOrb"))
-        {
-            // this.transform.localScale = new Vector3(2f, 2f, 2f);
-            collider.gameObject.SetActive(false);
-            // Debug.Log("Plane is now bigger!");
-        }
-    }*/
 }
