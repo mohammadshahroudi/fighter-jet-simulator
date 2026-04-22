@@ -21,7 +21,7 @@ MonoBehaviour:
     damage: 25
     price: 0
     state: 2
-    previewObject: {fileID: 0}
+    previewObject: {fileID: 4880688868680380564, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
     planePrefab: {fileID: 5019105235814286684, guid: aaa53019a713a4617adf3d574d72a6ea, type: 3}
   - planeId: Swift L1
     planeName: Swift L1
