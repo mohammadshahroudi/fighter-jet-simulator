@@ -28,13 +28,14 @@ public class PlayerController : MonoBehaviour
         float roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
         transform.localRotation = Quaternion.Euler(Vector3.up * Yaw + Vector3.right * pitch + Vector3.forward * roll);
+        
         altitude = (int) transform.position.y;
-        heading = (int) transform.position.x;
+        // heading = (int) transform.rotation.y;
         
         // Debug.Log(altitude);
         // Debug.Log(heading);
         
         altimeterText.text = $"Altitude:\n{altitude.ToString()}\nfeet";
-        headingText.text = $"Heading:\n{heading.ToString()}";
+        // headingText.text = $"Heading:\n{heading.ToString()}";
     }
 }
