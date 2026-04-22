@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   startingMoney: 1000000
   planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
-  selectedPlaneIndex: 4
+  selectedPlaneIndex: 0
 --- !u!1001 &1175564497
 PrefabInstance:
   m_ObjectHideFlags: 0
