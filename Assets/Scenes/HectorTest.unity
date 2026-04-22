@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaneCameraController
   plane: {fileID: 948254300}
-  followDistance: 1
+  followDistance: 5
   followHeight: 1
   positionDamping: 5
   yawDamping: 4
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
   ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
-  pattern: 3
+  pattern: 0
   ringCount: 8
   spacingDistance: 30
   arcAngleDegrees: 90
@@ -661,7 +661,7 @@ MonoBehaviour:
   scatterRadius: 500
   scatterHeightVariance: 30
   customPositions: []
-  faceApproachDirection: 1
+  faceApproachDirection: 0
   approachDirection: {x: 0, y: 0, z: 0}
   spawnOnStart: 1
 --- !u!4 &576921038
@@ -765,11 +765,70 @@ Transform:
   m_GameObject: {fileID: 948254299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1148225715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1038586097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1038586099}
+  - component: {fileID: 1038586098}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1038586098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038586097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b10f9f9c41072446aec855b4563db59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  gameOverDelay: 1.8
+  victoryDelay: 1.2
+  gameOverPanel: {fileID: 0}
+  gameOverTitleLabel: {fileID: 0}
+  gameOverScoreLabel: {fileID: 0}
+  gameOverRestartButton: {fileID: 0}
+  gameOverQuitButton: {fileID: 0}
+  victoryPanel: {fileID: 0}
+  victoryTitleLabel: {fileID: 0}
+  victoryScoreLabel: {fileID: 0}
+  victoryRestartButton: {fileID: 0}
+  victoryQuitButton: {fileID: 0}
+  hudRoot: {fileID: 0}
+  gameOverSFX: {fileID: 0}
+  victorySFX: {fileID: 0}
+--- !u!4 &1038586099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038586097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1148225714
 GameObject:
@@ -823,9 +882,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   throttleIncrement: 100
   maxThrottle: 800
+  maxSpeed: 120
   responsiveness: 10
   responseModifierValue: 10
   inputDecaySpeed: 50
+  crashTags:
+  - Terrain
+  - Building
+  - Ground
+  crashVFXPrefab: {fileID: 0}
   gameInput: {fileID: 1954360741}
 --- !u!114 &1148225717
 MonoBehaviour:
@@ -927,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalRotation.x
@@ -935,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalRotation.z
@@ -947,7 +1012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 680452284431707088, guid: 7d9811a8134ec4cb68ab034d321deb56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1208,3 +1273,4 @@ SceneRoots:
   - {fileID: 372020294}
   - {fileID: 538604067}
   - {fileID: 576921038}
+  - {fileID: 1038586099}
