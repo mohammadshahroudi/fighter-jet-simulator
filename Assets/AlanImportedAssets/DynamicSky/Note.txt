@@ -1,0 +1,1 @@
+Moved all of Example Scenes to an external folder on my desktop as I deemed it unnecessary/unused/bloat.
