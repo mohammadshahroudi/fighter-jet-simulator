@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
   ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
-  pattern: 0
+  pattern: 3
   ringCount: 8
   spacingDistance: 30
   arcAngleDegrees: 90

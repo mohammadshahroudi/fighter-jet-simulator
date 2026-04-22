@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInputs()
     {
-        float rawRoll  = gameInput.GetRoll();
+        float rawRoll  = gameInput.GetRoll()/3;
         float rawPitch = gameInput.GetPitch();
         float rawYaw   = gameInput.GetYaw();
 
