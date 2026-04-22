@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2798960839020150964, guid: a45aa0b6e12594547b487ff19258065d, type: 3}
+      propertyPath: m_text
+      value: 'Currency:'
+      objectReference: {fileID: 0}
     - target: {fileID: 3293310968882448707, guid: a45aa0b6e12594547b487ff19258065d, type: 3}
       propertyPath: m_Name
       value: MainMenuUI
