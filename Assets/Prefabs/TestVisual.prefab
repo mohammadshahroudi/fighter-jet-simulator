@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 849983277233640654}
   - component: {fileID: 1591087657227165350}
   - component: {fileID: -3463871532661651534}
+  - component: {fileID: -2400802462540436813}
+  - component: {fileID: 7178847771523557179}
   m_Layer: 0
   m_Name: TestVisual
   m_TagString: Untagged
@@ -135,3 +137,68 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &-2400802462540436813
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897662090182976731}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7178847771523557179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897662090182976731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04ae39d6db833f449dc1b41c30e3610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFighterAI
+  playerTransform: {fileID: 0}
+  formationLeader: {fileID: 0}
+  formationSlotIndex: 0
+  formationSpacing: 15
+  formationOffsets:
+  - {x: 0, y: 0, z: 0}
+  - {x: -20, y: 0, z: -15}
+  - {x: 20, y: 0, z: -15}
+  - {x: -30, y: 5, z: -30}
+  - {x: 30, y: 5, z: -30}
+  maxSpeed: 60
+  formationSpeed: 20
+  agroSpeed: 110
+  turnSpeed: 2.5
+  rollSpeed: 3
+  minAltitude: 50
+  fireRange: 300
+  fireAngle: 8
+  fireRate: 0.15
+  projectilePrefab: {fileID: 8810027870681859830, guid: 9cec9b3d240534a98869fc03e3d157b7, type: 3}
+  muzzlePoints:
+  - {fileID: 0}
+  tailOffset: 60
+  tailPositionTolerance: 40
+  evasionDuration: 3
+  evasionRadius: 80
