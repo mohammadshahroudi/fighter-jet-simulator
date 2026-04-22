@@ -5,11 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter V2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter V2.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.00.39.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.09.18.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.11.19.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.13.27.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.24.56.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.25.34.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.26.04.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.27.32.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.29.24.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.31.10.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.40.59.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/bullet.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +41,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{}]]></component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/Lighting/ProbleHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -27,6 +51,9 @@
     <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -42,7 +69,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "#12 on TheEric-Branch",
+    "git-widget-placeholder": "TheCarson-Branch",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -54,9 +81,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1776978000000" />
+    <option name="spentUsd" value="0.02045405" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="6" />
+  </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -66,7 +100,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -106,6 +140,14 @@
       <workItem from="1776397374286" duration="649000" />
       <workItem from="1776416403289" duration="1425000" />
       <workItem from="1776419157921" duration="6569000" />
+      <workItem from="1776441190204" duration="446000" />
+      <workItem from="1776541712675" duration="1734000" />
+      <workItem from="1776545337117" duration="5529000" />
+      <workItem from="1776568255436" duration="3757000" />
+      <workItem from="1776576323438" duration="4862000" />
+      <workItem from="1776588712004" duration="3000" />
+      <workItem from="1776628759151" duration="2412000" />
+      <workItem from="1776735742880" duration="944000" />
     </task>
     <servers />
   </component>

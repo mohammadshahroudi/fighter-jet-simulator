@@ -73,3 +73,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+#Workspace.xml file is buggin'
+/[Pp]rojects/[Aa]ssets/[Pp]lugins/Editor/JetBrains/Workspace.xml
+.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml
+/.idea/.idea.Fighter-Jet-Simulator/.idea
+ProjectSettings/EditorBuildSettings.asset
