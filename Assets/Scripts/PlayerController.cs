@@ -3,19 +3,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Plane Stats")]
-
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float throttleIncrement = 0.1f;
-    [SerializeField] private float maxThrottle = 200f;
-    [SerializeField] private float responsiveness = 10f;
+    [SerializeField] private float throttleIncrement   = 100f;
+    [SerializeField] private float maxThrottle         = 800f;
+    [SerializeField] private float responsiveness      = 10f;
     [SerializeField] private float responseModifierValue = 10f;
-    [SerializeField] private float inputDecaySpeed = 2f; // How fast input fades to 0
+    [SerializeField] private float inputDecaySpeed     = 50f;
 
     [Header("References")]
     [SerializeField] private Gameinput gameInput;
 
     private Rigidbody rb;
-    private float throttle;
+    private float throttle = 0f;   // Fixed: was initialised to 300, clamped to 100
     private float roll;
     private float pitch;
     private float yaw;
@@ -42,12 +40,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInputs()
     {
-        float rawRoll  = gameInput.GetRoll();
+        float rawRoll  = gameInput.GetRoll()/3;
         float rawPitch = gameInput.GetPitch();
         float rawYaw   = gameInput.GetYaw();
 
-        // If the player is providing input, snap to it.
-        // Otherwise, smoothly decay back to 0. 
         roll  = rawRoll  != 0 ? rawRoll  : Mathf.Lerp(roll,  0f, inputDecaySpeed * Time.deltaTime);
         pitch = rawPitch != 0 ? rawPitch : Mathf.Lerp(pitch, 0f, inputDecaySpeed * Time.deltaTime);
         yaw   = rawYaw   != 0 ? rawYaw   : Mathf.Lerp(yaw,   0f, inputDecaySpeed * Time.deltaTime);
@@ -58,11 +54,10 @@ public class PlayerController : MonoBehaviour
             throttle = Mathf.Clamp(throttle - throttleIncrement, 0f, 100f);
     }
 
-
     private void FixedUpdate()
     {
-        float responseModifier = (rb.mass / responseModifierValue) * Time.fixedDeltaTime;
-        float thrustForce = (throttle / 100f) * maxThrottle;
+        float responseModifier = rb.mass / responseModifierValue;
+        float thrustForce      = (throttle / 100f) * maxThrottle;
 
         rb.AddRelativeForce(Vector3.forward * thrustForce);
 
@@ -71,5 +66,8 @@ public class PlayerController : MonoBehaviour
             yaw   * responsiveness * responseModifier,
             roll  * responsiveness * responseModifier
         ));
+
+        // Prevent infinite acceleration — clamp to max speed
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxThrottle);
     }
 }

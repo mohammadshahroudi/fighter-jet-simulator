@@ -5,7 +5,7 @@ using UnityEngine.Events;
 /// Per-unit health component. Initialised by FormationSpawner
 /// but can also be set manually in the Inspector.
 /// </summary>
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     // ── Inspector Fields ─────────────────────────────────────────────────────
 
@@ -49,11 +49,11 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /// <summary>Apply damage. Triggers death at zero HP.</summary>
-    public void TakeDamage(int amount)
+    public  void TakeDamage(float amount)
     {
         if (!IsAlive) return;
 
-        currentHealth = Mathf.Max(0, currentHealth - amount);
+        currentHealth = Mathf.Max(0, currentHealth - Mathf.RoundToInt(amount));
         onHealthChanged.Invoke(currentHealth);
 
         if (currentHealth <= 0)
@@ -70,7 +70,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /// <summary>Instantly kill this unit.</summary>
-    public void InstantKill() => TakeDamage(currentHealth);
+    public void InstantKill() => TakeDamage((float)currentHealth);
 
     // ── Private ──────────────────────────────────────────────────────────────
 

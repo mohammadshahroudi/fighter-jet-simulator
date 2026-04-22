@@ -22,18 +22,6 @@
       <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.31.10.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.40.59.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/HugePrefabs/-- Environment V2 --.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/HugePrefabs/-- Environment V2 --.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" afterDir="false" />
@@ -44,7 +32,6 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" afterDir="false" />
->>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
