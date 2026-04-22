@@ -5,43 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter V2.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter V2.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.00.39.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.09.18.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.11.19.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_13.13.27.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.24.56.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.25.34.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.26.04.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.27.32.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.29.24.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.31.10.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.19_14.40.59.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Grid_00_BaseMap.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Effects/JetAfterburner.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LinearPlayerController.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{}]]></component>
+  <component name="GithubPullRequestsUISettings">{}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/Lighting/ProbleHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -65,9 +43,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.github.patou.gitmoji.migration-offered": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "TheCarson-Branch",
     "junie.onboarding.icon.badge.shown": "true",
