@@ -3525,63 +3525,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c64e0fe5c5b818b4caa57dbe73fba718, type: 3}
   m_PrefabInstance: {fileID: 1677600621}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1719095893
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385869126603243319, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8364248782975110274, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
-      propertyPath: m_Name
-      value: FPS Counter V3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4f87d85a9135cfb47a0895f58cd11308, type: 3}
 --- !u!1 &1909183264
 GameObject:
   m_ObjectHideFlags: 0
@@ -4303,4 +4246,3 @@ SceneRoots:
   - {fileID: 1210258204}
   - {fileID: 1132814272}
   - {fileID: 445560831}
-  - {fileID: 1719095893}
