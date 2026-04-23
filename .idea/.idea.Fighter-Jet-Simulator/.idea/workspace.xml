@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Terrain 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files/N01E036.SRTMGL1_NC.nc.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files/N01E036.SRTMGL1_NC.nc.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/ChunkLoaderScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/ChunkLoaderScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/Text Levels/Default Environment Level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/Text Levels/Default Environment Level.txt" afterDir="false" />
-    </list>
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
