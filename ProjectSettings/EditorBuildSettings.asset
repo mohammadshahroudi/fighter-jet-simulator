@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopUI.unity
     guid: a5c6070842f12442f8cc3f05e350f263
+  - enabled: 1
+    path: Assets/Scenes/HectorTest.unity
+    guid: f8141514e5de3ec419afe20b3b0b4c0f
+  - enabled: 1
+    path: Assets/Scenes/CarsonDev/Overworld.unity
+    guid: 91edca22741b241938a9a6c4c793c1dd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

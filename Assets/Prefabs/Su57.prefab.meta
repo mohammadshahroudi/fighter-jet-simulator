@@ -1,14 +1,7 @@
 fileFormatVersion: 2
-guid: 8403b40cb52c1b34abb75577131ce87f
+guid: 22b669ef1382edd45b93e8bc5cfb2724
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 276939
-  packageName: Low Poly Military Vehicles
-  packageVersion: 1.0
-  assetPath: Assets/LowPolyMiliteryVehicles/Prefabs/Su57.prefab
-  uploadId: 673747
