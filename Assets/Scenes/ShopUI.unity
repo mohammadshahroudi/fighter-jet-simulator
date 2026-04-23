@@ -1913,7 +1913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458aa9da6693d44c5b338cf04860a7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  startingMoney: 1000000
   planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
   selectedPlaneIndex: 0
 --- !u!1001 &1175564497
