@@ -18,6 +18,7 @@ TagManager:
   - Terrain8
   - Terrain9
   - Terrain10
+  - Ground
   layers:
   - Default
   - TransparentFX

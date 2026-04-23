@@ -138,6 +138,8 @@ public class ChunkLoaderScript : MonoBehaviour
         // Call the function needed to find the airportChunk
         Vector2Int airportCoordinates = FindAirport(lines);
         GenerateChunks(lines, airportCoordinates);
+        
+        Debug.Log($"Total chunks spawned: {_spawnedChunks.Count}");
     }
 
     // Find the airportChunk
@@ -221,7 +223,8 @@ public class ChunkLoaderScript : MonoBehaviour
 
                 float x = (logicalColumn - airportCoordinates.x) * xGap;
                 float z = (row - airportCoordinates.y) * zGap;
-                Vector3 spawnPosition = new Vector3(x, 0f, z);
+                float y = ySpawnOffset;
+                Vector3 spawnPosition = new Vector3(x, y, z);
 
                 // Good in case a chunk is null for some reason
                 if (prefabToSpawn == null)
