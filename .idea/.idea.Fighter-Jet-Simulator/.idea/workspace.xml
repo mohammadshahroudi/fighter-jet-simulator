@@ -5,106 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CarsonDev/Overworld.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Blacksmith.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Blacksmith.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Blacksmith.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Blacksmith.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Anvil.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Anvil.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/BaseMat.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/BaseMat.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_beams.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_beams.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_chair.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_chair.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_planks.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Blacksmith_planks.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/SmithyLog_01.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/SmithyLog_01.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Wooden_planks_set.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/Wooden_planks_set.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/barrels.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/barrels.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_beams_broken.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_beams_broken.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_cart_wheels.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_cart_wheels.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_clovers.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_clovers.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_coal.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_coal.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_dirt_floor.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_dirt_floor.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_door.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_door.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_forge.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_forge.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_metals.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_metals.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_rope.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_rope.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_stone.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_stone.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_stone_floor.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/blacksmith_stone_floor.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/floor.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/floor.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/shields.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/shields.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/wall_ivy_diff.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/wall_ivy_diff.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/weapons.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/weapons.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/wooden_props.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Models/Materials/wooden_props.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Scripts/Controls.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Scripts/Controls.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Scripts/MouseLook.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Scripts/MouseLook.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Anvil_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Anvil_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Buildings.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Buildings/House_foundation_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Buildings/House_foundation_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Buildings/stone_tile_nm.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Buildings/stone_tile_nm.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Chair_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Chair_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Ropes_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Ropes_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Smithy_forge_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/Smithy_forge_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_front_door_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_front_door_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_metal_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_metal_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_planks_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_planks_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_wheel_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_wheel_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_wooden_beams_broken_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/blacksmith_wooden_beams_broken_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/coal_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/coal_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/prop_barrel_01_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/prop_barrel_01_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/prop_sword_shovel_halberd_01_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/prop_sword_shovel_halberd_01_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/wooden_props_n.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Samples/Demo/Textures/wooden_props_n.tif.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/FlakCannon.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/FlakCannon.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/HeavyMachineGun.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/HeavyMachineGun.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/ParticlesRocket.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/ParticlesRocket.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/ParticlesSmoke.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/ParticlesSmoke.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Red.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/RocketStream.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShootingRange.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/ShootingRange.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HectorTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HectorTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Gun Logic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,12 +33,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="29" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings">{}</component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CarkinSoft&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MohammadShahroudi/Fighter-Jet-Simulator.git&quot;,
+    &quot;accountId&quot;: &quot;255c6fc2-3129-46e9-8922-d6d460fd198f&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/Lighting/ProbleHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -161,10 +94,10 @@
 }</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1776978000000" />
-    <option name="spentUsd" value="0.02045405" />
+    <option name="spentUsd" value="0.16974063" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="6" />
+    <option name="suspendCountdown" value="0" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -227,6 +160,8 @@
       <workItem from="1776628759151" duration="2412000" />
       <workItem from="1776735742880" duration="944000" />
       <workItem from="1776832465019" duration="245000" />
+      <workItem from="1776906971021" duration="376000" />
+      <workItem from="1776907590305" duration="7313000" />
     </task>
     <servers />
   </component>
