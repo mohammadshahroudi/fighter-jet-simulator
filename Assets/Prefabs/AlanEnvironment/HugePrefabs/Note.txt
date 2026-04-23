@@ -1,1 +1,0 @@
-Here will be kept huge prefabs, such as an entire environment made up of smaller prefabs.
