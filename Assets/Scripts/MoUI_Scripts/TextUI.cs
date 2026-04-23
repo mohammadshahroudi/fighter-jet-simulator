@@ -10,8 +10,10 @@ public class TextUI : MonoBehaviour
     
     private void Update()
     {
+        Quaternion currentAngle = player.transform.localRotation;
         altimeterText.text = $"Altitude:\n{(int) player.gameObject.transform.position.y}\nfeet";
         speedText.text = $"Speed:\n{(int) Vector3.Dot(player.gameObject.GetComponent<Rigidbody>().linearVelocity, player.gameObject.transform.forward) }\nkts";
-        // headingText = $"Heading:\n{(int) player.gameObject.transform.localRotation.y}";
+        // Debug.Log("Current Angle: " + (int) currentAngle.eulerAngles.y);
+        headingText.text = $"Heading:\n{(int) currentAngle.eulerAngles.y}";
     }
 }
