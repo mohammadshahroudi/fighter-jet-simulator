@@ -601,7 +601,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6299417565086898845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6082578013229585992}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ToShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5954856015191823749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,7 +1056,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2465452446813190593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6082578013229585992}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ReturnToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5839975639484866038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2651,6 +2675,7 @@ GameObject:
   - component: {fileID: 8651062387601944166}
   - component: {fileID: 1487051098986041327}
   - component: {fileID: 581718283969073224}
+  - component: {fileID: 6082578013229585992}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -2746,6 +2771,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6082578013229585992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637041759365623639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444d5305cba33f45bddd822697ee72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  PauseMenuUICanvas: {fileID: 8637041759365623639}
 --- !u!1 &8643645645438212429
 GameObject:
   m_ObjectHideFlags: 0
