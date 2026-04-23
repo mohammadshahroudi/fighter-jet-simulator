@@ -77,6 +77,20 @@ void Awake()
     // Handler
     // -------------------------------------------------------------------------
 
+    void HandleRingCollected(int points, Vector3 worldPos)
+    {
+        currentScore += points;
+        UpdateScoreUI();
+        SpawnPopup(points, worldPos);
+
+        // Save money to PlayerPrefs
+        int currentMoney = ShopPersistence.LoadMoney();
+        int newMoney = currentMoney + points;
+        Debug.Log($"[RingScoreManager] Collected ring: +{points}, previous money: {currentMoney}, new money: {newMoney}");
+        ShopPersistence.SaveRuntimeState(newMoney, /*selectedPlaneIndex*/ 0, null); // Use correct selectedPlaneIndex and planes if available
+        Debug.Log($"[RingScoreManager] Money saved to PlayerPrefs: {newMoney}");
+    }
+
     // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------

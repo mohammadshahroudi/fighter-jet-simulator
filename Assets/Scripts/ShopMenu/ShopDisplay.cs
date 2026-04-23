@@ -178,7 +178,7 @@ public class ShopDisplay : MonoBehaviour
         if (moneyText != null)
         {
             // Always update from PlayerPrefs to ensure latest value
-            int money = PlayerPrefs.GetInt("ShopManager_Money", shopManager != null ? shopManager.Money : 0);
+            int money = ShopPersistence.LoadMoney();           
             Debug.Log($"[ShopDisplay] Updating money UI: ${money}");
             moneyText.text = "$" + money;
         }
