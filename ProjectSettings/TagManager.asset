@@ -8,6 +8,16 @@ TagManager:
   - RunwayChunk
   - BaseChunk
   - WaterChunk
+  - Terrain1
+  - Terrain2
+  - Terrain3
+  - Terrain4
+  - Terrain5
+  - Terrain6
+  - Terrain7
+  - Terrain8
+  - Terrain9
+  - Terrain10
   layers:
   - Default
   - TransparentFX

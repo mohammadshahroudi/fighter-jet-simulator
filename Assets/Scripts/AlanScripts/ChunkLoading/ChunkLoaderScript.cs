@@ -146,12 +146,14 @@ public class ChunkLoaderScript : MonoBehaviour
         for (int row = 0; row < lines.Length; row++)
         {
             string line = lines[row];
+            
+            string[] chunkKeys = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int column = 0; column < line.Length; column++)
+            for (int logicalColumn = 0; logicalColumn < chunkKeys.Length; logicalColumn++)
             {
-                if (line[column] == 'A') // Should always be capital
+                if (chunkKeys[logicalColumn][0] == 'A') // Should always be capital
                 {
-                    return new Vector2Int(column, row);
+                    return new Vector2Int(logicalColumn, row);
                 }
             }
         }
@@ -167,34 +169,68 @@ public class ChunkLoaderScript : MonoBehaviour
         for (int row = 0; row < lines.Length; row++)
         {
             string line = lines[row];
+            
+            string[] chunkKeys = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int column = 0; column < line.Length; column++)
+            for (int logicalColumn = 0; logicalColumn < chunkKeys.Length; logicalColumn++)
             {
-                char chunkKey = line[column];
+                char chunkKey = chunkKeys[logicalColumn][0]; // Get first character from each token
 
                 // "or" is some pattern thingy. Works the same as || (WHY ARE THESE IN ITALICS)
                 if (chunkKey is ' ' or '\t') // If anyone asks what \t is it's basically a horizontal tab like pressing the     key on your keyboard
                 {
                     continue;
                 }
-
-                if (!_chunkLookup.TryGetValue(chunkKey, out WorldChunkPrefab chunkData))
+                
+                GameObject prefabToSpawn = null;
+                string tagToAssign = string.Empty;
+                
+                // First generate the random terrain chunks
+                if (chunkKey == 'T')
                 {
-                    Debug.LogWarning($"No prefab mapping for '{chunkKey}' at ({column}, {row}).", this);
-                    continue;
+                    if (!TryToGenerateTerrainChunks(chunkKey, out TerrainChunkPrefab selectedTerrain))
+                    {
+                        Debug.LogWarning($"No terrain prefab mapping for '{chunkKey}' at ({logicalColumn}, {row}).", this);
+                        continue;
+                    }
+
+                    prefabToSpawn = selectedTerrain.terrainPrefab;
+                    tagToAssign = selectedTerrain.tagName;
+                }
+                else
+                {
+                    // Follow through with regular chunk generation (aka only the airport chunk)
+                    
+                    if (!_chunkLookup.TryGetValue(chunkKey, out WorldChunkPrefab chunkData))
+                    {
+                        Debug.LogWarning($"No prefab mapping for '{chunkKey}' at ({logicalColumn}, {row}).", this);
+                        continue;
+                    }
+
+                    if (chunkData.chunkPrefab == null)
+                    {
+                        Debug.LogWarning($"Prefab is null for chunk '{chunkKey}'.", this);
+                        continue;
+                    }
+                    
+                    prefabToSpawn = chunkData.chunkPrefab;
+                    tagToAssign = chunkData.tagName;
                 }
 
-                if (chunkData.chunkPrefab == null)
-                {
-                    Debug.LogWarning($"Prefab is null for chunk '{chunkKey}'.", this);
-                    continue;
-                }
+                
 
-                float x = (column - airportCoordinates.x) * xGap;
+                float x = (logicalColumn - airportCoordinates.x) * xGap;
                 float z = (row - airportCoordinates.y) * zGap;
                 Vector3 spawnPosition = new Vector3(x, 0f, z);
 
-                GameObject instance = Instantiate(chunkData.chunkPrefab, spawnPosition, Quaternion.identity, levelRoot);
+                // Good in case a chunk is null for some reason
+                if (prefabToSpawn == null)
+                {
+                    Debug.LogError($"Prefab to spawn is NULL for key '{chunkKey}' at ({logicalColumn}, {row}).", this);
+                    continue;
+                }
+                
+                GameObject instance = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity, levelRoot);
                 
                 // Call the function to randomize the chunk (for now it will only randomize direction it faces)
                 if (chunkRandomizer != null && chunkKey != 'A') // Ignore the main airport chunk
@@ -202,17 +238,47 @@ public class ChunkLoaderScript : MonoBehaviour
                     chunkRandomizer.RandomizeChunk(instance);
                 }
                 
-                instance.name = $"Chunk{chunkKey}_{column}_{row}";
+                instance.name = $"Chunk{chunkKey}_{logicalColumn}_{row}";
 
-                if (!string.IsNullOrWhiteSpace(chunkData.tagName))
+                
+                // As of 4/22/2026, tags don't really serve any purpose other than being tags to give terrain chunks
+                if (!string.IsNullOrWhiteSpace(tagToAssign))
                 {
-                    instance.tag = chunkData.tagName;
+                    instance.tag = tagToAssign;
                 }
 
                 _spawnedChunks.Add(instance);
             }
         }
     }
+    
+    // All the terrain chunks will share the same key
+    // However, this makes it so a random terrain chunk is placed
+    // This will be called inside the function above
+    private bool TryToGenerateTerrainChunks(char chunkKey, out TerrainChunkPrefab selectedTerrain)
+    {
+        selectedTerrain = default;
+
+        List<TerrainChunkPrefab> matchingTerrains = new();
+
+        foreach (TerrainChunkPrefab terrain in terrainChunkPrefabs)
+        {
+            if (terrain.key == chunkKey && terrain.terrainPrefab != null)
+            {
+                matchingTerrains.Add(terrain);
+            }
+        }
+
+        if (matchingTerrains.Count == 0)
+        {
+            return false;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, matchingTerrains.Count);
+        selectedTerrain = matchingTerrains[randomIndex];
+        return true;
+    }
+    
 
     // --------------------------------------------------------------------------
     // ReSharper disable Unity.PerformanceAnalysis

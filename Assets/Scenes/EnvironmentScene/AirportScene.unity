@@ -1232,6 +1232,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: -- Environment V3 --
       objectReference: {fileID: 0}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: xGap
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[1].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: a67be25faf58224468db906bcd9cb6e3, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[2].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: e1015b9560622274a8155fe7b7eb8c22, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[3].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: 66b456beb3742c14999fba66cd9b67c6, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[4].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: a89a530cfff53104b82d00b552856b29, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[5].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: cf1fa1c66513edc4db65a6ae6e239da3, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[6].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: 6a0a28b0bf84f6148af243366352be11, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[7].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: 485847627329f184c84487d56e223b9e, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[8].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: fc22f25850a74a149b9948336e51f735, type: 3}
+    - target: {fileID: 5631930572979887118, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
+      propertyPath: terrainChunkPrefabs.Array.data[9].terrainPrefab
+      value: 
+      objectReference: {fileID: 2127344494563608732, guid: a2f358df4becd254290c5209e99e4435, type: 3}
     - target: {fileID: 6710263633623730503, guid: 1e7ec2155fd8bfb4494989c7dcda42e7, type: 3}
       propertyPath: player
       value: 
