@@ -7,7 +7,7 @@ public static class Loader
     {
         LoadingScene, 
         MainMenu, 
-        Overworld,
+        HectorTest,
         ShopUI
     }
     
