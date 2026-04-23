@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gameinput : MonoBehaviour
+public class GameInput : MonoBehaviour
 {
     private PlayerInput inputActions;
 

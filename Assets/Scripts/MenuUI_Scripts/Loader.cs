@@ -5,9 +5,14 @@ public static class Loader
 {
     public enum Scene
     {
+<<<<<<< HEAD
         Rhu_LoadingScene, 
         Rhu_MainMenu, 
         Rhu_SampleScene, 
+=======
+        LoadingScene, 
+        MainMenu, 
+>>>>>>> main
         HectorTest,
         ShopUI
     }
@@ -21,7 +26,7 @@ public static class Loader
             SceneManager.LoadScene(scene.ToString());
         };
         
-        SceneManager.LoadScene(Scene.Rhu_LoadingScene.ToString()); 
+        SceneManager.LoadScene(Scene.LoadingScene.ToString()); 
     }
 
     public static void LoaderCallBack()
