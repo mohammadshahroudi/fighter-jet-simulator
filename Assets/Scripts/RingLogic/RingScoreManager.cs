@@ -47,16 +47,16 @@ public class RingScoreManager : MonoBehaviour
 
     void HandleRingCollected(int points, Vector3 worldPos)
     {
-        currentScore += points;
-        UpdateScoreUI();
-        SpawnPopup(points, worldPos);
+    currentScore += points;
+    UpdateScoreUI();
+    SpawnPopup(points, worldPos);
 
-        // Save money to PlayerPrefs
-        int currentMoney = ShopPersistence.LoadMoney();
-        int newMoney = currentMoney + points;
-        Debug.Log($"[RingScoreManager] Collected ring: +{points}, previous money: {currentMoney}, new money: {newMoney}");
-        ShopPersistence.SaveRuntimeState(newMoney, /*selectedPlaneIndex*/ 0, null); // Use correct selectedPlaneIndex and planes if available
-        Debug.Log($"[RingScoreManager] Money saved to PlayerPrefs: {newMoney}");
+    int currentMoney = ShopPersistence.LoadMoney();
+    int newMoney = currentMoney + points;
+
+    ShopPersistence.SaveMoney(newMoney);
+
+    Debug.Log($"[RingScoreManager] Collected ring: +{points}, new money: {newMoney}");
     }
 
     // -------------------------------------------------------------------------

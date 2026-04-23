@@ -52,7 +52,7 @@ MonoBehaviour:
     price: 2000
     state: 0
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 835737604007996434, guid: 33d2fc1d0c07999469310c08d25cdf22, type: 3}
+    planePrefab: {fileID: 835737604007996434, guid: 6db75d9b38254944bb2966743009a888, type: 3}
   - planeId: Nova Rail 0
     planeName: Nova Rail 0
     gunType: 3
@@ -62,4 +62,4 @@ MonoBehaviour:
     price: 3000
     state: 0
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 3202563847419061804, guid: 8403b40cb52c1b34abb75577131ce87f, type: 3}
+    planePrefab: {fileID: 3202563847419061804, guid: 22b669ef1382edd45b93e8bc5cfb2724, type: 3}

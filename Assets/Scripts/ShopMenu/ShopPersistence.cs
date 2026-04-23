@@ -134,4 +134,9 @@ public static class ShopPersistence
     {
         return PlaneStateKeyPrefix + index;
     }
+    public static void SaveMoney(int money)
+{
+    PlayerPrefs.SetInt(MoneyKey, Mathf.Max(0, money));
+    PlayerPrefs.Save();
+}
 }
