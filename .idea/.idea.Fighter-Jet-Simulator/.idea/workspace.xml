@@ -4,7 +4,190 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/-- Environment --.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/Note.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/HugePrefabs/Note.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Objects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Objects/Window.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Objects/Window.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/AirportChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/AirportChunk.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/Objects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/Objects/Dash.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/Objects/Dash.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/RunwayChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/WorldChunks/WhiteBoxedChunks/RunwayChunk.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Planes/Su57.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Planes/Su57.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6SidedFluffball.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6SidedFluffball.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6SidedMegaSun.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6SidedMegaSun.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6sidedCosmicCoolCloud.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/6sidedCosmicCoolCloud.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/AmbienceExposure.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/AmbienceExposure.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CasualDay.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CasualDay.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CloudedSunGlow.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CloudedSunGlow.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/Cloudymorning.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/Cloudymorning.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CoriolisNight4k.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CoriolisNight4k.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CosmicCoolCloud_Eq.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/CosmicCoolCloud_Eq.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/DarkStorm.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/DarkStorm.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/DayInTheClouds.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/DayInTheClouds.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/AmbienceExposure.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/AmbienceExposure.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CasualDay.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CasualDay.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CloudyMorning.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CloudyMorning.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CosmicCoolCloud.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/CosmicCoolCloud.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/DarkStorm.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/DarkStorm.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/DayInTheClouds.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/DayInTheClouds.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/Daylightfreebiedemo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/Daylightfreebiedemo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/HighFantasy.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/HighFantasy.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/MidNightFreebieDemo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/MidNightFreebieDemo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/PlanetaryFreebie.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/PlanetaryFreebie.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/2_10.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/2_10.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/4_10.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/4_10.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/6_10.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/6_10.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/8_10.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/8_10.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/DemoObjects.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/DemoObjects.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/Full.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SceneObjects/Full.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SkyhighFreebieDemo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SkyhighFreebieDemo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SundownFreebieDemo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SundownFreebieDemo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SunlessFreebieDemo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/SunlessFreebieDemo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/UnEarthlyRed.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/UnEarthlyRed.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/UnderTheSea.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/ExampleScenes/UnderTheSea.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FluffballDay.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FluffballDay.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/AmbienceExposure4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/AmbienceExposure4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CasualDay4K.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CasualDay4K.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CloudedSunGlow4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CloudedSunGlow4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/Cloudymorning4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/Cloudymorning4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CoriolisNight4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CoriolisNight4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudBack.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudBack.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudBottom.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudBottom.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudEQ_hdr.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudEQ_hdr.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudFront.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudFront.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudLeft.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudLeft.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudRight.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudRight.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudTop.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/CosmicCoolCloudTop.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/DarkStorm4K.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/DarkStorm4K.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/DayInTheClouds4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/DayInTheClouds4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDay4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDay4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayBack.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayBack.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayBottom.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayBottom.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayFront.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayFront.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayLeft.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayLeft.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayRight.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayRight.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayTop.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/FluffballDayTop.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/HighFantasy4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/HighFantasy4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSun4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSun4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunBack.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunBack.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunBottom.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunBottom.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunFront.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunFront.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunLeft.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunLeft.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunRight.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunRight.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunTop.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/MegaSunTop.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/PlanetaryEarth4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/PlanetaryEarth4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/SkyhighFluffycloudField4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/SkyhighFluffycloudField4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/SunlessCirruscover4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/SunlessCirruscover4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/UnderTheSea4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/UnderTheSea4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/UnearthlyRed4k.hdr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/FreebieHdri/UnearthlyRed4k.hdr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/Hdri setup.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/Hdri setup.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/HighFantasy.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/HighFantasy.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/MegaSun.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/MegaSun.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/PlanetaryEarth.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/PlanetaryEarth.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/SkyhighFluffycloudField.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/SkyhighFluffycloudField.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/SunlessCirruscover.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/SunlessCirruscover.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/UnderTheSea4k.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/UnderTheSea4k.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/UnearthlyRed.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/SkySeries Freebie/UnearthlyRed.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +236,8 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "#42 on TheRhu-Branch",
+    "git-widget-placeholder": "NEW__Alan__Branch",
+    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,7 +258,7 @@
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -84,7 +268,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -133,6 +317,7 @@
       <workItem from="1776628759151" duration="2412000" />
       <workItem from="1776735742880" duration="944000" />
       <workItem from="1776877701674" duration="600000" />
+      <workItem from="1776979742483" duration="3124000" />
     </task>
     <servers />
   </component>
@@ -142,6 +327,7 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
   </component>

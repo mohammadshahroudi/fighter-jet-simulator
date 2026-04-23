@@ -307,6 +307,7 @@ namespace AmplifyOcclusion
 		}
 
 
+		[Obsolete("Obsolete")]
 		void OnEnable()
 		{
 			m_myID = m_nextID;
@@ -425,6 +426,7 @@ namespace AmplifyOcclusion
 			}
 		}
 
+		[Obsolete("Obsolete")]
 		private void checkParamsChanged()
 		{
 			bool HDR = m_targetCamera.allowHDR; // && tier?
@@ -650,6 +652,7 @@ namespace AmplifyOcclusion
 		}
 
 
+		[Obsolete("Obsolete")]
 		void OnPreRender()
 		{
 			Profiler.BeginSample( "AO - OnPreRender" );
