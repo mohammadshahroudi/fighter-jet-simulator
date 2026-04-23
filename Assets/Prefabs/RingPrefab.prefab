@@ -5957,7 +5957,7 @@ MonoBehaviour:
   ringRenderer: {fileID: 0}
   pointValue: 25
   snapDistance: 10
-  collectDistance: 3
+  collectDistance: 15
   snapSpeed: 18
   rotationSpeed: 45
   bobAmplitude: 1.5

@@ -35,9 +35,12 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeRuntimeState();
-        ReloadMoneyFromPrefs(); // Always load from PlayerPrefs
-        NotifyShopChanged();
+        Debug.Log($"[ShopManager] PlayerPrefs money at Awake start: {PlayerPrefs.GetInt("ShopManager_Money")}");
+    InitializeRuntimeState();
+    Debug.Log($"[ShopManager] Money after InitializeRuntimeState: {money}");
+    ReloadMoneyFromPrefs();
+    Debug.Log($"[ShopManager] Money after ReloadMoneyFromPrefs: {money}");
+    NotifyShopChanged();
     }
 
     private void OnValidate()

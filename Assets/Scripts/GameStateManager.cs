@@ -93,13 +93,6 @@ public class GameStateManager : MonoBehaviour
         victoryRestartButton?.onClick.AddListener(RestartScene);
         victoryQuitButton?.onClick.AddListener(QuitGame);
 
-        // Subscribe to ring collection
-        Ring.OnRingCollected += HandleRingCollected;
-    }
-
-    void OnDestroy()
-    {
-        Ring.OnRingCollected -= HandleRingCollected;
     }
 
     // -------------------------------------------------------------------------
