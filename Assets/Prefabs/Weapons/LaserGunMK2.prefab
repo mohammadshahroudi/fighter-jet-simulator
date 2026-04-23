@@ -181,7 +181,7 @@ MonoBehaviour:
   bullet: {fileID: 8810027870681859830, guid: 9cec9b3d240534a98869fc03e3d157b7, type: 3}
   bulletSpeed: 10
   damage: 1
-  raycastRange: 1000
+  raycastRange: 5000
   hitLayers:
     serializedVersion: 2
     m_Bits: 4294967295

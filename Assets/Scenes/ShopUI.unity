@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   startingMoney: 1000000
-  planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
+  planes: []
   selectedPlaneIndex: 0
 --- !u!1001 &1175564497
 PrefabInstance:
@@ -2190,7 +2190,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357668506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6424846674321651901, guid: 28d874a62aa81c447acebc843671dd39, type: 3}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ReturnToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1357668506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3726,7 +3738,19 @@ MonoBehaviour:
   backButton: {fileID: 1357668505}
   onBackPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988367183}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   planeNameText: {fileID: 2060964306}
   gunTypeText: {fileID: 940459124}
   speedText: {fileID: 1424290127}

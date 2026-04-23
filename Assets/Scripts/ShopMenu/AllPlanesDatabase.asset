@@ -9,57 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e22dea3cec454290af3db47b6709f23, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bda13757043348b98b1d9a1d4ab994d, type: 3}
   m_Name: AllPlanesDatabase
   m_EditorClassIdentifier: Assembly-CSharp::PlaneDatabase
-  allPlanes:
-  - planeId: Falcon X1
-    planeName: Falcon X1
-    gunType: 0
-    speed: 220
-    health: 100
-    damage: 25
-    price: 0
-    state: 2
-    previewObject: {fileID: 0}
-    planePrefab: {fileID: 4880688868680380564, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
-  - planeId: Swift L1
-    planeName: Swift L1
-    gunType: 4
-    speed: 240
-    health: 90
-    damage: 20
-    price: 900
-    state: 0
-    previewObject: {fileID: 0}
-    planePrefab: {fileID: 835737604007996434, guid: 6db75d9b38254944bb2966743009a888, type: 3}
-  - planeId: Viper ZX
-    planeName: Viper ZX
-    gunType: 1
-    speed: 65
-    health: 80
-    damage: 30
-    price: 1000
-    state: 0
-    previewObject: {fileID: 0}
-    planePrefab: {fileID: 3280384310271628014, guid: 963d8e1cb5caec24e8b4f152eb355d3a, type: 3}
-  - planeId: Titan MK2
-    planeName: Titan MK2
-    gunType: 2
-    speed: 180
-    health: 160
-    damage: 45
-    price: 2000
-    state: 0
-    previewObject: {fileID: 0}
-    planePrefab: {fileID: 6719424853283353284, guid: ed8d41e0360dc0c4bb53888b5b5e2643, type: 3}
-  - planeId: Nova Rail 0
-    planeName: Nova Rail 0
-    gunType: 3
-    speed: 210
-    health: 110
-    damage: 60
-    price: 3000
-    state: 0
-    previewObject: {fileID: 0}
-    planePrefab: {fileID: 3202563847419061804, guid: 22b669ef1382edd45b93e8bc5cfb2724, type: 3}
