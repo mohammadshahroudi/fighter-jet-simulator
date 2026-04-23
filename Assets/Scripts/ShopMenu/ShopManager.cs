@@ -328,7 +328,7 @@ public class ShopManager : MonoBehaviour
        // Reload money from PlayerPrefs and notify UI
     public void ReloadMoneyFromPrefs()
     {
-        money = PlayerPrefs.GetInt("ShopManager_Money", 0);
+        money = ShopPersistence.LoadMoney();
         NotifyShopChanged();
     }
 }
