@@ -12,10 +12,6 @@ public class MainMenu : MonoBehaviour
 
    public void LoadGame()
    {
-<<<<<<< HEAD
-      // todo: replace with Alan's game scene. 
-=======
->>>>>>> main
       Loader.Load(Loader.Scene.HectorTest);
    }
    

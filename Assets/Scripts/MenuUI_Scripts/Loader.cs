@@ -5,14 +5,8 @@ public static class Loader
 {
     public enum Scene
     {
-<<<<<<< HEAD
-        Rhu_LoadingScene, 
-        Rhu_MainMenu, 
-        Rhu_SampleScene, 
-=======
         LoadingScene, 
         MainMenu, 
->>>>>>> main
         HectorTest,
         ShopUI
     }

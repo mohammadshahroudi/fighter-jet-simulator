@@ -1,5 +1,7 @@
 ﻿<Solution>
+  <Project Path="Rive.Runtime.Components.csproj" />
+  <Project Path="Rive.Editor.Components.csproj" />
+  <Project Path="Rive.Runtime.csproj" />
+  <Project Path="Rive.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="DependenciesHunter.Editor.csproj" />
 </Solution>
