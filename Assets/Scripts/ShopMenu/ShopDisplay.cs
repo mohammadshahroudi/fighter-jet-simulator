@@ -60,6 +60,7 @@ public class ShopDisplay : MonoBehaviour
     {
         if (shopManager != null)
         {
+            shopManager.ReloadMoneyFromPrefs();
             shopManager.OnShopChanged += Refresh;
         }
 
@@ -165,6 +166,7 @@ public class ShopDisplay : MonoBehaviour
     {
         if (shopManager == null)
         {
+            Debug.LogWarning("[ShopDisplay] ShopManager is null in ShopDisplay!");
             return;
         }
 
@@ -175,7 +177,14 @@ public class ShopDisplay : MonoBehaviour
 
         if (moneyText != null)
         {
-            moneyText.text = "$" + shopManager.Money;
+            // Always update from PlayerPrefs to ensure latest value
+            int money = PlayerPrefs.GetInt("ShopManager_Money", shopManager != null ? shopManager.Money : 0);
+            Debug.Log($"[ShopDisplay] Updating money UI: ${money}");
+            moneyText.text = "$" + money;
+        }
+        else
+        {
+            Debug.LogWarning("[ShopDisplay] moneyText is not assigned!");
         }
 
         PlaneData selected = shopManager.GetSelectedPlane();

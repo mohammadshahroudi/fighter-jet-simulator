@@ -31,7 +31,7 @@ public class RingScoreManager : MonoBehaviour
 
     [Tooltip("How high above the collection point the popup floats.")]
     public float popupHeight = 5f;
-
+  
     // -------------------------------------------------------------------------
     // Subscribe / unsubscribe safely
     // -------------------------------------------------------------------------
@@ -47,11 +47,14 @@ public class RingScoreManager : MonoBehaviour
 
     void HandleRingCollected(int points, Vector3 worldPos)
     {
-        currentScore += points;
-        UpdateScoreUI();
-        SpawnPopup(points, worldPos);
+          currentScore += points;
+    UpdateScoreUI();
+    SpawnPopup(points, worldPos);
 
-        Debug.Log($"[RingScoreManager] +{points} pts | Total: {currentScore}");
+    // Save money to PlayerPrefs
+    int currentMoney = PlayerPrefs.GetInt("ShopManager_Money");
+    PlayerPrefs.SetInt("ShopManager_Money", currentMoney + points);
+    PlayerPrefs.Save();
     }
 
     // -------------------------------------------------------------------------

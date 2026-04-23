@@ -1,3 +1,4 @@
+ 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class ShopManager : MonoBehaviour
 
 
     [Header("Currency")]
-    [SerializeField] private int startingMoney = 300;
 
     [Header("Planes")]
    [SerializeField] private PlaneDatabase planeDatabase;
@@ -36,6 +36,7 @@ public class ShopManager : MonoBehaviour
     private void Awake()
     {
         InitializeRuntimeState();
+        ReloadMoneyFromPrefs(); // Always load from PlayerPrefs
         NotifyShopChanged();
     }
 
@@ -167,7 +168,7 @@ public class ShopManager : MonoBehaviour
 
     private void SanitizeSerializedData()
     {
-        startingMoney = Mathf.Max(0, startingMoney);
+        // startingMoney removed; money is now always loaded from PlayerPrefs
 
         if (planes == null)
         {
@@ -252,7 +253,7 @@ public class ShopManager : MonoBehaviour
 
     private void LoadRuntimeState()
     {
-        money = ShopPersistence.LoadMoney(startingMoney);
+        money = ShopPersistence.LoadMoney();
 
         if (planes == null || planes.Count == 0)
         {
@@ -316,5 +317,18 @@ public class ShopManager : MonoBehaviour
     private void NotifyShopChanged()
     {
         OnShopChanged?.Invoke();
+    }
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        Debug.Log($"[ShopManager] Money updated: {money}"); // Debug log to verify money is updated
+        ShopPersistence.SaveRuntimeState(money, selectedPlaneIndex, planes);
+        NotifyShopChanged();
+    }
+       // Reload money from PlayerPrefs and notify UI
+    public void ReloadMoneyFromPrefs()
+    {
+        money = PlayerPrefs.GetInt("ShopManager_Money", 0);
+        NotifyShopChanged();
     }
 }

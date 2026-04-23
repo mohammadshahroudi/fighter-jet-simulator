@@ -31,7 +31,7 @@ public class Ring : MonoBehaviour
     public Renderer ringRenderer;
 
     [Header("Ring Value")]
-    public int pointValue = 100;
+    public int pointValue = 25;
 
     [Header("Snap / Collection")]
     [Tooltip("Distance at which the ring snaps toward the player.")]

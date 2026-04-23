@@ -5955,7 +5955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ring
   playerTransform: {fileID: 0}
   ringRenderer: {fileID: 0}
-  pointValue: 100
+  pointValue: 25
   snapDistance: 10
   collectDistance: 3
   snapSpeed: 18
