@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunLogic
   weaponType: 0
-  fireRate: 0.001
+  fireRate: 0.1
   burstCount: 3
   burstDelay: 0.05
   firePoint: {fileID: 4038077392051465773}

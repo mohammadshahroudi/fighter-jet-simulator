@@ -117,20 +117,19 @@ public class GunLogic : MonoBehaviour
                 Destroy(flash, 2f);
             }
         }
-
-        // Perform raycast
+        
         RaycastHit hit;
 
         if (Physics.Raycast(firePoint.position, shootDirection, out hit, raycastRange, hitLayers))
         {
-            // Apply damage if target has a damage interface/component
+            // Apply damage if target has the IDamageable interface
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
             }
 
-            // Show impact effect
+            // Impact effect
             if (impactEffect != null)
             {
                 GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
