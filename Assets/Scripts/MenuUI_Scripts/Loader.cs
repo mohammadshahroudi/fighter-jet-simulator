@@ -8,6 +8,7 @@ public static class Loader
         LoadingScene, 
         MainMenu, 
         HectorTest,
+        Overworld,
         ShopUI
     }
     
