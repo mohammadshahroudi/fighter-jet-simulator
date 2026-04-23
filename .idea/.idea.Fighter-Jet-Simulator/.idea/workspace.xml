@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GameOverUI/GameOverCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GameOverUI/GameOverCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Line.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Line.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RhuDev/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RhuDev/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ShopUI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ShopUI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShopMenu/AllPlanesDatabase.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShopMenu/AllPlanesDatabase.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="21" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,12 +35,12 @@
     &quot;assignee&quot;: &quot;eric2458&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MohammadShahroudi/Fighter-Jet-Simulator.git&quot;,
-    &quot;accountId&quot;: &quot;e7f1f2e0-b942-4b60-9f9d-36600e75da1a&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MohammadShahroudi/Fighter-Jet-Simulator.git",
+    "accountId": "255c6fc2-3129-46e9-8922-d6d460fd198f"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShopMenu/PlaneData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -52,8 +68,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.github.patou.gitmoji.migration-offered": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "#42 on TheRhu-Branch",
+    "git-widget-placeholder": "TheCarson-Branch",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -67,10 +84,10 @@
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1776978000000" />
-    <option name="spentUsd" value="0.02045405" />
+    <option name="spentUsd" value="0.028568048" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="6" />
+    <option name="suspendCountdown" value="4" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -133,6 +150,7 @@
       <workItem from="1776628759151" duration="2412000" />
       <workItem from="1776735742880" duration="944000" />
       <workItem from="1776877701674" duration="600000" />
+      <workItem from="1776931566986" duration="920000" />
     </task>
     <servers />
   </component>
@@ -142,6 +160,7 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
   </component>

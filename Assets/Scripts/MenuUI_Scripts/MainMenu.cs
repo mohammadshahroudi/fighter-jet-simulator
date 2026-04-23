@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
    public void LoadGame()
    {
-      Loader.Load(Loader.Scene.HectorTest);
+      Loader.Load(Loader.Scene.Overworld);
    }
    
    public void ToShop()
