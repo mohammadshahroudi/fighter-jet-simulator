@@ -6,17 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/terrain.hdr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/terrain.hdr.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/terrain.raw.aux.xml.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/terrain.raw.aux.xml.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Terrain 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files/N01E036.SRTMGL1_NC.nc.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NetCDF Files for OSGeo4W for Unity/Raw NC Data Files/N01E036.SRTMGL1_NC.nc.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/AmbientOcculsion/AmplifyOcclusionEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/AmbientOcculsion/AmplifyOcclusionEffect.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/ChunkLoaderScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/ChunkLoaderScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/DynamicSkyboxScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/DynamicSkyboxScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/Text Levels/Default Environment Level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/ChunkLoading/Text Levels/Default Environment Level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/Lighting/ProbleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/Lighting/ProbleHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,26 +41,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Alan__Branch",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Alan__Branch&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1776978000000" />
     <option name="spentUsd" value="0.02045405" />

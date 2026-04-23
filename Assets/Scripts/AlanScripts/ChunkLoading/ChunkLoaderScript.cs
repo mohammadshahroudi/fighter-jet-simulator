@@ -19,6 +19,14 @@ public class ChunkLoaderScript : MonoBehaviour
         public GameObject chunkPrefab;
         public string tagName;
     }
+    
+    [Serializable]
+    public struct TerrainChunkPrefab
+    {
+        public char key;
+        public GameObject terrainPrefab;
+        public string tagName;
+    }
 
     // BEHOLD, TOOLTIPS!
 
@@ -37,12 +45,20 @@ public class ChunkLoaderScript : MonoBehaviour
 
     [Header("Chunk Prefabs")] [Tooltip("Place any chunkPrefabs in this list.")] [SerializeField]
     private List<WorldChunkPrefab> worldChunkPrefabs = new();
+    
+    [Header("Terrain Prefabs")] [Tooltip("Place any terrainPrefabs in this list (should all have the 'T' key.)")] [SerializeField]
+    private List<TerrainChunkPrefab> terrainChunkPrefabs = new();
 
     [FormerlySerializedAs("x_gap")] [Header("Chunk Generation")] [Tooltip("X distance from one chunk's origin to another's.")] [SerializeField]
     private float xGap = 1000f;
 
     [FormerlySerializedAs("z_gap")] [Tooltip("Z distance from one chunk's origin to another's.")] [SerializeField]
     private float zGap = 1000f;
+    
+    // Added to configure at what Y level chunks will spawn at
+    
+    [Tooltip("Y level at which a chunk spawns.")] [SerializeField]
+    private float ySpawnOffset = 0f;
 
     private readonly List<GameObject> _spawnedChunks = new();
 
