@@ -3,17 +3,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Plane Stats")]
-    [SerializeField] private float throttleIncrement    = 100f;
-    [SerializeField] private float maxThrottle          = 800f;
-    [SerializeField] private float maxSpeed             = 120f;
-    [SerializeField] private float responsiveness       = 10f;
+    [SerializeField] private float throttleIncrement     = 100f;
+    [SerializeField] private float maxThrottle           = 800f;
+    [SerializeField] private float maxSpeed              = 120f;
+    [SerializeField] private float responsiveness        = 10f;
     [SerializeField] private float responseModifierValue = 10f;
-    [SerializeField] private float inputDecaySpeed     = 50f;
+    [SerializeField] private float inputDecaySpeed       = 50f;
+
     public static PlayerController Instance { get; private set; }
+
     [Header("Crash")]
     [Tooltip("Tags that trigger a crash when collided with. Leave empty to crash on anything.")]
     [SerializeField] private string[] crashTags = { "Terrain", "Building", "Ground" };
- 
+
     [Tooltip("Optional crash VFX spawned at the impact point.")]
     [SerializeField] private GameObject crashVFXPrefab;
 
@@ -21,12 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameInput gameInput;
 
     private Rigidbody rb;
-    private float throttle = 0f;   // Fixed: was initialised to 300, clamped to 100
+    private float throttle = 0f;
     private float roll;
     private float pitch;
     private float yaw;
     private bool  hasCrashed = false;
-
 
     private void Awake()
     {
@@ -49,13 +50,15 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInputs()
     {
-        float rawRoll  = gameInput.GetRoll()/3;
-        float rawPitch = gameInput.GetPitch()/3;
-        float rawYaw   = gameInput.GetYaw()/3;
+        float rawRoll  = gameInput.GetRoll()  / 3;
+        float rawPitch = gameInput.GetPitch() / 3;
+        float rawYaw   = gameInput.GetYaw()   / 3;
 
-        roll  = rawRoll  != 0 ? rawRoll  : Mathf.Lerp(roll,  0f, inputDecaySpeed * Time.deltaTime);
-        pitch = rawPitch != 0 ? rawPitch : Mathf.Lerp(pitch, 0f, inputDecaySpeed * Time.deltaTime);
-        yaw   = rawYaw   != 0 ? rawYaw   : Mathf.Lerp(yaw,   0f, inputDecaySpeed * Time.deltaTime);
+        float decay = Mathf.Exp(-inputDecaySpeed * Time.deltaTime);
+
+        roll  = rawRoll  != 0 ? rawRoll  : roll  * decay;
+        pitch = rawPitch != 0 ? rawPitch : pitch * decay;
+        yaw   = rawYaw   != 0 ? rawYaw   : yaw   * decay;
 
         if (gameInput.GetThrottleUp())
             throttle = Mathf.Clamp(throttle + throttleIncrement, 0f, maxSpeed);
@@ -66,6 +69,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (hasCrashed) return;
+
         float responseModifier = rb.mass / responseModifierValue;
         float thrustForce      = (throttle / 100f) * maxThrottle;
 
@@ -77,22 +81,19 @@ public class PlayerController : MonoBehaviour
             roll  * responsiveness * responseModifier
         ));
 
-        // Prevent infinite acceleration — clamp to max speed
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxThrottle);
     }
 
-     
     private void OnCollisionEnter(Collision collision)
     {
         if (hasCrashed) return;
- 
-        // If crashTags is empty, any collision triggers a crash
+
         if (crashTags.Length == 0)
         {
             PlaneCrash(collision.contacts[0].point);
             return;
         }
- 
+
         foreach (string tag in crashTags)
         {
             if (collision.gameObject.CompareTag(tag))
@@ -102,20 +103,17 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
- 
-     private void PlaneCrash(Vector3 impactPoint)
+
+    private void PlaneCrash(Vector3 impactPoint)
     {
         hasCrashed = true;
- 
-        // Spawn crash VFX
+
         if (crashVFXPrefab != null)
             Instantiate(crashVFXPrefab, impactPoint, Quaternion.identity);
- 
-        // Kill thrust so jet doesn't keep moving during the delay
-        rb.linearVelocity        = Vector3.zero;
+
+        rb.linearVelocity  = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
- 
-        // Notify the game state manager — it handles the delay and UI
+
         GameStateManager.Instance?.TriggerGameOver();
     }
 }
