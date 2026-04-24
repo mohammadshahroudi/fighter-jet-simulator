@@ -297,10 +297,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74b8f70b91b4296aad6d9da57d2ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunLogic
+  weaponType: 0
   fireRate: 0.1
+  burstCount: 3
+  burstDelay: 0.05
   firePoint: {fileID: 1294337076}
   bullet: {fileID: 8810027870681859830, guid: 525fff64a7c516940b2bb341a8d81c1a, type: 3}
   bulletSpeed: 50
+  damage: 25
+  raycastRange: 1000
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  impactEffect: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  tracerLine: {fileID: 0}
+  tracerDuration: 0.05
 --- !u!114 &401996835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,10 +325,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74b8f70b91b4296aad6d9da57d2ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunLogic
+  weaponType: 0
   fireRate: 0.1
+  burstCount: 3
+  burstDelay: 0.05
   firePoint: {fileID: 1142768530}
   bullet: {fileID: 8810027870681859830, guid: 525fff64a7c516940b2bb341a8d81c1a, type: 3}
   bulletSpeed: 50
+  damage: 25
+  raycastRange: 1000
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  impactEffect: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  tracerLine: {fileID: 0}
+  tracerDuration: 0.05
 --- !u!1001 &500179382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1180,68 +1204,10 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787783902}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1510994510809775081
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1402606272099664663, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_Name
-      value: -- Environment V4 --
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439062567718797576, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b4e2935f424d99343b4dffc00589ac0e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1510994510809775081}
   - {fileID: 986015091}
   - {fileID: 815138060}
   - {fileID: 854001626}
