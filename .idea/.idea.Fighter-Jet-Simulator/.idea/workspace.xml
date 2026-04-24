@@ -5,17 +5,208 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GameOverUI/GameOverCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GameOverUI/GameOverCanvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/LaserGunMK2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/MachineGunMK2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/UI/FPSCounter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.24_12.38.50.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.24_12.41.29.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fpslog/log_2026.04.24_12.43.16.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/#NVJOB Dynamic Sky/Examples Sky/Sky 1 (Day)/Sky 1 (Day).prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/#NVJOB Dynamic Sky/Examples Sky/Sky 1 (Day)/Sky 1 (Day).prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Burnt.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Burnt.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Clay.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Clay.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry03.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Dry03.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_FrozenGrass.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_FrozenGrass.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass03.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass03.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass04.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass04.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass05.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass05.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass06.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Grass06.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GrassLeafs01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GrassLeafs01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GrassLeafs02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GrassLeafs02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Ground01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Ground01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Ground02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Ground02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GroundStones01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GroundStones01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GroundStones02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_GroundStones02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Lava.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Lava.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Mars.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Mars.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_MossStones.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_MossStones.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Salt.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Salt.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SandySoil.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SandySoil.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Snow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/Green.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_Snow.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel01.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel01.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel02.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel02.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel03.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel03.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel04.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilGravel04.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilMoss.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilMoss.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilWeeds.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AlanImportedAssets/YughuesFreeGroundMaterials/Materials/M_YFGM_SoilWeeds.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 10.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 10.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/Green.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 11.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain 11.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/HugePrefabs/-- Environment V5 --.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/HugePrefabs/-- Environment V5 --.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter (Black).prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/Ui/FPS Counter (Black).prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewBrush 1.brush" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewBrush 1.brush.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewBrush.brush" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewBrush.brush.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewLayer 1.terrainlayer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/NASA Chunks/NewLayer 1.terrainlayer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/OceanChunks.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/OceanChunks/WaterChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/OceanChunks/WaterChunk.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/AirportChunk.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/AirportChunk.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/BaseChunk.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/RunwayChunk.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AlanEnvironment/WorldChunks/WhiteBoxedChunks/RunwayChunk.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Line.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Materials/Line.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RhuDev/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RhuDev/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ShopUI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ShopUI.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/Loader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI_Scripts/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShopMenu/AllPlanesDatabase.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShopMenu/AllPlanesDatabase.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene_Profiles.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene_Profiles/PostProcessVolume Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/AirportScene_Profiles/PostProcessVolume Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/ReflectionProbe-0.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/ReflectionProbe-0.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/ReflectionProbe-1.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene/ReflectionProbe-1.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene_Profiles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene_Profiles/PostProcessVolume Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/AirportScene_Profiles/PostProcessVolume Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/Default Environmental Lighting.lighting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/Default Environmental Lighting.lighting.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/TestingSceneForMovement.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/EnvironmentScene/TestingSceneForMovement.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Readme.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionCommon.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionCommon.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/UI/FPSCounter.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/AmplifyOcclusionEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Runtime/VersionInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Runtime/VersionInfo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Apply.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Apply.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/ApplyPostEffect.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/ApplyPostEffect.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Blur.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Blur.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/BlurFunctions.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/BlurFunctions.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Common.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Common.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/CommonFunctions.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/CommonFunctions.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/GTAO.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/GTAO.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Occlusion.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/Occlusion.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/OcclusionFunctions.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/OcclusionFunctions.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/TemporalFilter.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/AmbientOcculsionScripts/Shaders/TemporalFilter.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/ChunkLoaderScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/EnvironmentLevelFiles/Default Environment Level.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/WARNING.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnvironmentScene/Necessary Imports/AmplifyOcclusion/Scripts/Environment/WARNING.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld + Environment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld + Environment.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/FPSController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/UI/FPSController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/FPSController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlanScripts/UI/FPSController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/New Terrain 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/New Terrain 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_0358ed91-8756-4c3a-9cd7-37e32bafd095 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_0358ed91-8756-4c3a-9cd7-37e32bafd095 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_0358ed91-8756-4c3a-9cd7-37e32bafd095.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_0358ed91-8756-4c3a-9cd7-37e32bafd095.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_2898ef6c-baab-4757-bcae-2fc8f75a9e5b 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_2898ef6c-baab-4757-bcae-2fc8f75a9e5b 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_2898ef6c-baab-4757-bcae-2fc8f75a9e5b.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_2898ef6c-baab-4757-bcae-2fc8f75a9e5b.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_3efe3bd5-4851-4b1b-935f-75453a22580f 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_3efe3bd5-4851-4b1b-935f-75453a22580f 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_3efe3bd5-4851-4b1b-935f-75453a22580f.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_3efe3bd5-4851-4b1b-935f-75453a22580f.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_53e7faf9-44fc-407a-adba-83108c3c82bf 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_53e7faf9-44fc-407a-adba-83108c3c82bf 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_53e7faf9-44fc-407a-adba-83108c3c82bf.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_53e7faf9-44fc-407a-adba-83108c3c82bf.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_82a5b672-d09b-43ba-839b-22fe7bc2cb3a 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_82a5b672-d09b-43ba-839b-22fe7bc2cb3a 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_82a5b672-d09b-43ba-839b-22fe7bc2cb3a.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_82a5b672-d09b-43ba-839b-22fe7bc2cb3a.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_88246d21-1206-4317-b36e-99e615535073 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_88246d21-1206-4317-b36e-99e615535073 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_88246d21-1206-4317-b36e-99e615535073.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_88246d21-1206-4317-b36e-99e615535073.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_a97c0bed-e281-4e38-813c-f2f610508318 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_a97c0bed-e281-4e38-813c-f2f610508318 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_a97c0bed-e281-4e38-813c-f2f610508318.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_a97c0bed-e281-4e38-813c-f2f610508318.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_bc8ab39e-b39d-421f-9e8f-5f9741e2ccee 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_bc8ab39e-b39d-421f-9e8f-5f9741e2ccee 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_bc8ab39e-b39d-421f-9e8f-5f9741e2ccee.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_bc8ab39e-b39d-421f-9e8f-5f9741e2ccee.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_d7b6c1d9-a331-431a-bc35-f46af2f04388 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_d7b6c1d9-a331-431a-bc35-f46af2f04388 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_d7b6c1d9-a331-431a-bc35-f46af2f04388.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_d7b6c1d9-a331-431a-bc35-f46af2f04388.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_e8dfd9a2-18e3-4fa1-80cc-86057c05ba1e 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_e8dfd9a2-18e3-4fa1-80cc-86057c05ba1e 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_e8dfd9a2-18e3-4fa1-80cc-86057c05ba1e.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_e8dfd9a2-18e3-4fa1-80cc-86057c05ba1e.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_ee30a646-3a5e-482a-b631-6fb6daa4e80b 1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_ee30a646-3a5e-482a-b631-6fb6daa4e80b 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_ee30a646-3a5e-482a-b631-6fb6daa4e80b.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/TerrainData_ee30a646-3a5e-482a-b631-6fb6daa4e80b.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/Terrain_0_0_3f3afc96-1745-49c5-8b6c-9e5775ab7a8c.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Terrain/Terrain_0_0_3f3afc96-1745-49c5-8b6c-9e5775ab7a8c.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_949e3155-8028-46aa-8430-85daa9ffaca7.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_949e3155-8028-46aa-8430-85daa9ffaca7.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,27 +252,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;com.github.patou.gitmoji.migration-offered&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TheCarson-Branch&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.github.patou.gitmoji.migration-offered": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "NEW__Alan__Branch",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1776978000000" />
     <option name="spentUsd" value="0.028568048" />
@@ -91,7 +282,7 @@
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -101,7 +292,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.6f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Alvar\Desktop\Blue Orb\Unity\CST_326-Homework\Projects\Fighter-Jet-Simulator" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -152,6 +343,7 @@
       <workItem from="1776877701674" duration="600000" />
       <workItem from="1776931566986" duration="920000" />
       <workItem from="1776987065697" duration="4000" />
+      <workItem from="1777008944950" duration="1218000" />
     </task>
     <servers />
   </component>
