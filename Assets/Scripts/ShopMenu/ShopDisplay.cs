@@ -178,13 +178,12 @@ public class ShopDisplay : MonoBehaviour
         if (moneyText != null)
         {
             // Always update from PlayerPrefs to ensure latest value
-            int money = ShopPersistence.LoadMoney();           
-            Debug.Log($"[ShopDisplay] Updating money UI: ${money}");
+            int money = ShopPersistence.LoadMoney();            
             moneyText.text = "$" + money;
         }
         else
         {
-            Debug.LogWarning("[ShopDisplay] moneyText is not assigned!");
+         
         }
 
         PlaneData selected = shopManager.GetSelectedPlane();

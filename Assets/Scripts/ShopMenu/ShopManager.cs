@@ -4,11 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
-{
-
-
-    [Header("Currency")]
-
+{ 
     [Header("Planes")]
    [SerializeField] private PlaneDatabase planeDatabase;
     private List<PlaneData> planes => planeDatabase != null ? planeDatabase.allPlanes : null;
@@ -35,11 +31,8 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log($"[ShopManager] PlayerPrefs money at Awake start: {PlayerPrefs.GetInt("ShopManager_Money")}");
     InitializeRuntimeState();
-    Debug.Log($"[ShopManager] Money after InitializeRuntimeState: {money}");
     ReloadMoneyFromPrefs();
-    Debug.Log($"[ShopManager] Money after ReloadMoneyFromPrefs: {money}");
     NotifyShopChanged();
     }
 
@@ -324,7 +317,6 @@ public class ShopManager : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
-        Debug.Log($"[ShopManager] Money updated: {money}"); // Debug log to verify money is updated
         ShopPersistence.SaveRuntimeState(money, selectedPlaneIndex, planes);
         NotifyShopChanged();
     }
