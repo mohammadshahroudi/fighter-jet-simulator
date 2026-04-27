@@ -988,7 +988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bc17dbbf61142d8ad3825b922a2de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AltimeterUI
-  altimeterText: {fileID: 1072914616}
 --- !u!1 &1178728543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c090b9047f3427d84b7066b2614310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedUI
-  speedText: {fileID: 1501241002}
 --- !u!1 &1569891024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,7 +1780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2fa3b3ece8b450fbc52d55703c709d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeadingUI
-  headingText: {fileID: 2016312902}
 --- !u!1 &2047879614
 GameObject:
   m_ObjectHideFlags: 0
