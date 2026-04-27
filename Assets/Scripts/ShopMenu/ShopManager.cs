@@ -10,10 +10,8 @@ public class ShopManager : MonoBehaviour
     [Header("Currency")]
 
     [Header("Planes")]
-   [SerializeField] private PlaneDatabase planeDatabase;
-    private List<PlaneData> planes => planeDatabase != null ? planeDatabase.allPlanes : null;
+    [SerializeField] private List<PlaneData> planes = new List<PlaneData>();
     [SerializeField] private int selectedPlaneIndex = 0;
-
 
     public event Action OnShopChanged;
 
@@ -175,7 +173,7 @@ public class ShopManager : MonoBehaviour
 
         if (planes == null)
         {
-           
+            planes = new List<PlaneData>();
             selectedPlaneIndex = 0;
             return;
         }
