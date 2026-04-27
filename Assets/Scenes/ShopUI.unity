@@ -1415,14 +1415,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896855115}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0.95065117, z: 0, w: 0.31026173}
+  m_LocalPosition: {x: -0.35, y: -0.57, z: -0.47}
+  m_LocalScale: {x: 2.57, y: 2.57, z: 2.57}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 403042696}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 150.5, z: 0}
 --- !u!1001 &917003120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1441,15 +1441,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358776942127399545, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5358776942127399545, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5358776942127399545, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5358776942127399545, guid: 7702a6a0ffaaf5446ade03ee4f1d71fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1913,9 +1913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458aa9da6693d44c5b338cf04860a7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  startingMoney: 1000000
   planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
-  selectedPlaneIndex: 4
+  selectedPlaneIndex: 0
 --- !u!1001 &1175564497
 PrefabInstance:
   m_ObjectHideFlags: 0
