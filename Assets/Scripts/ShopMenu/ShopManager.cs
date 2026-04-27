@@ -1,3 +1,4 @@
+ 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class ShopManager : MonoBehaviour
 
 
     [Header("Currency")]
-    [SerializeField] private int startingMoney = 300;
 
     [Header("Planes")]
     [SerializeField] private List<PlaneData> planes = new List<PlaneData>();
@@ -33,8 +33,12 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeRuntimeState();
-        NotifyShopChanged();
+        Debug.Log($"[ShopManager] PlayerPrefs money at Awake start: {PlayerPrefs.GetInt("ShopManager_Money")}");
+    InitializeRuntimeState();
+    Debug.Log($"[ShopManager] Money after InitializeRuntimeState: {money}");
+    ReloadMoneyFromPrefs();
+    Debug.Log($"[ShopManager] Money after ReloadMoneyFromPrefs: {money}");
+    NotifyShopChanged();
     }
 
     private void OnValidate()
@@ -165,7 +169,7 @@ public class ShopManager : MonoBehaviour
 
     private void SanitizeSerializedData()
     {
-        startingMoney = Mathf.Max(0, startingMoney);
+        // startingMoney removed; money is now always loaded from PlayerPrefs
 
         if (planes == null)
         {
@@ -250,7 +254,7 @@ public class ShopManager : MonoBehaviour
 
     private void LoadRuntimeState()
     {
-        money = ShopPersistence.LoadMoney(startingMoney);
+        money = ShopPersistence.LoadMoney();
 
         if (planes == null || planes.Count == 0)
         {
@@ -314,5 +318,18 @@ public class ShopManager : MonoBehaviour
     private void NotifyShopChanged()
     {
         OnShopChanged?.Invoke();
+    }
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        Debug.Log($"[ShopManager] Money updated: {money}"); // Debug log to verify money is updated
+        ShopPersistence.SaveRuntimeState(money, selectedPlaneIndex, planes);
+        NotifyShopChanged();
+    }
+       // Reload money from PlayerPrefs and notify UI
+    public void ReloadMoneyFromPrefs()
+    {
+        money = ShopPersistence.LoadMoney();
+        NotifyShopChanged();
     }
 }
