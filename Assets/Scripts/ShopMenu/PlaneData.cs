@@ -7,7 +7,9 @@ public enum GunType
     BurstGun,
     HeavyCannon,
     RailCannon,
-    LightGun
+    LightGun,
+
+    Missiles
 }
 
 public enum PlaneState
