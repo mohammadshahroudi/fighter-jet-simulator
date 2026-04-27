@@ -654,6 +654,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4305401231502388482, guid: a45aa0b6e12594547b487ff19258065d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToShop
+      objectReference: {fileID: 0}
     - target: {fileID: 5324843023438967495, guid: a45aa0b6e12594547b487ff19258065d, type: 3}
       propertyPath: m_IsActive
       value: 0
