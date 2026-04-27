@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour
 
    public void LoadGame()
    {
-      Loader.Load(Loader.Scene.Overworld);
+      // todo: replace with Alan's game scene. 
+      Loader.Load(Loader.Scene.HectorTest);
    }
    
    public void ToShop()

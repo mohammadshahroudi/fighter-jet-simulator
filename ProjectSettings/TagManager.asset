@@ -8,9 +8,6 @@ TagManager:
   - RunwayChunk
   - BaseChunk
   - WaterChunk
-  - Ground
-  - Terrain
-  - Building
   layers:
   - Default
   - TransparentFX

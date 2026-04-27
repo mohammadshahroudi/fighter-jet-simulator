@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+   // todo: refactor code to utilize events.
+   // todo: fix overlapping functions, pause, quit & settings. 
+   
    [SerializeField] private GameObject PauseMenuUICanvas;
    private bool isGamePaused = false;
 
@@ -55,7 +58,7 @@ public class PauseMenu : MonoBehaviour
 
    public void ReturnToMain()
    {
-      Loader.Load(Loader.Scene.MainMenu);
+      Loader.Load(Loader.Scene.Rhu_MainMenu);
    }
    
    public void ToShop()

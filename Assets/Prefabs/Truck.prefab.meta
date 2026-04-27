@@ -1,14 +1,7 @@
 fileFormatVersion: 2
-guid: 2391049c7014fb8468fb8db9943bced9
+guid: 942222b3010dc134ba42d3adfcdb9220
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 276939
-  packageName: Low Poly Military Vehicles
-  packageVersion: 1.0
-  assetPath: Assets/LowPolyMiliteryVehicles/Prefabs/Truck.prefab
-  uploadId: 673747
