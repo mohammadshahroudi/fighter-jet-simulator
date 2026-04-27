@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float throttleIncrement     = 100f;
     [SerializeField] private float maxThrottle           = 800f;
     [SerializeField] private float maxSpeed              = 120f;
+    [SerializeField] private float minSpeed              = 10f;
     [SerializeField] private float responsiveness        = 10f;
     [SerializeField] private float responseModifierValue = 10f;
     [SerializeField] private float inputDecaySpeed       = 50f;
@@ -61,9 +62,9 @@ public class PlayerController : MonoBehaviour
         yaw   = rawYaw   != 0 ? rawYaw   : yaw   * decay;
 
         if (gameInput.GetThrottleUp())
-            throttle = Mathf.Clamp(throttle + throttleIncrement, 0f, maxSpeed);
+            throttle = Mathf.Clamp(throttle + throttleIncrement, minSpeed, maxSpeed);
         else if (gameInput.GetThrottleDown())
-            throttle = Mathf.Clamp(throttle - throttleIncrement, 0f, maxSpeed);
+            throttle = Mathf.Clamp(throttle - throttleIncrement, minSpeed, maxSpeed);
     }
 
     private void FixedUpdate()
