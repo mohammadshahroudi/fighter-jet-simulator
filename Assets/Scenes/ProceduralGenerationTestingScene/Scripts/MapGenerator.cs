@@ -115,7 +115,7 @@ public class MapGenerator : MonoBehaviour {
 			if (falloffMap == null) {
 				falloffMap = FalloffGenerator.GenerateFalloffMap (mapChunkSize + 2);
 			}
-
+			 
 			for (int y = 0; y < mapChunkSize+2; y++) {
 				for (int x = 0; x < mapChunkSize+2; x++) {
 					if (terrainData.useFalloff) {
@@ -127,6 +127,7 @@ public class MapGenerator : MonoBehaviour {
 
 		}
 
+		textureData.UpdateMeshHeights (terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
 
 		return new MapData (noiseMap);
 	}
