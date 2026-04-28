@@ -187,22 +187,33 @@ MonoBehaviour:
   - {x: 20, y: 0, z: -15}
   - {x: -30, y: 5, z: -30}
   - {x: 30, y: 5, z: -30}
-  maxSpeed: 60
-  formationSpeed: 20
+  detectionRange: 400
+  losePlayerRange: 600
+  alertedTimeout: 6
+  patrolSpeed: 60
+  alertedSpeed: 90
   agroSpeed: 35
+  maxSpeed: 120
   turnSpeed: 2.5
   rollSpeed: 3
   minAltitude: 50
+  patrolRadius: 200
+  patrolWaypointMinTime: 4
+  patrolWaypointMaxTime: 10
+  patrolHeightVariance: 40
   fireRange: 300
   fireAngle: 8
-  fireRate: 0.15
+  fireRateBase: 0.15
+  fireRateJitter: 0.08
   projectilePrefab: {fileID: 5281698133587121778, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
   muzzlePoints:
   - {fileID: 5319895262618426114}
-  tailOffset: 60
+  tailOffset: 2
   tailPositionTolerance: 40
-  evasionDuration: 3
-  evasionRadius: 80
+  approachSpread: 20
+  evasionDurationMin: 2
+  evasionDurationMax: 5
+  evasionRadius: 90
 --- !u!1 &3367500773145204108
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,9 +238,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3367500773145204108}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.004, y: 1.057, z: -0.04}
-  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5785082250635790868}
