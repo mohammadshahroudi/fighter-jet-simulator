@@ -26,7 +26,7 @@ Some changes by Sebastian Lague for use in a tutorial series.
  */
 
 using System;
-public class Noise {
+public class FogNoise {
 
     public int seed;
 
@@ -332,11 +332,11 @@ public class Noise {
     };
     #endregion
 
-    public Noise () {
+    public FogNoise () {
         Randomize (0);
     }
 
-    public Noise (int seed) {
+    public FogNoise (int seed) {
         Randomize (seed);
     }
 
