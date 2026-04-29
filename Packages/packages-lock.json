@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.alexeyperov.unity-dependencies-hunter": {
+      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7388a10af0ec249d6f7b7e490b980bd72c83eee2"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -14,13 +21,6 @@
         "com.unity.modules.ai": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.unity.build-report-inspector": {
-      "version": "git+https://github.com/Unity-Technologies/BuildReportInspector.git?path=/com.unity.build-report-inspector",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "597080da07ba34651b56be11ba6baeca84d49d27"
     },
     "com.unity.burst": {
       "version": "1.8.27",
@@ -202,16 +202,6 @@
         "com.unity.mathematics": "1.2.1",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.settings-manager": "1.0.3"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.terrain-tools": {
-      "version": "5.3.2",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.terrain": "1.0.0",
-        "com.unity.modules.terrainphysics": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

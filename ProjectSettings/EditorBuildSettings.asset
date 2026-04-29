@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/HectorTest.unity
     guid: f8141514e5de3ec419afe20b3b0b4c0f
   - enabled: 1
-    path: Assets/Scenes/CarsonDev/Overworld.unity
+    path: Assets/Scenes/Overworld.unity
     guid: 91edca22741b241938a9a6c4c793c1dd
   - enabled: 0
     path: Assets/Scenes/RhuDev/Rhu_WorkScene.unity
