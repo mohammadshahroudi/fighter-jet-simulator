@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 { 
     [Header("Planes")]
-   [SerializeField] private PlaneDatabase planeDatabase;
+   [SerializeField] private PlaneList planeDatabase;
     private List<PlaneData> planes => planeDatabase != null ? planeDatabase.allPlanes : null;
     [SerializeField] private int selectedPlaneIndex = 0;
 
