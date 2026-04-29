@@ -4,107 +4,128 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy Fighter Jet AI
-/// 
+///
 /// States:
-///   Formation  — holds a slot in a formation around a lead aircraft
-///   Agro       — breaks formation and attempts to get behind the player to fire
-///   Attacking  — locked behind player, firing
-///   Evading    — briefly breaks off after taking damage / overshooting
+///   Patrol    — flies a randomised waypoint path, unaware of the player
+///   Alerted   — player entered detection range, jet turns to investigate
+///   Agro      — chasing the player's tail to get behind them
+///   Attacking — locked behind player, firing
+///   Evading   — breaks off after taking damage or overshooting
+///
+/// Randomness:
+///   - Patrol waypoints are randomly generated within a radius
+///   - Agro approach adds a random lateral offset so jets don't all funnel identically
+///   - Fire timing has a random jitter so volleys don't sync perfectly
+///   - Evasion direction and duration are randomised per hit
 ///
 /// Setup:
-///   1. Attach this script to each enemy jet prefab.
-///   2. Assign `playerTransform` (drag the player object in Inspector, or let it
-///      auto-find by tag "Player").
-///   3. Create a lead/anchor GameObject for the formation and assign it to
-///      `formationLeader` on every jet in the group.
-///   4. Each jet needs a unique `formationSlotIndex` (0, 1, 2 …).
-///   5. Put a Collider (trigger or solid) and a Rigidbody on the jet.
-///   6. Call EnemyFighterAI.AlertFormation() on any jet when it is destroyed
-///      (e.g. from your health/damage script) so the rest go agro.
+///   1. Attach to each enemy jet prefab (needs a Rigidbody).
+///   2. Tag the player "Player" or assign playerTransform manually.
+///   3. Optionally assign formationLeader + formationSlotIndex for formation flying.
+///   4. Assign projectilePrefab and muzzlePoints for shooting.
+///   5. Call EnemyFighterAI.AlertFormation() or OnHit() from EnemyHealth.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyFighterAI : MonoBehaviour
 {
     // -------------------------------------------------------------------------
-    // Inspector fields
+    // Inspector
     // -------------------------------------------------------------------------
 
     [Header("References")]
-    [Tooltip("Assign the player jet transform, or leave null to auto-find by tag 'Player'.")]
+    [Tooltip("Auto-found by tag 'Player' if left null.")]
     public Transform playerTransform;
-
-    [Tooltip("A shared Transform that defines the centre of the formation (can be an empty GameObject).")]
     public Transform formationLeader;
 
-    [Header("Formation Settings")]
-    [Tooltip("Index of this jet's slot in the formation (0 = lead, 1, 2 …).")]
-    public int formationSlotIndex = 0;
-
-    [Tooltip("How far apart formation slots are spaced (world units).")]
-    public float formationSpacing = 15f;
-
-    [Tooltip("Offset pattern per slot index. Add more entries for bigger formations.")]
-    public Vector3[] formationOffsets = new Vector3[]
+    [Header("Formation")]
+    public int       formationSlotIndex = 0;
+    public float     formationSpacing   = 15f;
+    public Vector3[] formationOffsets   = new Vector3[]
     {
-        new Vector3(  0,   0,   0),   // slot 0 – lead
-        new Vector3(-20,   0, -15),   // slot 1 – left wing
-        new Vector3( 20,   0, -15),   // slot 2 – right wing
-        new Vector3(-30,   5, -30),   // slot 3 – left rear high
-        new Vector3( 30,   5, -30),   // slot 4 – right rear high
+        new Vector3(  0,  0,   0),
+        new Vector3(-20,  0, -15),
+        new Vector3( 20,  0, -15),
+        new Vector3(-30,  5, -30),
+        new Vector3( 30,  5, -30),
     };
 
-    [Header("Flight Parameters")]
-    public float maxSpeed          = 120f;
-    public float formationSpeed    = 80f;
-    public float agroSpeed         = 110f;
-    public float turnSpeed         = 2.5f;   // how quickly the jet rotates toward target heading
-    public float rollSpeed         = 3f;     // banking roll amount
-    public float minAltitude       = 50f;    // prevent flying into the ground
+    [Header("Detection")]
+    [Tooltip("Distance at which the jet notices the player and becomes Alerted.")]
+    public float detectionRange     = 400f;
 
-    [Header("Combat Settings")]
-    [Tooltip("Distance at which the jet starts shooting.")]
-    public float fireRange         = 300f;
+    [Tooltip("Distance at which the jet loses the player and returns to Patrol.")]
+    public float losePlayerRange    = 600f;
 
-    [Tooltip("Half-angle cone in front of the jet within which it will fire.")]
-    public float fireAngle         = 8f;
+    [Tooltip("How long the jet investigates before giving up if it can't close in.")]
+    public float alertedTimeout     = 6f;
 
-    [Tooltip("Seconds between bursts.")]
-    public float fireRate          = 0.15f;
+    [Header("Flight")]
+    public float patrolSpeed        = 60f;
+    public float alertedSpeed       = 90f;
+    public float agroSpeed          = 115f;
+    public float maxSpeed           = 130f;
+    public float turnSpeed          = 2.5f;
+    public float rollSpeed          = 3f;
+    public float minAltitude        = 50f;
 
-    [Tooltip("Assign your bullet / missile prefab.")]
+    [Header("Patrol")]
+    [Tooltip("Radius around spawn point within which patrol waypoints are generated.")]
+    public float patrolRadius           = 200f;
+    public float patrolWaypointMinTime  = 4f;
+    public float patrolWaypointMaxTime  = 10f;
+    public float patrolHeightVariance   = 40f;
+
+    [Header("Combat")]
+    public float      fireRange         = 300f;
+    public float      fireAngle         = 8f;
+    public float      fireRateBase      = 0.15f;
+    public float      fireRateJitter    = 0.08f;
+    [Tooltip("How many shots to fire before breaking off.")]
+    public int        burstShotCount    = 4;
+    [Tooltip("Seconds to break off and reposition before attacking again.")]
+    public float      breakOffDuration  = 10f;
     public GameObject projectilePrefab;
-
-    [Tooltip("Muzzle transforms where projectiles spawn.")]
     public Transform[] muzzlePoints;
 
-    [Header("Agro Behaviour")]
-    [Tooltip("How far behind the player the jet tries to position itself.")]
-    public float tailOffset        = 60f;
+    [Header("Agro")]
+    public float tailOffset             = 60f;
+    public float tailPositionTolerance  = 40f;
+    [Tooltip("Random lateral spread so jets approach from slightly different angles.")]
+    public float approachSpread         = 20f;
 
-    [Tooltip("How close the jet needs to be to its tail position before it starts attacking.")]
-    public float tailPositionTolerance = 40f;
-
-    [Tooltip("After being hit, the jet evades for this many seconds before re-engaging.")]
-    public float evasionDuration   = 3f;
-
-    [Tooltip("Radius of random evasion manoeuvre.")]
-    public float evasionRadius     = 80f;
+    [Header("Evasion")]
+    public float evasionDurationMin     = 2f;
+    public float evasionDurationMax     = 5f;
+    public float evasionRadius          = 80f;
 
     // -------------------------------------------------------------------------
-    // Runtime state
+    // State
     // -------------------------------------------------------------------------
 
-    public enum AIState { Formation, Agro, Attacking, Evading }
-    public AIState currentState { get; private set; } = AIState.Formation;
+    public enum AIState { Formation, Patrol, Alerted, Agro, Attacking, BreakingOff, Evading }
+    public AIState currentState { get; private set; } = AIState.Patrol;
 
-    // Static list so any jet can alert the whole formation
     private static List<EnemyFighterAI> s_formation = new List<EnemyFighterAI>();
 
-    private Rigidbody  rb;
-    private float      nextFireTime;
-    private float      evasionEndTime;
-    private Vector3    evasionTarget;
-    private bool       isAlerted = false;
+    private Rigidbody rb;       // kept for collision callbacks — movement is now transform-based
+    private float     nextFireTime;
+    private float     evasionEndTime;
+    private Vector3   evasionTarget;
+    private bool      isAlerted = false;
+
+    // Burst fire tracking
+    private int       shotsFiredinBurst  = 0;
+    private float     breakOffEndTime;
+
+    // Patrol
+    private Vector3   patrolTarget;
+    private float     patrolWaypointTimer;
+
+    // Alerted
+    private float     alertedTimer;
+
+    // Per-jet approach offset — randomised on each agro entry
+    private Vector3   approachOffset;
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -113,30 +134,28 @@ public class EnemyFighterAI : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.useGravity   = false;
-        rb.linearDamping = 0.5f;
-        rb.angularDamping = 2f;
+        rb.isKinematic = true;
+        rb.useGravity  = false;
 
-        // Register in the shared formation list
         if (!s_formation.Contains(this))
             s_formation.Add(this);
     }
 
     void Start()
     {
-        // Auto-find player if not assigned
         if (playerTransform == null)
         {
             GameObject p = GameObject.FindWithTag("Player");
             if (p != null) playerTransform = p.transform;
-            else Debug.LogWarning($"[EnemyFighterAI] {name}: No player found. Assign 'playerTransform' or tag the player 'Player'.");
+            else Debug.LogWarning($"[EnemyFighterAI] {name}: Player not found.");
         }
+
+        TransitionTo(formationLeader != null ? AIState.Formation : AIState.Patrol);
     }
 
     void OnDestroy()
     {
         s_formation.Remove(this);
-        // Alert every other jet in the formation
         AlertFormation();
     }
 
@@ -148,10 +167,13 @@ public class EnemyFighterAI : MonoBehaviour
 
         switch (currentState)
         {
-            case AIState.Formation: UpdateFormation(); break;
-            case AIState.Agro:      UpdateAgro();      break;
-            case AIState.Attacking: UpdateAttacking(); break;
-            case AIState.Evading:   UpdateEvading();   break;
+            case AIState.Formation:  UpdateFormation();  break;
+            case AIState.Patrol:     UpdatePatrol();     break;
+            case AIState.Alerted:    UpdateAlerted();    break;
+            case AIState.Agro:       UpdateAgro();       break;
+            case AIState.Attacking:  UpdateAttacking();  break;
+            case AIState.BreakingOff: UpdateBreakingOff(); break;
+            case AIState.Evading:    UpdateEvading();    break;
         }
     }
 
@@ -161,57 +183,113 @@ public class EnemyFighterAI : MonoBehaviour
 
     void UpdateFormation()
     {
-        if (isAlerted)
+        if (isAlerted)                        { TransitionTo(AIState.Agro);    return; }
+        if (PlayerInRange(detectionRange))    { TransitionTo(AIState.Alerted); return; }
+
+        FlyToward(GetFormationSlotPosition(), patrolSpeed);
+        AlignWithLeader();
+    }
+
+    void UpdatePatrol()
+    {
+        if (PlayerInRange(detectionRange))    { TransitionTo(AIState.Alerted); return; }
+
+        patrolWaypointTimer -= Time.fixedDeltaTime;
+
+        if (patrolWaypointTimer <= 0f || Vector3.Distance(transform.position, patrolTarget) < 25f)
+            patrolTarget = GetRandomPatrolPoint();
+
+        FlyToward(patrolTarget, patrolSpeed);
+    }
+
+    void UpdateAlerted()
+    {
+        alertedTimer += Time.fixedDeltaTime;
+
+        float dist = Vector3.Distance(transform.position, playerTransform.position);
+
+        if (dist > losePlayerRange || alertedTimer >= alertedTimeout)
+        {
+            TransitionTo(AIState.Patrol);
+            return;
+        }
+
+        // Close enough to commit — go full agro
+        if (dist < detectionRange * 0.6f)
         {
             TransitionTo(AIState.Agro);
             return;
         }
 
-        Vector3 targetPos = GetFormationSlotPosition();
-        FlyToward(targetPos, formationSpeed);
-        AlignWithLeader();
+        FlyToward(playerTransform.position, alertedSpeed);
     }
 
     void UpdateAgro()
-    {
-        // Fly toward a position directly behind the player
-        Vector3 tailPos = GetPlayerTailPosition();
-        float distToTail = Vector3.Distance(transform.position, tailPos);
+{
+    if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
 
-        FlyToward(tailPos, agroSpeed);
+    Vector3 tailPos    = GetPlayerTailPosition();
+    float   distToTail = Vector3.Distance(transform.position, tailPos);
 
-        if (distToTail < tailPositionTolerance)
-            TransitionTo(AIState.Attacking);
-    }
+    Debug.Log($"[Agro] distToTail: {distToTail:F1} | tolerance: {tailPositionTolerance} | tailPos: {tailPos}");
+
+    FlyToward(tailPos, agroSpeed);
+
+    if (distToTail < tailPositionTolerance)
+        TransitionTo(AIState.Attacking);
+}
 
     void UpdateAttacking()
     {
-        // Keep chasing the player's tail and shoot when aligned
-        Vector3 tailPos = GetPlayerTailPosition();
-        FlyToward(tailPos, agroSpeed);
+        if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
 
-        float distToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float distToPlayer  = Vector3.Distance(transform.position, playerTransform.position);
         float angleToPlayer = Vector3.Angle(transform.forward, playerTransform.position - transform.position);
 
-        if (distToPlayer <= fireRange && angleToPlayer <= fireAngle)
-            TryFire();
+        FlyToward(GetPlayerTailPosition(), agroSpeed);
 
-        // If we overshoot or player escapes, go back to agro chase
+        // Fire when aligned and in range
+        if (distToPlayer <= fireRange && angleToPlayer <= fireAngle)
+        {
+            if (TryFire())
+            {
+                shotsFiredinBurst++;
+                if (shotsFiredinBurst >= burstShotCount)
+                {
+                    TransitionTo(AIState.BreakingOff);
+                    return; // exit immediately — don't let overshoot check override this
+                }
+            }
+        }
+
+        // Only check overshoot if we haven't already committed to breaking off
         if (distToPlayer > fireRange * 1.5f)
             TransitionTo(AIState.Agro);
+    }
+
+    void UpdateBreakingOff()
+    {
+        // Fly a random evasion arc for the break off duration
+        FlyToward(evasionTarget, maxSpeed);
+
+        if (Vector3.Distance(transform.position, evasionTarget) < 20f)
+            evasionTarget = GetRandomEvasionPoint();
+
+        // After break off duration, re-engage
+        if (Time.time >= breakOffEndTime)
+            TransitionTo(PlayerInRange(losePlayerRange) ? AIState.Agro : AIState.Patrol);
     }
 
     void UpdateEvading()
     {
         if (Time.time >= evasionEndTime)
         {
-            TransitionTo(AIState.Agro);
+            TransitionTo(PlayerInRange(detectionRange) ? AIState.Agro : AIState.Patrol);
             return;
         }
 
         FlyToward(evasionTarget, maxSpeed);
 
-        // Refresh evasion target if we reach it
         if (Vector3.Distance(transform.position, evasionTarget) < 20f)
             evasionTarget = GetRandomEvasionPoint();
     }
@@ -220,28 +298,21 @@ public class EnemyFighterAI : MonoBehaviour
     // Public API
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Call this when a jet in the formation is destroyed to alert all others.
-    /// Already called automatically from OnDestroy, but you can also call it
-    /// manually (e.g. from a damage script before the object is actually destroyed).
-    /// </summary>
     public static void AlertFormation()
     {
         foreach (var jet in s_formation)
-        {
-            if (jet != null)
-                jet.OnFormationAlert();
-        }
+            if (jet != null) jet.OnFormationAlert();
     }
 
-    /// <summary>Call from a damage script when this jet takes a hit.</summary>
     public void OnHit()
     {
-        if (currentState == AIState.Formation)
+        // Don't interrupt a break-off already in progress
+        if (currentState == AIState.BreakingOff) return;
+
+        if (currentState == AIState.Formation || currentState == AIState.Patrol)
             AlertFormation();
 
-        // Temporarily break off to evade
-        StartEvasion();
+        TransitionTo(AIState.Evading);
     }
 
     // -------------------------------------------------------------------------
@@ -251,127 +322,163 @@ public class EnemyFighterAI : MonoBehaviour
     void OnFormationAlert()
     {
         isAlerted = true;
-        if (currentState == AIState.Formation)
+        if (currentState == AIState.Formation || currentState == AIState.Patrol)
             TransitionTo(AIState.Agro);
     }
 
     void TransitionTo(AIState newState)
     {
-        currentState = newState;
-
-        if (newState == AIState.Evading)
+        switch (newState)
         {
-            evasionEndTime = Time.time + evasionDuration;
-            evasionTarget  = GetRandomEvasionPoint();
+            case AIState.Patrol:
+                patrolTarget        = GetRandomPatrolPoint();
+                patrolWaypointTimer = Random.Range(patrolWaypointMinTime, patrolWaypointMaxTime);
+                break;
+
+            case AIState.Alerted:
+                alertedTimer = 0f;
+                break;
+
+            case AIState.Agro:
+                // Unique lateral offset per jet so they don't all stack on the same tail position
+                approachOffset      = Random.insideUnitSphere * approachSpread;
+                approachOffset.y    = 0f;
+                shotsFiredinBurst   = 0;  // reset burst counter each new attack run
+                break;
+
+            case AIState.BreakingOff:
+                breakOffEndTime = Time.time + breakOffDuration;
+                evasionTarget   = GetRandomEvasionPoint();
+                break;
+
+            case AIState.Evading:
+                evasionEndTime = Time.time + Random.Range(evasionDurationMin, evasionDurationMax);
+                evasionTarget  = GetRandomEvasionPoint();
+                break;
         }
+
+        currentState = newState;
     }
 
-    void StartEvasion()
-    {
-        TransitionTo(AIState.Evading);
-    }
-
-    /// <summary>Smoothly fly toward a world-space position at a given speed.</summary>
     void FlyToward(Vector3 targetPosition, float speed)
     {
-        Vector3 desiredDir = (targetPosition - transform.position).normalized;
+        Vector3    desiredDir = (targetPosition - transform.position).normalized;
+        Quaternion targetRot  = Quaternion.LookRotation(desiredDir, transform.up);
 
-        // Smooth rotation toward desired direction
-        Quaternion targetRot = Quaternion.LookRotation(desiredDir, transform.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.fixedDeltaTime);
 
-        // Apply banking roll based on how much we are turning
-        float turnDot = Vector3.Dot(transform.right, desiredDir);
+        float      turnDot = Vector3.Dot(transform.right, desiredDir);
         Quaternion bankRot = Quaternion.AngleAxis(-turnDot * rollSpeed * 20f, transform.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, transform.rotation * bankRot, Time.fixedDeltaTime * rollSpeed);
 
-        // Move forward
-        rb.linearVelocity = transform.forward * speed;
+        // Kinematic — move directly via transform instead of velocity
+        transform.position += transform.forward * speed * Time.fixedDeltaTime;
     }
 
-    /// <summary>While in formation, also try to match the leader's orientation.</summary>
     void AlignWithLeader()
     {
         if (formationLeader == null) return;
         transform.rotation = Quaternion.Slerp(transform.rotation, formationLeader.rotation, turnSpeed * 0.5f * Time.fixedDeltaTime);
     }
 
-    /// <summary>Returns the world position of this jet's formation slot.</summary>
+    bool PlayerInRange(float range) =>
+        Vector3.Distance(transform.position, playerTransform.position) <= range;
+
     Vector3 GetFormationSlotPosition()
     {
         if (formationLeader == null) return transform.position;
-
         int idx = Mathf.Clamp(formationSlotIndex, 0, formationOffsets.Length - 1);
-        Vector3 localOffset = formationOffsets[idx] * (formationSpacing / 15f); // scale with spacing
-        return formationLeader.TransformPoint(localOffset);
+        return formationLeader.TransformPoint(formationOffsets[idx] * (formationSpacing / 15f));
     }
 
-    /// <summary>Returns a position directly behind and slightly below the player.</summary>
     Vector3 GetPlayerTailPosition()
+{
+    Vector3 tail = playerTransform.position
+                 - playerTransform.forward * tailOffset
+                 + playerTransform.up     * 5f
+                 + approachOffset;
+
+    Debug.Log($"[Tail] playerPos: {playerTransform.position} | tailPos: {tail} | approachOffset: {approachOffset}");
+    return tail;
+}
+
+    Vector3 GetRandomPatrolPoint()
     {
-        return playerTransform.position
-               - playerTransform.forward * tailOffset
-               + playerTransform.up * 5f;
+        Vector2 circle = Random.insideUnitCircle * patrolRadius;
+        float   height = Mathf.Max(playerTransform.position.y + Random.Range(-patrolHeightVariance, patrolHeightVariance), minAltitude + 10f);
+        patrolWaypointTimer = Random.Range(patrolWaypointMinTime, patrolWaypointMaxTime);
+        return new Vector3(playerTransform.position.x + circle.x, height, playerTransform.position.z + circle.y);
     }
 
     Vector3 GetRandomEvasionPoint()
     {
-        Vector3 randomDir = Random.onUnitSphere;
-        randomDir.y = Mathf.Abs(randomDir.y); // prefer not diving into the ground
-        return transform.position + randomDir * evasionRadius;
+        // Pick a point on the upper hemisphere so the jet doesn't dive into the ground
+        Vector3 dir = Random.onUnitSphere;
+        dir.y = Mathf.Abs(dir.y) + 0.2f; // bias upward, ensure never exactly horizontal
+        dir.Normalize();
+
+        // Use full evasionRadius — clamp so it's never too close to matter
+        float dist = Mathf.Max(evasionRadius, 40f);
+        Vector3 candidate = transform.position + dir * dist;
+
+        // Respect min altitude
+        candidate.y = Mathf.Max(candidate.y, minAltitude + 10f);
+        return candidate;
     }
 
     void EnforceMinAltitude()
     {
-        if (transform.position.y < minAltitude)
-        {
-            Vector3 pos = transform.position;
-            pos.y = minAltitude;
-            transform.position = pos;
+        if (transform.position.y >= minAltitude) return;
 
-            // Pitch up if too low
-            Vector3 fwd = transform.forward;
-            fwd.y = Mathf.Max(fwd.y, 0.3f);
-            transform.forward = fwd.normalized;
-        }
+        Vector3 pos = transform.position;
+        pos.y = minAltitude;
+        transform.position = pos;
+
+        Vector3 fwd = transform.forward;
+        fwd.y = Mathf.Max(fwd.y, 0.3f);
+        transform.forward = fwd.normalized;
     }
 
-    void TryFire()
+    bool TryFire()
     {
-        if (Time.time < nextFireTime) return;
-        if (projectilePrefab == null || muzzlePoints == null || muzzlePoints.Length == 0) return;
+        if (Time.time < nextFireTime) return false;
+        if (projectilePrefab == null || muzzlePoints == null || muzzlePoints.Length == 0) return false;
 
-        nextFireTime = Time.time + fireRate;
+        nextFireTime = Time.time + fireRateBase + Random.Range(0f, fireRateJitter);
 
         foreach (Transform muzzle in muzzlePoints)
-        {
             Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
-        }
+
+        return true;
     }
 
     // -------------------------------------------------------------------------
-    // Debug gizmos (visible in Scene view)
+    // Gizmos
     // -------------------------------------------------------------------------
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
-        // Formation slot
-        if (formationLeader != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(GetFormationSlotPosition(), 2f);
-            Gizmos.DrawLine(transform.position, GetFormationSlotPosition());
-        }
+        Gizmos.color = new Color(1f, 1f, 0f, 0.1f);
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        // Fire range
-        Gizmos.color = new Color(1, 0, 0, 0.15f);
+        Gizmos.color = new Color(0f, 1f, 0f, 0.05f);
+        Gizmos.DrawWireSphere(transform.position, losePlayerRange);
+
+        Gizmos.color = new Color(1f, 0f, 0f, 0.15f);
         Gizmos.DrawWireSphere(transform.position, fireRange);
 
-        // Tail position
-        if (playerTransform != null)
+        if (Application.isPlaying && currentState == AIState.Patrol)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(patrolTarget, 3f);
+            Gizmos.DrawLine(transform.position, patrolTarget);
+        }
+
+        if (Application.isPlaying && playerTransform != null &&
+           (currentState == AIState.Agro || currentState == AIState.Attacking))
+        {
+            Gizmos.color = Color.red;
             Gizmos.DrawSphere(GetPlayerTailPosition(), 3f);
             Gizmos.DrawLine(transform.position, GetPlayerTailPosition());
         }
