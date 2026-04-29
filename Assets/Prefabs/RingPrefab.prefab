@@ -5950,14 +5950,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994167215615997567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0d5f38c30ba6e41a2b7da75a71f821, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fda6aa7d9c404a729a18155f198640e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ring
   playerTransform: {fileID: 0}
   ringRenderer: {fileID: 0}
-  pointValue: 100
+  pointValue: 25
   snapDistance: 10
-  collectDistance: 3
+  collectDistance: 15
   snapSpeed: 18
   rotationSpeed: 45
   bobAmplitude: 1.5
