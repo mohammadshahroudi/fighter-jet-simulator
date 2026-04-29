@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameInput gameInput;
 
     private Rigidbody rb;
-    private float throttle = 0f;
+    private float throttle = 10f;
     private float roll;
     private float pitch;
     private float yaw;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         rb = GetComponent<Rigidbody>();
+        // rb.linearVelocity = new Vector3( 0,0,minSpeed);
     }
 
     private void Update()

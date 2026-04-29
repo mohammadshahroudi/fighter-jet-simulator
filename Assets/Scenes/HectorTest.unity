@@ -813,13 +813,13 @@ MonoBehaviour:
   - {x: 20, y: 0, z: -15}
   - {x: -30, y: 5, z: -30}
   - {x: 30, y: 5, z: -30}
-  detectionRange: 35.9
+  detectionRange: 25
   losePlayerRange: 600
   alertedTimeout: 6
-  patrolSpeed: 30
-  alertedSpeed: 40
-  agroSpeed: 65
-  maxSpeed: 130
+  patrolSpeed: 60
+  alertedSpeed: 90
+  agroSpeed: 80
+  maxSpeed: 100
   turnSpeed: 1.5
   rollSpeed: 3
   minAltitude: 50
@@ -828,7 +828,7 @@ MonoBehaviour:
   patrolWaypointMaxTime: 10
   patrolHeightVariance: 40
   fireRange: 300
-  fireAngle: 8
+  fireAngle: 35
   fireRateBase: 0.15
   fireRateJitter: 0.08
   burstShotCount: 4

@@ -225,17 +225,19 @@ public class EnemyFighterAI : MonoBehaviour
     }
 
     void UpdateAgro()
-    {
-        if (!PlayerInRange(losePlayerRange))  { TransitionTo(AIState.Patrol); return; }
+{
+    if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
 
-        Vector3 tailPos    = GetPlayerTailPosition();
-        float   distToTail = Vector3.Distance(transform.position, tailPos);
+    Vector3 tailPos    = GetPlayerTailPosition();
+    float   distToTail = Vector3.Distance(transform.position, tailPos);
 
-        FlyToward(tailPos, agroSpeed);
+    Debug.Log($"[Agro] distToTail: {distToTail:F1} | tolerance: {tailPositionTolerance} | tailPos: {tailPos}");
 
-        if (distToTail < tailPositionTolerance)
-            TransitionTo(AIState.Attacking);
-    }
+    FlyToward(tailPos, agroSpeed);
+
+    if (distToTail < tailPositionTolerance)
+        TransitionTo(AIState.Attacking);
+}
 
     void UpdateAttacking()
     {
@@ -390,12 +392,15 @@ public class EnemyFighterAI : MonoBehaviour
     }
 
     Vector3 GetPlayerTailPosition()
-    {
-        return playerTransform.position
-             - playerTransform.forward * tailOffset
-             + playerTransform.up     * 5f
-             + approachOffset;
-    }
+{
+    Vector3 tail = playerTransform.position
+                 - playerTransform.forward * tailOffset
+                 + playerTransform.up     * 5f
+                 + approachOffset;
+
+    Debug.Log($"[Tail] playerPos: {playerTransform.position} | tailPos: {tail} | approachOffset: {approachOffset}");
+    return tail;
+}
 
     Vector3 GetRandomPatrolPoint()
     {
