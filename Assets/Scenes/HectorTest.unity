@@ -373,6 +373,55 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3357167070680871062, guid: 5e085ff88bef7e14d96bc79ab561d28b, type: 3}
   m_PrefabInstance: {fileID: 1036100342}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &262986538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262986540}
+  - component: {fileID: 262986539}
+  m_Layer: 0
+  m_Name: RingScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &262986539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262986538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7333843de5c074a44a1ec0c9257e4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingScoreManager
+  scoreTMP: {fileID: 0}
+  scoreLegacyText: {fileID: 0}
+  scoreFormat: 'SCORE: {0}'
+  scorePopupPrefab: {fileID: 0}
+  popupHeight: 5
+--- !u!4 &262986540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262986538}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372020290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,3 +1400,4 @@ SceneRoots:
   - {fileID: 1038586099}
   - {fileID: 137686093}
   - {fileID: 1036100342}
+  - {fileID: 262986540}
