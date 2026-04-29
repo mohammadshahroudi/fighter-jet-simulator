@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerPlaneLoader : MonoBehaviour
 {
-  [SerializeField] private PlaneDatabase planeDatabase;
+  [SerializeField] private PlaneList planeDatabase;
 
 void Start()
 {
