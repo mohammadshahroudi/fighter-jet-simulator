@@ -1,17 +1,15 @@
+ 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
-{
-
-
-    [Header("Currency")]
-    [SerializeField] private int startingMoney = 300;
-
+{ 
     [Header("Planes")]
-    [SerializeField] private List<PlaneData> planes = new List<PlaneData>();
+   [SerializeField] private PlaneList planeDatabase;
+    private List<PlaneData> planes => planeDatabase != null ? planeDatabase.allPlanes : null;
     [SerializeField] private int selectedPlaneIndex = 0;
+
 
     public event Action OnShopChanged;
 
@@ -33,8 +31,9 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeRuntimeState();
-        NotifyShopChanged();
+    InitializeRuntimeState();
+    ReloadMoneyFromPrefs();
+    NotifyShopChanged();
     }
 
     private void OnValidate()
@@ -165,11 +164,11 @@ public class ShopManager : MonoBehaviour
 
     private void SanitizeSerializedData()
     {
-        startingMoney = Mathf.Max(0, startingMoney);
+        // startingMoney removed; money is now always loaded from PlayerPrefs
 
         if (planes == null)
         {
-            planes = new List<PlaneData>();
+           
             selectedPlaneIndex = 0;
             return;
         }
@@ -250,7 +249,7 @@ public class ShopManager : MonoBehaviour
 
     private void LoadRuntimeState()
     {
-        money = ShopPersistence.LoadMoney(startingMoney);
+        money = ShopPersistence.LoadMoney();
 
         if (planes == null || planes.Count == 0)
         {
@@ -314,5 +313,17 @@ public class ShopManager : MonoBehaviour
     private void NotifyShopChanged()
     {
         OnShopChanged?.Invoke();
+    }
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        ShopPersistence.SaveRuntimeState(money, selectedPlaneIndex, planes);
+        NotifyShopChanged();
+    }
+       // Reload money from PlayerPrefs and notify UI
+    public void ReloadMoneyFromPrefs()
+    {
+        money = ShopPersistence.LoadMoney();
+        NotifyShopChanged();
     }
 }
