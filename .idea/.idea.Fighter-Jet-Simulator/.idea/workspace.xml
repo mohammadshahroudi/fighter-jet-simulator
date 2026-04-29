@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="" />
+    <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +143,7 @@
       <workItem from="1776931566986" duration="2669000" />
       <workItem from="1777429610932" duration="590000" />
       <workItem from="1777483115551" duration="1246000" />
-      <workItem from="1777504786135" duration="398000" />
+      <workItem from="1777504786135" duration="788000" />
     </task>
     <servers />
   </component>
