@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b5c4b8e52750348a5a380822e36d8e, type: 3}
   m_Name: Default Terrain
   m_EditorClassIdentifier: Assembly-CSharp::TerrainData
-  autoUpdate: 0
+  autoUpdate: 1
   uniformScale: 2.5
   useFlatShading: 0
   useFalloff: 0
