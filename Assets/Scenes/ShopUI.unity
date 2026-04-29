@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   planeDatabase: {fileID: 11400000, guid: ce84effa75bdc4bb8973995c20e32850, type: 2}
-  selectedPlaneIndex: 0
+  selectedPlaneIndex: 4
 --- !u!1001 &1175564497
 PrefabInstance:
   m_ObjectHideFlags: 0
