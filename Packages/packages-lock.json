@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.alexeyperov.unity-dependencies-hunter": {
+      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7388a10af0ec249d6f7b7e490b980bd72c83eee2"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
