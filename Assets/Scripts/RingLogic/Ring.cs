@@ -31,7 +31,7 @@ public class Ring : MonoBehaviour
     public Renderer ringRenderer;
 
     [Header("Ring Value")]
-    public int pointValue = 100;
+    public int pointValue = 25;
 
     [Header("Snap / Collection")]
     [Tooltip("Distance at which the ring snaps toward the player.")]
@@ -61,12 +61,6 @@ public class Ring : MonoBehaviour
     [Tooltip("Optional particle effect spawned at collection point.")]
     public GameObject collectVFXPrefab;
 
-    // -------------------------------------------------------------------------
-    // Static event — subscribe anywhere to react to collections
-    // -------------------------------------------------------------------------
-
-    /// <summary>Fired when a ring is collected. Args: (pointValue, worldPosition)</summary>
-    public static event System.Action<int, Vector3> OnRingCollected;
 
     // -------------------------------------------------------------------------
     // Runtime state
@@ -110,16 +104,19 @@ public class Ring : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (collected || playerTransform == null) return;
+void Update()
+{
+    if (collected || playerTransform == null) return;
 
-        switch (state)
-        {
-            case RingState.Idle:      UpdateIdle();      break;
-            case RingState.Snapping:  UpdateSnapping();  break;
-        }
+    // Confirm Update is running
+    Debug.Log($"[Ring] State: {state} | Dist: {Vector3.Distance(transform.position, playerTransform.position):F1}");
+
+    switch (state)
+    {
+        case RingState.Idle:      UpdateIdle();      break;
+        case RingState.Snapping:  UpdateSnapping();  break;
     }
+}
 
     // -------------------------------------------------------------------------
     // State updates
@@ -149,40 +146,44 @@ public class Ring : MonoBehaviour
             state = RingState.Snapping;
     }
 
-    void UpdateSnapping()
+void UpdateSnapping()
+{
+    transform.position = Vector3.MoveTowards(
+        transform.position,
+        playerTransform.position,
+        snapSpeed * Time.deltaTime
+    );
+
+    transform.Rotate(Vector3.up, rotationSpeed * 3f * Time.deltaTime, Space.World);
+
+    float dist = Vector3.Distance(transform.position, playerTransform.position);
+    float scaleFactor = Mathf.Lerp(1.3f, 0.2f, 1f - (dist / snapDistance));
+    transform.localScale = Vector3.one * Mathf.Max(0.1f, scaleFactor);
+
+    Debug.Log($"[Ring] Snapping — dist: {dist:F1} | collectDistance: {collectDistance}");
+
+    if (dist <= collectDistance && !collected)
     {
-        // Fly toward the player
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            playerTransform.position,
-            snapSpeed * Time.deltaTime
-        );
-
-        // Spin faster as it closes in
-        transform.Rotate(Vector3.up, rotationSpeed * 3f * Time.deltaTime, Space.World);
-
-        float dist = Vector3.Distance(transform.position, playerTransform.position);
-
-        // Scale up slightly as it approaches (satisfying suck-in effect)
-        float scaleFactor = Mathf.Lerp(1.3f, 0.2f, 1f - (dist / snapDistance));
-        transform.localScale = Vector3.one * Mathf.Max(0.1f, scaleFactor);
-
-        if (dist <= collectDistance)
-            StartCoroutine(CollectRoutine());
+        Debug.Log("[Ring] Triggering CollectRoutine");
+        StartCoroutine(CollectRoutine());
     }
+}
 
     // -------------------------------------------------------------------------
     // Collection
     // -------------------------------------------------------------------------
 
-    IEnumerator CollectRoutine()
-    {
-        if (collected) yield break;
-        collected = true;
-        state = RingState.Collecting;
+IEnumerator CollectRoutine()
+{
+    if (collected) yield break;
+    collected = true;
+    state = RingState.Collecting;
 
-        // Fire event first so UI/score can react immediately
-        OnRingCollected?.Invoke(pointValue, transform.position);
+    // Replace event invoke with direct singleton call
+    if (RingScoreManager.Instance != null)
+        RingScoreManager.Instance.HandleRingCollected(pointValue, transform.position);
+    else
+        Debug.LogError("[Ring] RingScoreManager.Instance is null!");
 
         // Spawn VFX
         if (collectVFXPrefab != null)

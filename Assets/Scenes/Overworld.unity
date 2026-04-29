@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 143129501}
-  - component: {fileID: 143129500}
+  - component: {fileID: 143129502}
   m_Layer: 0
   m_Name: RingSpawner
   m_TagString: Untagged
@@ -402,31 +402,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &143129500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143129499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5849a1dd5c7333843b4b388138a3ad8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
-  ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
-  pattern: 0
-  ringCount: 8
-  spacingDistance: 30
-  arcAngleDegrees: 90
-  arcRadius: 150
-  circleRadius: 2
-  scatterRadius: 500
-  scatterHeightVariance: 30
-  customPositions: []
-  faceApproachDirection: 0
-  approachDirection: {x: 0, y: 0, z: 0}
-  spawnOnStart: 1
 --- !u!4 &143129501
 Transform:
   m_ObjectHideFlags: 0
@@ -442,6 +417,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 154.33, z: 0}
+--- !u!114 &143129502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143129499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b18159938a84dfb939f916ac7707d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
+  ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
+  pattern: 0
+  ringCount: 8
+  spacingDistance: 30
+  arcAngleDegrees: 90
+  arcRadius: 150
+  circleRadius: 20
+  scatterRadius: 500
+  scatterHeightVariance: 30
+  customPositions: []
+  faceApproachDirection: 0
+  approachDirection: {x: 0, y: 0, z: 0}
+  spawnOnStart: 1
 --- !u!1 &215317334
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 318293107}
   - component: {fileID: 318293106}
   - component: {fileID: 318293105}
+  - component: {fileID: 318293109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -802,6 +803,19 @@ MonoBehaviour:
   - Ground
   crashVFXPrefab: {fileID: 9209252962504903126, guid: ded10f69f1fb84c22bea1cc912091d66, type: 3}
   gameInput: {fileID: 401267049}
+--- !u!114 &318293109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318293103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43e23ad2bcf4464a17860ff5d3e349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
+  planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
 --- !u!1001 &363043746
 PrefabInstance:
   m_ObjectHideFlags: 0
