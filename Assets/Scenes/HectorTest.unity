@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4243c9799faeb104fa09b5bf022fddef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationSpawner
-  enemyPrefab: {fileID: 897662090182976731, guid: e613197130af62a4f8fe925f2df46f2b, type: 3}
+  enemyPrefab: {fileID: 897662090182976731, guid: 5d3aada398761d349a71bfd7236246eb, type: 3}
   formationType: 2
   columns: 4
   rows: 3

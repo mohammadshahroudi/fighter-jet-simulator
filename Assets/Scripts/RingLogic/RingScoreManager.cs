@@ -45,14 +45,21 @@ public class RingScoreManager : MonoBehaviour
     // Handler
     // -------------------------------------------------------------------------
 
-    void HandleRingCollected(int points, Vector3 worldPos)
-    {
-        currentScore += points;
-        UpdateScoreUI();
-        SpawnPopup(points, worldPos);
+ void HandleRingCollected(int points, Vector3 worldPos)
+{
+    currentScore += points;
+    UpdateScoreUI();
+    SpawnPopup(points, worldPos);
 
-        Debug.Log($"[RingScoreManager] +{points} pts | Total: {currentScore}");
-    }
+    // --- Add this block to update PlayerPrefs for money ---
+    int currentMoney = PlayerPrefs.GetInt("Money", 0);
+    currentMoney += points;
+    PlayerPrefs.SetInt("Money", currentMoney);
+    PlayerPrefs.Save();
+    // ------------------------------------------------------
+
+    Debug.Log($"[RingScoreManager] +{points} pts | Total: {currentScore} | Money: {currentMoney}");
+}
 
     // -------------------------------------------------------------------------
     // Helpers

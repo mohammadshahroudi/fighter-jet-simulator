@@ -3733,7 +3733,7 @@ MonoBehaviour:
   moneyText: {fileID: 527408226}
   titleText: {fileID: 1596233366}
   shopTitle: Welcome To Dave's Plane Shop
-  mainMenuSceneName: Rhu_MainMenu
+  mainMenuSceneName: MainMenu
   backButton: {fileID: 1357668505}
   onBackPressed:
     m_PersistentCalls:
