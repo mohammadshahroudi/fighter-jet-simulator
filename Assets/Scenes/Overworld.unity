@@ -3851,6 +3851,14 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.y
       value: 4.43e-43
       objectReference: {fileID: 0}
+    - target: {fileID: 4087999940128457066, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+      propertyPath: tracerLine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087999940128457066, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+      propertyPath: tracerDuration
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5281698133587121778, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_Name
       value: MachineGunMK2
