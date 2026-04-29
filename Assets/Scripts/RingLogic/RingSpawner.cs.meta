@@ -1,2 +1,12 @@
 fileFormatVersion: 2
-guid: 5849a1dd5c7333843b4b388138a3ad8e
+guid: a9b18159938a84dfb939f916ac7707d3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
