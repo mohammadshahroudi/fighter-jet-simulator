@@ -12,7 +12,7 @@ using TMPro;
 /// </summary>
 public class RingScoreManager : MonoBehaviour
 {
-    [Header("Score")]
+    // Fixed: removed [Header("Score")] — Headers don't work on auto-properties
     public int currentScore { get; private set; } = 0;
 
     [Header("UI")]
@@ -35,23 +35,47 @@ public class RingScoreManager : MonoBehaviour
     // -------------------------------------------------------------------------
     // Subscribe / unsubscribe safely
     // -------------------------------------------------------------------------
+    public static RingScoreManager Instance { get; private set; }
 
-    void OnEnable()  => Ring.OnRingCollected += HandleRingCollected;
-    void OnDisable() => Ring.OnRingCollected -= HandleRingCollected;
+void Awake()
+{
+    if (Instance != null)
+    {
+        Destroy(gameObject);
+        return;
+    }
 
-    void Start() => UpdateScoreUI();
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
+    Debug.Log("[RingScoreManager] Instance created and marked DontDestroyOnLoad");
+} 
+
+
+    void Start() {
+    UpdateScoreUI();
+    Debug.Log($"[RingScoreManager] Subscribed to OnRingCollected. GameObject: {gameObject.name}");
+}
+    
+
+    // Fixed: save PlayerPrefs once on quit rather than on every ring collect
+    void OnApplicationQuit() => PlayerPrefs.Save();
 
     // -------------------------------------------------------------------------
     // Handler
     // -------------------------------------------------------------------------
 
-    void HandleRingCollected(int points, Vector3 worldPos)
+    public void HandleRingCollected(int points, Vector3 worldPos)
     {
+        Debug.Log($"[RingScoreManager] HandleRingCollected CALLED | points: {points}");
         currentScore += points;
         UpdateScoreUI();
         SpawnPopup(points, worldPos);
 
-        Debug.Log($"[RingScoreManager] +{points} pts | Total: {currentScore}");
+        int before = ShopPersistence.LoadMoney();
+        int newTotal = before + points;
+        ShopPersistence.SaveMoney(newTotal);
+
+        Debug.Log($"[RingScoreManager] +{points} | Money: {before} -> {newTotal}");
     }
 
     // -------------------------------------------------------------------------
@@ -75,7 +99,6 @@ public class RingScoreManager : MonoBehaviour
         Vector3 spawnPos = pos + Vector3.up * popupHeight;
         var popup = Instantiate(scorePopupPrefab, spawnPos, Quaternion.identity);
 
-        // Try to set the text on the popup
         var tmp = popup.GetComponentInChildren<TMP_Text>();
         if (tmp != null) { tmp.text = $"+{points}"; return; }
 
