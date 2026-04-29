@@ -118,4 +118,12 @@ public class PlayerController : MonoBehaviour
         // Notify the game state manager — it handles the delay and UI
         GameStateManager.Instance?.TriggerGameOver();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PowerUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
