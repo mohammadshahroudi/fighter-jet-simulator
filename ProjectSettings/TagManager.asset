@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Terrain
   - Building
+  - PowerUp
   layers:
   - Default
   - TransparentFX
