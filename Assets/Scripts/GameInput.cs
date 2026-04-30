@@ -24,4 +24,10 @@ public class GameInput : MonoBehaviour
 
     public bool GetThrottleUp()   => inputActions.Player.ThrottleUp.IsPressed();
     public bool GetThrottleDown() => inputActions.Player.ThrottleDown.IsPressed();
+
+    public bool GetBoost() => inputActions.Player.Boost.IsPressed();
+
+
+
+    
 }
