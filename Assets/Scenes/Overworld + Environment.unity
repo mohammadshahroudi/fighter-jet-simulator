@@ -484,7 +484,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 143129499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5849a1dd5c7333843b4b388138a3ad8e, type: 3}
+  m_Script: {fileID: 11500000, guid: a9b18159938a84dfb939f916ac7707d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
   ringPrefab: {fileID: 0}
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
