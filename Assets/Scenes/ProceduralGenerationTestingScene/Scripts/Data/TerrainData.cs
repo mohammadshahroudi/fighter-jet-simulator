@@ -4,8 +4,7 @@ using System.Collections;
 [CreateAssetMenu()]
 public class TerrainData : UpdatableData {
 	
-    public float uniformScale = 2.5f; // Tutorial made this public now. Careful when changing this.
-
+    public float uniformScale = 2.5f;
     public bool useFlatShading;
     public bool useFalloff;
 
@@ -13,14 +12,14 @@ public class TerrainData : UpdatableData {
     public AnimationCurve meshHeightCurve;
 
     public float minHeight {
-	    get {
-		    return uniformScale * meshHeightMultiplier * meshHeightCurve.Evaluate (0);
-	    }
+        get {
+            return uniformScale * meshHeightMultiplier * meshHeightCurve.Evaluate (0);
+        }
     }
 
     public float maxHeight {
-	    get {
-		    return uniformScale * meshHeightMultiplier * meshHeightCurve.Evaluate (1);
-	    }
+        get {
+            return uniformScale * meshHeightMultiplier * meshHeightCurve.Evaluate (1);
+        }
     }
 }

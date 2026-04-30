@@ -163,6 +163,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _AmbientStrength: 1
     - _Blend: 0
     - _Blend0: 0.001
     - _Blend1: 0.02
@@ -199,9 +200,9 @@ Material:
     - _LayerTexScale0: 1
     - _LayerTexScale1: 1
     - _LayerTexScale2: 1
-    - _MaxHeight: 100
+    - _MaxHeight: 99.29325
     - _Metallic: 0
-    - _MinHeight: 0
+    - _MinHeight: 0.016181946
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
