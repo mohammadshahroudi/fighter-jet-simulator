@@ -90,11 +90,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LayerTex5:
-        m_Texture: {fileID: 2800000, guid: afdeddbf2b390ee4490b86deaf4303b8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f11a6b8841c1604a88e3ac896613c4d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LayerTex6:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: afdeddbf2b390ee4490b86deaf4303b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LayerTex7:
@@ -165,24 +165,24 @@ Material:
     - _AlphaToMask: 0
     - _AmbientStrength: 1
     - _Blend: 0
-    - _Blend0: 0.001
-    - _Blend1: 0.02
-    - _Blend2: 0.04
-    - _Blend3: 0.107
+    - _Blend0: 0.1
+    - _Blend1: 0.005
+    - _Blend2: 0.01
+    - _Blend3: 0.05
     - _Blend4: 0.313
-    - _Blend5: 0.284
-    - _Blend6: 0.001
+    - _Blend5: 0.1
+    - _Blend6: 0.05
     - _Blend7: 0.001
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorStrength0: 0
+    - _ColorStrength0: 0.3
     - _ColorStrength1: 0
-    - _ColorStrength2: 0
-    - _ColorStrength3: 0
+    - _ColorStrength2: 0.25
+    - _ColorStrength3: 0.5
     - _ColorStrength4: 0
-    - _ColorStrength5: 0
+    - _ColorStrength5: 0.25
     - _ColorStrength6: 0
     - _ColorStrength7: 0
     - _Cull: 2
@@ -196,11 +196,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LayerCount: 6
+    - _LayerCount: 7
     - _LayerTexScale0: 1
     - _LayerTexScale1: 1
     - _LayerTexScale2: 1
-    - _MaxHeight: 125
+    - _MaxHeight: 124.2157
     - _Metallic: 0
     - _MinHeight: 0
     - _OcclusionStrength: 1
@@ -218,17 +218,17 @@ Material:
     - _StartHeight2: 0.1
     - _StartHeight3: 0.225
     - _StartHeight4: 0.431
-    - _StartHeight5: 0.843
-    - _StartHeight6: 2
+    - _StartHeight5: 0.565
+    - _StartHeight6: 0.843
     - _StartHeight7: 2
     - _Surface: 0
     - _TextureScale0: 20
-    - _TextureScale1: 1
+    - _TextureScale1: 20
     - _TextureScale2: 20
     - _TextureScale3: 20
     - _TextureScale4: 20
     - _TextureScale5: 20
-    - _TextureScale6: 1
+    - _TextureScale6: 20
     - _TextureScale7: 1
     - _WindQuality: 0
     - _WorkflowMode: 1
@@ -244,10 +244,10 @@ Material:
     - _Color0: {r: 0, g: 0.122285366, b: 1, a: 0}
     - _Color1: {r: 0.99400353, g: 1, b: 0.6462264, a: 0}
     - _Color2: {r: 0, g: 0.4339623, b: 0.018720794, a: 0}
-    - _Color3: {r: 0.5, g: 0.4558392, b: 0.29009435, a: 0}
+    - _Color3: {r: 0.3962264, g: 0.36062005, b: 0.23362406, a: 0}
     - _Color4: {r: 0.3207547, g: 0.28343418, b: 0.15281239, a: 0}
-    - _Color5: {r: 1, g: 1, b: 1, a: 0}
-    - _Color6: {r: 0, g: 0, b: 0, a: 1}
+    - _Color5: {r: 0.3962264, g: 0.38536018, b: 0.34950158, a: 0}
+    - _Color6: {r: 1, g: 1, b: 1, a: 0}
     - _Color7: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

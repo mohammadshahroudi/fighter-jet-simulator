@@ -16,7 +16,7 @@ MonoBehaviour:
   noiseSettings:
     normalizeMode: 0
     scale: 50
-    octaves: 6
+    octaves: 5
     persistance: 0.5
     lacunarity: 2
     seed: 0
