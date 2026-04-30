@@ -114,7 +114,7 @@ public class EnemyFighterAI : MonoBehaviour
     private bool      isAlerted = false;
 
     // Burst fire tracking
-    private int       shotsFiredinBurst  = 0;
+    private int       shotsFiredInBurst  = 0;
     private float     breakOffEndTime;
 
     // Patrol
@@ -126,6 +126,8 @@ public class EnemyFighterAI : MonoBehaviour
 
     // Per-jet approach offset — randomised on each agro entry
     private Vector3   approachOffset;
+    private float     _agroStallTimer;
+    private const float AgroStallTimeout = 4f;
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -225,19 +227,30 @@ public class EnemyFighterAI : MonoBehaviour
     }
 
     void UpdateAgro()
-{
-    if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
+    {
+        if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
 
-    Vector3 tailPos    = GetPlayerTailPosition();
-    float   distToTail = Vector3.Distance(transform.position, tailPos);
+        Vector3 tailPos    = GetPlayerTailPosition();
+        float   distToTail = Vector3.Distance(transform.position, tailPos);
 
-    Debug.Log($"[Agro] distToTail: {distToTail:F1} | tolerance: {tailPositionTolerance} | tailPos: {tailPos}");
+        FlyToward(tailPos, agroSpeed);
 
-    FlyToward(tailPos, agroSpeed);
+        if (distToTail < tailPositionTolerance)
+        {
+            TransitionTo(AIState.Attacking);
+            return;
+        }
 
-    if (distToTail < tailPositionTolerance)
-        TransitionTo(AIState.Attacking);
-}
+        // Re-roll approach offset if convergence is taking too long.
+        // Prevents permanent stall when the random offset lands in an unreachable position.
+        _agroStallTimer += Time.fixedDeltaTime;
+        if (_agroStallTimer >= AgroStallTimeout)
+        {
+            approachOffset   = Random.insideUnitSphere * approachSpread;
+            approachOffset.y = 0f;
+            _agroStallTimer  = 0f;
+        }
+    }
 
     void UpdateAttacking()
     {
@@ -253,8 +266,8 @@ public class EnemyFighterAI : MonoBehaviour
         {
             if (TryFire())
             {
-                shotsFiredinBurst++;
-                if (shotsFiredinBurst >= burstShotCount)
+                shotsFiredInBurst++;
+                if (shotsFiredInBurst >= burstShotCount)
                 {
                     TransitionTo(AIState.BreakingOff);
                     return; // exit immediately — don't let overshoot check override this
@@ -300,7 +313,10 @@ public class EnemyFighterAI : MonoBehaviour
 
     public static void AlertFormation()
     {
-        foreach (var jet in s_formation)
+        // Snapshot the list before iterating — a jet may be destroyed (and removed) mid-alert,
+        // which would throw InvalidOperationException on the live list.
+        var snapshot = new List<EnemyFighterAI>(s_formation);
+        foreach (var jet in snapshot)
             if (jet != null) jet.OnFormationAlert();
     }
 
@@ -343,7 +359,8 @@ public class EnemyFighterAI : MonoBehaviour
                 // Unique lateral offset per jet so they don't all stack on the same tail position
                 approachOffset      = Random.insideUnitSphere * approachSpread;
                 approachOffset.y    = 0f;
-                shotsFiredinBurst   = 0;  // reset burst counter each new attack run
+                shotsFiredInBurst   = 0;  // reset burst counter each new attack run
+                _agroStallTimer     = 0f; // reset stall watchdog
                 break;
 
             case AIState.BreakingOff:
@@ -392,21 +409,21 @@ public class EnemyFighterAI : MonoBehaviour
     }
 
     Vector3 GetPlayerTailPosition()
-{
-    Vector3 tail = playerTransform.position
-                 - playerTransform.forward * tailOffset
-                 + playerTransform.up     * 5f
-                 + approachOffset;
+    {
+        Vector3 tail = playerTransform.position
+                     - playerTransform.forward * tailOffset
+                     + playerTransform.up     * 5f
+                     + approachOffset;
 
-    Debug.Log($"[Tail] playerPos: {playerTransform.position} | tailPos: {tail} | approachOffset: {approachOffset}");
-    return tail;
-}
+        return tail;
+    }
 
     Vector3 GetRandomPatrolPoint()
     {
+        // NOTE: timer is NOT reset here — callers (TransitionTo and UpdatePatrol) own the timer.
+        // Previously this reset the timer internally, causing a double-reset every waypoint arrival.
         Vector2 circle = Random.insideUnitCircle * patrolRadius;
         float   height = Mathf.Max(playerTransform.position.y + Random.Range(-patrolHeightVariance, patrolHeightVariance), minAltitude + 10f);
-        patrolWaypointTimer = Random.Range(patrolWaypointMinTime, patrolWaypointMaxTime);
         return new Vector3(playerTransform.position.x + circle.x, height, playerTransform.position.z + circle.y);
     }
 
@@ -434,9 +451,16 @@ public class EnemyFighterAI : MonoBehaviour
         pos.y = minAltitude;
         transform.position = pos;
 
-        Vector3 fwd = transform.forward;
-        fwd.y = Mathf.Max(fwd.y, 0.3f);
-        transform.forward = fwd.normalized;
+        // Nudge the nose upward without clobbering yaw/roll accumulated by FlyToward.
+        // Setting transform.forward directly would override the full rotation quaternion.
+        if (transform.forward.y < 0.1f)
+        {
+            Quaternion nosUp = Quaternion.AngleAxis(-15f, transform.right);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                nosUp * transform.rotation,
+                Time.fixedDeltaTime * 4f);
+        }
     }
 
     bool TryFire()
