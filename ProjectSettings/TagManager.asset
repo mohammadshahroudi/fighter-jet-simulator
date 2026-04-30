@@ -12,6 +12,7 @@ TagManager:
   - Terrain
   - Building
   - PowerUp
+  - Cloud
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Cloud
   - 
   - 
   - 

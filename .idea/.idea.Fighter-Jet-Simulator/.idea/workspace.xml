@@ -30,6 +30,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="cachedIndexableFilesCount" value="21" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
@@ -54,6 +55,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShopMenu/PlaneData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShopMenu/PlaneData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@1e87cf1dccb8/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -80,6 +82,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.github.patou.gitmoji.migration-offered&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#65 on TheCarson-Branch&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;TheRhu-Branch&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
@@ -94,6 +99,11 @@
   }
 }</component>
   <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1779066011242" />
+    <option name="spentUsd" value="0.056162" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="0" />
     <option name="endsOfQuotaMs" value="1776978000000" />
     <option name="spentUsd" value="0.02045405" />
   </component>
@@ -193,6 +203,10 @@
       <workItem from="1776628759151" duration="2412000" />
       <workItem from="1776735742880" duration="944000" />
       <workItem from="1776877701674" duration="600000" />
+      <workItem from="1776931566986" duration="2669000" />
+      <workItem from="1777429610932" duration="590000" />
+      <workItem from="1777483115551" duration="1246000" />
+      <workItem from="1777504786135" duration="788000" />
       <workItem from="1776966049010" duration="1862000" />
       <workItem from="1776975971490" duration="3134000" />
       <workItem from="1776979752257" duration="3641000" />
