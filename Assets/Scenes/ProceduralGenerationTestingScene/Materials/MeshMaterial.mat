@@ -177,7 +177,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorStrength0: 0.3
+    - _ColorStrength0: 0.95
     - _ColorStrength1: 0
     - _ColorStrength2: 0.25
     - _ColorStrength3: 0.5
@@ -200,7 +200,7 @@ Material:
     - _LayerTexScale0: 1
     - _LayerTexScale1: 1
     - _LayerTexScale2: 1
-    - _MaxHeight: 124.2157
+    - _MaxHeight: 40
     - _Metallic: 0
     - _MinHeight: 0
     - _OcclusionStrength: 1
@@ -241,7 +241,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Black: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0, g: 0.122285366, b: 1, a: 0}
+    - _Color0: {r: 0.17254902, g: 0.227451, b: 0.3529412, a: 0}
     - _Color1: {r: 0.99400353, g: 1, b: 0.6462264, a: 0}
     - _Color2: {r: 0, g: 0.4339623, b: 0.018720794, a: 0}
     - _Color3: {r: 0.3962264, g: 0.36062005, b: 0.23362406, a: 0}

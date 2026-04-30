@@ -481,8 +481,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextureDataMaterialBridge
   textureData: {fileID: 11400000, guid: 93397c0c8406c044d93f467921848012, type: 2}
   targetMaterial: {fileID: 2100000, guid: 241c87453833ded4fb27995126f474e2, type: 2}
-  syncHeightFromRendererBounds: 1
+  syncHeightFromRendererBounds: 0
   targetRenderer: {fileID: 9203543158685218105}
+  useManualHeightRange: 1
+  manualMinHeight: 0
+  manualMaxHeight: 40
   applyOnEnable: 1
   watchForChanges: 1
 --- !u!114 &2599090650456705729

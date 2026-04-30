@@ -9,8 +9,13 @@ public class TextureDataMaterialBridge : MonoBehaviour
     [SerializeField] private Material targetMaterial;
 
     [Header("Optional automatic height sync")]
-    [SerializeField] private bool syncHeightFromRendererBounds = true;
+    [SerializeField] private bool syncHeightFromRendererBounds = false;
     [SerializeField] private Renderer targetRenderer;
+    
+    [Header("Force manual height change")]
+    [SerializeField] private bool useManualHeightRange = true;
+    [SerializeField] private float manualMinHeight = 0f;
+    [SerializeField] private float manualMaxHeight = 40f;
 
     [Header("Apply automatically")]
     [SerializeField] private bool applyOnEnable = true;
@@ -66,6 +71,11 @@ public class TextureDataMaterialBridge : MonoBehaviour
             Bounds b = targetRenderer.bounds;
             targetMaterial.SetFloat("_MinHeight", b.min.y);
             targetMaterial.SetFloat("_MaxHeight", b.max.y);
+        }
+        else if (useManualHeightRange)
+        {
+            targetMaterial.SetFloat("_MinHeight", manualMinHeight);
+            targetMaterial.SetFloat("_MaxHeight", manualMaxHeight);
         }
 
         _lastFingerprint = ComputeFingerprint();
