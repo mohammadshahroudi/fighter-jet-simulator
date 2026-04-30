@@ -1,14 +1,15 @@
 using UnityEngine; 
 using UnityEngine.InputSystem; 
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MenuBase
 {
    [SerializeField] private GameObject PauseMenuUICanvas;
+   
+   // [SerializeField] public InputActionReference ActionToggle; 
+   
    private bool isGamePaused = false;
 
-   // Event Functions
+  // Event Functions
    private void Update()
    {
       if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -16,6 +17,17 @@ public class PauseMenu : MonoBehaviour
          TogglePauseGame();
       }
    }
+
+   // private void Awake()
+   // {
+   //    ActionToggle.action.performed += ActionToggle_InteractPerformed; 
+   // }
+   //
+   // private void ActionToggle_InteractPerformed(InputAction.CallbackContext obj)
+   // {
+   //    Debug.Log("THIS WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORKS IT WORKS WIT WORKS IT OWKRKKSK");
+   //    TogglePauseGame();
+   // }
 
    // Pause Menu Toggles 
    private void TogglePauseGame()
@@ -51,16 +63,6 @@ public class PauseMenu : MonoBehaviour
    public void ResumeGame()
    {
       TogglePauseGame();
-   }
-
-   public void ReturnToMain()
-   {
-      Loader.Load(Loader.Scene.MainMenu);
-   }
-   
-   public void ToShop()
-   {
-      Loader.Load(Loader.Scene.ShopUI);
    }
 }
 
