@@ -200,9 +200,9 @@ Material:
     - _LayerTexScale0: 1
     - _LayerTexScale1: 1
     - _LayerTexScale2: 1
-    - _MaxHeight: 99.29325
+    - _MaxHeight: 125
     - _Metallic: 0
-    - _MinHeight: 0.016181946
+    - _MinHeight: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -234,7 +234,7 @@ Material:
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
-    - maxHeight: 100
+    - maxHeight: 50
     - minHeight: 0
     - testScale: 1
     m_Colors:
