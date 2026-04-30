@@ -15,17 +15,17 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    IEnumerator Pickup(Collider player)
-    {
-        Instantiate(pickupEffect, transform.position, transform.rotation);
-        PlayerStats stats = player.GetComponent<PlayerStats>();
-        stats.health *=multiplier;
+IEnumerator Pickup(Collider player)
+{
+    Instantiate(pickupEffect, transform.position, transform.rotation);
+    PlayerStats stats = player.GetComponent<PlayerStats>();
+     // Increase max and current HP by 40
+    stats.IncreaseMaxHealth(40);
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+    GetComponent<MeshRenderer>().enabled = false;
+    GetComponent<Collider>().enabled = false;
 
-        yield return new WaitForSeconds(duration);
-        stats.health /= multiplier;
-        Destroy(gameObject);
-    }
+    yield return new WaitForSeconds(duration);
+    Destroy(gameObject);
+}
 }
