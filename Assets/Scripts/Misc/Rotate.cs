@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-	public GameObject plane;
+	public GameObject Object;
 
 	public void Update()
 	{
-		plane.transform.Rotate(0, 20 * Time.deltaTime, 0);
+		Object.transform.Rotate(0, 0,  20 * Time.deltaTime);
 	}
 }
