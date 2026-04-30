@@ -1588,6 +1588,7 @@ MonoBehaviour:
   - Ground
   crashVFXPrefab: {fileID: 9209252962504903126, guid: ded10f69f1fb84c22bea1cc912091d66, type: 3}
   gameInput: {fileID: 401267049}
+  boostMultiplier: 2
 --- !u!114 &318293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5372,6 +5373,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627526662}
   m_CullTransparentMesh: 1
+--- !u!1 &1642818563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642818565}
+  - component: {fileID: 1642818564}
+  m_Layer: 0
+  m_Name: RingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1642818564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642818563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7333843de5c074a44a1ec0c9257e4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingScoreManager
+  scoreTMP: {fileID: 0}
+  scoreLegacyText: {fileID: 0}
+  scoreFormat: 'SCORE: {0}'
+  scorePopupPrefab: {fileID: 0}
+  popupHeight: 5
+--- !u!4 &1642818565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642818563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.19527, y: 10.06116, z: -1.34014}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1697643591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6824,3 +6874,4 @@ SceneRoots:
   - {fileID: 968802079}
   - {fileID: 2124746318}
   - {fileID: 1384735111}
+  - {fileID: 1642818565}
