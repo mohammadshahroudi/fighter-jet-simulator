@@ -17,6 +17,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public UnityEvent<int> onHealthChanged; // passes current HP
     public UnityEvent       onDeath;
 
+    [Header("Death Behavior")]
+    [SerializeField] private bool triggerVictoryOnDeath = false;
+
+    [Header("Hitbox (Optional)")]
+    [SerializeField] private bool forceRootHitbox = false;
+    [SerializeField] private bool autoFitRootHitboxToRenderers = true;
+    [SerializeField] private Vector3 rootHitboxCenter = Vector3.zero;
+    [SerializeField] private float rootHitboxRadius = 250f;
+
     // ── Properties ───────────────────────────────────────────────────────────
 
     public int CurrentHealth => currentHealth;
@@ -34,6 +43,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         // (Initialise overrides these values).
         if (currentHealth == 0)
             currentHealth = maxHealth;
+
+        EnsureRootHitbox();
     }
 
     // ── Public API ───────────────────────────────────────────────────────────
@@ -74,8 +85,50 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     // ── Private ──────────────────────────────────────────────────────────────
 
+    private void EnsureRootHitbox()
+    {
+        if (!forceRootHitbox) return;
+
+        SphereCollider rootCollider = GetComponent<SphereCollider>();
+        if (rootCollider == null)
+        {
+            rootCollider = gameObject.AddComponent<SphereCollider>();
+        }
+
+        rootCollider.enabled = true;
+        rootCollider.isTrigger = false;
+
+        if (autoFitRootHitboxToRenderers)
+        {
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            if (renderers.Length > 0)
+            {
+                Bounds combinedBounds = renderers[0].bounds;
+                for (int i = 1; i < renderers.Length; i++)
+                {
+                    combinedBounds.Encapsulate(renderers[i].bounds);
+                }
+
+                Vector3 localCenter = transform.InverseTransformPoint(combinedBounds.center);
+                float radius = Mathf.Max(combinedBounds.extents.x, combinedBounds.extents.y, combinedBounds.extents.z) * 1.05f;
+
+                rootCollider.center = localCenter;
+                rootCollider.radius = Mathf.Max(0.1f, radius);
+                return;
+            }
+        }
+
+        rootCollider.center = rootHitboxCenter;
+        rootCollider.radius = Mathf.Max(0.1f, rootHitboxRadius);
+    }
+
     private void Die()
     {
+        if (triggerVictoryOnDeath)
+        {
+            GameStateManager.Instance?.TriggerVictory();
+        }
+
         onDeath.Invoke();
         // Replace this with your death VFX / animation logic as needed.
         Destroy(gameObject);
