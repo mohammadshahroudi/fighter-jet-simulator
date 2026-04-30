@@ -72,8 +72,7 @@ namespace Gun
         private void ShowVictoryMessage()
         {
             Debug.Log("You Saved The World!");
-            
-            Loader.Load(Loader.Scene.MainMenu);  
+            GameStateManager.Instance?.TriggerVictory();
         }
     }
 }

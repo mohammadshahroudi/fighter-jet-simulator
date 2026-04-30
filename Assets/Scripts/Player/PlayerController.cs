@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameInput gameInput;
 
+    [Header("Boost")]
+    [Tooltip("Multiplier applied to forward thrust while Boost is held (Space)")]
+    [SerializeField] private float boostMultiplier = 2f;
+
     private Rigidbody rb;
     private float throttle = 10f;
     private float roll;
@@ -41,6 +45,11 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+        }
         // rb.linearVelocity = new Vector3( 0,0,minSpeed);
     }
 
@@ -74,6 +83,11 @@ public class PlayerController : MonoBehaviour
 
         float responseModifier = rb.mass / responseModifierValue;
         float thrustForce      = (throttle / 100f) * maxThrottle;
+        bool isBoosting = gameInput != null && gameInput.GetBoost();
+        if (isBoosting)
+        {
+            thrustForce *= boostMultiplier;
+        }
 
         rb.AddRelativeForce(Vector3.forward * thrustForce);
 
@@ -83,7 +97,8 @@ public class PlayerController : MonoBehaviour
             roll  * responsiveness * responseModifier
         ));
 
-        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxThrottle);
+        float velocityCap = isBoosting ? maxThrottle * boostMultiplier : maxThrottle;
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, velocityCap);
     }
 
     private void OnCollisionEnter(Collision collision)
