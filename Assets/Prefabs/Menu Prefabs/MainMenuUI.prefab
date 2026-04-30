@@ -9593,6 +9593,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1828a700a27a5f4daa86f3f398763d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyRebind
+  downButton: {fileID: 0}
+  downBindingText: {fileID: 0}
+  upButton: {fileID: 0}
+  upBindingText: {fileID: 0}
+  leftButton: {fileID: 0}
+  leftBindingText: {fileID: 0}
+  rightButton: {fileID: 0}
+  rightBindingText: {fileID: 0}
+  rollLeftButton: {fileID: 0}
+  rollLeftBindingText: {fileID: 0}
+  throttleUpButton: {fileID: 0}
+  throttleUpBindingText: {fileID: 0}
+  throttleDownButton: {fileID: 0}
+  throttleDownBindingText: {fileID: 0}
+  boostButton: {fileID: 0}
+  boostBindingText: {fileID: 0}
+  pauseButton: {fileID: 0}
+  pauseBindingText: {fileID: 0}
   rollRightButton: {fileID: 8173372041771876172}
   rollRightBindingText: {fileID: 3496499664598135056}
   rebindOverlay: {fileID: 0}
@@ -11659,8 +11677,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1123218833681270223}
-  - {fileID: 6587565959461148060}
   - {fileID: 8101651461451269265}
+  - {fileID: 6587565959461148060}
   - {fileID: 219022164673647050}
   - {fileID: 5180412050880472860}
   m_Father: {fileID: 7922477520792590826}
