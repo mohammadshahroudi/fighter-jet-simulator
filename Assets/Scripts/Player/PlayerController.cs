@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+        }
         // rb.linearVelocity = new Vector3( 0,0,minSpeed);
     }
 

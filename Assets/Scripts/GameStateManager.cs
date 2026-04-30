@@ -109,6 +109,13 @@ public class GameStateManager : MonoBehaviour
         StartCoroutine(GameOverRoutine());
     }
 
+    public void TriggerVictory()
+    {
+        if (CurrentState != GameState.Playing) return;
+        CurrentState = GameState.Victory;
+        StartCoroutine(VictoryRoutine());
+    }
+
     // -------------------------------------------------------------------------
     // Ring tracking
     // -------------------------------------------------------------------------
@@ -121,8 +128,7 @@ public class GameStateManager : MonoBehaviour
 
         if (totalRings > 0 && ringsCollected >= totalRings)
         {
-            CurrentState = GameState.Victory;
-            StartCoroutine(VictoryRoutine());
+            TriggerVictory();
         }
     }
 
