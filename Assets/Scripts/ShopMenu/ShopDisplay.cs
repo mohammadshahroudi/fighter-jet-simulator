@@ -60,6 +60,7 @@ public class ShopDisplay : MonoBehaviour
     {
         if (shopManager != null)
         {
+            shopManager.ReloadMoneyFromPrefs();
             shopManager.OnShopChanged += Refresh;
         }
 
@@ -165,6 +166,7 @@ public class ShopDisplay : MonoBehaviour
     {
         if (shopManager == null)
         {
+            Debug.LogWarning("[ShopDisplay] ShopManager is null in ShopDisplay!");
             return;
         }
 
@@ -175,7 +177,13 @@ public class ShopDisplay : MonoBehaviour
 
         if (moneyText != null)
         {
-            moneyText.text = "$" + shopManager.Money;
+            // Always update from PlayerPrefs to ensure latest value
+            int money = ShopPersistence.LoadMoney();            
+            moneyText.text = "$" + money;
+        }
+        else
+        {
+         
         }
 
         PlaneData selected = shopManager.GetSelectedPlane();
@@ -237,6 +245,8 @@ public class ShopDisplay : MonoBehaviour
                 return "Rail Cannon";
             case GunType.LightGun:
                 return "Light Gun";
+            case GunType.Missiles:
+                return "Missiles";
             default:
                 return gunType.ToString();
         }

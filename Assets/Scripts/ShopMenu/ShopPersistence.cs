@@ -46,9 +46,9 @@ public static class ShopPersistence
         PlayerPrefs.Save();
     }
 
-    public static int LoadMoney(int startingMoney)
+    public static int LoadMoney()
     {
-        return Mathf.Max(0, PlayerPrefs.GetInt(MoneyKey, startingMoney));
+        return Mathf.Max(0, PlayerPrefs.GetInt(MoneyKey, 0));
     }
 
     public static int LoadSelectedPlaneIndex(int fallbackSelectedIndex)
@@ -134,4 +134,10 @@ public static class ShopPersistence
     {
         return PlaneStateKeyPrefix + index;
     }
+
+    public static void SaveMoney(int amount)
+{
+    PlayerPrefs.SetInt(MoneyKey, amount);
+    PlayerPrefs.Save();
+}
 }
