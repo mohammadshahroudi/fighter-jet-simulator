@@ -4,7 +4,7 @@ using System.Collections;
 [CreateAssetMenu()]
 public class NoiseData : UpdatableData {
 
-    public Noise.NormalizeMode normalizeMode;
+    public Terrain_Noise.NormalizeMode normalizeMode;
 
     public float noiseScale;
 

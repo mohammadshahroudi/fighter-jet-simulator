@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public static class Noise {
+public static class Terrain_Noise {
 
 	public enum NormalizeMode {Local, Global};
 
