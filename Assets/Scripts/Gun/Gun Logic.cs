@@ -3,105 +3,135 @@ using UnityEngine.InputSystem;
 
 public enum WeaponType
 {
-    // Heavy Cannon, Missile?, Bombs?
-    Projectile,
-    // Machine Gun, LMG, Laser Gun
-    Raycast,
-    // Burst Gun
-    RaycastBurst
+    Raycast
 }
 
 public class GunLogic : MonoBehaviour
 {
-    [Header("Weapon Type")]
-    [SerializeField] private WeaponType weaponType = WeaponType.Projectile;
+    [Header("Input")]
+    [SerializeField] private bool acceptPlayerInput = true;
 
     [Header("Fire Rate Settings")]
     [SerializeField] private float fireRate = 0.1f; // Time between shots
-    [SerializeField] private int burstCount = 3; // For burst weapons
-    [SerializeField] private float burstDelay = 0.05f; // Delay between burst shots
 
     [Header("Fire Point")]
     [SerializeField] private Transform firePoint;
 
-    [Header("Projectile Settings")]
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private float bulletSpeed = 100f;
+    [Header("Audio")]
+    [SerializeField] private AudioSource shotAudioSource;
+    [SerializeField] private AudioClip shotSfx;
+    [SerializeField] private bool loopShotSound = false;
+    [SerializeField] [Range(0f, 1f)] private float shotVolume = 1f;
 
     [Header("Raycast Settings")]
     [SerializeField] private float damage = 25f;
     [SerializeField] private float raycastRange = 1000f;
     [SerializeField] private LayerMask hitLayers;
+
+    [Header("Raycast Layer Filtering")]
+    [SerializeField] private LayerMask ignoredLayers;
+    [SerializeField] private bool autoIgnoreCloudLayer = true;
+    [SerializeField] private string[] autoIgnoredLayerNames = { "Cloud", "Clouds" };
+
+    [Header("Raycast VFX")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private LineRenderer tracerLine;
     [SerializeField] private float tracerDuration = 0.05f;
+    [SerializeField] private float impactEffectLifetime = 1f;
+
+    [Header("Raycast Debug")]
+    [SerializeField] private bool drawDebugRays = true;
+    [SerializeField] private float debugRayDuration = 0.1f;
+    [SerializeField] private Color debugHitColor = Color.red;
+    [SerializeField] private Color debugMissColor = Color.yellow;
 
     private float nextFireTime = 0f;
-    private int currentBurstShot = 0;
-    private float nextBurstTime = 0f;
+    private float lastShotTime = -999f;
+    private float lastImpactTime = -999f;
+    private GameObject activeImpact;
+
+    private int cloudLayer = -1;
+
+    void Awake()
+    {
+        if (hitLayers.value == 0)
+        {
+            hitLayers = Physics.DefaultRaycastLayers;
+        }
+
+        if (shotAudioSource == null)
+        {
+            shotAudioSource = GetComponent<AudioSource>();
+        }
+
+        if (autoIgnoreCloudLayer)
+        {
+            ApplyAutoIgnoredLayers();
+        }
+
+        if (tracerLine != null)
+        {
+            tracerLine.positionCount = 2;
+            tracerLine.useWorldSpace = true;
+            tracerLine.enabled = false;
+        }
+    }
+
+    void ApplyAutoIgnoredLayers()
+    {
+        if (autoIgnoredLayerNames == null) return;
+
+        for (int i = 0; i < autoIgnoredLayerNames.Length; i++)
+        {
+            string layerName = autoIgnoredLayerNames[i];
+            if (string.IsNullOrWhiteSpace(layerName)) continue;
+
+            int layer = LayerMask.NameToLayer(layerName);
+            if (layer < 0) continue;
+
+            if (layerName == "Cloud" || layerName == "Clouds")
+            {
+                cloudLayer = layer;
+            }
+
+            ignoredLayers = ignoredLayers.value | (1 << layer);
+        }
+    }
 
     void Update()
     {
-        // Handle burst fire
-        if (weaponType == WeaponType.RaycastBurst && currentBurstShot > 0)
+        if (!acceptPlayerInput)
         {
-            if (Time.time >= nextBurstTime)
-            {
-                ShootRaycast();
-                currentBurstShot--;
-                nextBurstTime = Time.time + burstDelay;
-
-                if (currentBurstShot == 0)
-                {
-                    nextFireTime = Time.time + fireRate;
-                }
-            }
+            UpdateLoopingShotSound(false);
             return;
         }
+
+        bool isFiringThisFrame = false;
 
         // Left click to shoot
         if (Mouse.current != null && Mouse.current.leftButton.isPressed && Time.time >= nextFireTime)
         {
-            Shoot();
+            ShootRaycast();
             nextFireTime = Time.time + fireRate;
+
+            isFiringThisFrame = true;
         }
-    }
 
-    void Shoot()
-    {
-        switch (weaponType)
-        {
-            case WeaponType.Projectile:
-                ShootProjectile();
-                break;
-            case WeaponType.Raycast:
-                ShootRaycast();
-                break;
-            case WeaponType.RaycastBurst:
-                StartBurst();
-                break;
-        }
-    }
-
-    void ShootProjectile()
-    {
-        if (bullet == null || firePoint == null) return;
-
-        GameObject spawnedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-
-        Rigidbody rb = spawnedBullet.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.linearVelocity = -firePoint.up * bulletSpeed;
-        }
+        UpdateLoopingShotSound(isFiringThisFrame);
     }
 
     void ShootRaycast()
     {
         if (firePoint == null) return;
 
+        lastShotTime = Time.time;
+
+        PlayShotSound();
+
         Vector3 shootDirection = -firePoint.up;
+        LayerMask effectiveHitLayers = hitLayers;
+        effectiveHitLayers &= ~ignoredLayers.value;
 
         // Show muzzle flash
         if (muzzleFlash != null)
@@ -120,59 +150,145 @@ public class GunLogic : MonoBehaviour
         
         RaycastHit hit;
 
-        if (Physics.Raycast(firePoint.position, shootDirection, out hit, raycastRange, hitLayers))
+        Vector3 startPoint = firePoint.position;
+
+        if (Physics.Raycast(startPoint, shootDirection, out hit, raycastRange, effectiveHitLayers))
         {
             // Apply damage if target has the IDamageable interface
-            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
             }
 
             // Impact effect
-            if (impactEffect != null)
-            {
-                GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(impact, 1f);
-            }
+            SpawnImpactEffect(hit.point, hit.normal);
 
             // Show tracer to hit point
-            if (tracerLine != null)
-            {
-                StartCoroutine(ShowTracer(hit.point));
-            }
+            SpawnRaycastTracer(startPoint, hit.point);
 
-            Debug.DrawLine(firePoint.position, hit.point, Color.red, 0.1f);
+            if (drawDebugRays)
+            {
+                Debug.DrawLine(firePoint.position, hit.point, debugHitColor, debugRayDuration);
+            }
         }
         else
         {
             // No hit, show tracer to max range
-            Vector3 endPoint = firePoint.position + shootDirection * raycastRange;
-            if (tracerLine != null)
-            {
-                StartCoroutine(ShowTracer(endPoint));
-            }
+            Vector3 endPoint = startPoint + shootDirection * raycastRange;
+            SpawnRaycastTracer(startPoint, endPoint);
 
-            Debug.DrawRay(firePoint.position, shootDirection * raycastRange, Color.yellow, 0.1f);
+            if (drawDebugRays)
+            {
+                Debug.DrawRay(startPoint, shootDirection * raycastRange, debugMissColor, debugRayDuration);
+            }
         }
     }
 
-    void StartBurst()
-    {
-        currentBurstShot = burstCount;
-        nextBurstTime = Time.time;
-    }
-
-    System.Collections.IEnumerator ShowTracer(Vector3 endPoint)
+    System.Collections.IEnumerator ShowTracer(Vector3 startPoint, Vector3 endPoint)
     {
         if (tracerLine == null) yield break;
 
-        tracerLine.enabled = true;
-        tracerLine.SetPosition(0, firePoint.position);
+        tracerLine.SetPosition(0, startPoint);
         tracerLine.SetPosition(1, endPoint);
+        tracerLine.enabled = true;
 
         yield return new WaitForSeconds(tracerDuration);
 
         tracerLine.enabled = false;
+    }
+
+    void SpawnRaycastTracer(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (tracerLine != null)
+        {
+            StartCoroutine(ShowTracer(startPoint, endPoint));
+        }
+    }
+
+    void SpawnImpactEffect(Vector3 point, Vector3 normal)
+    {
+        if (impactEffect == null) return;
+        if (Time.time - lastImpactTime < fireRate) return;
+
+        lastImpactTime = Time.time;
+
+        if (activeImpact != null)
+        {
+            Destroy(activeImpact);
+        }
+
+        activeImpact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
+        Destroy(activeImpact, impactEffectLifetime);
+    }
+
+    void PlayShotSound()
+    {
+        if (shotAudioSource == null || shotSfx == null) return;
+
+        if (loopShotSound)
+        {
+            if (shotAudioSource.clip != shotSfx)
+            {
+                shotAudioSource.clip = shotSfx;
+            }
+
+            shotAudioSource.volume = shotVolume;
+            shotAudioSource.loop = true;
+
+            if (!shotAudioSource.isPlaying)
+            {
+                shotAudioSource.Play();
+            }
+
+            return;
+        }
+
+        shotAudioSource.PlayOneShot(shotSfx, shotVolume);
+    }
+
+    void UpdateLoopingShotSound(bool isFiringThisFrame)
+    {
+        if (!loopShotSound || shotAudioSource == null) return;
+
+        if (isFiringThisFrame)
+        {
+            return;
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed && Time.time < nextFireTime)
+        {
+            return;
+        }
+
+        if (Time.time - lastShotTime <= Mathf.Max(0.02f, fireRate * 1.1f))
+        {
+            return;
+        }
+
+        if (shotAudioSource.isPlaying && shotAudioSource.loop)
+        {
+            shotAudioSource.Stop();
+        }
+    }
+
+    public bool TryFireFromAI()
+    {
+        if (firePoint == null) return false;
+        if (Time.time < nextFireTime) return false;
+
+        ShootRaycast();
+        nextFireTime = Time.time + fireRate;
+        return true;
+    }
+
+    public void SetPlayerInputEnabled(bool enabled)
+    {
+        acceptPlayerInput = enabled;
+    }
+
+    public Transform GetFirePoint()
+    {
+        return firePoint;
     }
 }

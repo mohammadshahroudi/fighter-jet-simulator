@@ -30,6 +30,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3301346622086866659}
+  - {fileID: 8636323132076137777}
+  - {fileID: 7408017680195739823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3051756368530833672
@@ -111,7 +113,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2207efaad3b79be4a805d606743c403c, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+      objectReference: {fileID: 2100000, guid: 98a95fb6aff024e3095f618539cc5adb, type: 2}
     - target: {fileID: 919132149155446097, guid: 2207efaad3b79be4a805d606743c403c, type: 3}
       propertyPath: m_Name
       value: Sr71
@@ -125,4 +127,136 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2207efaad3b79be4a805d606743c403c, type: 3}
   m_PrefabInstance: {fileID: 3051756368530833672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7169851553575126999
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5539228350581715673}
+    m_Modifications:
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613791279434281709, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_Name
+      value: LaserGunMK2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+--- !u!4 &8636323132076137777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+  m_PrefabInstance: {fileID: 7169851553575126999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8256396593329257033
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5539228350581715673}
+    m_Modifications:
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.353998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613791279434281709, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+      propertyPath: m_Name
+      value: LaserGunMK2 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+--- !u!4 &7408017680195739823 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1466497967686146790, guid: 2f531b435183a414c9f9573b543a05db, type: 3}
+  m_PrefabInstance: {fileID: 8256396593329257033}
   m_PrefabAsset: {fileID: 0}
