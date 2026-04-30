@@ -5,7 +5,7 @@ public static class Loader
 {
     public enum Scene
     {
-        LoadingScene, 
+        LoadingScreen, 
         MainMenu, 
         HectorTest,
         Overworld,
@@ -21,7 +21,7 @@ public static class Loader
             SceneManager.LoadScene(scene.ToString());
         };
         
-        SceneManager.LoadScene(Scene.LoadingScene.ToString()); 
+        SceneManager.LoadScene(Scene.LoadingScreen.ToString()); 
     }
 
     public static void LoaderCallBack()
