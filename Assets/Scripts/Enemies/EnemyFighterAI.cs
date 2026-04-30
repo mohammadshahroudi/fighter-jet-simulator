@@ -1,511 +1,689 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Enemy Fighter Jet AI
+/// Sky Target-inspired enemy fighter jet AI.
 ///
-/// States:
-///   Patrol    — flies a randomised waypoint path, unaware of the player
-///   Alerted   — player entered detection range, jet turns to investigate
-///   Agro      — chasing the player's tail to get behind them
-///   Attacking — locked behind player, firing
-///   Evading   — breaks off after taking damage or overshooting
+/// Mimics the arcade behavior from Sega's Sky Target (1995):
+///   - Enemies fly in formation or patrol paths at constant speed
+///   - On player detection, they break formation and attack
+///   - Attack patterns: diving gun runs, banking evasion, loop-arounds
+///   - Predictive lead-aiming for their own weapons
+///   - HP-based phase changes (damaged enemies get more erratic)
+///   - Scripted "hero pass" where enemy overshoots and repositions
 ///
-/// Randomness:
-///   - Patrol waypoints are randomly generated within a radius
-///   - Agro approach adds a random lateral offset so jets don't all funnel identically
-///   - Fire timing has a random jitter so volleys don't sync perfectly
-///   - Evasion direction and duration are randomised per hit
-///
-/// Setup:
-///   1. Attach to each enemy jet prefab (needs a Rigidbody).
-///   2. Tag the player "Player" or assign playerTransform manually.
-///   3. Optionally assign formationLeader + formationSlotIndex for formation flying.
-///   4. Assign projectilePrefab and muzzlePoints for shooting.
-///   5. Call EnemyFighterAI.AlertFormation() or OnHit() from EnemyHealth.
+/// Requires:
+///   - A component on this GameObject implementing IDamageable
+///   - Optionally also implementing IHealthProvider for damaged-phase behaviour
+///   - Player tagged "Player" in the scene
+///   - Weapon script (calls FireAtPlayer() which does its own raycast or projectile)
 /// </summary>
+
+/// <summary>
+/// Optional companion to IDamageable.
+/// Implement this alongside IDamageable on your health component to allow
+/// the AI to read health values for phase-change behaviour.
+///
+/// Example:
+///   public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider { ... }
+/// </summary>
+public interface IHealthProvider
+{
+    float CurrentHealth { get; }
+    float MaxHealth { get; }
+}
+
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyFighterAI : MonoBehaviour
 {
-    // -------------------------------------------------------------------------
-    // Inspector
-    // -------------------------------------------------------------------------
-
-    [Header("References")]
-    [Tooltip("Auto-found by tag 'Player' if left null.")]
-    public Transform playerTransform;
-    public Transform formationLeader;
-
-    [Header("Formation")]
-    public int       formationSlotIndex = 0;
-    public float     formationSpacing   = 15f;
-    public Vector3[] formationOffsets   = new Vector3[]
-    {
-        new Vector3(  0,  0,   0),
-        new Vector3(-20,  0, -15),
-        new Vector3( 20,  0, -15),
-        new Vector3(-30,  5, -30),
-        new Vector3( 30,  5, -30),
-    };
-
-    [Header("Detection")]
-    [Tooltip("Distance at which the jet notices the player and becomes Alerted.")]
-    public float detectionRange     = 400f;
-
-    [Tooltip("Distance at which the jet loses the player and returns to Patrol.")]
-    public float losePlayerRange    = 600f;
-
-    [Tooltip("How long the jet investigates before giving up if it can't close in.")]
-    public float alertedTimeout     = 6f;
+    // ─────────────────────────────────────────────
+    //  Inspector / Tuning
+    // ─────────────────────────────────────────────
 
     [Header("Flight")]
-    public float patrolSpeed        = 60f;
-    public float alertedSpeed       = 90f;
-    public float agroSpeed          = 115f;
-    public float maxSpeed           = 130f;
-    public float turnSpeed          = 2.5f;
-    public float rollSpeed          = 3f;
-    public float minAltitude        = 50f;
+    [Tooltip("Baseline cruising speed (units/sec)")]
+    public float cruiseSpeed = 60f;
+    [Tooltip("Max speed during an attack run")]
+    public float attackSpeed = 90f;
+    [Tooltip("Speed when repositioning after an overshoot")]
+    public float repositionSpeed = 50f;
+    [Tooltip("How tightly the jet turns (higher = sharper)")]
+    public float turnRate = 2.5f;
+    [Tooltip("Smooth rotation speed multiplier")]
+    public float rollSmoothing = 4f;
 
-    [Header("Patrol")]
-    [Tooltip("Radius around spawn point within which patrol waypoints are generated.")]
-    public float patrolRadius           = 200f;
-    public float patrolWaypointMinTime  = 4f;
-    public float patrolWaypointMaxTime  = 10f;
-    public float patrolHeightVariance   = 40f;
+    [Header("Detection")]
+    public float detectionRange = 400f;
+    public float losAngle = 60f;
 
-    [Header("Combat")]
-    public float      fireRange         = 300f;
-    public float      fireAngle         = 8f;
-    public float      fireRateBase      = 0.15f;
-    public float      fireRateJitter    = 0.08f;
-    [Tooltip("How many shots to fire before breaking off.")]
-    public int        burstShotCount    = 4;
-    [Tooltip("Seconds to break off and reposition before attacking again.")]
-    public float      breakOffDuration  = 10f;
-    public GameObject projectilePrefab;
-    public Transform[] muzzlePoints;
-
-    [Header("Agro")]
-    public float tailOffset             = 60f;
-    public float tailPositionTolerance  = 40f;
-    [Tooltip("Random lateral spread so jets approach from slightly different angles.")]
-    public float approachSpread         = 20f;
+    [Header("Attack")]
+    public float attackRange = 250f;
+    public float gunRange = 180f;
+    [Tooltip("Seconds between bursts")]
+    public float fireRate = 0.8f;
+    [Tooltip("Degrees of aim tolerance before firing")]
+    public float aimTolerance = 8f;
+    [Tooltip("Prediction time for steering during attack runs")]
+    public float steerLeadTime = 0.4f;
+    [Tooltip("Prediction time for weapon fire")]
+    public float fireLeadTime = 0.25f;
 
     [Header("Evasion")]
-    public float evasionDurationMin     = 2f;
-    public float evasionDurationMax     = 5f;
-    public float evasionRadius          = 80f;
+    [Tooltip("Chance per second to trigger a barrel-roll dodge")]
+    public float evasionChance = 0.25f;
+    public float evasionDuration = 1.2f;
 
-    // -------------------------------------------------------------------------
-    // State
-    // -------------------------------------------------------------------------
+    [Header("Formation (optional)")]
+    [Tooltip("Assign a leader transform to fly in formation. Leave null for solo.")]
+    public Transform formationLeader;
+    public Vector3 formationOffset = new Vector3(30f, 0f, -20f);
 
-    public enum AIState { Formation, Patrol, Alerted, Agro, Attacking, BreakingOff, Evading }
-    public AIState currentState { get; private set; } = AIState.Patrol;
+    [Header("Phase Change (damaged behaviour)")]
+    [Tooltip("Health fraction below which the jet goes erratic")]
+    [Range(0f, 1f)]
+    public float damagedThreshold = 0.4f;
 
-    private static List<EnemyFighterAI> s_formation = new List<EnemyFighterAI>();
+    [Header("Patrol")]
+    public Transform[] patrolWaypoints;
 
-    private Rigidbody rb;       // kept for collision callbacks — movement is now transform-based
-    private float     nextFireTime;
-    private float     evasionEndTime;
-    private Vector3   evasionTarget;
-    private bool      isAlerted = false;
+    [Header("Altitude")]
+    public float minAltitude = 50f;
+    public float altitudeCorrectionStrength = 2f;
 
-    // Burst fire tracking
-    private int       shotsFiredInBurst  = 0;
-    private float     breakOffEndTime;
+    [Header("Player Avoidance")]
+    public float playerAvoidDistance = 40f;
+    public float avoidStrength = 2.5f;
 
-    // Patrol
-    private Vector3   patrolTarget;
-    private float     patrolWaypointTimer;
+    [Header("Terrain Avoidance")]
+    public float terrainCheckDistance = 120f;
+    public float terrainAvoidanceStrength = 2.5f;
+    public float minGroundClearance = 35f;
+    public LayerMask terrainMask = ~0;
 
-    // Alerted
-    private float     alertedTimer;
+    [Header("Squad Spacing")]
+    public float squadAvoidDistance = 35f;
+    public float squadAvoidStrength = 2f;
+    public LayerMask squadMask = ~0;
 
-    // Per-jet approach offset — randomised on each agro entry
-    private Vector3   approachOffset;
-    private float     _agroStallTimer;
-    private const float AgroStallTimeout = 4f;
+    [Header("Near-Miss Flyby")]
+    public float nearMissDistance = 55f;
+    public float nearMissOffset = 45f;
+    public float nearMissCommitTime = 0.9f;
 
-    // -------------------------------------------------------------------------
-    // Unity lifecycle
-    // -------------------------------------------------------------------------
+    // ─────────────────────────────────────────────
+    //  State Machine
+    // ─────────────────────────────────────────────
 
-    void Awake()
+    private enum AIState
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity  = false;
-
-        if (!s_formation.Contains(this))
-            s_formation.Add(this);
+        Patrol,
+        Approach,
+        AttackRun,
+        Overshoot,
+        Evade,
+        LoopAround,
+        Disabled
     }
 
-    void Start()
+    private AIState _state = AIState.Patrol;
+
+    // ─────────────────────────────────────────────
+    //  Private References
+    // ─────────────────────────────────────────────
+
+    private Rigidbody _rb;
+    private Transform _player;
+    private IDamageable _damageable;
+    private IHealthProvider _healthProvider;
+
+    private float _currentSpeed;
+    private float _fireTimer;
+    private float _stateTimer;
+    private float _evasionTimer;
+    private bool _isDamaged;
+    private int _waypointIndex;
+
+    // Near-miss state
+    private bool _nearMissActive;
+    private float _nearMissTimer;
+    private int _nearMissSide;
+
+    // ─────────────────────────────────────────────
+    //  Unity Lifecycle
+    // ─────────────────────────────────────────────
+
+    private void Awake()
     {
-        if (playerTransform == null)
+        _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false;
+        _rb.linearDamping = 0f;
+        _rb.angularDamping = 5f;
+
+        _damageable = GetComponent<IDamageable>();
+        _healthProvider = GetComponent<IHealthProvider>();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            _player = playerObj.transform;
+
+        _currentSpeed = cruiseSpeed;
+
+        if (patrolWaypoints == null || patrolWaypoints.Length == 0)
+            GeneratePatrolCircle();
+    }
+
+    private void Update()
+    {
+        if (_player == null) return;
+
+        CheckDamagedPhase();
+        UpdateNearMissState();
+        RunStateMachine();
+        HandleFiring();
+    }
+
+    private void FixedUpdate()
+    {
+        _rb.linearVelocity = transform.forward * _currentSpeed;
+    }
+
+    private void LateUpdate()
+    {
+        if (transform.position.y < minAltitude)
         {
-            GameObject p = GameObject.FindWithTag("Player");
-            if (p != null) playerTransform = p.transform;
-            else Debug.LogWarning($"[EnemyFighterAI] {name}: Player not found.");
-        }
-
-        TransitionTo(formationLeader != null ? AIState.Formation : AIState.Patrol);
-    }
-
-    void OnDestroy()
-    {
-        s_formation.Remove(this);
-        AlertFormation();
-    }
-
-    void FixedUpdate()
-    {
-        if (playerTransform == null) return;
-
-        EnforceMinAltitude();
-
-        switch (currentState)
-        {
-            case AIState.Formation:  UpdateFormation();  break;
-            case AIState.Patrol:     UpdatePatrol();     break;
-            case AIState.Alerted:    UpdateAlerted();    break;
-            case AIState.Agro:       UpdateAgro();       break;
-            case AIState.Attacking:  UpdateAttacking();  break;
-            case AIState.BreakingOff: UpdateBreakingOff(); break;
-            case AIState.Evading:    UpdateEvading();    break;
-        }
-    }
-
-    // -------------------------------------------------------------------------
-    // State updates
-    // -------------------------------------------------------------------------
-
-    void UpdateFormation()
-    {
-        if (isAlerted)                        { TransitionTo(AIState.Agro);    return; }
-        if (PlayerInRange(detectionRange))    { TransitionTo(AIState.Alerted); return; }
-
-        FlyToward(GetFormationSlotPosition(), patrolSpeed);
-        AlignWithLeader();
-    }
-
-    void UpdatePatrol()
-    {
-        if (PlayerInRange(detectionRange))    { TransitionTo(AIState.Alerted); return; }
-
-        patrolWaypointTimer -= Time.fixedDeltaTime;
-
-        if (patrolWaypointTimer <= 0f || Vector3.Distance(transform.position, patrolTarget) < 25f)
-            patrolTarget = GetRandomPatrolPoint();
-
-        FlyToward(patrolTarget, patrolSpeed);
-    }
-
-    void UpdateAlerted()
-    {
-        alertedTimer += Time.fixedDeltaTime;
-
-        float dist = Vector3.Distance(transform.position, playerTransform.position);
-
-        if (dist > losePlayerRange || alertedTimer >= alertedTimeout)
-        {
-            TransitionTo(AIState.Patrol);
-            return;
-        }
-
-        // Close enough to commit — go full agro
-        if (dist < detectionRange * 0.6f)
-        {
-            TransitionTo(AIState.Agro);
-            return;
-        }
-
-        FlyToward(playerTransform.position, alertedSpeed);
-    }
-
-    void UpdateAgro()
-    {
-        if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
-
-        Vector3 tailPos    = GetPlayerTailPosition();
-        float   distToTail = Vector3.Distance(transform.position, tailPos);
-
-        FlyToward(tailPos, agroSpeed);
-
-        if (distToTail < tailPositionTolerance)
-        {
-            TransitionTo(AIState.Attacking);
-            return;
-        }
-
-        // Re-roll approach offset if convergence is taking too long.
-        // Prevents permanent stall when the random offset lands in an unreachable position.
-        _agroStallTimer += Time.fixedDeltaTime;
-        if (_agroStallTimer >= AgroStallTimeout)
-        {
-            approachOffset   = Random.insideUnitSphere * approachSpread;
-            approachOffset.y = 0f;
-            _agroStallTimer  = 0f;
+            Vector3 pos = transform.position;
+            pos.y = minAltitude;
+            transform.position = pos;
         }
     }
 
-    void UpdateAttacking()
+    // ─────────────────────────────────────────────
+    //  State Machine
+    // ─────────────────────────────────────────────
+
+    private void RunStateMachine()
     {
-        if (!PlayerInRange(losePlayerRange)) { TransitionTo(AIState.Patrol); return; }
+        _stateTimer -= Time.deltaTime;
 
-        float distToPlayer  = Vector3.Distance(transform.position, playerTransform.position);
-        float angleToPlayer = Vector3.Angle(transform.forward, playerTransform.position - transform.position);
-
-        FlyToward(GetPlayerTailPosition(), agroSpeed);
-
-        // Fire when aligned and in range
-        if (distToPlayer <= fireRange && angleToPlayer <= fireAngle)
+        switch (_state)
         {
-            if (TryFire())
+            case AIState.Patrol: StatePatrol(); break;
+            case AIState.Approach: StateApproach(); break;
+            case AIState.AttackRun: StateAttackRun(); break;
+            case AIState.Overshoot: StateOvershoot(); break;
+            case AIState.Evade: StateEvade(); break;
+            case AIState.LoopAround: StateLoop(); break;
+            case AIState.Disabled: StateDisabled(); break;
+        }
+    }
+
+    private void StatePatrol()
+    {
+        _currentSpeed = cruiseSpeed;
+
+        if (formationLeader != null)
+        {
+            Vector3 targetPos = formationLeader.TransformPoint(formationOffset);
+            SteerToward(targetPos);
+        }
+        else
+        {
+            if (patrolWaypoints.Length > 0)
             {
-                shotsFiredInBurst++;
-                if (shotsFiredInBurst >= burstShotCount)
+                SteerToward(patrolWaypoints[_waypointIndex].position);
+
+                if (Vector3.Distance(transform.position, patrolWaypoints[_waypointIndex].position) < 40f)
+                    _waypointIndex = (_waypointIndex + 1) % patrolWaypoints.Length;
+            }
+        }
+
+        if (PlayerInDetectionCone())
+            TransitionTo(AIState.Approach);
+    }
+
+    private void StateApproach()
+    {
+        _currentSpeed = Mathf.Lerp(_currentSpeed, attackSpeed, Time.deltaTime * 1.5f);
+        SteerToward(_player.position);
+
+        float dist = DistToPlayer();
+
+        TryRandomEvasion();
+
+        if (dist < attackRange)
+            TransitionTo(AIState.AttackRun);
+
+        if (!PlayerInDetectionCone() && dist > detectionRange * 1.5f)
+            TransitionTo(AIState.Patrol);
+    }
+
+    private void StateAttackRun()
+    {
+        _currentSpeed = attackSpeed;
+
+        Vector3 aimPoint = PredictPlayerPosition(steerLeadTime);
+        aimPoint = ApplyNearMissFlyby(aimPoint);
+        SteerToward(aimPoint);
+
+        float dist = DistToPlayer();
+
+        if (dist < 30f || _stateTimer < 0f)
+        {
+            TransitionTo(AIState.Overshoot);
+            return;
+        }
+
+        if (dist > attackRange * 1.5f)
+            TransitionTo(AIState.Approach);
+    }
+
+    private void StateOvershoot()
+    {
+        _currentSpeed = repositionSpeed;
+
+        if (_stateTimer < 0f)
+            TransitionTo(AIState.LoopAround);
+    }
+
+    private void StateEvade()
+    {
+        _rb.AddTorque(transform.forward * 420f * Time.deltaTime, ForceMode.Acceleration);
+        _currentSpeed = attackSpeed;
+
+        Vector3 awayDir = (transform.position - _player.position).normalized;
+        SteerToward(transform.position + awayDir * 200f);
+
+        if (_stateTimer < 0f)
+            TransitionTo(_isDamaged ? AIState.LoopAround : AIState.Approach);
+    }
+
+    private void StateLoop()
+    {
+        _rb.AddTorque(transform.right * 200f * Time.deltaTime, ForceMode.Acceleration);
+        _currentSpeed = Mathf.Lerp(_currentSpeed, cruiseSpeed * 0.7f, Time.deltaTime * 2f);
+
+        if (_stateTimer < 0f)
+            TransitionTo(AIState.Approach);
+    }
+
+    private void StateDisabled()
+    {
+        _rb.AddTorque(Random.insideUnitSphere * 80f * Time.deltaTime, ForceMode.Acceleration);
+        _currentSpeed = Mathf.Max(_currentSpeed - 20f * Time.deltaTime, 10f);
+    }
+
+    // ─────────────────────────────────────────────
+    //  Transitions
+    // ─────────────────────────────────────────────
+
+    private void TransitionTo(AIState newState)
+    {
+        _state = newState;
+
+        if (newState != AIState.AttackRun)
+            _nearMissActive = false;
+
+        switch (newState)
+        {
+            case AIState.Patrol: _stateTimer = 0f; break;
+            case AIState.Approach: _stateTimer = 999f; break;
+            case AIState.AttackRun: _stateTimer = Random.Range(4f, 7f); break;
+            case AIState.Overshoot: _stateTimer = Random.Range(1.5f, 3f); break;
+            case AIState.Evade: _stateTimer = evasionDuration; break;
+            case AIState.LoopAround: _stateTimer = Random.Range(2.5f, 4f); break;
+            case AIState.Disabled: _stateTimer = 999f; break;
+        }
+    }
+
+    // ─────────────────────────────────────────────
+    //  Steering
+    // ─────────────────────────────────────────────
+
+    private void SteerToward(Vector3 targetPos)
+    {
+        Vector3 adjustedTarget = targetPos;
+
+        // 1) Min altitude correction
+        if (transform.position.y < minAltitude)
+        {
+            float lift = minAltitude - transform.position.y;
+            adjustedTarget += Vector3.up * lift * altitudeCorrectionStrength;
+        }
+
+        // 2) Avoid colliding with player
+        if (_player != null)
+        {
+            Vector3 toPlayer = transform.position - _player.position;
+            float dist = toPlayer.magnitude;
+
+            if (dist < playerAvoidDistance && dist > 0.001f)
+            {
+                Vector3 avoidDir = toPlayer.normalized;
+                float force = (1f - (dist / playerAvoidDistance)) * avoidStrength;
+
+                if (_state == AIState.AttackRun)
+                    force *= 1.5f;
+
+                adjustedTarget += avoidDir * force * 100f;
+            }
+        }
+
+        // 3) Terrain avoidance
+        adjustedTarget = ApplyTerrainAvoidance(adjustedTarget);
+
+        // 4) Squad spacing
+        adjustedTarget = ApplySquadSpacing(adjustedTarget);
+
+        Vector3 desired = adjustedTarget - transform.position;
+        if (desired.sqrMagnitude < 0.001f) return;
+
+        Vector3 desiredDir = desired.normalized;
+        Quaternion desiredRot = Quaternion.LookRotation(desiredDir);
+
+        float yawDot = Vector3.Dot(transform.right, desiredDir);
+        Quaternion bankRot = Quaternion.AngleAxis(yawDot * 30f, transform.forward);
+        desiredRot = desiredRot * bankRot;
+
+        _rb.MoveRotation(Quaternion.Slerp(
+            _rb.rotation,
+            desiredRot,
+            turnRate * Time.deltaTime
+        ));
+    }
+
+    private Vector3 ApplyTerrainAvoidance(Vector3 targetPos)
+    {
+        Vector3 adjustedTarget = targetPos;
+
+        Vector3 origin = transform.position;
+        Vector3 forward = transform.forward;
+        Vector3 downForward = (transform.forward + Vector3.down * 0.35f).normalized;
+
+        if (Physics.Raycast(origin, forward, out RaycastHit forwardHit, terrainCheckDistance, terrainMask, QueryTriggerInteraction.Ignore))
+        {
+            if (!IsPlayerOrSelf(forwardHit.transform))
+            {
+                adjustedTarget += Vector3.up * terrainAvoidanceStrength * 60f;
+                adjustedTarget += forwardHit.normal * terrainAvoidanceStrength * 30f;
+            }
+        }
+
+        if (Physics.Raycast(origin, downForward, out RaycastHit downHit, terrainCheckDistance, terrainMask, QueryTriggerInteraction.Ignore))
+        {
+            if (!IsPlayerOrSelf(downHit.transform))
+            {
+                float clearance = transform.position.y - downHit.point.y;
+
+                if (clearance < minGroundClearance)
                 {
-                    TransitionTo(AIState.BreakingOff);
-                    return; // exit immediately — don't let overshoot check override this
+                    float lift = minGroundClearance - clearance;
+                    adjustedTarget += Vector3.up * lift * terrainAvoidanceStrength;
                 }
             }
         }
 
-        // Only check overshoot if we haven't already committed to breaking off
-        if (distToPlayer > fireRange * 1.5f)
-            TransitionTo(AIState.Agro);
-    }
-
-    void UpdateBreakingOff()
-    {
-        // Fly a random evasion arc for the break off duration
-        FlyToward(evasionTarget, maxSpeed);
-
-        if (Vector3.Distance(transform.position, evasionTarget) < 20f)
-            evasionTarget = GetRandomEvasionPoint();
-
-        // After break off duration, re-engage
-        if (Time.time >= breakOffEndTime)
-            TransitionTo(PlayerInRange(losePlayerRange) ? AIState.Agro : AIState.Patrol);
-    }
-
-    void UpdateEvading()
-    {
-        if (Time.time >= evasionEndTime)
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit groundHit, minGroundClearance, terrainMask, QueryTriggerInteraction.Ignore))
         {
-            TransitionTo(PlayerInRange(detectionRange) ? AIState.Agro : AIState.Patrol);
+            if (!IsPlayerOrSelf(groundHit.transform))
+            {
+                float lift = minGroundClearance - groundHit.distance;
+                adjustedTarget += Vector3.up * Mathf.Max(lift, 0f) * terrainAvoidanceStrength;
+            }
+        }
+
+        return adjustedTarget;
+    }
+
+    private Vector3 ApplySquadSpacing(Vector3 targetPos)
+    {
+        Vector3 adjustedTarget = targetPos;
+
+        Collider[] nearby = Physics.OverlapSphere(
+            transform.position,
+            squadAvoidDistance,
+            squadMask,
+            QueryTriggerInteraction.Ignore
+        );
+
+        Vector3 separation = Vector3.zero;
+        int count = 0;
+
+        for (int i = 0; i < nearby.Length; i++)
+        {
+            Collider c = nearby[i];
+
+            if (c.attachedRigidbody == _rb)
+                continue;
+
+            EnemyFighterAI other = c.GetComponentInParent<EnemyFighterAI>();
+            if (other == null || other == this)
+                continue;
+
+            Vector3 away = transform.position - other.transform.position;
+            float dist = away.magnitude;
+
+            if (dist > 0.001f && dist < squadAvoidDistance)
+            {
+                float weight = 1f - (dist / squadAvoidDistance);
+                separation += away.normalized * weight;
+                count++;
+            }
+        }
+
+        if (count > 0)
+        {
+            separation /= count;
+            adjustedTarget += separation * squadAvoidStrength * 50f;
+        }
+
+        return adjustedTarget;
+    }
+
+    // ─────────────────────────────────────────────
+    //  Firing
+    // ─────────────────────────────────────────────
+
+    private void HandleFiring()
+    {
+        if (_state != AIState.AttackRun) return;
+        if (_player == null) return;
+
+        _fireTimer -= Time.deltaTime;
+        if (_fireTimer > 0f) return;
+
+        Vector3 toPlayer = (_player.position - transform.position).normalized;
+        float angle = Vector3.Angle(transform.forward, toPlayer);
+
+        if (angle < aimTolerance && DistToPlayer() < gunRange)
+        {
+            FireAtPlayer();
+            _fireTimer = _isDamaged
+                ? fireRate * Random.Range(0.5f, 0.9f)
+                : fireRate * Random.Range(0.9f, 1.3f);
+        }
+    }
+
+    protected virtual void FireAtPlayer()
+    {
+        Vector3 origin = transform.position + transform.forward * 3f;
+        Vector3 aimPoint = PredictPlayerPosition(fireLeadTime);
+        Vector3 direction = (aimPoint - origin).normalized;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, gunRange))
+        {
+            IDamageable target = hit.collider.GetComponentInParent<IDamageable>();
+            target?.TakeDamage(10f);
+        }
+
+        // Optional: spawn muzzle flash / tracer FX here
+    }
+
+    // ─────────────────────────────────────────────
+    //  Near-Miss Flyby
+    // ─────────────────────────────────────────────
+
+    private void UpdateNearMissState()
+    {
+        if (_player == null) return;
+
+        if (_nearMissActive)
+        {
+            _nearMissTimer -= Time.deltaTime;
+            if (_nearMissTimer <= 0f)
+                _nearMissActive = false;
+
             return;
         }
 
-        FlyToward(evasionTarget, maxSpeed);
+        if (_state != AIState.AttackRun)
+            return;
 
-        if (Vector3.Distance(transform.position, evasionTarget) < 20f)
-            evasionTarget = GetRandomEvasionPoint();
-    }
+        float dist = DistToPlayer();
+        if (dist > nearMissDistance)
+            return;
 
-    // -------------------------------------------------------------------------
-    // Public API
-    // -------------------------------------------------------------------------
+        Vector3 toPlayer = (_player.position - transform.position).normalized;
+        float forwardDot = Vector3.Dot(transform.forward, toPlayer);
 
-    public static void AlertFormation()
-    {
-        // Snapshot the list before iterating — a jet may be destroyed (and removed) mid-alert,
-        // which would throw InvalidOperationException on the live list.
-        var snapshot = new List<EnemyFighterAI>(s_formation);
-        foreach (var jet in snapshot)
-            if (jet != null) jet.OnFormationAlert();
-    }
-
-    public void OnHit()
-    {
-        // Don't interrupt a break-off already in progress
-        if (currentState == AIState.BreakingOff) return;
-
-        if (currentState == AIState.Formation || currentState == AIState.Patrol)
-            AlertFormation();
-
-        TransitionTo(AIState.Evading);
-    }
-
-    // -------------------------------------------------------------------------
-    // Private helpers
-    // -------------------------------------------------------------------------
-
-    void OnFormationAlert()
-    {
-        isAlerted = true;
-        if (currentState == AIState.Formation || currentState == AIState.Patrol)
-            TransitionTo(AIState.Agro);
-    }
-
-    void TransitionTo(AIState newState)
-    {
-        switch (newState)
+        if (forwardDot > 0.7f)
         {
-            case AIState.Patrol:
-                patrolTarget        = GetRandomPatrolPoint();
-                patrolWaypointTimer = Random.Range(patrolWaypointMinTime, patrolWaypointMaxTime);
-                break;
-
-            case AIState.Alerted:
-                alertedTimer = 0f;
-                break;
-
-            case AIState.Agro:
-                // Unique lateral offset per jet so they don't all stack on the same tail position
-                approachOffset      = Random.insideUnitSphere * approachSpread;
-                approachOffset.y    = 0f;
-                shotsFiredInBurst   = 0;  // reset burst counter each new attack run
-                _agroStallTimer     = 0f; // reset stall watchdog
-                break;
-
-            case AIState.BreakingOff:
-                breakOffEndTime = Time.time + breakOffDuration;
-                evasionTarget   = GetRandomEvasionPoint();
-                break;
-
-            case AIState.Evading:
-                evasionEndTime = Time.time + Random.Range(evasionDurationMin, evasionDurationMax);
-                evasionTarget  = GetRandomEvasionPoint();
-                break;
-        }
-
-        currentState = newState;
-    }
-
-    void FlyToward(Vector3 targetPosition, float speed)
-    {
-        Vector3    desiredDir = (targetPosition - transform.position).normalized;
-        Quaternion targetRot  = Quaternion.LookRotation(desiredDir, transform.up);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.fixedDeltaTime);
-
-        float      turnDot = Vector3.Dot(transform.right, desiredDir);
-        Quaternion bankRot = Quaternion.AngleAxis(-turnDot * rollSpeed * 20f, transform.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, transform.rotation * bankRot, Time.fixedDeltaTime * rollSpeed);
-
-        // Kinematic — move directly via transform instead of velocity
-        transform.position += transform.forward * speed * Time.fixedDeltaTime;
-    }
-
-    void AlignWithLeader()
-    {
-        if (formationLeader == null) return;
-        transform.rotation = Quaternion.Slerp(transform.rotation, formationLeader.rotation, turnSpeed * 0.5f * Time.fixedDeltaTime);
-    }
-
-    bool PlayerInRange(float range) =>
-        Vector3.Distance(transform.position, playerTransform.position) <= range;
-
-    Vector3 GetFormationSlotPosition()
-    {
-        if (formationLeader == null) return transform.position;
-        int idx = Mathf.Clamp(formationSlotIndex, 0, formationOffsets.Length - 1);
-        return formationLeader.TransformPoint(formationOffsets[idx] * (formationSpacing / 15f));
-    }
-
-    Vector3 GetPlayerTailPosition()
-    {
-        Vector3 tail = playerTransform.position
-                     - playerTransform.forward * tailOffset
-                     + playerTransform.up     * 5f
-                     + approachOffset;
-
-        return tail;
-    }
-
-    Vector3 GetRandomPatrolPoint()
-    {
-        // NOTE: timer is NOT reset here — callers (TransitionTo and UpdatePatrol) own the timer.
-        // Previously this reset the timer internally, causing a double-reset every waypoint arrival.
-        Vector2 circle = Random.insideUnitCircle * patrolRadius;
-        float   height = Mathf.Max(playerTransform.position.y + Random.Range(-patrolHeightVariance, patrolHeightVariance), minAltitude + 10f);
-        return new Vector3(playerTransform.position.x + circle.x, height, playerTransform.position.z + circle.y);
-    }
-
-    Vector3 GetRandomEvasionPoint()
-    {
-        // Pick a point on the upper hemisphere so the jet doesn't dive into the ground
-        Vector3 dir = Random.onUnitSphere;
-        dir.y = Mathf.Abs(dir.y) + 0.2f; // bias upward, ensure never exactly horizontal
-        dir.Normalize();
-
-        // Use full evasionRadius — clamp so it's never too close to matter
-        float dist = Mathf.Max(evasionRadius, 40f);
-        Vector3 candidate = transform.position + dir * dist;
-
-        // Respect min altitude
-        candidate.y = Mathf.Max(candidate.y, minAltitude + 10f);
-        return candidate;
-    }
-
-    void EnforceMinAltitude()
-    {
-        if (transform.position.y >= minAltitude) return;
-
-        Vector3 pos = transform.position;
-        pos.y = minAltitude;
-        transform.position = pos;
-
-        // Nudge the nose upward without clobbering yaw/roll accumulated by FlyToward.
-        // Setting transform.forward directly would override the full rotation quaternion.
-        if (transform.forward.y < 0.1f)
-        {
-            Quaternion nosUp = Quaternion.AngleAxis(-15f, transform.right);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                nosUp * transform.rotation,
-                Time.fixedDeltaTime * 4f);
+            _nearMissActive = true;
+            _nearMissTimer = nearMissCommitTime;
+            _nearMissSide = Random.value < 0.5f ? -1 : 1;
         }
     }
 
-    bool TryFire()
+    private Vector3 ApplyNearMissFlyby(Vector3 targetPos)
     {
-        if (Time.time < nextFireTime) return false;
-        if (projectilePrefab == null || muzzlePoints == null || muzzlePoints.Length == 0) return false;
+        if (!_nearMissActive || _player == null)
+            return targetPos;
 
-        nextFireTime = Time.time + fireRateBase + Random.Range(0f, fireRateJitter);
+        Vector3 playerRight = _player.right;
+        Vector3 offset = playerRight * (_nearMissSide * nearMissOffset);
 
-        foreach (Transform muzzle in muzzlePoints)
-            Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
+        Vector3 flybyPoint = _player.position + offset;
+        flybyPoint.y = Mathf.Max(flybyPoint.y, minAltitude);
+
+        return flybyPoint;
+    }
+
+    // ─────────────────────────────────────────────
+    //  Helpers
+    // ─────────────────────────────────────────────
+
+    private bool PlayerInDetectionCone()
+    {
+        if (_player == null) return false;
+
+        float dist = DistToPlayer();
+        if (dist > detectionRange) return false;
+
+        Vector3 toPlayer = (_player.position - transform.position).normalized;
+        float angle = Vector3.Angle(transform.forward, toPlayer);
+        if (angle > losAngle) return false;
+
+        if (Physics.Raycast(transform.position, toPlayer, out RaycastHit hit, dist, terrainMask, QueryTriggerInteraction.Ignore))
+        {
+            return hit.transform == _player || hit.transform.IsChildOf(_player);
+        }
 
         return true;
     }
 
-    // -------------------------------------------------------------------------
-    // Gizmos
-    // -------------------------------------------------------------------------
+    private float DistToPlayer()
+    {
+        return _player == null ? float.MaxValue : Vector3.Distance(transform.position, _player.position);
+    }
+
+    private Vector3 PredictPlayerPosition(float seconds)
+    {
+        if (_player == null) return transform.position + transform.forward * 100f;
+
+        Rigidbody playerRb = _player.GetComponent<Rigidbody>();
+        Vector3 playerVel = playerRb != null ? playerRb.linearVelocity : Vector3.zero;
+        return _player.position + playerVel * seconds;
+    }
+
+    private void TryRandomEvasion()
+    {
+        if (_state == AIState.Evade) return;
+
+        _evasionTimer -= Time.deltaTime;
+        if (_evasionTimer > 0f) return;
+
+        _evasionTimer = 1f;
+        if (Random.value < evasionChance * (_isDamaged ? 2f : 1f))
+            TransitionTo(AIState.Evade);
+    }
+
+    private void CheckDamagedPhase()
+    {
+        if (_healthProvider == null) return;
+
+        float max = Mathf.Max(_healthProvider.MaxHealth, 0.0001f);
+        float fraction = _healthProvider.CurrentHealth / max;
+        _isDamaged = fraction <= damagedThreshold;
+
+        if (_healthProvider.CurrentHealth <= 0f && _state != AIState.Disabled)
+            TransitionTo(AIState.Disabled);
+    }
+
+    private bool IsPlayerOrSelf(Transform hitTransform)
+    {
+        if (hitTransform == null) return false;
+        if (hitTransform == transform || hitTransform.IsChildOf(transform)) return true;
+        if (_player != null && (hitTransform == _player || hitTransform.IsChildOf(_player))) return true;
+        return false;
+    }
+
+    // ─────────────────────────────────────────────
+    //  Patrol Circle Generator
+    // ─────────────────────────────────────────────
+
+    private void GeneratePatrolCircle()
+    {
+        int count = 6;
+        float radius = 300f;
+        patrolWaypoints = new Transform[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            float angle = i * Mathf.PI * 2f / count;
+            Vector3 pos = transform.position
+                + new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
+
+            GameObject wp = new GameObject($"PatrolWP_{i}");
+            wp.transform.position = pos;
+            patrolWaypoints[i] = wp.transform;
+        }
+    }
+
+    // ─────────────────────────────────────────────
+    //  Gizmos
+    // ─────────────────────────────────────────────
 
 #if UNITY_EDITOR
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(1f, 1f, 0f, 0.1f);
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        Gizmos.color = new Color(0f, 1f, 0f, 0.05f);
-        Gizmos.DrawWireSphere(transform.position, losePlayerRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        Gizmos.color = new Color(1f, 0f, 0f, 0.15f);
-        Gizmos.DrawWireSphere(transform.position, fireRange);
+        Gizmos.color = new Color(1f, 0.4f, 0f);
+        Gizmos.DrawWireSphere(transform.position, gunRange);
 
-        if (Application.isPlaying && currentState == AIState.Patrol)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(patrolTarget, 3f);
-            Gizmos.DrawLine(transform.position, patrolTarget);
-        }
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, squadAvoidDistance);
 
-        if (Application.isPlaying && playerTransform != null &&
-           (currentState == AIState.Agro || currentState == AIState.Attacking))
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(GetPlayerTailPosition(), 3f);
-            Gizmos.DrawLine(transform.position, GetPlayerTailPosition());
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, nearMissDistance);
+
+        UnityEditor.Handles.Label(
+            transform.position + Vector3.up * 10f,
+            $"[{_state}]{(_isDamaged ? " ⚠DAMAGED" : "")}{(_nearMissActive ? " FLYBY" : "")}"
+        );
     }
 #endif
 }
