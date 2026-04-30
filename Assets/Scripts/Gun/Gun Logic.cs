@@ -41,8 +41,16 @@ public class GunLogic : MonoBehaviour
     [Header("Raycast VFX")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private GameObject tracerPrefab;
     [SerializeField] private LineRenderer tracerLine;
+    [SerializeField] private bool useMovingTracer = true;
+    [SerializeField] private bool animateLineTracer = true;
+    [SerializeField] private float tracerSpeed = 450f;
     [SerializeField] private float tracerDuration = 0.05f;
+    [SerializeField] private float tracerPrefabLifetime = 1.5f;
+    [SerializeField] private bool delayImpactToTracer = true;
+    [SerializeField] private bool delayDamageToTracer = false;
+    [SerializeField] private float impactEffectLifetime = 1f;
 
     [Header("Raycast Debug")]
     [SerializeField] private bool drawDebugRays = true;
@@ -177,27 +185,31 @@ public class GunLogic : MonoBehaviour
         
         RaycastHit hit;
 
-        if (Physics.Raycast(firePoint.position, shootDirection, out hit, raycastRange, effectiveHitLayers))
+        Vector3 startPoint = firePoint.position;
+
+        if (Physics.Raycast(startPoint, shootDirection, out hit, raycastRange, effectiveHitLayers))
         {
+            float tracerTravelTime = GetTracerTravelTime(startPoint, hit.point);
+
             // Apply damage if target has the IDamageable interface
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(damage);
+                if (delayDamageToTracer && tracerTravelTime > 0f)
+                {
+                    StartCoroutine(ApplyDamageAfterDelay(damageable, tracerTravelTime));
+                }
+                else
+                {
+                    damageable.TakeDamage(damage);
+                }
             }
 
             // Impact effect
-            if (impactEffect != null)
-            {
-                GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(impact, 1f);
-            }
+            SpawnImpactEffect(hit.point, hit.normal, tracerTravelTime);
 
             // Show tracer to hit point
-            if (tracerLine != null)
-            {
-                StartCoroutine(ShowTracer(hit.point));
-            }
+            SpawnRaycastTracer(startPoint, hit.point);
 
             if (drawDebugRays)
             {
@@ -207,15 +219,12 @@ public class GunLogic : MonoBehaviour
         else
         {
             // No hit, show tracer to max range
-            Vector3 endPoint = firePoint.position + shootDirection * raycastRange;
-            if (tracerLine != null)
-            {
-                StartCoroutine(ShowTracer(endPoint));
-            }
+            Vector3 endPoint = startPoint + shootDirection * raycastRange;
+            SpawnRaycastTracer(startPoint, endPoint);
 
             if (drawDebugRays)
             {
-                Debug.DrawRay(firePoint.position, shootDirection * raycastRange, debugMissColor, debugRayDuration);
+                Debug.DrawRay(startPoint, shootDirection * raycastRange, debugMissColor, debugRayDuration);
             }
         }
     }
@@ -238,16 +247,131 @@ public class GunLogic : MonoBehaviour
         }
     }
 
-    System.Collections.IEnumerator ShowTracer(Vector3 endPoint)
+    System.Collections.IEnumerator ShowTracer(Vector3 startPoint, Vector3 endPoint)
     {
         if (tracerLine == null) yield break;
 
         tracerLine.enabled = true;
-        tracerLine.SetPosition(0, firePoint.position);
+
+        float travelTime = 0f;
+        if (tracerSpeed > 0f)
+        {
+            travelTime = Vector3.Distance(startPoint, endPoint) / tracerSpeed;
+        }
+
+        tracerLine.SetPosition(0, startPoint);
+
+        if (animateLineTracer && travelTime > 0f)
+        {
+            float elapsed = 0f;
+            while (elapsed < travelTime)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / travelTime);
+                tracerLine.SetPosition(1, Vector3.Lerp(startPoint, endPoint, t));
+                yield return null;
+            }
+        }
+
         tracerLine.SetPosition(1, endPoint);
 
         yield return new WaitForSeconds(tracerDuration);
 
         tracerLine.enabled = false;
+    }
+
+    System.Collections.IEnumerator ShowTracerPrefab(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (!useMovingTracer || tracerPrefab == null) yield break;
+
+        Vector3 direction = endPoint - startPoint;
+        Quaternion rotation = direction.sqrMagnitude > 0.0001f
+            ? Quaternion.LookRotation(direction.normalized)
+            : Quaternion.identity;
+
+        GameObject tracerObject = Instantiate(tracerPrefab, startPoint, rotation);
+        Destroy(tracerObject, tracerPrefabLifetime);
+
+        float travelTime = 0f;
+        if (tracerSpeed > 0f)
+        {
+            travelTime = Vector3.Distance(startPoint, endPoint) / tracerSpeed;
+        }
+
+        if (travelTime <= 0f)
+        {
+            tracerObject.transform.position = endPoint;
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < travelTime && tracerObject != null)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / travelTime);
+            tracerObject.transform.position = Vector3.Lerp(startPoint, endPoint, t);
+            yield return null;
+        }
+
+        if (tracerObject != null)
+        {
+            tracerObject.transform.position = endPoint;
+        }
+    }
+
+    void SpawnRaycastTracer(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (useMovingTracer && tracerPrefab != null)
+        {
+            StartCoroutine(ShowTracerPrefab(startPoint, endPoint));
+            return;
+        }
+
+        if (tracerLine != null)
+        {
+            StartCoroutine(ShowTracer(startPoint, endPoint));
+        }
+    }
+
+    float GetTracerTravelTime(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (tracerSpeed <= 0f) return 0f;
+        return Vector3.Distance(startPoint, endPoint) / tracerSpeed;
+    }
+
+    void SpawnImpactEffect(Vector3 point, Vector3 normal, float tracerTravelTime)
+    {
+        if (impactEffect == null) return;
+
+        if (delayImpactToTracer && tracerTravelTime > 0f)
+        {
+            StartCoroutine(SpawnImpactAfterDelay(point, normal, tracerTravelTime));
+            return;
+        }
+
+        GameObject impact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
+        Destroy(impact, impactEffectLifetime);
+    }
+
+    System.Collections.IEnumerator SpawnImpactAfterDelay(Vector3 point, Vector3 normal, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (impactEffect == null) yield break;
+
+        GameObject impact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
+        Destroy(impact, impactEffectLifetime);
+    }
+
+    System.Collections.IEnumerator ApplyDamageAfterDelay(IDamageable damageable, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (damageable is Object unityObject && unityObject == null)
+        {
+            yield break;
+        }
+
+        damageable.TakeDamage(damage);
     }
 }
