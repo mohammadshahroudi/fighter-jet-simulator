@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class LoaderCallBack : MonoBehaviour
 {
-    private bool isFirstUpdate = true;
+    private float timer = 3f; // Duration in seconds
 
     private void Update()
     {
-        if (isFirstUpdate)
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
         {
-            isFirstUpdate = false;
-            Loader.LoaderCallBack(); 
+            Loader.LoaderCallBack();
+            enabled = false; // Disable this script after the callback
         }
     }
 }
