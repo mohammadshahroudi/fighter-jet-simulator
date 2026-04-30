@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shape_1
   m_EditorClassIdentifier: Assembly-CSharp::WorleyNoiseSettings
   seed: 0
-  numDivisionsA: 5
-  numDivisionsB: 10
+  numDivisionsA: 6
+  numDivisionsB: 5
   numDivisionsC: 15
-  persistence: 0.5
+  persistence: 0.66
   tile: 1
   invert: 1
