@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ShopUI.unity
     guid: a5c6070842f12442f8cc3f05e350f263
   - enabled: 1
+    path: Assets/Scenes/David's_LoadingScreens/LoadingScreen.unity
+    guid: 07883b4fe5cae4ed5a180d5fbb7b1256
+  - enabled: 1
     path: Assets/Scenes/HectorTest.unity
     guid: f8141514e5de3ec419afe20b3b0b4c0f
   - enabled: 1

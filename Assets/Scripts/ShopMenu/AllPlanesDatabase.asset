@@ -17,7 +17,7 @@ MonoBehaviour:
     planeName: Falcon X1
     gunType: 0
     speed: 220
-    health: 100
+    health: 350
     damage: 25
     price: 0
     state: 1
@@ -27,17 +27,17 @@ MonoBehaviour:
     planeName: Swift L1
     gunType: 4
     speed: 240
-    health: 90
+    health: 500
     damage: 20
     price: 900
-    state: 2
+    state: 0
     previewObject: {fileID: 0}
     planePrefab: {fileID: 3280384310271628014, guid: 871ec326cd83ebb46b99b01bf9237e1e, type: 3}
   - planeId: Viper ZX
     planeName: Viper ZX
     gunType: 1
     speed: 65
-    health: 80
+    health: 750
     damage: 30
     price: 1000
     state: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     planeName: Titan MK2
     gunType: 2
     speed: 180
-    health: 160
+    health: 1250
     damage: 45
     price: 2000
     state: 0
@@ -57,9 +57,9 @@ MonoBehaviour:
     planeName: Nova Rail 0
     gunType: 3
     speed: 210
-    health: 110
+    health: 1500
     damage: 60
     price: 3000
-    state: 0
+    state: 2
     previewObject: {fileID: 0}
     planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}

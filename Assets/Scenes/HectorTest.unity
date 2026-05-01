@@ -537,6 +537,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
+--- !u!1 &497185216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 497185218}
+  - component: {fileID: 497185217}
+  m_Layer: 0
+  m_Name: RingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &497185217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497185216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7333843de5c074a44a1ec0c9257e4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingScoreManager
+  scoreTMP: {fileID: 0}
+  scoreLegacyText: {fileID: 0}
+  scoreFormat: 'SCORE: {0}'
+  scorePopupPrefab: {fileID: 0}
+  popupHeight: 5
+--- !u!4 &497185218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497185216}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &538604063
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +725,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 576921036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5849a1dd5c7333843b4b388138a3ad8e, type: 3}
+  m_Script: {fileID: 11500000, guid: a9b18159938a84dfb939f916ac7707d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
   ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
@@ -685,11 +734,11 @@ MonoBehaviour:
   spacingDistance: 30
   arcAngleDegrees: 90
   arcRadius: 150
-  circleRadius: 2
-  scatterRadius: 500
-  scatterHeightVariance: 30
+  circleRadius: 20
+  scatterRadius: 100
+  scatterHeightVariance: 20
   customPositions: []
-  faceApproachDirection: 0
+  faceApproachDirection: 1
   approachDirection: {x: 0, y: 0, z: 0}
   spawnOnStart: 1
 --- !u!4 &576921038
@@ -1120,8 +1169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04ae39d6db833f449dc1b41c30e3610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFighterAI
-  minAltitude: 50
-  altitudeCorrectionStrength: 2
   cruiseSpeed: 30
   attackSpeed: 40
   repositionSpeed: 50
@@ -1133,18 +1180,32 @@ MonoBehaviour:
   gunRange: 180
   fireRate: 0.8
   aimTolerance: 8
+  steerLeadTime: 0.4
+  fireLeadTime: 0.25
   evasionChance: 0.25
   evasionDuration: 1.2
   formationLeader: {fileID: 0}
   formationOffset: {x: 30, y: 0, z: -20}
   damagedThreshold: 0.4
+  patrolWaypoints: []
+  minAltitude: 50
+  altitudeCorrectionStrength: 2
+  playerAvoidDistance: 40
+  avoidStrength: 2.5
   terrainCheckDistance: 120
   terrainAvoidanceStrength: 2.5
   minGroundClearance: 35
   terrainMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  patrolWaypoints: []
+  squadAvoidDistance: 35
+  squadAvoidStrength: 2
+  squadMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  nearMissDistance: 55
+  nearMissOffset: 45
+  nearMissCommitTime: 0.9
 --- !u!54 &1078517744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1235,6 +1296,7 @@ MonoBehaviour:
   - Ground
   crashVFXPrefab: {fileID: 0}
   gameInput: {fileID: 1954360741}
+  boostMultiplier: 2
 --- !u!114 &1148225717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,3 +1561,4 @@ SceneRoots:
   - {fileID: 137686093}
   - {fileID: 1036100342}
   - {fileID: 1078517741}
+  - {fileID: 497185218}
