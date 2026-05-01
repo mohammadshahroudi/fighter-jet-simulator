@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reworked Procedural Generation
       objectReference: {fileID: 0}
+    - target: {fileID: 6456810110607422962, guid: 796a0e7ad139c6b45b4685f69861f5f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6534786346669763931, guid: 796a0e7ad139c6b45b4685f69861f5f1, type: 3}
       propertyPath: viewer
       value: 

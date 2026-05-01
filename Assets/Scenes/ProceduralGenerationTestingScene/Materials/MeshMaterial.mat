@@ -171,7 +171,7 @@ Material:
     - _Blend3: 0.05
     - _Blend4: 0.313
     - _Blend5: 0.1
-    - _Blend6: 0.05
+    - _Blend6: 0.25
     - _Blend7: 0.001
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -219,7 +219,7 @@ Material:
     - _StartHeight3: 0.225
     - _StartHeight4: 0.431
     - _StartHeight5: 0.565
-    - _StartHeight6: 0.843
+    - _StartHeight6: 0.9
     - _StartHeight7: 2
     - _Surface: 0
     - _TextureScale0: 20
