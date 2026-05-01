@@ -849,7 +849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Down
+  m_text: Right
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 559873379836338674}
   - component: {fileID: 3496499664598135056}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Roll Right Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1207,9 +1207,9 @@ RectTransform:
   - {fileID: 9214287279268245478}
   m_Father: {fileID: 7419897644185802038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -215.825}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5644322401366789078
@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 5005977341651928676}
   - component: {fileID: 8035805685671832985}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Right Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1547,8 +1547,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 7713754683101870890}
   - component: {fileID: 7982350879178916345}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Right Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2083,7 +2083,7 @@ GameObject:
   - component: {fileID: 3202627615033869864}
   - component: {fileID: 3056250014158284665}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Throttle Down Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 6083099726002740654}
   - component: {fileID: 3664907029900775236}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Roll Left Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2499,7 +2499,7 @@ GameObject:
   - component: {fileID: 4428051492126393559}
   - component: {fileID: 1673250594078413209}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BoostButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2576,7 +2576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2586,8 +2586,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2739,7 +2739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2749,8 +2749,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3573,7 +3573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5180412050880472860}
   m_Layer: 5
-  m_Name: Keybind Set  (4)
+  m_Name: Roll Left Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4034,7 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293678970616982107}
   m_Layer: 5
-  m_Name: Keybind Set  (2)
+  m_Name: Throttle Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4436,7 +4436,7 @@ GameObject:
   - component: {fileID: 1602126040593245717}
   - component: {fileID: 8173372041771876172}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Roll Right Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4513,7 +4513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -4523,9 +4523,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
     m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4604,7 +4604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190133770114209575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5350,7 +5350,7 @@ GameObject:
   - component: {fileID: 4859663365073548796}
   - component: {fileID: 2242613225815202571}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Throttle Down Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5437,8 +5437,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5605,7 +5605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6587565959461148060}
   m_Layer: 5
-  m_Name: Keybind Set  (1)
+  m_Name: Left Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5855,7 +5855,7 @@ GameObject:
   - component: {fileID: 374730552628429776}
   - component: {fileID: 5569473927380228435}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5932,7 +5932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5942,8 +5942,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6072,9 +6072,9 @@ RectTransform:
   - {fileID: 6580986385740978135}
   m_Father: {fileID: 7419897644185802038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320, y: -346.65}
   m_SizeDelta: {x: 640, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3323684344359351112
@@ -6217,9 +6217,9 @@ RectTransform:
   - {fileID: 7924921660629103623}
   m_Father: {fileID: 7419897644185802038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -65}
   m_SizeDelta: {x: 960, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1619449401108444953
@@ -6418,9 +6418,9 @@ RectTransform:
   - {fileID: 4434546279565924538}
   m_Father: {fileID: 7419897644185802038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 240, y: -457.47498}
   m_SizeDelta: {x: 480, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8045163388419945574
@@ -6866,7 +6866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3699131755764971973}
   m_Layer: 5
-  m_Name: Keybind Set  (5)
+  m_Name: Roll Right Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6941,7 +6941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 886206122083199458}
   m_Layer: 5
-  m_Name: Keybind Set  (4)
+  m_Name: Pause Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7115,7 +7115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 219022164673647050}
   m_Layer: 5
-  m_Name: Keybind Set  (3)
+  m_Name: Right Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7374,7 +7374,7 @@ GameObject:
   - component: {fileID: 8253887084148318458}
   - component: {fileID: 6213825071817933548}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Throttle Up Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7623,7 +7623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5203735821628919928}
   m_Layer: 5
-  m_Name: Keybind Set  (3)
+  m_Name: Boost Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7787,7 +7787,7 @@ GameObject:
   - component: {fileID: 1075197214007145335}
   - component: {fileID: 5120974731785265999}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Up Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7927,7 +7927,7 @@ GameObject:
   - component: {fileID: 3815784998300042959}
   - component: {fileID: 6563025282735960992}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Left Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8004,7 +8004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8014,8 +8014,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8510,7 +8510,7 @@ GameObject:
   - component: {fileID: 2105651308050067746}
   - component: {fileID: 3774524508443708853}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Roll Left Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8587,7 +8587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8597,8 +8597,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8630,7 +8630,7 @@ GameObject:
   - component: {fileID: 1075968157420245326}
   - component: {fileID: 5884481796670543202}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Down Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8943,7 +8943,7 @@ GameObject:
   - component: {fileID: 4098313554088498095}
   - component: {fileID: 431324712297445481}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Down Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9020,7 +9020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -9030,8 +9030,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9593,27 +9593,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1828a700a27a5f4daa86f3f398763d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyRebind
-  downButton: {fileID: 0}
-  downBindingText: {fileID: 0}
-  upButton: {fileID: 0}
-  upBindingText: {fileID: 0}
-  leftButton: {fileID: 0}
-  leftBindingText: {fileID: 0}
-  rightButton: {fileID: 0}
-  rightBindingText: {fileID: 0}
-  rollLeftButton: {fileID: 0}
-  rollLeftBindingText: {fileID: 0}
-  throttleUpButton: {fileID: 0}
-  throttleUpBindingText: {fileID: 0}
-  throttleDownButton: {fileID: 0}
-  throttleDownBindingText: {fileID: 0}
-  boostButton: {fileID: 0}
-  boostBindingText: {fileID: 0}
-  pauseButton: {fileID: 0}
-  pauseBindingText: {fileID: 0}
+  downButton: {fileID: 431324712297445481}
+  downBindingText: {fileID: 5884481796670543202}
+  upButton: {fileID: 5569473927380228435}
+  upBindingText: {fileID: 5120974731785265999}
+  leftButton: {fileID: 6563025282735960992}
+  leftBindingText: {fileID: 3898503368028289963}
+  rightButton: {fileID: 8035805685671832985}
+  rightBindingText: {fileID: 7982350879178916345}
+  rollLeftButton: {fileID: 3774524508443708853}
+  rollLeftBindingText: {fileID: 3664907029900775236}
+  throttleUpButton: {fileID: 8691646627003437812}
+  throttleUpBindingText: {fileID: 6213825071817933548}
+  throttleDownButton: {fileID: 2242613225815202571}
+  throttleDownBindingText: {fileID: 3056250014158284665}
+  boostButton: {fileID: 1673250594078413209}
+  boostBindingText: {fileID: 5683040609921158258}
+  pauseButton: {fileID: 7674847863537873569}
+  pauseBindingText: {fileID: 5351429123439490802}
   rollRightButton: {fileID: 8173372041771876172}
   rollRightBindingText: {fileID: 3496499664598135056}
-  rebindOverlay: {fileID: 0}
+  rebindOverlay: {fileID: 3295833108765726493}
 --- !u!1 &7338261383728592174
 GameObject:
   m_ObjectHideFlags: 0
@@ -9624,7 +9624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5321026359949548826}
   m_Layer: 5
-  m_Name: Keybind Set  (1)
+  m_Name: Throttle Up Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10519,7 +10519,7 @@ GameObject:
   - component: {fileID: 7361345523920300096}
   - component: {fileID: 5683040609921158258}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Boost Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10658,7 +10658,7 @@ GameObject:
   - component: {fileID: 4050773218663202121}
   - component: {fileID: 3898503368028289963}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Left Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10795,7 +10795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1123218833681270223}
   m_Layer: 5
-  m_Name: 'Keybind Set '
+  m_Name: Down Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10943,7 +10943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8101651461451269265}
   m_Layer: 5
-  m_Name: Keybind Set  (2)
+  m_Name: Up Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11120,7 +11120,7 @@ GameObject:
   - component: {fileID: 5886393192734621490}
   - component: {fileID: 8691646627003437812}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Throttle Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11197,7 +11197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -11207,8 +11207,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.78431374, b: 0.17254902, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.77254903, g: 0.6313726, b: 0.11372549, a: 1}
+    m_SelectedColor: {r: 0.078431375, g: 0.09803922, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

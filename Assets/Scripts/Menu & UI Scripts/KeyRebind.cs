@@ -194,8 +194,8 @@ public class KeyRebind : MonoBehaviour
         inputAction.PerformInteractiveRebinding(bindingIndex)
             .OnComplete(callback =>
             {
-                Debug.Log(callback.action.bindings[1].path);
-                Debug.Log(callback.action.bindings[1].overridePath);
+                Debug.Log(callback.action.bindings[bindingIndex].path);
+                Debug.Log(callback.action.bindings[bindingIndex].overridePath);
 
                 callback.Dispose();
                 _playerInput.Player.Enable();
