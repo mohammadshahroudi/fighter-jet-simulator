@@ -163,9 +163,9 @@ MonoBehaviour:
   plane: {fileID: 1047265201}
   followDistance: 5
   followHeight: 1
-  positionDamping: 5
-  yawDamping: 4
-  pitchDamping: 3
+  positionDamping: 10
+  yawDamping: 5
+  pitchDamping: 4
   rollDamping: 1.5
 --- !u!114 &73653264
 MonoBehaviour:
@@ -596,6 +596,8 @@ Transform:
   m_Children:
   - {fileID: 2048932449}
   - {fileID: 1047265201}
+  - {fileID: 537306578}
+  - {fileID: 1738220850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 154.33, z: 0}
 --- !u!65 &318293105
@@ -977,13 +979,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4243c9799faeb104fa09b5bf022fddef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationSpawner
-  enemyPrefab: {fileID: 897662090182976731, guid: 5d3aada398761d349a71bfd7236246eb, type: 3}
+  enemyPrefab: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
   formationType: 2
-  columns: 4
-  rows: 3
-  spacingX: 6
-  spacingZ: 4
-  baseHealth: 100
+  columns: 2
+  rows: 5
+  spacingX: 10
+  spacingZ: 6
+  baseHealth: 25
   randomiseHealth: 0
   minHealth: 50
   maxHealth: 150
@@ -997,12 +999,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537306576}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9750139, z: 0, w: 0.22214419}
-  m_LocalPosition: {x: 0, y: 128, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 17.77, z: 169.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 318293104}
   m_LocalEulerAnglesHint: {x: 0, y: 154.33, z: 0}
 --- !u!1001 &575240999
 PrefabInstance:
@@ -2965,35 +2967,39 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 318293104}
     m_Modifications:
     - target: {fileID: 523819621334913052, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_Name
       value: Clouds
       objectReference: {fileID: 0}
+    - target: {fileID: 523819621334913052, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1000.03
+      value: 1000.0295
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1117.6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1000.03
+      value: 1000.0295
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 689
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -509
+      value: 334
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 165.55104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3322,6 +3328,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81049dba603c04f8d9706e70b2f174e7, type: 3}
+--- !u!4 &1738220850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7649431813416798354, guid: 5393413866a205a4698c228a1d2dcfba, type: 3}
+  m_PrefabInstance: {fileID: 1384735111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1767157710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2728415259977247223, guid: 11cb40cc7ba4644668174e196f233d58, type: 3}
@@ -4211,7 +4222,6 @@ SceneRoots:
   - {fileID: 715661704}
   - {fileID: 1373233711}
   - {fileID: 401267050}
-  - {fileID: 537306578}
   - {fileID: 318293104}
   - {fileID: 1938760659}
   - {fileID: 143129501}
@@ -4252,7 +4262,6 @@ SceneRoots:
   - {fileID: 1095578619}
   - {fileID: 6556374896458426914}
   - {fileID: 968802079}
-  - {fileID: 1384735111}
   - {fileID: 1069214717}
   - {fileID: 1201178153}
   - {fileID: 1265790170}

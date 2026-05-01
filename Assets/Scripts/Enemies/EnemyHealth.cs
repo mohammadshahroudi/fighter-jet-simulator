@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     // ── Inspector Fields ─────────────────────────────────────────────────────
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 20;
     [SerializeField] private int currentHealth;
 
     [Header("Events")]
