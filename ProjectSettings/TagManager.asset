@@ -13,15 +13,16 @@ TagManager:
   - Building
   - PowerUp
   - Cloud
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemies
   - Water
   - UI
   - Cloud
-  - 
+  - Terrain
   - 
   - 
   - 

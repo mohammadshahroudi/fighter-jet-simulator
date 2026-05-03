@@ -79,6 +79,26 @@ public class EnemyFighterAI : MonoBehaviour
     [Tooltip("Extra forward depth used when repositioning into view")]
     public float cameraDepthOffset = 100f;
 
+    [Header("Camera Center Pass")]
+    [Tooltip("How often the enemy tries to pass through the camera center")]
+    public float centerPassInterval = 6f;
+    [Tooltip("How long the enemy stays committed to the center pass")]
+    public float centerPassCommitTime = 1.4f;
+    [Tooltip("Depth in front of the camera for the pass target")]
+    public float centerPassDepth = 80f;
+    [Tooltip("Random sideways offset after the center pass so they do not stall in front")]
+    public float centerExitSpread = 35f;
+    [Tooltip("Chance each interval to perform the pass")]
+    [Range(0f, 1f)]
+    public float centerPassChance = 0.8f;
+
+    [Header("Laser FX")]
+    public Transform firePoint;
+    public LineRenderer laserLinePrefab;
+    public float laserDuration = 0.12f;
+    public AudioClip fireSfx;
+    public Vector2 firePitchRange = new Vector2(0.95f, 1.05f);
+
     private enum AIState
     {
         Approach,
@@ -105,6 +125,12 @@ public class EnemyFighterAI : MonoBehaviour
     private float _nearMissTimer;
     private int _nearMissSide;
 
+    // Camera center pass
+    private float _centerPassTimer;
+    private bool _centerPassActive;
+    private float _centerPassActiveTimer;
+    private Vector3 _centerPassTarget;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -114,6 +140,15 @@ public class EnemyFighterAI : MonoBehaviour
 
         _healthProvider = GetComponent<IHealthProvider>();
 
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // 3D sound from enemy position
+
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
             _player = playerObj.transform;
@@ -122,6 +157,7 @@ public class EnemyFighterAI : MonoBehaviour
             gameplayCamera = Camera.main;
 
         _currentSpeed = attackSpeed;
+        _centerPassTimer = Random.Range(centerPassInterval * 0.35f, centerPassInterval);
 
         foreach (Collider col in GetComponentsInChildren<Collider>(includeInactive: true))
         {
@@ -139,6 +175,7 @@ public class EnemyFighterAI : MonoBehaviour
 
         CheckDamagedPhase();
         UpdateNearMissState();
+        UpdateCenterPass();
         RunStateMachine();
         HandleFiring();
     }
@@ -176,13 +213,15 @@ public class EnemyFighterAI : MonoBehaviour
     private void StateApproach()
     {
         _currentSpeed = Mathf.Lerp(_currentSpeed, attackSpeed, Time.deltaTime * 1.5f);
-        SteerToward(_player.position);
+
+        Vector3 target = _centerPassActive ? _centerPassTarget : _player.position;
+        SteerToward(target, allowCameraConstraint: !_centerPassActive);
 
         float dist = DistToPlayer();
 
         TryRandomEvasion();
 
-        if (dist < attackRange)
+        if (!_centerPassActive && dist < attackRange)
             TransitionTo(AIState.AttackRun);
     }
 
@@ -190,9 +229,18 @@ public class EnemyFighterAI : MonoBehaviour
     {
         _currentSpeed = attackSpeed;
 
-        Vector3 aimPoint = PredictPlayerPosition(steerLeadTime);
-        aimPoint = ApplyNearMissFlyby(aimPoint);
-        SteerToward(aimPoint);
+        Vector3 aimPoint;
+        if (_centerPassActive)
+        {
+            aimPoint = _centerPassTarget;
+            SteerToward(aimPoint, allowCameraConstraint: false);
+        }
+        else
+        {
+            aimPoint = PredictPlayerPosition(steerLeadTime);
+            aimPoint = ApplyNearMissFlyby(aimPoint);
+            SteerToward(aimPoint, allowCameraConstraint: true);
+        }
 
         float dist = DistToPlayer();
 
@@ -202,7 +250,7 @@ public class EnemyFighterAI : MonoBehaviour
             return;
         }
 
-        if (dist > attackRange * 1.5f)
+        if (!_centerPassActive && dist > attackRange * 1.5f)
             TransitionTo(AIState.Approach);
     }
 
@@ -220,7 +268,7 @@ public class EnemyFighterAI : MonoBehaviour
         _currentSpeed = attackSpeed;
 
         Vector3 awayDir = (transform.position - _player.position).normalized;
-        SteerToward(transform.position + awayDir * 200f);
+        SteerToward(transform.position + awayDir * 200f, allowCameraConstraint: true);
 
         if (_stateTimer < 0f)
             TransitionTo(_isDamaged ? AIState.LoopAround : AIState.Approach);
@@ -259,7 +307,63 @@ public class EnemyFighterAI : MonoBehaviour
         }
     }
 
-    private void SteerToward(Vector3 targetPos)
+    private void UpdateCenterPass()
+    {
+        if (gameplayCamera == null)
+            gameplayCamera = Camera.main;
+
+        if (gameplayCamera == null || _state == AIState.Disabled)
+            return;
+
+        if (_centerPassActive)
+        {
+            _centerPassActiveTimer -= Time.deltaTime;
+
+            if (_centerPassActiveTimer <= 0f)
+            {
+                _centerPassActive = false;
+                _centerPassTimer = Random.Range(centerPassInterval * 0.75f, centerPassInterval * 1.25f);
+            }
+
+            return;
+        }
+
+        _centerPassTimer -= Time.deltaTime;
+
+        if (_centerPassTimer <= 0f)
+        {
+            _centerPassTimer = Random.Range(centerPassInterval * 0.75f, centerPassInterval * 1.25f);
+
+            if (Random.value <= centerPassChance)
+            {
+                BeginCenterPass();
+            }
+        }
+    }
+
+    private void BeginCenterPass()
+    {
+        if (gameplayCamera == null)
+            return;
+
+        _centerPassActive = true;
+        _centerPassActiveTimer = centerPassCommitTime;
+
+        Vector3 passPoint = gameplayCamera.ViewportToWorldPoint(
+            new Vector3(0.5f, 0.5f, centerPassDepth)
+        );
+
+        Vector3 exitOffset =
+            gameplayCamera.transform.right * Random.Range(-centerExitSpread, centerExitSpread) +
+            gameplayCamera.transform.up * Random.Range(-centerExitSpread * 0.35f, centerExitSpread * 0.35f);
+
+        _centerPassTarget = passPoint + exitOffset;
+
+        if (_state == AIState.Approach)
+            TransitionTo(AIState.AttackRun);
+    }
+
+    private void SteerToward(Vector3 targetPos, bool allowCameraConstraint = true)
     {
         Vector3 adjustedTarget = targetPos;
 
@@ -288,7 +392,9 @@ public class EnemyFighterAI : MonoBehaviour
 
         adjustedTarget = ApplyTerrainAvoidance(adjustedTarget);
         adjustedTarget = ApplySquadSpacing(adjustedTarget);
-        adjustedTarget = ApplyCameraViewConstraint(adjustedTarget);
+
+        if (allowCameraConstraint)
+            adjustedTarget = ApplyCameraViewConstraint(adjustedTarget);
 
         Vector3 desired = adjustedTarget - transform.position;
         if (desired.sqrMagnitude < 0.001f) return;
@@ -444,6 +550,7 @@ public class EnemyFighterAI : MonoBehaviour
     {
         if (_state != AIState.AttackRun) return;
         if (_player == null) return;
+        if (_centerPassActive) return; // do not fire during camera-center pass
 
         _fireTimer -= Time.deltaTime;
         if (_fireTimer > 0f) return;
@@ -460,18 +567,40 @@ public class EnemyFighterAI : MonoBehaviour
         }
     }
 
-    protected virtual void FireAtPlayer()
-    {
-        Vector3 origin = transform.position + transform.forward * 3f;
-        Vector3 aimPoint = PredictPlayerPosition(fireLeadTime);
-        Vector3 direction = (aimPoint - origin).normalized;
+protected virtual void FireAtPlayer()
+{
+    Vector3 origin = firePoint != null
+        ? firePoint.position
+        : transform.position + transform.forward * 3f;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, gunRange))
+    Vector3 aimPoint = PredictPlayerPosition(fireLeadTime);
+    Vector3 direction = (aimPoint - origin).normalized;
+
+    Vector3 endPoint = origin + direction * gunRange;
+
+    bool hitPlayer = false;
+
+    if (Physics.Raycast(origin, direction, out RaycastHit hit, gunRange))
+    {
+        endPoint = hit.point;
+
+        IDamageable target = hit.collider.GetComponentInParent<IDamageable>();
+
+        if (target != null)
         {
-            IDamageable target = hit.collider.GetComponentInParent<IDamageable>();
-            target?.TakeDamage(10f);
+            target.TakeDamage(10f);
+
+            // Only track if we hit the PLAYER
+            if (hit.collider.CompareTag("Player") || hit.collider.transform.IsChildOf(_player))
+            {
+                hitPlayer = true;
+            }
         }
     }
+
+    SpawnConditionalLaser(origin, endPoint, hitPlayer);
+    PlayLaserSoundFromEnemy();
+}
 
     private void UpdateNearMissState()
     {
@@ -486,7 +615,7 @@ public class EnemyFighterAI : MonoBehaviour
             return;
         }
 
-        if (_state != AIState.AttackRun) return;
+        if (_state != AIState.AttackRun || _centerPassActive) return;
 
         float dist = DistToPlayer();
         if (dist > nearMissDistance) return;
@@ -532,7 +661,7 @@ public class EnemyFighterAI : MonoBehaviour
 
     private void TryRandomEvasion()
     {
-        if (_state == AIState.Evade) return;
+        if (_state == AIState.Evade || _centerPassActive) return;
 
         _evasionTimer -= Time.deltaTime;
         if (_evasionTimer > 0f) return;
@@ -562,6 +691,47 @@ public class EnemyFighterAI : MonoBehaviour
         return false;
     }
 
+private void SpawnConditionalLaser(Vector3 origin, Vector3 endPoint, bool trackPlayer)
+{
+    if (laserLinePrefab == null)
+        return;
+
+    LineRenderer beam = Instantiate(laserLinePrefab, Vector3.zero, Quaternion.identity);
+
+    LaserBeamTracker tracker = beam.GetComponent<LaserBeamTracker>();
+    if (tracker == null)
+        tracker = beam.gameObject.AddComponent<LaserBeamTracker>();
+
+    Transform start = firePoint != null ? firePoint : transform;
+
+    tracker.Initialise(
+        beam,
+        start,
+        _player,
+        laserDuration,
+        trackPlayer,            // 🔥 KEY PART
+        endPoint,
+        Vector3.up * 1.5f       // slight aim offset
+    );
+}
+
+private void PlayLaserSoundFromEnemy()
+{
+    if (fireSfx == null)
+        return;
+
+    AudioSource audioSource = GetComponent<AudioSource>();
+    if (audioSource == null)
+        audioSource = gameObject.AddComponent<AudioSource>();
+
+    audioSource.playOnAwake = false;
+    audioSource.spatialBlend = 1f;
+    audioSource.pitch = Random.Range(firePitchRange.x, firePitchRange.y);
+    audioSource.PlayOneShot(fireSfx);
+}
+
+
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
@@ -589,11 +759,15 @@ public class EnemyFighterAI : MonoBehaviour
             Gizmos.DrawLine(p2, p3);
             Gizmos.DrawLine(p3, p4);
             Gizmos.DrawLine(p4, p1);
+
+            Gizmos.color = Color.white;
+            Vector3 centerPoint = gameplayCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, centerPassDepth));
+            Gizmos.DrawWireSphere(centerPoint, 4f);
         }
 
         UnityEditor.Handles.Label(
             transform.position + Vector3.up * 10f,
-            $"[{_state}]{(_isDamaged ? " ⚠DAMAGED" : "")}{(_nearMissActive ? " FLYBY" : "")}"
+            $"[{_state}]{(_isDamaged ? " ⚠DAMAGED" : "")}{(_nearMissActive ? " FLYBY" : "")}{(_centerPassActive ? " CENTER PASS" : "")}"
         );
     }
 #endif
