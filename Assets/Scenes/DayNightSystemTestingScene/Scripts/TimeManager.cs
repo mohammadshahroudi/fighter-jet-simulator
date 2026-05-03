@@ -45,6 +45,13 @@ public class TimeManager : MonoBehaviour {
     void Start() {
         service = new TimeService(timeSettings);
         volume.profile.TryGet(out colorAdjustments);
+        
+        if (skyboxMaterial != null)
+        {
+            RenderSettings.skybox = skyboxMaterial;
+            DynamicGI.UpdateEnvironment();
+        }
+        
         OnSunrise += () => Debug.Log("Sunrise");
         OnSunset += () => Debug.Log("Sunset");
         OnHourChange += () => Debug.Log("Hour change");
@@ -69,7 +76,7 @@ public class TimeManager : MonoBehaviour {
     void UpdateSkyBlend() {
         float dotProduct = Vector3.Dot(sun.transform.forward, Vector3.up);
         float blend = Mathf.Lerp(0, 1, lightIntensityCurve.Evaluate(dotProduct));
-        skyboxMaterial.SetFloat("_Blend", blend);
+       skyboxMaterial.SetFloat("_Blend", blend);
     }
     
     void UpdateLightSettings() {
