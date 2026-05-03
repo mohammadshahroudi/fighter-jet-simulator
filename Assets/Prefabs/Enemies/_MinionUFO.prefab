@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: colorLerpSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: hitFlashStrength
@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198440788183421120, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Time
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9198440788183421120, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Autodestruct
@@ -589,13 +589,13 @@ MonoBehaviour:
   steerLeadTime: 0.4
   fireLeadTime: 0.25
   spawnInAttackRun: 0
-  evasionChance: 0.25
+  evasionChance: 0.1
   evasionDuration: 1.2
   damagedThreshold: 0.4
   minAltitude: 50
   altitudeCorrectionStrength: 10
   playerAvoidDistance: 40
-  avoidStrength: 5
+  avoidStrength: 10
   terrainCheckDistance: 120
   terrainAvoidanceStrength: 2.5
   minGroundClearance: 35
@@ -608,8 +608,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   nearMissDistance: 55
-  nearMissOffset: 45
-  nearMissCommitTime: 0.9
+  nearMissOffset: 50
+  nearMissCommitTime: 2
   gameplayCamera: {fileID: 0}
   screenEdgeBuffer: 0.4
   cameraReturnStrength: 150
@@ -621,7 +621,7 @@ MonoBehaviour:
   centerPassChance: 1
   firePoint: {fileID: 4296424020678404174}
   laserLinePrefab: {fileID: 8958053704920472497, guid: 6e171ab371ea16a4a9eff58a09d38cdf, type: 3}
-  laserDuration: 5
+  laserDuration: 2.5
   fireSfx: {fileID: 8300000, guid: 319a7124d55240f4b87d7104bae91710, type: 3}
   firePitchRange: {x: 0.95, y: 1.05}
 --- !u!114 &5951158057909187671

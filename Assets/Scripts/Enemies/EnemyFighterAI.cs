@@ -105,7 +105,6 @@ public class EnemyFighterAI : MonoBehaviour
         AttackRun,
         Overshoot,
         Evade,
-        LoopAround,
         Disabled
     }
 
@@ -124,6 +123,7 @@ public class EnemyFighterAI : MonoBehaviour
     private bool _nearMissActive;
     private float _nearMissTimer;
     private int _nearMissSide;
+    private float _evasionBias;
 
     // Camera center pass
     private float _centerPassTimer;
@@ -158,6 +158,8 @@ public class EnemyFighterAI : MonoBehaviour
 
         _currentSpeed = attackSpeed;
         _centerPassTimer = Random.Range(centerPassInterval * 0.35f, centerPassInterval);
+        _evasionTimer = Random.Range(0.2f, 1.5f);
+        _evasionBias = Random.Range(0.7f, 1.4f);
 
         foreach (Collider col in GetComponentsInChildren<Collider>(includeInactive: true))
         {
@@ -205,7 +207,6 @@ public class EnemyFighterAI : MonoBehaviour
             case AIState.AttackRun:  StateAttackRun(); break;
             case AIState.Overshoot:  StateOvershoot(); break;
             case AIState.Evade:      StateEvade();     break;
-            case AIState.LoopAround: StateLoop();      break;
             case AIState.Disabled:   StateDisabled();  break;
         }
     }
@@ -255,12 +256,15 @@ public class EnemyFighterAI : MonoBehaviour
     }
 
     private void StateOvershoot()
-    {
-        _currentSpeed = repositionSpeed;
+{
+    _currentSpeed = repositionSpeed;
 
-        if (_stateTimer < 0f)
-            TransitionTo(AIState.LoopAround);
-    }
+    Vector3 forwardTarget = transform.position + transform.forward * 200f;
+    SteerToward(forwardTarget, allowCameraConstraint: true);
+
+    if (_stateTimer < 0f)
+        TransitionTo(AIState.Approach);
+}
 
     private void StateEvade()
     {
@@ -269,15 +273,6 @@ public class EnemyFighterAI : MonoBehaviour
 
         Vector3 awayDir = (transform.position - _player.position).normalized;
         SteerToward(transform.position + awayDir * 200f, allowCameraConstraint: true);
-
-        if (_stateTimer < 0f)
-            TransitionTo(_isDamaged ? AIState.LoopAround : AIState.Approach);
-    }
-
-    private void StateLoop()
-    {
-        _rb.AddTorque(transform.right * 200f * Time.deltaTime, ForceMode.Acceleration);
-        _currentSpeed = Mathf.Lerp(_currentSpeed, cruiseSpeed * 0.7f, Time.deltaTime * 2f);
 
         if (_stateTimer < 0f)
             TransitionTo(AIState.Approach);
@@ -302,7 +297,6 @@ public class EnemyFighterAI : MonoBehaviour
             case AIState.AttackRun:  _stateTimer = Random.Range(4f, 7f);   break;
             case AIState.Overshoot:  _stateTimer = Random.Range(1.5f, 3f); break;
             case AIState.Evade:      _stateTimer = evasionDuration;        break;
-            case AIState.LoopAround: _stateTimer = Random.Range(2.5f, 4f); break;
             case AIState.Disabled:   _stateTimer = 999f;                   break;
         }
     }
@@ -588,12 +582,11 @@ protected virtual void FireAtPlayer()
 
         if (target != null)
         {
-            target.TakeDamage(10f);
-
             // Only track if we hit the PLAYER
             if (hit.collider.CompareTag("Player") || hit.collider.transform.IsChildOf(_player))
             {
                 hitPlayer = true;
+                target.TakeDamage(10f);
             }
         }
     }
@@ -660,16 +653,28 @@ protected virtual void FireAtPlayer()
     }
 
     private void TryRandomEvasion()
+{
+    if (_state == AIState.Evade || _centerPassActive) return;
+
+    _evasionTimer -= Time.deltaTime;
+    if (_evasionTimer > 0f) return;
+
+    // Random interval so enemies do not all evaluate evasion together.
+    _evasionTimer = Random.Range(0.4f, 1.6f);
+
+    float chance = evasionChance * _evasionBias;
+
+    if (_isDamaged)
+        chance *= 1.5f;
+
+    if (Random.value < chance)
     {
-        if (_state == AIState.Evade || _centerPassActive) return;
+        TransitionTo(AIState.Evade);
 
-        _evasionTimer -= Time.deltaTime;
-        if (_evasionTimer > 0f) return;
-
-        _evasionTimer = 1f;
-        if (Random.value < evasionChance * (_isDamaged ? 2f : 1f))
-            TransitionTo(AIState.Evade);
+        // Cooldown after dodging so they do not chain-roll constantly.
+        _evasionTimer = Random.Range(1.2f, 2.5f);
     }
+}   
 
     private void CheckDamagedPhase()
     {

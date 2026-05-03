@@ -982,8 +982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FormationSpawner
   enemyPrefab: {fileID: 7036229054538638873, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
   formationType: 2
-  columns: 2
-  rows: 7
+  columns: 1
+  rows: 1
   spacingX: 10
   spacingZ: 6
   baseHealth: 25
@@ -996,7 +996,7 @@ MonoBehaviour:
   playerTag: Player
   followOffset: {x: 0, y: 20, z: 100}
   followPlayer: 0
-  respawnDelay: 15
+  respawnDelay: 10
 --- !u!4 &537306578
 Transform:
   m_ObjectHideFlags: 0
@@ -2439,37 +2439,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49650b1bfe0e44c00ba3c6ebf2d07211, type: 3}
---- !u!1 &1265790169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1265790170}
-  m_Layer: 0
-  m_Name: RingManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1265790170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265790169}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.41198, y: -0.71346, z: -12.13499}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1304271384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4240,4 +4209,3 @@ SceneRoots:
   - {fileID: 968802079}
   - {fileID: 1069214717}
   - {fileID: 1201178153}
-  - {fileID: 1265790170}
