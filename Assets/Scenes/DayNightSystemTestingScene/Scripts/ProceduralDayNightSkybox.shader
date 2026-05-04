@@ -45,6 +45,7 @@ Shader "Skybox/Procedural Day Night URP"
         _StarIntensity("Star Intensity", Range(0, 5)) = 1.5
         _StarTwinkleSpeed("Star Twinkle Speed", Range(0, 10)) = 2
         _StarTwinkleAmount("Star Twinkle Amount", Range(0, 1)) = 0.5
+        _StarRotation("Star Rotation", Range(0, 360)) = 0
 
         [Header(General)]
         _Tint("Tint Color", Color) = (1, 1, 1, 1)
@@ -122,6 +123,7 @@ Shader "Skybox/Procedural Day Night URP"
                 half _StarIntensity;
                 half _StarTwinkleSpeed;
                 half _StarTwinkleAmount;
+                float _StarRotation;
 
                 half4 _Tint;
                 half _Exposure;
@@ -228,7 +230,8 @@ Shader "Skybox/Procedural Day Night URP"
                 finalColor.rgb += moonColor * moonDisk;
 
                 // Static procedural stars
-                float2 starUV = dir.xz / max(dir.y + 1.0, 0.001);
+                float3 starDir = RotateAroundYInDegrees(dir, _StarRotation);
+                float2 starUV = starDir.xz / max(starDir.y + 1.0, 0.001);
                 starUV *= _StarScale;
 
                 // Divide the sky into tiny cells
