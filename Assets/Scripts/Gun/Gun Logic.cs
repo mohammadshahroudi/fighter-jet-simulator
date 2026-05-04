@@ -291,4 +291,10 @@ public class GunLogic : MonoBehaviour
     {
         return firePoint;
     }
+
+    // Initialize gun damage from external data (e.g., shop/equipped plane)
+    public void InitialiseDamage(float baseDamage)
+    {
+        damage = baseDamage;
+    }
 }
