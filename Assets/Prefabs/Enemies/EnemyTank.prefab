@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTank
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f53fd0000a7f434c9396b2b93cabcca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5748759045953294882, guid: 3f53fd0000a7f434c9396b2b93cabcca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -129,3 +133,8 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  triggerVictoryOnDeath: 0
+  forceRootHitbox: 0
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250

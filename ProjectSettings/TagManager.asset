@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - AirportChunk
-  - RunwayChunk
-  - BaseChunk
   - WaterChunk
   - Ground
   - Terrain
@@ -21,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Cloud
-  - 
+  - Enemy
   - 
   - 
   - 
