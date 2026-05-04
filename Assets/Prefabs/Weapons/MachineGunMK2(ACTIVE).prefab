@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamicCrosshair
   gunLogic: {fileID: 0}
-  crosshairSprite: {fileID: 0}
+  crosshairSprite: {fileID: 5038701367657113022}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   targetAcquiredColor: {r: 1, g: 0.2, b: 0.2, a: 1}
   colorTransitionSpeed: 10
@@ -633,7 +633,7 @@ MonoBehaviour:
   targetCheckRange: 1000
   targetLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   ignoreClouds: 1
   crosshairConeAngle: 2
   coneRayCount: 8
@@ -994,6 +994,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
+--- !u!212 &5038701367657113022 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1759828283711015936, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
+  m_PrefabInstance: {fileID: 6737731056255756734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8661694075193248463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
