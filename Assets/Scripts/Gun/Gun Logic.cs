@@ -28,6 +28,13 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private float raycastRange = 1000f;
     [SerializeField] private LayerMask hitLayers;
 
+    [Header("Aim Assist Settings")]
+    [SerializeField] private bool enableAimAssist = true;
+    [SerializeField] [Range(0f, 10f)] private float aimAssistConeAngle = 2f;
+    [SerializeField] private int aimAssistRayCount = 8;
+    [SerializeField] private bool debugDrawConeRays = false;
+    [SerializeField] private Color debugConeRayColor = Color.cyan;
+
     [Header("Raycast Layer Filtering")]
     [SerializeField] private LayerMask ignoredLayers;
     [SerializeField] private bool autoIgnoreCloudLayer = true;
@@ -37,7 +44,14 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private LineRenderer tracerLine;
-    [SerializeField] private float tracerDuration = 0.05f;
+
+    [Header("Tracer Settings")]
+    [SerializeField] private float tracerDuration = 0.3f;
+    [SerializeField] private float tracerWidth = 0.15f;
+    [SerializeField] private Gradient tracerColorGradient;
+    [SerializeField] private float tracerBrightness = 2.0f;
+    [SerializeField] private Material tracerMaterial;
+
     [SerializeField] private float impactEffectLifetime = 1f;
 
     [Header("Raycast Debug")]
@@ -52,6 +66,10 @@ public class GunLogic : MonoBehaviour
     private GameObject activeImpact;
 
     private int cloudLayer = -1;
+
+    // Event system for UI feedback
+    public System.Action<Vector3> OnTargetHit;
+    public System.Action<bool> OnTargetInCrosshair;
 
     void Awake()
     {
@@ -75,7 +93,53 @@ public class GunLogic : MonoBehaviour
             tracerLine.positionCount = 2;
             tracerLine.useWorldSpace = true;
             tracerLine.enabled = false;
+
+            SetupEnhancedTracer();
         }
+    }
+
+    void SetupEnhancedTracer()
+    {
+        if (tracerLine == null) return;
+
+        // Width settings
+        tracerLine.startWidth = tracerWidth;
+        tracerLine.endWidth = tracerWidth * 0.5f;
+
+        // Color gradient setup
+        if (tracerColorGradient != null && tracerColorGradient.colorKeys.Length > 0)
+        {
+            tracerLine.colorGradient = tracerColorGradient;
+        }
+        else
+        {
+            // Default gradient: bright yellow-orange with HDR
+            Gradient defaultGradient = new Gradient();
+            defaultGradient.SetKeys(
+                new GradientColorKey[]
+                {
+                    new GradientColorKey(new Color(1f, 0.9f, 0.3f) * tracerBrightness, 0f),
+                    new GradientColorKey(new Color(1f, 0.5f, 0.1f) * tracerBrightness, 1f)
+                },
+                new GradientAlphaKey[]
+                {
+                    new GradientAlphaKey(1f, 0f),
+                    new GradientAlphaKey(0.7f, 1f)
+                }
+            );
+            tracerLine.colorGradient = defaultGradient;
+        }
+
+        // Material setup
+        if (tracerMaterial != null)
+        {
+            tracerLine.material = tracerMaterial;
+        }
+
+        // Quality settings
+        tracerLine.numCornerVertices = 4;
+        tracerLine.numCapVertices = 4;
+        tracerLine.alignment = LineAlignment.View;
     }
 
     void ApplyAutoIgnoredLayers()
@@ -97,6 +161,90 @@ public class GunLogic : MonoBehaviour
 
             ignoredLayers = ignoredLayers.value | (1 << layer);
         }
+    }
+
+    bool PerformConeRaycast(Vector3 origin, Vector3 centerDirection, LayerMask effectiveHitLayers, out RaycastHit bestHit, out IDamageable hitDamageable)
+    {
+        bestHit = default;
+        hitDamageable = null;
+
+        if (!enableAimAssist)
+        {
+            // Fallback to single center ray
+            if (Physics.Raycast(origin, centerDirection, out bestHit, raycastRange, effectiveHitLayers))
+            {
+                hitDamageable = bestHit.collider.GetComponentInParent<IDamageable>();
+                return true;
+            }
+            return false;
+        }
+
+        // Center ray
+        bool foundTarget = false;
+        float closestDistance = float.MaxValue;
+
+        if (Physics.Raycast(origin, centerDirection, out RaycastHit centerHit, raycastRange, effectiveHitLayers))
+        {
+            IDamageable centerDamageable = centerHit.collider.GetComponentInParent<IDamageable>();
+            if (centerDamageable != null)
+            {
+                bestHit = centerHit;
+                hitDamageable = centerDamageable;
+                closestDistance = centerHit.distance;
+                foundTarget = true;
+            }
+            else if (!foundTarget)
+            {
+                bestHit = centerHit;
+            }
+
+            if (debugDrawConeRays)
+            {
+                Debug.DrawLine(origin, centerHit.point, debugConeRayColor, debugRayDuration);
+            }
+        }
+
+        // Cone perimeter rays
+        float angleRad = aimAssistConeAngle * Mathf.Deg2Rad;
+        Vector3 up = Vector3.up;
+        if (Vector3.Dot(centerDirection, up) > 0.99f)
+        {
+            up = Vector3.right; // Avoid gimbal lock
+        }
+
+        for (int i = 0; i < aimAssistRayCount; i++)
+        {
+            float angle = (i / (float)aimAssistRayCount) * 2f * Mathf.PI;
+
+            // Create perpendicular axes
+            Vector3 right = Vector3.Cross(centerDirection, up).normalized;
+            Vector3 actualUp = Vector3.Cross(right, centerDirection).normalized;
+
+            // Offset direction in cone
+            Vector3 offset = (right * Mathf.Cos(angle) + actualUp * Mathf.Sin(angle)) * Mathf.Tan(angleRad);
+            Vector3 rayDirection = (centerDirection + offset).normalized;
+
+            if (Physics.Raycast(origin, rayDirection, out RaycastHit coneHit, raycastRange, effectiveHitLayers))
+            {
+                IDamageable coneDamageable = coneHit.collider.GetComponentInParent<IDamageable>();
+
+                if (coneDamageable != null && coneHit.distance < closestDistance)
+                {
+                    bestHit = coneHit;
+                    hitDamageable = coneDamageable;
+                    closestDistance = coneHit.distance;
+                    foundTarget = true;
+                }
+
+                if (debugDrawConeRays)
+                {
+                    Color debugColor = coneDamageable != null ? Color.green : debugConeRayColor;
+                    Debug.DrawLine(origin, coneHit.point, debugColor, debugRayDuration);
+                }
+            }
+        }
+
+        return foundTarget || bestHit.collider != null;
     }
 
     void Update()
@@ -147,18 +295,19 @@ public class GunLogic : MonoBehaviour
                 Destroy(flash, 2f);
             }
         }
-        
-        RaycastHit hit;
 
         Vector3 startPoint = firePoint.position;
 
-        if (Physics.Raycast(startPoint, shootDirection, out hit, raycastRange, effectiveHitLayers))
+        // Use cone raycast system
+        if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageable))
         {
             // Apply damage if target has the IDamageable interface
             IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
             if (damageable != null && hit.collider.transform.root != transform.root)
             {
                 damageable.TakeDamage(damage);
+                // Notify UI systems of hit
+                OnTargetHit?.Invoke(hit.point);
             }
 
             // Impact effect
@@ -169,7 +318,7 @@ public class GunLogic : MonoBehaviour
 
             if (drawDebugRays)
             {
-                Debug.DrawLine(firePoint.position, hit.point, debugHitColor, debugRayDuration);
+                Debug.DrawLine(startPoint, hit.point, debugHitColor, debugRayDuration);
             }
         }
         else
