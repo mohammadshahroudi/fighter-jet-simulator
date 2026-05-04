@@ -91,13 +91,6 @@ public class TimeManager : MonoBehaviour {
         {
             skyboxMaterial.SetVector("_MoonDirection", -moon.transform.forward);
         }
-
-        float normalizedTime = (service.CurrentTime.Hour + service.CurrentTime.Minute / 60f) / 24f;
-        
-        // 180 degrees over a full in-game day
-        float starRotation = normalizedTime * 180f;
-
-        skyboxMaterial.SetFloat("_StarRotation", starRotation);
     }
     
     void UpdateLightSettings()
