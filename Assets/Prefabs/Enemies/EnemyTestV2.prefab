@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8187783013015543663}
   - component: {fileID: 2435427693266216812}
   - component: {fileID: 1321156065890937587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyTestV2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,3 +133,8 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  triggerVictoryOnDeath: 0
+  forceRootHitbox: 0
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250

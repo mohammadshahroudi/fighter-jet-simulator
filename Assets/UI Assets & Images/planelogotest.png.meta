@@ -105,7 +105,7 @@ TextureImporter:
         width: 1526
         height: 473
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -122,12 +122,12 @@ TextureImporter:
       name: planelogotest_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 1027
-        width: 1157
-        height: 520
+        x: 56
+        y: 1115
+        width: 402
+        height: 307
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,7 +149,7 @@ TextureImporter:
         width: 1167
         height: 498
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,6 +158,28 @@ TextureImporter:
       bones: []
       spriteID: 7691cf1aba27c5d46953e790fb9342b5
       internalID: -1973409231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planelogotest_3
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1054
+        width: 687
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c303309f2303a3a4f8f44acd59d4e0cc
+      internalID: 1096534400
       vertices: []
       indices: 
       edges: []
@@ -179,6 +201,7 @@ TextureImporter:
       planelogotest_0: -1079450294
       planelogotest_1: -1758833767
       planelogotest_2: -1973409231
+      planelogotest_3: 1096534400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
