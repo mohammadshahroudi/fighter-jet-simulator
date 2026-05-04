@@ -26,8 +26,8 @@ MonoBehaviour:
   - planeId: Swift L1
     planeName: Swift L1
     gunType: 4
-    speed: 240
-    health: 500
+    speed: 300
+    health: 400
     damage: 20
     price: 900
     state: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   - planeId: Viper ZX
     planeName: Viper ZX
     gunType: 1
-    speed: 65
+    speed: 500
     health: 750
     damage: 30
     price: 1000
@@ -60,6 +60,6 @@ MonoBehaviour:
     health: 1500
     damage: 60
     price: 3000
-    state: 1
+    state: 0
     previewObject: {fileID: 0}
     planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}
