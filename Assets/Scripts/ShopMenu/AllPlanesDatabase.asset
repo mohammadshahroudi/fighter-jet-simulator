@@ -16,7 +16,7 @@ MonoBehaviour:
   - planeId: Falcon X1
     planeName: Falcon X1
     gunType: 0
-    speed: 220
+    speed: 500
     health: 350
     damage: 25
     price: 0

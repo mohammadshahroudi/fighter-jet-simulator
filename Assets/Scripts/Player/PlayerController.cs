@@ -141,4 +141,8 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+    public void InitialiseSpeed(int baseSpeed)
+{
+    maxSpeed = baseSpeed;
+}
 }

@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerPlaneLoader : MonoBehaviour
 {
   [SerializeField] private PlaneList planeDatabase;
-    [SerializeField] private PlayerStats playerStats; // Assign in inspector
-
+    [SerializeField] private PlayerStats playerStats;
 void Start()
 {
     string equippedPlaneId = ShopPersistence.GetSavedEquippedPlaneId();
@@ -22,6 +21,11 @@ void Start()
         // Set player health to match equipped plane
         if (playerStats != null)
             playerStats.Initialise(equippedPlane.Health);
+        PlayerController controller = GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.InitialiseSpeed(equippedPlane.Speed);
+        }
     }
     else
     {
