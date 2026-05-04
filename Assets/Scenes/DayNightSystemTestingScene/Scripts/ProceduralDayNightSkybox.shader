@@ -23,6 +23,14 @@ Shader "Skybox/Procedural Day Night URP"
         _MoonGlowSize("Moon Glow Size", Range(0.01, 1.0)) = 0.15
         _MoonIntensity("Moon Intensity", Range(0, 10)) = 2
         _MoonDirection("Moon Direction", Vector) = (0, -1, 0, 0)
+        
+        [Header(Stars)]
+        _StarColor("Star Color", Color) = (1, 1, 1, 1)
+        _StarDensity("Star Density", Range(0, 1)) = 0.04
+        _StarScale("Star Scale", Range(50, 2000)) = 700
+        _StarIntensity("Star Intensity", Range(0, 5)) = 1.5
+        _StarTwinkleSpeed("Star Twinkle Speed", Range(0, 10)) = 2
+        _StarTwinkleAmount("Star Twinkle Amount", Range(0, 1)) = 0.5
 
         [Header(General)]
         _Tint("Tint Color", Color) = (1, 1, 1, 1)
@@ -82,6 +90,13 @@ Shader "Skybox/Procedural Day Night URP"
                 half _MoonGlowSize;
                 half _MoonIntensity;
                 float4 _MoonDirection;
+            
+                half4 _StarColor;
+                half _StarDensity;
+                float _StarScale;
+                half _StarIntensity;
+                half _StarTwinkleSpeed;
+                half _StarTwinkleAmount;
 
                 half4 _Tint;
                 half _Exposure;
@@ -110,6 +125,13 @@ Shader "Skybox/Procedural Day Night URP"
                 output.directionWS = RotateAroundYInDegrees(input.positionOS.xyz, _Rotation);
 
                 return output;
+            }
+            
+            float Hash21(float2 p)
+            {
+                p = frac(p * float2(123.34, 456.21));
+                p += dot(p, p + 45.32);
+                return frac(p.x * p.y);
             }
 
             half4 frag(Varyings input) : SV_Target
@@ -154,6 +176,53 @@ Shader "Skybox/Procedural Day Night URP"
                 finalColor.rgb += moonColor * moonGlow * 0.20;
                 finalColor.rgb += moonColor * moonDisk;
 
+                // Static procedural stars
+                float2 starUV = dir.xz / max(dir.y + 1.0, 0.001);
+                starUV *= _StarScale;
+
+                // Divide the sky into tiny cells
+                float2 starCell = floor(starUV);
+                float2 starLocal = frac(starUV) - 0.5;
+
+                // Random value per cell
+                float starRandom = Hash21(starCell);
+                
+                float starBrightnessRandom = Hash21(starCell + 12.45);
+                float starBaseBrightness = lerp(0.4, 1.0, starBrightnessRandom);
+
+                // Only some cells contain stars
+                float starExists = step(1.0 - _StarDensity, starRandom);
+
+                // Small circular star shape inside the cell
+                float starDistance = length(starLocal);
+                float starShape = smoothstep(0.035, 0.0, starDistance);
+
+                // Only show stars above the horizon
+                float aboveHorizon = smoothstep(0.05, 0.25, dir.y);
+
+                // Fade stars in at night
+                float nightVisibility = smoothstep(0.35, 1.0, blend);
+
+                // Each star gets a slightly different twinkle phase
+                float twinkleSeed = Hash21(starCell + 37.17);
+
+                // Twinkle value from 0 to 1
+                float twinkle = sin(_Time.y * _StarTwinkleSpeed + twinkleSeed * 100.0);
+                twinkle = twinkle * 0.5 + 0.5;
+
+                // Make the bright/dim difference more noticeable
+                twinkle = smoothstep(0.15, 1.0, twinkle);
+
+                // Blend between steady brightness and twinkling brightness
+                float twinkleBrightness = lerp(1.0, twinkle, _StarTwinkleAmount);
+
+                // Let strong twinkle get much dimmer during testing
+                twinkleBrightness = lerp(0.08, 1.0, twinkleBrightness);
+
+                half3 starColor = _StarColor.rgb * _StarIntensity;
+
+                finalColor.rgb += starColor * starExists * starShape * aboveHorizon * nightVisibility * twinkleBrightness * starBaseBrightness;
+                
                 // Final color controls
                 finalColor.rgb *= _Tint.rgb;
                 finalColor.rgb *= _Exposure;

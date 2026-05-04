@@ -116,7 +116,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _MoonGlowSize: 0.01
-    - _MoonIntensity: 0.061612606
+    - _MoonIntensity: 0.11033726
     - _MoonSize: 0.005
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -128,8 +128,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _StarDensity: 0.03
+    - _StarIntensity: 1.5
+    - _StarScale: 700
+    - _StarTwinkleAmount: 0.4
+    - _StarTwinkleSpeed: 2
     - _SunGlowSize: 0.03
-    - _SunIntensity: 3.8767748
+    - _SunIntensity: 3.7793255
     - _SunSize: 0.015
     - _Surface: 0
     - _WorkflowMode: 1
@@ -142,12 +147,13 @@ Material:
     - _DayTopColor: {r: 0.049999982, g: 0.34999996, b: 0.9, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MoonColor: {r: 0.75, g: 0.85, b: 1, a: 1}
-    - _MoonDirection: {r: -0, g: -0.54378915, b: 0.8392221, a: 0}
+    - _MoonDirection: {r: -0, g: -0.4378704, b: 0.8990382, a: 0}
     - _NightHorizonColor: {r: 0, g: 0.1137255, b: 0.3803922, a: 1}
     - _NightTopColor: {r: 0, g: 0.019607844, b: 0.121568635, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _StarColor: {r: 1, g: 1, b: 1, a: 1}
     - _SunColor: {r: 1, g: 0.85, b: 0.45, a: 1}
-    - _SunDirection: {r: -0, g: 0.543789, b: -0.83922195, a: 0}
+    - _SunDirection: {r: -0, g: 0.43787026, b: -0.8990382, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
