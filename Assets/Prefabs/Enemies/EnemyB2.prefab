@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyB2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ae88091b1392444787c37b003768812, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -96,6 +100,11 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  triggerVictoryOnDeath: 0
+  forceRootHitbox: 0
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250
 --- !u!65 &8249279401286020332
 BoxCollider:
   m_ObjectHideFlags: 0
