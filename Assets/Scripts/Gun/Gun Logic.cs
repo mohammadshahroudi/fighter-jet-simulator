@@ -156,7 +156,7 @@ public class GunLogic : MonoBehaviour
         {
             // Apply damage if target has the IDamageable interface
             IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
-            if (damageable != null)
+            if (damageable != null && hit.collider.transform.root != transform.root)
             {
                 damageable.TakeDamage(damage);
             }
