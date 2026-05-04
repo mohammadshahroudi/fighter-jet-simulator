@@ -702,6 +702,7 @@ MonoBehaviour:
   - Ground
   crashVFXPrefab: {fileID: 9209252962504903126, guid: ded10f69f1fb84c22bea1cc912091d66, type: 3}
   gameInput: {fileID: 401267049}
+  boostMultiplier: 2
 --- !u!114 &318293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
   planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
+  playerStats: {fileID: 0}
 --- !u!114 &318293110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,7 +729,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd8c442f1a4a4ae098cfd7328a6ae5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  health: 100
+  maxHealth: 100
+  currentHealth: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &363043746
 PrefabInstance:
   m_ObjectHideFlags: 0
