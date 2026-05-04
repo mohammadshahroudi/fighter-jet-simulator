@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 293765085232980439}
   - component: {fileID: 7923270954048182842}
   - component: {fileID: 752915275160914740}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3816162423411543843}
   - component: {fileID: 770900855181640800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dolly Cart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5316606710686781303}
   - component: {fileID: 6029521629975832799}
   - component: {fileID: 176164902157119493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 4129233504173716689}
   - component: {fileID: 2150201901507275259}
   - component: {fileID: 5188837011519837483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 33566368691614851}
   - component: {fileID: 7336442544724093735}
   - component: {fileID: 7753506797731675078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Directional Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274780030183244249}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 250101736891222207}
   - component: {fileID: 2182709448201357428}
   - component: {fileID: 8935242918815922904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -5400,7 +5400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8313856215386913536}
   - component: {fileID: 8327413733677804923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UFO Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5437,10 +5437,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 10000
   currentHealth: 10000
-  triggerVictoryOnDeath: 1
-  forceRootHitbox: 1
-  rootHitboxCenter: {x: 0, y: 0, z: 0}
-  rootHitboxRadius: 250
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5459,6 +5455,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  triggerVictoryOnDeath: 1
+  forceRootHitbox: 1
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250
 --- !u!1 &6919770162056173111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5468,7 +5469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3460446460543361590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5501,7 +5502,7 @@ GameObject:
   - component: {fileID: 317395012767995475}
   - component: {fileID: 8550141744451420961}
   - component: {fileID: 717109359380416138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5592,7 +5593,7 @@ GameObject:
   - component: {fileID: 1328380249035869992}
   - component: {fileID: 3609526472095523071}
   - component: {fileID: 2328073049830602228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5703,7 +5704,7 @@ GameObject:
   - component: {fileID: 6355509162504477424}
   - component: {fileID: 2364179946345912621}
   - component: {fileID: 6742613361501389880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dolly Spline
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,7 +6,7 @@ public class PlaneCameraController : MonoBehaviour
     [SerializeField] private Transform plane;
 
     [Header("Follow Settings")]
-    [SerializeField] private float followDistance = 10f;
+    [SerializeField] private float followDistance = 5f;
     [SerializeField] private float followHeight = 3f;
 
     [Header("Damping")]
