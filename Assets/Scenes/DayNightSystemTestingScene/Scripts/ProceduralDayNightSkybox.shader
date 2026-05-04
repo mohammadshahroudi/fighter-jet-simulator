@@ -17,6 +17,13 @@ Shader "Skybox/Procedural Day Night URP"
         _SunIntensity("Sun Intensity", Range(0, 20)) = 4
         _SunDirection("Sun Direction", Vector) = (0, 1, 0, 0)
 
+        [Header(Moon)]
+        _MoonColor("Moon Color", Color) = (0.75, 0.85, 1.0, 1)
+        _MoonSize("Moon Size", Range(0.0001, 0.1)) = 0.025
+        _MoonGlowSize("Moon Glow Size", Range(0.01, 1.0)) = 0.15
+        _MoonIntensity("Moon Intensity", Range(0, 10)) = 2
+        _MoonDirection("Moon Direction", Vector) = (0, -1, 0, 0)
+
         [Header(General)]
         _Tint("Tint Color", Color) = (1, 1, 1, 1)
         _Exposure("Exposure", Range(0, 8)) = 1
@@ -70,6 +77,12 @@ Shader "Skybox/Procedural Day Night URP"
                 half _SunIntensity;
                 float4 _SunDirection;
 
+                half4 _MoonColor;
+                half _MoonSize;
+                half _MoonGlowSize;
+                half _MoonIntensity;
+                float4 _MoonDirection;
+
                 half4 _Tint;
                 half _Exposure;
                 float _Rotation;
@@ -110,23 +123,36 @@ Shader "Skybox/Procedural Day Night URP"
                 half4 dayColor = lerp(_DayHorizonColor, _DayTopColor, gradient);
                 half4 nightColor = lerp(_NightHorizonColor, _NightTopColor, gradient);
 
-                half4 finalColor = lerp(dayColor, nightColor, saturate(_Blend));
+                half blend = saturate(_Blend);
+                half4 finalColor = lerp(dayColor, nightColor, blend);
 
                 // Sun disk and glow
                 float3 sunDir = normalize(_SunDirection.xyz);
                 float sunDot = saturate(dot(dir, sunDir));
 
                 float sunDisk = smoothstep(1.0 - _SunSize, 1.0, sunDot);
-
                 float sunGlow = smoothstep(1.0 - _SunGlowSize, 1.0, sunDot);
                 sunGlow *= sunGlow;
 
-                float sunVisibility = 1.0 - saturate(_Blend);
-
+                float sunVisibility = 1.0 - blend;
                 half3 sunColor = _SunColor.rgb * _SunIntensity * sunVisibility;
 
                 finalColor.rgb += sunColor * sunGlow * 0.35;
                 finalColor.rgb += sunColor * sunDisk;
+
+                // Moon disk and glow
+                float3 moonDir = normalize(_MoonDirection.xyz);
+                float moonDot = saturate(dot(dir, moonDir));
+
+                float moonDisk = smoothstep(1.0 - _MoonSize, 1.0, moonDot);
+                float moonGlow = smoothstep(1.0 - _MoonGlowSize, 1.0, moonDot);
+                moonGlow *= moonGlow;
+
+                float moonVisibility = blend;
+                half3 moonColor = _MoonColor.rgb * _MoonIntensity * moonVisibility;
+
+                finalColor.rgb += moonColor * moonGlow * 0.20;
+                finalColor.rgb += moonColor * moonDisk;
 
                 // Final color controls
                 finalColor.rgb *= _Tint.rgb;

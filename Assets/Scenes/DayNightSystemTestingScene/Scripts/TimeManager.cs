@@ -85,8 +85,12 @@ public class TimeManager : MonoBehaviour {
 
         skyboxMaterial.SetFloat("_Blend", blend);
 
-        // Link the procedural sun disk to the actual Sun directional light set in the inspector
         skyboxMaterial.SetVector("_SunDirection", -sun.transform.forward);
+
+        if (moon != null)
+        {
+            skyboxMaterial.SetVector("_MoonDirection", -moon.transform.forward);
+        }
     }
     
     void UpdateLightSettings()
@@ -100,6 +104,7 @@ public class TimeManager : MonoBehaviour {
         if (skyboxMaterial != null)
         {
             skyboxMaterial.SetFloat("_SunIntensity", Mathf.Lerp(0f, 4f, lightIntensity));
+            skyboxMaterial.SetFloat("_MoonIntensity", Mathf.Lerp(2f, 0f, lightIntensity));
         }
 
         if (colorAdjustments == null)
@@ -110,10 +115,16 @@ public class TimeManager : MonoBehaviour {
         colorAdjustments.colorFilter.value = Color.Lerp(nightAmbientLight, dayAmbientLight, lightIntensity);
     }
 
-    void RotateSun() {
+    void RotateSun()
+    {
         float rotation = service.CalculateSunAngle();
+
         sun.transform.rotation = Quaternion.AngleAxis(rotation, Vector3.right);
-        // dial.rotation = Quaternion.Euler(0, 0, rotation + initialDialRotation);
+
+        if (moon != null)
+        {
+            moon.transform.rotation = Quaternion.AngleAxis(rotation + 180f, Vector3.right);
+        }
     }
 
     void UpdateTimeOfDay() {
