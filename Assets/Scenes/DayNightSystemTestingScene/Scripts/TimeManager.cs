@@ -73,20 +73,40 @@ public class TimeManager : MonoBehaviour {
         }
     }
 
-    void UpdateSkyBlend() {
+    void UpdateSkyBlend()
+    {
+        if (skyboxMaterial == null || sun == null)
+        {
+            return;
+        }
+
         float dotProduct = Vector3.Dot(sun.transform.forward, Vector3.up);
         float blend = Mathf.Lerp(0, 1, lightIntensityCurve.Evaluate(dotProduct));
-       skyboxMaterial.SetFloat("_Blend", blend);
+
+        skyboxMaterial.SetFloat("_Blend", blend);
+
+        // Link the procedural sun disk to the actual Sun directional light set in the inspector
+        skyboxMaterial.SetVector("_SunDirection", -sun.transform.forward);
     }
     
-    void UpdateLightSettings() {
+    void UpdateLightSettings()
+    {
         float dotProduct = Vector3.Dot(sun.transform.forward, Vector3.down);
         float lightIntensity = lightIntensityCurve.Evaluate(dotProduct);
-        
+
         sun.intensity = Mathf.Lerp(0, maxSunIntensity, lightIntensity);
         moon.intensity = Mathf.Lerp(maxMoonIntensity, 0, lightIntensity);
-        
-        if (colorAdjustments == null) return;
+
+        if (skyboxMaterial != null)
+        {
+            skyboxMaterial.SetFloat("_SunIntensity", Mathf.Lerp(0f, 4f, lightIntensity));
+        }
+
+        if (colorAdjustments == null)
+        {
+            return;
+        }
+
         colorAdjustments.colorFilter.value = Color.Lerp(nightAmbientLight, dayAmbientLight, lightIntensity);
     }
 
