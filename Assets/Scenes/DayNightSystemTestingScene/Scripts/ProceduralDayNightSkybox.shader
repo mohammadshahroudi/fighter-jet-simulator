@@ -16,6 +16,12 @@ Shader "Skybox/Procedural Day Night URP"
         _SunGlowSize("Sun Glow Size", Range(0.01, 1.0)) = 0.25
         _SunIntensity("Sun Intensity", Range(0, 20)) = 4
         _SunDirection("Sun Direction", Vector) = (0, 1, 0, 0)
+        
+        [Header(Sunrise Sunset)]
+        _SunsetColor("Sunset Color", Color) = (1.0, 0.35, 0.08, 1)
+        _SunsetIntensity("Sunset Intensity", Range(0, 5)) = 1.5
+        _SunsetHeight("Sunset Height", Range(0.01, 1.0)) = 0.35
+        _SunsetWidth("Sunset Width", Range(0.01, 1.0)) = 0.45
 
         [Header(Moon)]
         _MoonColor("Moon Color", Color) = (0.75, 0.85, 1.0, 1)
@@ -84,6 +90,11 @@ Shader "Skybox/Procedural Day Night URP"
                 half _SunGlowSize;
                 half _SunIntensity;
                 float4 _SunDirection;
+            
+                half4 _SunsetColor;
+                half _SunsetIntensity;
+                half _SunsetHeight;
+                half _SunsetWidth;
 
                 half4 _MoonColor;
                 half _MoonSize;
@@ -148,8 +159,28 @@ Shader "Skybox/Procedural Day Night URP"
                 half blend = saturate(_Blend);
                 half4 finalColor = lerp(dayColor, nightColor, blend);
 
-                // Sun disk and glow
+                // Sun direction
                 float3 sunDir = normalize(_SunDirection.xyz);
+
+                // Sunrise / sunset horizon glow
+                float sunNearHorizon = 1.0 - smoothstep(0.0, _SunsetWidth, abs(sunDir.y));
+                float sunAboveOrNearHorizon = smoothstep(-0.25, 0.15, sunDir.y);
+
+                // Strongest near the visual horizon, weaker overhead and below.
+                float horizonMask = 1.0 - smoothstep(0.0, _SunsetHeight, abs(dir.y));
+
+                // Stronger looking toward the sun, but still wraps around the horizon a bit.
+                float towardSun = saturate(dot(normalize(float3(dir.x, 0.0, dir.z)), normalize(float3(sunDir.x, 0.0, sunDir.z))));
+                float sunSideMask = lerp(0.35, 1.0, pow(towardSun, 2.0));
+
+                float sunsetAmount = sunNearHorizon * sunAboveOrNearHorizon * horizonMask * sunSideMask;
+
+                // Reduce sunset color once the scene is mostly night.
+                sunsetAmount *= 1.0 - smoothstep(0.65, 1.0, blend);
+
+                finalColor.rgb = lerp(finalColor.rgb, _SunsetColor.rgb, sunsetAmount * _SunsetIntensity);
+
+                // Sun disk and glow
                 float sunDot = saturate(dot(dir, sunDir));
 
                 float sunDisk = smoothstep(1.0 - _SunSize, 1.0, sunDot);
