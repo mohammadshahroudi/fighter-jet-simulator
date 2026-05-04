@@ -33,5 +33,5 @@ EditorBuildSettings:
     path: Assets/Scenes/RhuDev/Rhu_WorkScene.unity
     guid: cb95dd62262715c41a298c78d4f2c57a
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 08e9423f7d0f8314fae59364bc6d0149, type: 3}
   m_UseUCBPForAssetBundles: 0

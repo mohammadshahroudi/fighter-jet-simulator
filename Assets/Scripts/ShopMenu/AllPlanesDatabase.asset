@@ -16,11 +16,11 @@ MonoBehaviour:
   - planeId: Falcon X1
     planeName: Falcon X1
     gunType: 0
-    speed: 220
+    speed: 250
     health: 350
     damage: 25
     price: 0
-    state: 1
+    state: 2
     previewObject: {fileID: 0}
     planePrefab: {fileID: 4880688868680380564, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
   - planeId: Swift L1
@@ -60,6 +60,6 @@ MonoBehaviour:
     health: 1500
     damage: 60
     price: 3000
-    state: 2
+    state: 1
     previewObject: {fileID: 0}
     planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}
