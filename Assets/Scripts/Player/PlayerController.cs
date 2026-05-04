@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     
     [Header("Plane Stats")]
     [SerializeField] private float throttleIncrement     = 100f;
+    [SerializeField] private float throttleReturnSpeed   = 50f;
     [SerializeField] private float maxThrottle           = 800f;
     [SerializeField] private float maxSpeed              = 120f;
     [SerializeField] private float minSpeed              = 10f;
+    [SerializeField] private float normalThrottle        = 10f;
     [SerializeField] private float responsiveness        = 10f;
     [SerializeField] private float responseModifierValue = 10f;
     [SerializeField] private float inputDecaySpeed       = 50f;
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
             throttle = Mathf.Clamp(throttle + throttleIncrement, minSpeed, maxSpeed);
         else if (gameInput.GetThrottleDown())
             throttle = Mathf.Clamp(throttle - throttleIncrement, minSpeed, maxSpeed);
+        else
+            throttle = Mathf.MoveTowards(throttle, normalThrottle, throttleReturnSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -149,4 +153,8 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+    public void InitialiseSpeed(int baseSpeed)
+{
+    maxSpeed = baseSpeed;
+}
 }

@@ -301,8 +301,9 @@ public class GunLogic : MonoBehaviour
         // Use cone raycast system
         if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageable))
         {
-            // Apply damage if target found
-            if (damageable != null)
+            // Apply damage if target has the IDamageable interface
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+            if (damageable != null && hit.collider.transform.root != transform.root)
             {
                 damageable.TakeDamage(damage);
                 // Notify UI systems of hit
@@ -438,5 +439,11 @@ public class GunLogic : MonoBehaviour
     public Transform GetFirePoint()
     {
         return firePoint;
+    }
+
+    // Initialize gun damage from external data (e.g., shop/equipped plane)
+    public void InitialiseDamage(float baseDamage)
+    {
+        damage = baseDamage;
     }
 }
