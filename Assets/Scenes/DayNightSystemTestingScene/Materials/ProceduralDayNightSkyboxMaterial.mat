@@ -98,7 +98,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 0.83648455
+    - _Blend: 0.98781013
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -115,6 +115,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _MoonFadeEnd: -0.1
+    - _MoonFadeStart: 0.05
     - _MoonGlowSize: 0.01
     - _MoonIntensity: 2
     - _MoonSize: 0.005
@@ -133,8 +135,10 @@ Material:
     - _StarScale: 700
     - _StarTwinkleAmount: 0.4
     - _StarTwinkleSpeed: 2
+    - _SunFadeEnd: -0.2
+    - _SunFadeStart: -0.02
     - _SunGlowSize: 0.03
-    - _SunIntensity: 0
+    - _SunIntensity: 4
     - _SunSize: 0.015
     - _SunsetHeight: 0.35
     - _SunsetIntensity: 1.2
@@ -150,13 +154,13 @@ Material:
     - _DayTopColor: {r: 0.049999982, g: 0.34999996, b: 0.9, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MoonColor: {r: 0.75, g: 0.85, b: 1, a: 1}
-    - _MoonDirection: {r: -0, g: 0.17535783, b: -0.98450476, a: 0}
+    - _MoonDirection: {r: -0, g: 0.6746765, b: -0.7381135, a: 0}
     - _NightHorizonColor: {r: 0, g: 0.1137255, b: 0.3803922, a: 1}
     - _NightTopColor: {r: 0, g: 0.019607844, b: 0.121568635, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _StarColor: {r: 1, g: 1, b: 1, a: 1}
     - _SunColor: {r: 1, g: 0.85, b: 0.45, a: 1}
-    - _SunDirection: {r: -0, g: -0.17535798, b: 0.9845048, a: 0}
+    - _SunDirection: {r: -0, g: -0.6746764, b: 0.7381135, a: 0}
     - _SunsetColor: {r: 1, g: 0.34999996, b: 0.079999976, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

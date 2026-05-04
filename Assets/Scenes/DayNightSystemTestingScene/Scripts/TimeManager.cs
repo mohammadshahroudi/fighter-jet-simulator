@@ -99,12 +99,10 @@ public class TimeManager : MonoBehaviour {
         float lightIntensity = lightIntensityCurve.Evaluate(dotProduct);
 
         sun.intensity = Mathf.Lerp(0, maxSunIntensity, lightIntensity);
-        moon.intensity = Mathf.Lerp(maxMoonIntensity, 0, lightIntensity);
 
-        if (skyboxMaterial != null)
+        if (moon != null)
         {
-            skyboxMaterial.SetFloat("_SunIntensity", Mathf.Lerp(0f, 4f, lightIntensity));
-            skyboxMaterial.SetFloat("_MoonIntensity", Mathf.Lerp(2f, 0f, lightIntensity));
+            moon.intensity = Mathf.Lerp(maxMoonIntensity, 0, lightIntensity);
         }
 
         if (colorAdjustments == null)

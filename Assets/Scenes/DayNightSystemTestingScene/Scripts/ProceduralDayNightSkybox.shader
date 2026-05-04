@@ -17,6 +17,10 @@ Shader "Skybox/Procedural Day Night URP"
         _SunIntensity("Sun Intensity", Range(0, 20)) = 4
         _SunDirection("Sun Direction", Vector) = (0, 1, 0, 0)
         
+        [Header(Sun Horizon Fade)]
+        _SunFadeStart("Sun Fade Start", Range(-1, 1)) = 0.05
+        _SunFadeEnd("Sun Fade End", Range(-1, 1)) = -0.10
+        
         [Header(Sunrise Sunset)]
         _SunsetColor("Sunset Color", Color) = (1.0, 0.35, 0.08, 1)
         _SunsetIntensity("Sunset Intensity", Range(0, 5)) = 1.5
@@ -29,6 +33,10 @@ Shader "Skybox/Procedural Day Night URP"
         _MoonGlowSize("Moon Glow Size", Range(0.01, 1.0)) = 0.15
         _MoonIntensity("Moon Intensity", Range(0, 10)) = 2
         _MoonDirection("Moon Direction", Vector) = (0, -1, 0, 0)
+        
+        [Header(Moon Horizon Fade)]
+        _MoonFadeStart("Moon Fade Start", Range(-1, 1)) = 0.05
+        _MoonFadeEnd("Moon Fade End", Range(-1, 1)) = -0.10
         
         [Header(Stars)]
         _StarColor("Star Color", Color) = (1, 1, 1, 1)
@@ -91,6 +99,9 @@ Shader "Skybox/Procedural Day Night URP"
                 half _SunIntensity;
                 float4 _SunDirection;
             
+                half _SunFadeStart;
+                half _SunFadeEnd;
+            
                 half4 _SunsetColor;
                 half _SunsetIntensity;
                 half _SunsetHeight;
@@ -101,6 +112,9 @@ Shader "Skybox/Procedural Day Night URP"
                 half _MoonGlowSize;
                 half _MoonIntensity;
                 float4 _MoonDirection;
+            
+                half _MoonFadeStart;
+                half _MoonFadeEnd;
             
                 half4 _StarColor;
                 half _StarDensity;
@@ -170,7 +184,9 @@ Shader "Skybox/Procedural Day Night URP"
                 float horizonMask = 1.0 - smoothstep(0.0, _SunsetHeight, abs(dir.y));
 
                 // Stronger looking toward the sun, but still wraps around the horizon a bit.
-                float towardSun = saturate(dot(normalize(float3(dir.x, 0.0, dir.z)), normalize(float3(sunDir.x, 0.0, sunDir.z))));
+                float3 flatDir = normalize(float3(dir.x, 0.0, dir.z) + float3(0.0001, 0.0, 0.0001));
+                float3 flatSunDir = normalize(float3(sunDir.x, 0.0, sunDir.z) + float3(0.0001, 0.0, 0.0001));
+                float towardSun = saturate(dot(flatDir, flatSunDir));
                 float sunSideMask = lerp(0.35, 1.0, pow(towardSun, 2.0));
 
                 float sunsetAmount = sunNearHorizon * sunAboveOrNearHorizon * horizonMask * sunSideMask;
@@ -187,7 +203,9 @@ Shader "Skybox/Procedural Day Night URP"
                 float sunGlow = smoothstep(1.0 - _SunGlowSize, 1.0, sunDot);
                 sunGlow *= sunGlow;
 
-                float sunVisibility = 1.0 - blend;
+                // Fade based on whether the sun is above or below the horizon
+                float sunVisibility = smoothstep(_SunFadeEnd, _SunFadeStart, sunDir.y);
+                
                 half3 sunColor = _SunColor.rgb * _SunIntensity * sunVisibility;
 
                 finalColor.rgb += sunColor * sunGlow * 0.35;
@@ -201,7 +219,9 @@ Shader "Skybox/Procedural Day Night URP"
                 float moonGlow = smoothstep(1.0 - _MoonGlowSize, 1.0, moonDot);
                 moonGlow *= moonGlow;
 
-                float moonVisibility = blend;
+                // Fade based on whether the moon is above or below the horizon
+                float moonVisibility = smoothstep(_MoonFadeEnd, _MoonFadeStart, moonDir.y);
+                
                 half3 moonColor = _MoonColor.rgb * _MoonIntensity * moonVisibility;
 
                 finalColor.rgb += moonColor * moonGlow * 0.20;
