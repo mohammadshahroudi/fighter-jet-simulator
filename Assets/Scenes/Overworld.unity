@@ -689,9 +689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   throttleIncrement: 100
+  throttleReturnSpeed: 150
   maxThrottle: 800
   maxSpeed: 120
   minSpeed: 10
+  normalThrottle: 60
   responsiveness: 10
   responseModifierValue: 10
   inputDecaySpeed: 50
