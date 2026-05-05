@@ -83,6 +83,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
             #pragma target 3.5
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fog
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -121,6 +122,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 float4 positionCS  : SV_POSITION;
                 float3 worldPos    : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
+                float fogFactor     : TEXCOORD2;
             };
 
             Varyings vert(Attributes IN)
@@ -132,6 +134,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 OUT.positionCS = posInputs.positionCS;
                 OUT.worldPos = posInputs.positionWS;
                 OUT.worldNormal = normalize(normalInputs.normalWS);
+                OUT.fogFactor = ComputeFogFactor(OUT.positionCS.z);
                 return OUT;
             }
 
@@ -299,6 +302,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 half3 lighting = ambient + mainLight.color * ndotl * mainLight.distanceAttenuation;
 
                 half3 finalColor = albedo * lighting;
+                finalColor = MixFog(finalColor, IN.fogFactor);
                 return half4(finalColor, 1.0);
             }
             ENDHLSL
