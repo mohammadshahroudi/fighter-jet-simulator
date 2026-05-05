@@ -624,6 +624,13 @@ MonoBehaviour:
   laserDuration: 2.5
   fireSfx: {fileID: 8300000, guid: 319a7124d55240f4b87d7104bae91710, type: 3}
   firePitchRange: {x: 0.95, y: 1.05}
+  deathEffectPrefab: {fileID: 0}
+  deathSmokeEffect: {fileID: 4272183399077754551, guid: 3ad589c8eedc5154cacb4f3d088c87ee, type: 3}
+  deathSfx: {fileID: 8300000, guid: 58eaa125a999dff4ba0d48cc6d581b0f, type: 3}
+  destroyDelay: 3
+  deathShakeDuration: 0.25
+  deathShakeStrength: 0.35
+  hitStopDuration: 0.06
 --- !u!114 &5951158057909187671
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IHealthProvider
@@ -37,7 +38,7 @@ public class EnemyFighterAI : MonoBehaviour
 
     [Header("Evasion")]
     [Tooltip("Chance per second to trigger a dodge")]
-    public float evasionChance = 0.25f;
+    public float evasionChance = 0.05f;
     public float evasionDuration = 1.2f;
 
     [Header("Phase Change (damaged behaviour)")]
@@ -99,6 +100,17 @@ public class EnemyFighterAI : MonoBehaviour
     public AudioClip fireSfx;
     public Vector2 firePitchRange = new Vector2(0.95f, 1.05f);
 
+    [Header("Death FX")]
+    public GameObject deathEffectPrefab;
+    public ParticleSystem deathSmokeEffect;
+    public AudioClip deathSfx;
+    public float destroyDelay = 3f;
+
+    [Header("Death Impact")]
+    public float deathShakeDuration = 0.25f;
+    public float deathShakeStrength = 0.35f;
+    public float hitStopDuration = 0.06f;
+
     private enum AIState
     {
         Approach,
@@ -119,6 +131,7 @@ public class EnemyFighterAI : MonoBehaviour
     private float _stateTimer;
     private float _evasionTimer;
     private bool _isDamaged;
+    private bool _isDead;
 
     private bool _nearMissActive;
     private float _nearMissTimer;
@@ -542,7 +555,7 @@ public class EnemyFighterAI : MonoBehaviour
 
     private void HandleFiring()
     {
-        if (_state != AIState.AttackRun) return;
+        if (_isDead || _state != AIState.AttackRun) return;
         if (_player == null) return;
         if (_centerPassActive) return; // do not fire during camera-center pass
 
@@ -653,28 +666,28 @@ protected virtual void FireAtPlayer()
     }
 
     private void TryRandomEvasion()
-{
-    if (_state == AIState.Evade || _centerPassActive) return;
-
-    _evasionTimer -= Time.deltaTime;
-    if (_evasionTimer > 0f) return;
-
-    // Random interval so enemies do not all evaluate evasion together.
-    _evasionTimer = Random.Range(0.4f, 1.6f);
-
-    float chance = evasionChance * _evasionBias;
-
-    if (_isDamaged)
-        chance *= 1.5f;
-
-    if (Random.value < chance)
     {
-        TransitionTo(AIState.Evade);
+        if (_state == AIState.Evade || _centerPassActive) return;
 
-        // Cooldown after dodging so they do not chain-roll constantly.
-        _evasionTimer = Random.Range(1.2f, 2.5f);
-    }
-}   
+        _evasionTimer -= Time.deltaTime;
+        if (_evasionTimer > 0f) return;
+
+        // Random interval so enemies do not all evaluate evasion together.
+        _evasionTimer = Random.Range(0.4f, 1.6f);
+
+        float chance = evasionChance * _evasionBias;
+
+        if (_isDamaged)
+            chance *= 1.5f;
+
+        if (Random.value < chance)
+        {
+            TransitionTo(AIState.Evade);
+
+            // Cooldown after dodging so they do not chain-roll constantly.
+            _evasionTimer = Random.Range(1.2f, 2.5f);
+        }
+    }   
 
     private void CheckDamagedPhase()
     {
@@ -684,8 +697,10 @@ protected virtual void FireAtPlayer()
         float fraction = _healthProvider.CurrentHealth / max;
         _isDamaged = fraction <= damagedThreshold;
 
-        if (_healthProvider.CurrentHealth <= 0f && _state != AIState.Disabled)
-            TransitionTo(AIState.Disabled);
+        if (_healthProvider.CurrentHealth <= 0f && !_isDead)
+        {
+            OnDeath();
+        }
     }
 
     private bool IsPlayerOrSelf(Transform hitTransform)
@@ -697,42 +712,96 @@ protected virtual void FireAtPlayer()
     }
 
 private void SpawnConditionalLaser(Vector3 origin, Vector3 endPoint, bool trackPlayer)
-{
-    if (laserLinePrefab == null)
-        return;
+    {
+        if (laserLinePrefab == null)
+            return;
 
-    LineRenderer beam = Instantiate(laserLinePrefab, Vector3.zero, Quaternion.identity);
+        LineRenderer beam = Instantiate(laserLinePrefab, Vector3.zero, Quaternion.identity);
 
-    LaserBeamTracker tracker = beam.GetComponent<LaserBeamTracker>();
-    if (tracker == null)
-        tracker = beam.gameObject.AddComponent<LaserBeamTracker>();
+        LaserBeamTracker tracker = beam.GetComponent<LaserBeamTracker>();
+        if (tracker == null)
+            tracker = beam.gameObject.AddComponent<LaserBeamTracker>();
 
-    Transform start = firePoint != null ? firePoint : transform;
+        Transform start = firePoint != null ? firePoint : transform;
 
-    tracker.Initialise(
-        beam,
-        start,
-        _player,
-        laserDuration,
-        trackPlayer,            // 🔥 KEY PART
-        endPoint,
-        Vector3.up * 1.5f       // slight aim offset
-    );
-}
+        tracker.Initialise(
+            beam,
+            start,
+            _player,
+            laserDuration,
+            trackPlayer,            
+            endPoint,
+            Vector3.up * 1.5f       // slight aim offset
+        );
+    }
 
 private void PlayLaserSoundFromEnemy()
+    {
+        if (fireSfx == null)
+            return;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f;
+        audioSource.pitch = Random.Range(firePitchRange.x, firePitchRange.y);
+        audioSource.PlayOneShot(fireSfx);
+    }
+
+private void OnDeath()
 {
-    if (fireSfx == null)
-        return;
+    _isDead = true;
 
-    AudioSource audioSource = GetComponent<AudioSource>();
-    if (audioSource == null)
-        audioSource = gameObject.AddComponent<AudioSource>();
+    TransitionTo(AIState.Disabled);
 
-    audioSource.playOnAwake = false;
-    audioSource.spatialBlend = 1f;
-    audioSource.pitch = Random.Range(firePitchRange.x, firePitchRange.y);
-    audioSource.PlayOneShot(fireSfx);
+    _centerPassActive = false;
+    _nearMissActive = false;
+
+    if (deathSmokeEffect != null)
+        deathSmokeEffect.Play();
+
+    if (deathEffectPrefab != null)
+    {
+        GameObject fx = Instantiate(deathEffectPrefab, transform.position, Random.rotation);
+        Destroy(fx, 5f);
+    }
+
+    if (deathSfx != null)
+        AudioSource.PlayClipAtPoint(deathSfx, transform.position);
+
+    Camera mainCam = Camera.main;
+    if (mainCam != null)
+    {
+        CameraShake shake = mainCam.GetComponent<CameraShake>();
+
+        if (shake == null)
+            shake = mainCam.gameObject.AddComponent<CameraShake>();
+
+        shake.Shake(deathShakeDuration, deathShakeStrength);
+    }
+
+    StartCoroutine(HitStopRoutine());
+
+    foreach (Collider col in GetComponentsInChildren<Collider>())
+        col.enabled = false;
+
+    Destroy(gameObject, destroyDelay);
+}
+
+private IEnumerator HitStopRoutine()
+{
+    float originalTimeScale = Time.timeScale;
+    float originalFixedDeltaTime = Time.fixedDeltaTime;
+
+    Time.timeScale = 0.05f;
+    Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
+
+    yield return new WaitForSecondsRealtime(hitStopDuration);
+
+    Time.timeScale = originalTimeScale;
+    Time.fixedDeltaTime = originalFixedDeltaTime;
 }
 
 
