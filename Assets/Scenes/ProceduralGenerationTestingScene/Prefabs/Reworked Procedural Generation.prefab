@@ -460,7 +460,7 @@ MonoBehaviour:
     visibleDstThreshold: 100
   - lod: 1
     visibleDstThreshold: 250
-  - lod: 4
+  - lod: 2
     visibleDstThreshold: 400
   meshSettings: {fileID: 11400000, guid: 2d8f1d3013657f643854813b776f5275, type: 2}
   heightMapSettings: {fileID: 11400000, guid: 768bf46238e3e834ca2c329e7fc37e49, type: 2}

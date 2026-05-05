@@ -2785,6 +2785,10 @@ PrefabInstance:
       propertyPath: viewer
       value: 
       objectReference: {fileID: 318293104}
+    - target: {fileID: 6534786346669763931, guid: 796a0e7ad139c6b45b4685f69861f5f1, type: 3}
+      propertyPath: detailLevels.Array.data[2].lod
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
