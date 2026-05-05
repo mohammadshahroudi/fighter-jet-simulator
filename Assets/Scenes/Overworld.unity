@@ -574,6 +574,19 @@ MonoBehaviour:
   hudRoot: {fileID: 1598733452}
   gameOverSFX: {fileID: 8300000, guid: 3c982c15745bd4840ba123a5f3b1cf71, type: 3}
   victorySFX: {fileID: 8300000, guid: 18bd2e60cc2544244bc60dc3b98303cb, type: 3}
+  gameStartMusic: {fileID: 8300000, guid: b68ea7341649349a0aea117e76c62de4, type: 3}
+  gameplayMusicLoop: {fileID: 8300000, guid: f8477ed576aa043338dfaff074889c02, type: 3}
+  bossIntroMusic: {fileID: 8300000, guid: 1be5be83a6b1c4ca7a508496f9df6907, type: 3}
+  bossBattleMusicLoop: {fileID: 8300000, guid: e03a478c651da4ea3a4b3fdb2f3ff7c3, type: 3}
+  gameWonMusic: {fileID: 8300000, guid: 42aa888ceed204949a1dd889cd03f7f9, type: 3}
+  musicVolume: 0.8
+  gameStartMusicVolume: 0.8
+  gameplayMusicVolume: 0.8
+  bossIntroMusicVolume: 1
+  bossBattleMusicVolume: 0.85
+  gameWonMusicVolume: 0.9
+  bossTargetOverride: {fileID: 0}
+  planeCameraController: {fileID: 0}
 --- !u!4 &215317336
 Transform:
   m_ObjectHideFlags: 0

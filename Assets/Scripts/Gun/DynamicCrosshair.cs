@@ -25,6 +25,7 @@ public class DynamicCrosshair : MonoBehaviour
     private Color targetColor;
     private float nextCheckTime;
     private Transform firePoint;
+    private Transform ownerRoot;
 
     void Start()
     {
@@ -36,6 +37,15 @@ public class DynamicCrosshair : MonoBehaviour
         if (gunLogic != null)
         {
             firePoint = gunLogic.GetFirePoint();
+            if (firePoint != null)
+            {
+                ownerRoot = firePoint.root;
+            }
+        }
+
+        if (targetLayers.value == 0)
+        {
+            targetLayers = Physics.DefaultRaycastLayers;
         }
 
         if (crosshairSprite == null)
@@ -71,6 +81,20 @@ public class DynamicCrosshair : MonoBehaviour
 
     void CheckForTargets()
     {
+        if (gunLogic == null)
+        {
+            gunLogic = FindObjectOfType<GunLogic>();
+        }
+
+        if (firePoint == null && gunLogic != null)
+        {
+            firePoint = gunLogic.GetFirePoint();
+            if (firePoint != null)
+            {
+                ownerRoot = firePoint.root;
+            }
+        }
+
         if (firePoint == null)
         {
             targetColor = defaultColor;
@@ -84,9 +108,16 @@ public class DynamicCrosshair : MonoBehaviour
         if (ignoreClouds)
         {
             int cloudLayer = LayerMask.NameToLayer("Cloud");
+            int cloudsLayer = LayerMask.NameToLayer("Clouds");
+
             if (cloudLayer >= 0)
             {
                 effectiveLayers &= ~(1 << cloudLayer);
+            }
+
+            if (cloudsLayer >= 0)
+            {
+                effectiveLayers &= ~(1 << cloudsLayer);
             }
         }
 
@@ -102,7 +133,7 @@ public class DynamicCrosshair : MonoBehaviour
         // Center ray
         if (Physics.Raycast(origin, centerDirection, out RaycastHit hit, targetCheckRange, layers))
         {
-            if (hit.collider.GetComponentInParent<IDamageable>() != null)
+            if (IsValidDamageableHit(hit))
             {
                 return true;
             }
@@ -127,7 +158,7 @@ public class DynamicCrosshair : MonoBehaviour
 
             if (Physics.Raycast(origin, rayDirection, out RaycastHit coneHit, targetCheckRange, layers))
             {
-                if (coneHit.collider.GetComponentInParent<IDamageable>() != null)
+                if (IsValidDamageableHit(coneHit))
                 {
                     return true;
                 }
@@ -145,5 +176,21 @@ public class DynamicCrosshair : MonoBehaviour
     public void SetTargetColor(Color color)
     {
         targetAcquiredColor = color;
+    }
+
+    private bool IsValidDamageableHit(RaycastHit hit)
+    {
+        IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+        if (damageable == null)
+        {
+            return false;
+        }
+
+        if (ownerRoot != null && hit.collider.transform.root == ownerRoot)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
