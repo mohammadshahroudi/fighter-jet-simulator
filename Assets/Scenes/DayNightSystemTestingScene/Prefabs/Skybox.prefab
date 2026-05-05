@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4554614778726105013}
   m_Layer: 0
-  m_Name: -- Skybox --
+  m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
