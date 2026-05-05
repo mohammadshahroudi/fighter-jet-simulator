@@ -59,6 +59,10 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
         _LayerCount("Layer Count", Int) = 0
         _MinHeight("Min Height", Float) = 0
         _MaxHeight("Max Height", Float) = 1
+
+        _TerrainFadeStart("Terrain Fade Start", Float) = 330
+        _TerrainFadeEnd("Terrain Fade End", Float) = 430
+        _DitherStrength("Dither Strength", Range(0,1)) = 1
     }
 
     SubShader
@@ -72,7 +76,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
 
         Pass
         {
-            Name "ForwardUnlitButManuallyLit"
+            Name "ForwardUnlitButManuallyLitFogDither"
             Tags { "LightMode"="SRPDefaultUnlit" }
 
             Cull Back
@@ -109,6 +113,9 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 int _LayerCount;
                 float _MinHeight;
                 float _MaxHeight;
+                float _TerrainFadeStart;
+                float _TerrainFadeEnd;
+                float _DitherStrength;
             CBUFFER_END
 
             struct Attributes
@@ -122,7 +129,8 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 float4 positionCS  : SV_POSITION;
                 float3 worldPos    : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
-                float fogFactor     : TEXCOORD2;
+                float fogFactor    : TEXCOORD2;
+                float4 screenPos   : TEXCOORD3;
             };
 
             Varyings vert(Attributes IN)
@@ -135,6 +143,7 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 OUT.worldPos = posInputs.positionWS;
                 OUT.worldNormal = normalize(normalInputs.normalWS);
                 OUT.fogFactor = ComputeFogFactor(OUT.positionCS.z);
+                OUT.screenPos = ComputeScreenPos(OUT.positionCS);
                 return OUT;
             }
 
@@ -264,8 +273,32 @@ Shader "Custom/Terrain8LayerURP_LitVersion"
                 );
             }
 
+            float InterleavedGradientNoise(float2 screenPixel)
+            {
+                return frac(52.9829189 * frac(dot(screenPixel, float2(0.06711056, 0.00583715))));
+            }
+
+            void ApplyDistanceDitherClip(Varyings IN)
+            {
+                float fadeRange = max(_TerrainFadeEnd - _TerrainFadeStart, 0.001);
+                float distToCamera = distance(IN.worldPos, _WorldSpaceCameraPos);
+                float fade = saturate((_TerrainFadeEnd - distToCamera) / fadeRange);
+
+                float2 screenUV = IN.screenPos.xy / max(IN.screenPos.w, 1e-6);
+                float2 screenPixel = screenUV * _ScreenParams.xy;
+                float dither = InterleavedGradientNoise(screenPixel);
+
+                // _DitherStrength lets you turn this effect down from the material.
+                // At 1, the distant terrain fully dithers away inside the fade band.
+                // At 0, the clip threshold is effectively disabled.
+                float threshold = lerp(-1.0, dither, _DitherStrength);
+                clip(fade - threshold);
+            }
+
             half4 frag(Varyings IN) : SV_Target
             {
+                ApplyDistanceDitherClip(IN);
+
                 float heightPercent = inverseLerp(_MinHeight, _MaxHeight, IN.worldPos.y);
                 float3 blendAxes = getBlendAxes(normalize(IN.worldNormal));
 

@@ -189,6 +189,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DitherStrength: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnableExternalAlpha: 0
@@ -222,6 +223,8 @@ Material:
     - _StartHeight6: 0.9
     - _StartHeight7: 2
     - _Surface: 0
+    - _TerrainFadeEnd: 430
+    - _TerrainFadeStart: 330
     - _TextureScale0: 20
     - _TextureScale1: 20
     - _TextureScale2: 20
