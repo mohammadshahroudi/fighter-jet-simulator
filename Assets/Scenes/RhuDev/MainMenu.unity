@@ -531,6 +531,7 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+<<<<<<< HEAD
 --- !u!1 &1719396858
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +661,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 4c6033f (update)
 --- !u!1 &1936490589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,4 +1147,7 @@ SceneRoots:
   - {fileID: 1936490593}
   - {fileID: 98601309}
   - {fileID: 6669925149440456110}
+<<<<<<< HEAD
   - {fileID: 1719396860}
+=======
+>>>>>>> parent of 4c6033f (update)
