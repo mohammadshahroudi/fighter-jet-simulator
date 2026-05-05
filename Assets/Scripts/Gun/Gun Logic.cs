@@ -46,7 +46,7 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private LineRenderer tracerLine;
 
     [Header("Tracer Settings")]
-    [SerializeField] private float tracerDuration = 0.3f;
+    [SerializeField] private float tracerDuration = 0.08f;
     [SerializeField] private float tracerWidth = 0.15f;
     [SerializeField] private Gradient tracerColorGradient;
     [SerializeField] private float tracerBrightness = 2.0f;
