@@ -211,6 +211,8 @@ public class MeshData
 	int edgeConnectionVertexIndex;
 
 	bool useFlatShading;
+	
+	int highestUsedVertexIndex = -1;
 
 	public MeshData(int numVertsPerLine, int skipIncrement, bool useFlatShading)
 	{
@@ -237,12 +239,27 @@ public class MeshData
 	{
 		if (vertexIndex < 0)
 		{
-			outOfMeshVertices[-vertexIndex - 1] = vertexPosition;
+			int outOfMeshIndex = -vertexIndex - 1;
+
+			if (outOfMeshIndex >= outOfMeshVertices.Length)
+			{
+				Debug.LogError($"Out-of-mesh vertex index {outOfMeshIndex} exceeded array size {outOfMeshVertices.Length}.");
+				return;
+			}
+
+			outOfMeshVertices[outOfMeshIndex] = vertexPosition;
 		}
 		else
 		{
+			if (vertexIndex >= vertices.Length)
+			{
+				Debug.LogError($"Mesh vertex index {vertexIndex} exceeded array size {vertices.Length}. Try lowering the max LOD or increasing allocation safety.");
+				return;
+			}
+
 			vertices[vertexIndex] = vertexPosition;
 			uvs[vertexIndex] = uv;
+			highestUsedVertexIndex = Mathf.Max(highestUsedVertexIndex, vertexIndex);
 		}
 	}
 
@@ -321,8 +338,10 @@ public class MeshData
 
 	void ProcessEdgeConnectionVertices()
 	{
-		foreach (EdgeConnectionVertexData e in edgeConnectionVertices)
+		for (int i = 0; i < edgeConnectionVertexIndex; i++)
 		{
+			EdgeConnectionVertexData e = edgeConnectionVertices[i];
+
 			bakedNormals[e.vertexIndex] = bakedNormals[e.mainVertexAIndex] * (1 - e.dstPercentFromAToB) + bakedNormals[e.mainVertexBIndex] * e.dstPercentFromAToB;
 		}
 	}
