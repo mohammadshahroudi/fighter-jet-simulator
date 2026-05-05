@@ -46,11 +46,12 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private LineRenderer tracerLine;
 
     [Header("Tracer Settings")]
-    [SerializeField] private float tracerDuration = 0.3f;
+    [SerializeField] private float tracerDuration = 0.08f;
     [SerializeField] private float tracerWidth = 0.15f;
     [SerializeField] private Gradient tracerColorGradient;
     [SerializeField] private float tracerBrightness = 2.0f;
     [SerializeField] private Material tracerMaterial;
+    [SerializeField] private int tracerPoolSize = 20;
 
     [SerializeField] private float impactEffectLifetime = 1f;
 
@@ -66,6 +67,10 @@ public class GunLogic : MonoBehaviour
     private GameObject activeImpact;
 
     private int cloudLayer = -1;
+
+    // Tracer pool
+    private System.Collections.Generic.Queue<LineRenderer> tracerPool;
+    private System.Collections.Generic.List<LineRenderer> activeTracers;
 
     // Event system for UI feedback
     public System.Action<Vector3> OnTargetHit;
@@ -88,28 +93,50 @@ public class GunLogic : MonoBehaviour
             ApplyAutoIgnoredLayers();
         }
 
+        InitializeTracerPool();
+    }
+
+    void InitializeTracerPool()
+    {
+        tracerPool = new System.Collections.Generic.Queue<LineRenderer>();
+        activeTracers = new System.Collections.Generic.List<LineRenderer>();
+
+        // Use tracerLine as template if available, otherwise create basic setup
+        GameObject tracerParent = new GameObject("TracerPool");
+        tracerParent.transform.SetParent(transform);
+
+        for (int i = 0; i < tracerPoolSize; i++)
+        {
+            GameObject tracerObj = new GameObject($"Tracer_{i}");
+            tracerObj.transform.SetParent(tracerParent.transform);
+
+            LineRenderer lr = tracerObj.AddComponent<LineRenderer>();
+            SetupTracerLineRenderer(lr);
+
+            lr.enabled = false;
+            tracerPool.Enqueue(lr);
+        }
+
+        // Disable the old tracerLine reference if it exists
         if (tracerLine != null)
         {
-            tracerLine.positionCount = 2;
-            tracerLine.useWorldSpace = true;
             tracerLine.enabled = false;
-
-            SetupEnhancedTracer();
         }
     }
 
-    void SetupEnhancedTracer()
+    void SetupTracerLineRenderer(LineRenderer lr)
     {
-        if (tracerLine == null) return;
+        lr.positionCount = 2;
+        lr.useWorldSpace = true;
 
         // Width settings
-        tracerLine.startWidth = tracerWidth;
-        tracerLine.endWidth = tracerWidth * 0.5f;
+        lr.startWidth = tracerWidth;
+        lr.endWidth = tracerWidth * 0.5f;
 
         // Color gradient setup
         if (tracerColorGradient != null && tracerColorGradient.colorKeys.Length > 0)
         {
-            tracerLine.colorGradient = tracerColorGradient;
+            lr.colorGradient = tracerColorGradient;
         }
         else
         {
@@ -127,19 +154,23 @@ public class GunLogic : MonoBehaviour
                     new GradientAlphaKey(0.7f, 1f)
                 }
             );
-            tracerLine.colorGradient = defaultGradient;
+            lr.colorGradient = defaultGradient;
         }
 
         // Material setup
         if (tracerMaterial != null)
         {
-            tracerLine.material = tracerMaterial;
+            lr.material = tracerMaterial;
+        }
+        else if (tracerLine != null && tracerLine.material != null)
+        {
+            lr.material = tracerLine.material;
         }
 
         // Quality settings
-        tracerLine.numCornerVertices = 4;
-        tracerLine.numCapVertices = 4;
-        tracerLine.alignment = LineAlignment.View;
+        lr.numCornerVertices = 4;
+        lr.numCapVertices = 4;
+        lr.alignment = LineAlignment.View;
     }
 
     void ApplyAutoIgnoredLayers()
@@ -302,7 +333,6 @@ public class GunLogic : MonoBehaviour
         if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageable))
         {
             // Apply damage if target has the IDamageable interface
-            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
             if (damageable != null && hit.collider.transform.root != transform.root)
             {
                 damageable.TakeDamage(damage);
@@ -334,41 +364,62 @@ public class GunLogic : MonoBehaviour
         }
     }
 
-    System.Collections.IEnumerator ShowTracer(Vector3 startPoint, Vector3 endPoint)
+    LineRenderer GetTracerFromPool()
     {
-        if (tracerLine == null) yield break;
+        if (tracerPool.Count > 0)
+        {
+            return tracerPool.Dequeue();
+        }
 
-        tracerLine.SetPosition(0, startPoint);
-        tracerLine.SetPosition(1, endPoint);
-        tracerLine.enabled = true;
+        // Pool exhausted, reuse oldest active tracer
+        if (activeTracers.Count > 0)
+        {
+            LineRenderer oldest = activeTracers[0];
+            activeTracers.RemoveAt(0);
+            return oldest;
+        }
+
+        return null;
+    }
+
+    void ReturnTracerToPool(LineRenderer lr)
+    {
+        if (lr == null) return;
+
+        lr.enabled = false;
+        activeTracers.Remove(lr);
+        tracerPool.Enqueue(lr);
+    }
+
+    System.Collections.IEnumerator ShowTracer(LineRenderer lr, Vector3 startPoint, Vector3 endPoint)
+    {
+        if (lr == null) yield break;
+
+        lr.SetPosition(0, startPoint);
+        lr.SetPosition(1, endPoint);
+        lr.enabled = true;
 
         yield return new WaitForSeconds(tracerDuration);
 
-        tracerLine.enabled = false;
+        ReturnTracerToPool(lr);
     }
 
     void SpawnRaycastTracer(Vector3 startPoint, Vector3 endPoint)
     {
-        if (tracerLine != null)
+        LineRenderer lr = GetTracerFromPool();
+        if (lr != null)
         {
-            StartCoroutine(ShowTracer(startPoint, endPoint));
+            activeTracers.Add(lr);
+            StartCoroutine(ShowTracer(lr, startPoint, endPoint));
         }
     }
 
     void SpawnImpactEffect(Vector3 point, Vector3 normal)
     {
         if (impactEffect == null) return;
-        if (Time.time - lastImpactTime < fireRate) return;
 
-        lastImpactTime = Time.time;
-
-        if (activeImpact != null)
-        {
-            Destroy(activeImpact);
-        }
-
-        activeImpact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
-        Destroy(activeImpact, impactEffectLifetime);
+        GameObject impact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
+        Destroy(impact, impactEffectLifetime);
     }
 
     void PlayShotSound()

@@ -366,6 +366,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   tracerBrightness: 2
   tracerMaterial: {fileID: 2100000, guid: 776677ab3818fb249adaca05f4e04545, type: 2}
+  tracerPoolSize: 20
   impactEffectLifetime: 1
   drawDebugRays: 0
   debugRayDuration: 0.1
@@ -880,15 +881,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.18
+      value: 20.36
       objectReference: {fileID: 0}
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.18
+      value: 20.36
       objectReference: {fileID: 0}
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.18
+      value: 20.36
       objectReference: {fileID: 0}
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalPosition.x
@@ -900,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40
+      value: 1017
       objectReference: {fileID: 0}
     - target: {fileID: 2717287322071737201, guid: df253e902e69a40e5bd7c8cb8fae7163, type: 3}
       propertyPath: m_LocalRotation.w
