@@ -302,10 +302,10 @@ public class GunLogic : MonoBehaviour
         if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageable))
         {
             // Apply damage if target has the IDamageable interface
-            IDamageable damageable1 = hit.collider.GetComponentInParent<IDamageable>();
-            if (damageable1 != null && hit.collider.transform.root != transform.root)
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+            if (damageable != null && hit.collider.transform.root != transform.root)
             {
-                damageable1.TakeDamage(damage);
+                damageable.TakeDamage(damage);
                 // Notify UI systems of hit
                 OnTargetHit?.Invoke(hit.point);
             }

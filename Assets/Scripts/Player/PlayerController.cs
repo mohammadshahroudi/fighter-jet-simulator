@@ -1,12 +1,7 @@
 using UnityEngine;
 
-// [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
-    /*AudioSource audioSource;
-    public AudioClip explosion;
-    public AudioClip missileLaunch;*/
-    
     [Header("Plane Stats")]
     [SerializeField] private float throttleIncrement     = 100f;
     [SerializeField] private float throttleReturnSpeed   = 50f;
@@ -43,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        // audioSource = GetComponent<AudioSource>();
         if (Instance != null)
         {
             Debug.LogWarning("More than one PlayerController instance found!");
@@ -134,8 +128,6 @@ public class PlayerController : MonoBehaviour
     private void PlaneCrash(Vector3 impactPoint)
     {
         hasCrashed = true;
-        // if the plane crashes then the explosion sound occurs
-        // audioSource.PlayOneShot(explosion);
 
         if (crashVFXPrefab != null)
             Instantiate(crashVFXPrefab, impactPoint, Quaternion.identity);
