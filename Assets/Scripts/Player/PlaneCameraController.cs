@@ -6,19 +6,32 @@ public class PlaneCameraController : MonoBehaviour
     [SerializeField] private Transform plane;
 
     [Header("Follow Settings")]
-    [SerializeField] private float followDistance = 10f;
+    [SerializeField] private float followDistance = 5f;
     [SerializeField] private float followHeight = 3f;
+    [SerializeField] private float minDistance = 3f;
+    [SerializeField] private float maxDistanceFromPlane = 8f;
+    [SerializeField] private bool lockPositionToPlane = false;
 
     [Header("Damping")]
-    [SerializeField] private float positionDamping = 5f;
+    [SerializeField] private float positionDamping = 25f;
     [SerializeField] private float yawDamping     = 4f;
     [SerializeField] private float pitchDamping   = 3f;
-    [SerializeField] private float rollDamping    = 1.5f;
+    [SerializeField] private float rollDamping    = 3f;
+
+    [Header("Collision")]
+    [SerializeField] private bool enableCollisionAvoidance = true;
+    [SerializeField] private float collisionRadius = 0.5f;
+    [SerializeField] private LayerMask collisionLayers = ~0;
+
+    [Header("Cinematic")]
+    [SerializeField] private float cinematicLookDamping = 8f;
 
     private Vector3 currentPosition;
     private float currentYaw;
     private float currentPitch;
     private float currentRoll;
+    private Transform cinematicLookTarget;
+    private float cinematicLookUntilUnscaledTime;
 
     // Converts a damping rate into an exponential decay factor
     private static float DecayFactor(float rate, float dt) => 1f - Mathf.Exp(-rate * dt);
@@ -51,12 +64,79 @@ public class PlaneCameraController : MonoBehaviour
         Vector3 offset = new Vector3(0, followHeight, -followDistance);
         Vector3 targetPosition = plane.position + laggedRotation * offset;
 
-        float posDecay = DecayFactor(positionDamping, dt);
-        currentPosition += (targetPosition - currentPosition) * posDecay;
+        // --- 4. Collision avoidance ---
+        if (enableCollisionAvoidance)
+        {
+            Vector3 directionToCamera = (targetPosition - plane.position).normalized;
+            float desiredDistance = Vector3.Distance(plane.position, targetPosition);
 
-        // --- 4. Apply ---
+            if (Physics.SphereCast(plane.position, collisionRadius, directionToCamera,
+                out RaycastHit hit, desiredDistance, collisionLayers))
+            {
+                // Place camera just before the collision point
+                targetPosition = plane.position + directionToCamera * Mathf.Max(hit.distance - collisionRadius, minDistance);
+            }
+        }
+
+        // --- 5. Position update ---
+        if (lockPositionToPlane)
+        {
+            // Camera position is locked relative to plane - no lag
+            currentPosition = targetPosition;
+        }
+        else
+        {
+            // Smooth position with damping
+            float posDecay = DecayFactor(positionDamping, dt);
+            currentPosition += (targetPosition - currentPosition) * posDecay;
+        }
+
+        // --- 6. Clamp max distance from plane ---
+        float distanceFromPlane = Vector3.Distance(currentPosition, plane.position);
+        if (distanceFromPlane > maxDistanceFromPlane)
+        {
+            Vector3 directionToCamera = (currentPosition - plane.position).normalized;
+            currentPosition = plane.position + directionToCamera * maxDistanceFromPlane;
+        }
+
+        // --- 7. Apply ---
         transform.position = currentPosition;
-        transform.rotation = laggedRotation;
+
+        if (HasActiveCinematicLookTarget())
+        {
+            Vector3 toTarget = cinematicLookTarget.position - transform.position;
+            if (toTarget.sqrMagnitude > 0.001f)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(toTarget.normalized, Vector3.up);
+                float lookDecay = DecayFactor(cinematicLookDamping, dt);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, lookDecay);
+            }
+        }
+        else
+        {
+            transform.rotation = laggedRotation;
+        }
+    }
+
+    public void StartCinematicLookAt(Transform target, float durationSeconds)
+    {
+        if (target == null || durationSeconds <= 0f) return;
+
+        cinematicLookTarget = target;
+        cinematicLookUntilUnscaledTime = Time.unscaledTime + durationSeconds;
+    }
+
+    private bool HasActiveCinematicLookTarget()
+    {
+        if (cinematicLookTarget == null) return false;
+
+        if (Time.unscaledTime >= cinematicLookUntilUnscaledTime)
+        {
+            cinematicLookTarget = null;
+            return false;
+        }
+
+        return true;
     }
 
     private float DampAngle(float current, float target, float rate, float dt)
