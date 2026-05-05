@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minSpeed              = 10f;
     [SerializeField] private float normalThrottle        = 10f;
     [SerializeField] private float responsiveness        = 10f;
+    [SerializeField] private float pitchMultiplier       = 1.3f;
+    [SerializeField] private float yawMultiplier         = 1.3f;
     [SerializeField] private float responseModifierValue = 10f;
     [SerializeField] private float inputDecaySpeed       = 50f;
 
@@ -96,8 +98,8 @@ public class PlayerController : MonoBehaviour
         rb.AddRelativeForce(Vector3.forward * thrustForce);
 
         rb.AddRelativeTorque(new Vector3(
-            pitch * responsiveness * responseModifier,
-            yaw   * responsiveness * responseModifier,
+            pitch * responsiveness * responseModifier * pitchMultiplier,
+            yaw   * responsiveness * responseModifier * yawMultiplier,
             roll  * responsiveness * responseModifier
         ));
 
