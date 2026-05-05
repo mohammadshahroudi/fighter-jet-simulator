@@ -54,6 +54,25 @@ public class GameStateManager : MonoBehaviour
     public AudioClip gameOverSFX;
     public AudioClip victorySFX;
 
+    [Header("Music")]
+    public AudioClip gameStartMusic;
+    public AudioClip gameplayMusicLoop;
+    public AudioClip bossIntroMusic;
+    public AudioClip bossBattleMusicLoop;
+    public AudioClip gameWonMusic;
+    [Range(0f, 1f)] public float musicVolume = 0.8f;
+    [Range(0f, 1f)] public float gameStartMusicVolume = 0.8f;
+    [Range(0f, 1f)] public float gameplayMusicVolume = 0.8f;
+    [Range(0f, 1f)] public float bossIntroMusicVolume = 1.0f;
+    [Range(0f, 1f)] public float bossBattleMusicVolume = 0.85f;
+    [Range(0f, 1f)] public float gameWonMusicVolume = 0.9f;
+
+    [Header("Boss Intro")]
+    [Tooltip("Optional explicit boss transform. If empty, first EnemyHealth that triggers victory on death is used.")]
+    public Transform bossTargetOverride;
+    [Tooltip("Optional reference to player follow camera script for the boss intro look-at shot.")]
+    public PlaneCameraController planeCameraController;
+
     // -------------------------------------------------------------------------
     // Runtime state
     // -------------------------------------------------------------------------
@@ -64,6 +83,12 @@ public class GameStateManager : MonoBehaviour
     private int totalRings   = 0;
     private int ringsCollected = 0;
     private AudioSource audioSource;
+    private AudioSource musicAudioSource;
+    private Coroutine startupMusicRoutine;
+    private Coroutine bossIntroRoutine;
+    private bool bossBattleStarted;
+    private bool bossDetectionArmed;
+    private Transform pendingBossTarget;
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -76,6 +101,12 @@ public class GameStateManager : MonoBehaviour
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 0f;
+
+        musicAudioSource = gameObject.AddComponent<AudioSource>();
+        musicAudioSource.spatialBlend = 0f;
+        musicAudioSource.playOnAwake = false;
+        musicAudioSource.loop = false;
+        musicAudioSource.volume = musicVolume;
     }
 
     void Start()
@@ -93,6 +124,20 @@ public class GameStateManager : MonoBehaviour
         victoryRestartButton?.onClick.AddListener(RestartScene);
         victoryQuitButton?.onClick.AddListener(QuitGame);
 
+        if (planeCameraController == null)
+            planeCameraController = FindFirstObjectByType<PlaneCameraController>();
+
+        EnemyHealth.OnEnemyEnabled += HandleEnemyEnabled;
+        startupMusicRoutine = StartCoroutine(StartupMusicRoutine());
+
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+
+        EnemyHealth.OnEnemyEnabled -= HandleEnemyEnabled;
     }
 
     // -------------------------------------------------------------------------
@@ -106,6 +151,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
         CurrentState = GameState.GameOver;
+        StopMusic();
         StartCoroutine(GameOverRoutine());
     }
 
@@ -113,6 +159,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
         CurrentState = GameState.Victory;
+        StopMusic();
         StartCoroutine(VictoryRoutine());
     }
 
@@ -161,7 +208,14 @@ public class GameStateManager : MonoBehaviour
     {
         yield return new WaitForSeconds(victoryDelay);
 
-        if (victorySFX != null) audioSource.PlayOneShot(victorySFX);
+        if (gameWonMusic != null)
+        {
+            PlayMusicClip(gameWonMusic, false, gameWonMusicVolume);
+        }
+        else if (victorySFX != null)
+        {
+            audioSource.PlayOneShot(victorySFX);
+        }
 
         SetPanelActive(hudRoot, false);
         SetPanelActive(victoryPanel, true);
@@ -182,12 +236,14 @@ public class GameStateManager : MonoBehaviour
 
     void RestartScene()
     {
+        StopMusic();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void QuitGame()
     {
+        StopMusic();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -209,5 +265,98 @@ public class GameStateManager : MonoBehaviour
     void SetPanelActive(GameObject panel, bool active)
     {
         if (panel != null) panel.SetActive(active);
+    }
+
+    void HandleEnemyEnabled(EnemyHealth enemy)
+    {
+        if (enemy == null || !enemy.TriggersVictoryOnDeath) return;
+        if (CurrentState != GameState.Playing) return;
+        if (bossBattleStarted) return;
+
+        Transform bossTarget = bossTargetOverride != null ? bossTargetOverride : enemy.transform;
+
+        if (!bossDetectionArmed)
+        {
+            pendingBossTarget = bossTarget;
+            return;
+        }
+
+        StartBossIntro(bossTarget);
+    }
+
+    void StartBossIntro(Transform bossTarget)
+    {
+        bossBattleStarted = true;
+
+        if (startupMusicRoutine != null)
+        {
+            StopCoroutine(startupMusicRoutine);
+            startupMusicRoutine = null;
+        }
+
+        if (bossIntroRoutine != null)
+            StopCoroutine(bossIntroRoutine);
+
+        bossIntroRoutine = StartCoroutine(BossIntroRoutine(bossTarget));
+    }
+
+    IEnumerator StartupMusicRoutine()
+    {
+        if (gameStartMusic != null)
+        {
+            PlayMusicClip(gameStartMusic, false, gameStartMusicVolume);
+            yield return new WaitForSecondsRealtime(gameStartMusic.length);
+        }
+
+        if (CurrentState == GameState.Playing && !bossBattleStarted && gameplayMusicLoop != null)
+            PlayMusicClip(gameplayMusicLoop, true, gameplayMusicVolume);
+
+        bossDetectionArmed = true;
+
+        if (!bossBattleStarted && pendingBossTarget != null)
+        {
+            StartBossIntro(pendingBossTarget);
+            pendingBossTarget = null;
+        }
+    }
+
+    IEnumerator BossIntroRoutine(Transform bossTarget)
+    {
+        float introLength = 0f;
+
+        UfoWarpArrivalAudio warpSfx = bossTarget != null ? bossTarget.GetComponentInParent<UfoWarpArrivalAudio>() : null;
+        warpSfx?.PlayWarpIn();
+
+        if (bossIntroMusic != null)
+        {
+            PlayMusicClip(bossIntroMusic, false, bossIntroMusicVolume);
+            introLength = bossIntroMusic.length;
+        }
+
+        if (planeCameraController != null && bossTarget != null && introLength > 0f)
+            planeCameraController.StartCinematicLookAt(bossTarget, introLength);
+
+        if (introLength > 0f)
+            yield return new WaitForSecondsRealtime(introLength);
+
+        if (CurrentState == GameState.Playing && bossBattleMusicLoop != null)
+            PlayMusicClip(bossBattleMusicLoop, true, bossBattleMusicVolume);
+    }
+
+    void PlayMusicClip(AudioClip clip, bool loop, float stageVolume = -1f)
+    {
+        if (musicAudioSource == null || clip == null) return;
+
+        musicAudioSource.Stop();
+        musicAudioSource.clip = clip;
+        musicAudioSource.loop = loop;
+        musicAudioSource.volume = stageVolume >= 0f ? Mathf.Clamp01(stageVolume) : Mathf.Clamp01(musicVolume);
+        musicAudioSource.Play();
+    }
+
+    void StopMusic()
+    {
+        if (musicAudioSource != null)
+            musicAudioSource.Stop();
     }
 }

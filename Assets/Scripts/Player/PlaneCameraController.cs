@@ -23,10 +23,15 @@ public class PlaneCameraController : MonoBehaviour
     [SerializeField] private float collisionRadius = 0.5f;
     [SerializeField] private LayerMask collisionLayers = ~0;
 
+    [Header("Cinematic")]
+    [SerializeField] private float cinematicLookDamping = 8f;
+
     private Vector3 currentPosition;
     private float currentYaw;
     private float currentPitch;
     private float currentRoll;
+    private Transform cinematicLookTarget;
+    private float cinematicLookUntilUnscaledTime;
 
     // Converts a damping rate into an exponential decay factor
     private static float DecayFactor(float rate, float dt) => 1f - Mathf.Exp(-rate * dt);
@@ -96,7 +101,42 @@ public class PlaneCameraController : MonoBehaviour
 
         // --- 7. Apply ---
         transform.position = currentPosition;
-        transform.rotation = laggedRotation;
+
+        if (HasActiveCinematicLookTarget())
+        {
+            Vector3 toTarget = cinematicLookTarget.position - transform.position;
+            if (toTarget.sqrMagnitude > 0.001f)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(toTarget.normalized, Vector3.up);
+                float lookDecay = DecayFactor(cinematicLookDamping, dt);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, lookDecay);
+            }
+        }
+        else
+        {
+            transform.rotation = laggedRotation;
+        }
+    }
+
+    public void StartCinematicLookAt(Transform target, float durationSeconds)
+    {
+        if (target == null || durationSeconds <= 0f) return;
+
+        cinematicLookTarget = target;
+        cinematicLookUntilUnscaledTime = Time.unscaledTime + durationSeconds;
+    }
+
+    private bool HasActiveCinematicLookTarget()
+    {
+        if (cinematicLookTarget == null) return false;
+
+        if (Time.unscaledTime >= cinematicLookUntilUnscaledTime)
+        {
+            cinematicLookTarget = null;
+            return false;
+        }
+
+        return true;
     }
 
     private float DampAngle(float current, float target, float rate, float dt)

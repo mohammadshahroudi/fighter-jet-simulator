@@ -6,7 +6,7 @@ public class LoaderCallBack : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        timer -= Time.unscaledDeltaTime;
         if (timer <= 0f)
         {
             Loader.LoaderCallBack();
