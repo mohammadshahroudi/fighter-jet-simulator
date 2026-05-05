@@ -102,15 +102,17 @@ public class TimeManager : MonoBehaviour
         UpdateSkyBlend(daylightAmount);
         UpdateFogSettings(daylightAmount);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            timeSettings.timeMultiplier *= 2;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            timeSettings.timeMultiplier /= 2;
-        }
+        // For debug purposes. Speed up or slow down time.
+        // Commented out for the final build (unless it's a feature at some point :eyes:)
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     timeSettings.timeMultiplier *= 2;
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     timeSettings.timeMultiplier /= 2;
+        // }
     }
 
     void UpdateTimeOfDay()
