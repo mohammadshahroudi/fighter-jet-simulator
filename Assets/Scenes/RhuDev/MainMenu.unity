@@ -531,8 +531,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 --- !u!1 &1719396858
+=======
+--- !u!1 &962138078
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,8 +544,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 1719396860}
   - component: {fileID: 1719396859}
+=======
+  - component: {fileID: 962138080}
+  - component: {fileID: 962138079}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -549,17 +558,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 --- !u!82 &1719396859
+=======
+--- !u!82 &962138079
+>>>>>>> Stashed changes
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1719396858}
+=======
+  m_GameObject: {fileID: 962138078}
+>>>>>>> Stashed changes
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+<<<<<<< Updated upstream
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -569,6 +587,17 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
+=======
+  m_Resource: {fileID: 8300000, guid: 9219a6ddfc07d47d28d7692c6259d0d7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+>>>>>>> Stashed changes
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -646,23 +675,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< Updated upstream
 --- !u!4 &1719396860
+=======
+--- !u!4 &962138080
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1719396858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+=======
+  m_GameObject: {fileID: 962138078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 =======
 >>>>>>> parent of 4c6033f (update)
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1936490589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1190,11 @@ SceneRoots:
   - {fileID: 1936490593}
   - {fileID: 98601309}
   - {fileID: 6669925149440456110}
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   - {fileID: 1719396860}
 =======
 >>>>>>> parent of 4c6033f (update)
+=======
+  - {fileID: 962138080}
+>>>>>>> Stashed changes
