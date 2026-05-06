@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 /// <summary>
 /// Per-unit health component. Initialised by FormationSpawner
@@ -7,6 +8,8 @@ using UnityEngine.Events;
 /// </summary>
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+    public static event Action<EnemyHealth> OnEnemyEnabled;
+
     // ── Inspector Fields ─────────────────────────────────────────────────────
 
     [Header("Health")]
@@ -31,6 +34,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public int CurrentHealth => currentHealth;
     public int MaxHealth      => maxHealth;
     public bool IsAlive       => currentHealth > 0;
+    public bool TriggersVictoryOnDeath => triggerVictoryOnDeath;
 
     /// <summary>0–1 normalised health fraction, useful for health bars.</summary>
     public float HealthFraction => maxHealth > 0 ? (float)currentHealth / maxHealth : 0f;
@@ -45,6 +49,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             currentHealth = maxHealth;
 
         EnsureRootHitbox();
+    }
+
+    private void OnEnable()
+    {
+        OnEnemyEnabled?.Invoke(this);
     }
 
     // ── Public API ───────────────────────────────────────────────────────────

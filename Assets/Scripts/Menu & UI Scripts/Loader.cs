@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class Loader
@@ -16,6 +17,9 @@ public static class Loader
 
     public static void Load(Scene scene)
     {
+        // Ensure loading flow is not blocked by paused gameplay state.
+        Time.timeScale = 1f;
+
         onLoaderCallBack = () =>
         {
             SceneManager.LoadScene(scene.ToString());
