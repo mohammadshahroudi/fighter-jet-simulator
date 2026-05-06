@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider
     public UnityEvent onDeath;
 
     [Header("Death Behavior")]
-    [SerializeField] private bool triggerVictoryOnDeath = false;
+    [SerializeField] public bool triggerVictoryOnDeath = false;
 
     [Header("Hitbox (Optional)")]
     [SerializeField] private bool forceRootHitbox = false;

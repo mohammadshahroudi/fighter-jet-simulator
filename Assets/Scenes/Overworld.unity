@@ -735,6 +735,67 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &326031800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 569458117032745693, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457189076514164999, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036229054538638873, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
+      propertyPath: m_Name
+      value: _MinionUFO
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
 --- !u!1001 &363043746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,8 +1043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FormationSpawner
   enemyPrefab: {fileID: 7036229054538638873, guid: 48a4825fa47a49140a52282043fedfc9, type: 3}
   formationType: 2
-  columns: 1
-  rows: 1
+  columns: 5
+  rows: 3
   spacingX: 10
   spacingZ: 6
   baseHealth: 25
@@ -4202,6 +4263,7 @@ SceneRoots:
   - {fileID: 734660858}
   - {fileID: 125610143}
   - {fileID: 890845025}
+  - {fileID: 326031800}
   - {fileID: 215317336}
   - {fileID: 1346039896}
   - {fileID: 1095578619}
