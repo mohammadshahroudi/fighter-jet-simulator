@@ -131,7 +131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d766b841c11aee4dba85225a011b773, type: 2}
+  - {fileID: 2100000, guid: addc71d68409104459e8a9ebc5797ce7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -221,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d766b841c11aee4dba85225a011b773, type: 2}
+  - {fileID: 2100000, guid: addc71d68409104459e8a9ebc5797ce7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -311,7 +311,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d766b841c11aee4dba85225a011b773, type: 2}
+  - {fileID: 2100000, guid: addc71d68409104459e8a9ebc5797ce7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -358,7 +358,7 @@ PrefabInstance:
     - target: {fileID: 752915275160914740, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: dcdf29692bed070489dd62b39bbde66e, type: 2}
+      objectReference: {fileID: 2100000, guid: 4341fc375c3b90f4795ad55fd5cbaafc, type: 2}
     - target: {fileID: 2603321962177224555, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -475,7 +475,8 @@ PrefabInstance:
       propertyPath: m_Autodestruct
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6919770162056173111, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
     m_AddedGameObjects:
@@ -498,6 +499,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4098970138691985587}
+    - targetCorrespondingSourceObject: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5707568624051373829}
     - targetCorrespondingSourceObject: {fileID: 90494293337036310, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6771729158841578631}
@@ -524,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677b0fd56b993954bbb5a24c982e7d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthColorVisual
-  enemyHealth: {fileID: 7965464589145585030}
+  enemyHealth: {fileID: 0}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   midHealthColor: {r: 1, g: 0.5, b: 0, a: 1}
   lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
@@ -575,58 +579,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 7036229054538638873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04ae39d6db833f449dc1b41c30e3610, type: 3}
+  m_Script: {fileID: 11500000, guid: 014d803d6d91ab8498611141265c0433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFighterAI
-  cruiseSpeed: 100
-  attackSpeed: 40
+  cruiseSpeed: 60
+  attackSpeed: 90
   repositionSpeed: 50
-  turnRate: 5
+  turnRate: 2.5
   attackRange: 250
-  gunRange: 100
+  gunRange: 180
   fireRate: 0.8
   aimTolerance: 8
   steerLeadTime: 0.4
   fireLeadTime: 0.25
   spawnInAttackRun: 0
-  evasionChance: 0.1
+  evasionChance: 0.02
   evasionDuration: 1.2
   damagedThreshold: 0.4
-  minAltitude: 50
-  altitudeCorrectionStrength: 10
+  minAltitude: 10
+  altitudeCorrectionStrength: 2
   playerAvoidDistance: 40
-  avoidStrength: 10
-  terrainCheckDistance: 120
+  avoidStrength: 2.5
+  terrainCheckDistance: 50
   terrainAvoidanceStrength: 2.5
-  minGroundClearance: 35
+  minGroundClearance: 10
   terrainMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4294967295
   squadAvoidDistance: 35
   squadAvoidStrength: 2
   squadMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4294967295
   nearMissDistance: 55
-  nearMissOffset: 50
-  nearMissCommitTime: 2
+  nearMissOffset: 45
+  nearMissCommitTime: 0.9
   gameplayCamera: {fileID: 0}
-  screenEdgeBuffer: 0.4
+  screenEdgeBuffer: 0.2
   cameraReturnStrength: 150
   cameraDepthOffset: 100
-  centerPassInterval: 15
+  centerPassInterval: 20
   centerPassCommitTime: 1.4
   centerPassDepth: 80
   centerExitSpread: 35
-  centerPassChance: 1
+  centerPassChance: 0.95
   firePoint: {fileID: 4296424020678404174}
-  laserLinePrefab: {fileID: 8958053704920472497, guid: 6e171ab371ea16a4a9eff58a09d38cdf, type: 3}
-  laserDuration: 2.5
-  fireSfx: {fileID: 8300000, guid: 319a7124d55240f4b87d7104bae91710, type: 3}
+  laserLinePrefab: {fileID: 1358041416534885845, guid: c85320e6797c4314ea807547df5f17d0, type: 3}
+  laserDuration: 0.12
+  fireSfx: {fileID: 8300000, guid: d9340568a4bf8435580f2af5b7aca28a, type: 3}
   firePitchRange: {x: 0.95, y: 1.05}
   deathEffectPrefab: {fileID: 0}
-  deathSmokeEffect: {fileID: 4272183399077754551, guid: 3ad589c8eedc5154cacb4f3d088c87ee, type: 3}
-  deathSfx: {fileID: 8300000, guid: 58eaa125a999dff4ba0d48cc6d581b0f, type: 3}
+  deathSmokeEffect: {fileID: 0}
+  deathSfx: {fileID: 0}
   destroyDelay: 3
   deathShakeDuration: 0.25
   deathShakeStrength: 0.35
@@ -746,17 +750,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7965464589145585030 stripped
+--- !u!114 &5707568624051373829
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
-  m_PrefabInstance: {fileID: 4096890967310445063}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036229054538638873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ab50893c5697047be3f534f0a456c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 887808f681d936b41b1df7168d3bac5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 20
+  currentHealth: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerVictoryOnDeath: 0
+  forceRootHitbox: 0
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250
+  healthVisualRenderer: {fileID: 3650713769637912883}
+  fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  midHealthColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  colorLerpSpeed: 8
+  lowHealthPulseThreshold: 0.35
+  pulseSpeed: 6
+  pulseStrength: 0.35
+  damageFlashOverlay: {fileID: 0}
 --- !u!4 &8049070582080186311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300289229840977344, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}

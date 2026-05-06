@@ -7,6 +7,10 @@ using UnityEngine.Events;
 /// </summary>
 public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider
 {
+
+    public static System.Action<EnemyHealth> OnEnemyEnabled;
+    public static System.Action<EnemyHealth> OnEnemyDisabled;
+
     [Header("Health")]
     [SerializeField] private int maxHealth = 20;
     [SerializeField] private int currentHealth;
@@ -16,7 +20,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider
     public UnityEvent onDeath;
 
     [Header("Death Behavior")]
-    [SerializeField] private bool triggerVictoryOnDeath = false;
+    [SerializeField] public bool triggerVictoryOnDeath = false;
 
     [Header("Hitbox (Optional)")]
     [SerializeField] private bool forceRootHitbox = false;
@@ -43,6 +47,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
+    public bool TriggersVictoryOnDeath => triggerVictoryOnDeath;
     public bool IsAlive => currentHealth > 0;
 
     float IHealthProvider.CurrentHealth => currentHealth;
@@ -262,6 +267,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IHealthProvider
         }
 
         onDeath?.Invoke();
-        Destroy(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        OnEnemyEnabled?.Invoke(this);
+    }
+
+    private void OnDisable()
+    {
+        OnEnemyDisabled?.Invoke(this);
     }
 }
