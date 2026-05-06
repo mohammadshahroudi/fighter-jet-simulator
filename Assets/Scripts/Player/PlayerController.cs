@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInputs()
     {
-        float rawRoll  = gameInput.GetRoll()  / 3;
-        float rawPitch = gameInput.GetPitch() / 3;
-        float rawYaw   = gameInput.GetYaw()   / 3;
+        float rawRoll  = gameInput.GetRoll()  /2;
+        float rawPitch = gameInput.GetPitch() ;
+        float rawYaw   = gameInput.GetYaw()   ;
 
         float decay = Mathf.Exp(-inputDecaySpeed * Time.deltaTime);
 
