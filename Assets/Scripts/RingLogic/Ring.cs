@@ -109,7 +109,7 @@ void Update()
     if (collected || playerTransform == null) return;
 
     // Confirm Update is running
-    Debug.Log($"[Ring] State: {state} | Dist: {Vector3.Distance(transform.position, playerTransform.position):F1}");
+    // Debug.Log($"[Ring] State: {state} | Dist: {Vector3.Distance(transform.position, playerTransform.position):F1}");
 
     switch (state)
     {

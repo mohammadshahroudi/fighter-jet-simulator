@@ -163,18 +163,10 @@ MonoBehaviour:
   plane: {fileID: 1047265201}
   followDistance: 3
   followHeight: 2
-  minDistance: 3
-  maxDistanceFromPlane: 6
-  lockPositionToPlane: 0
   positionDamping: 4
   yawDamping: 4
   pitchDamping: 3
   rollDamping: 1.5
-  enableCollisionAvoidance: 1
-  collisionRadius: 0.5
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &73653264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,19 +388,6 @@ MonoBehaviour:
   hudRoot: {fileID: 1598733452}
   gameOverSFX: {fileID: 8300000, guid: 3c982c15745bd4840ba123a5f3b1cf71, type: 3}
   victorySFX: {fileID: 8300000, guid: 18bd2e60cc2544244bc60dc3b98303cb, type: 3}
-  gameStartMusic: {fileID: 8300000, guid: b68ea7341649349a0aea117e76c62de4, type: 3}
-  gameplayMusicLoop: {fileID: 8300000, guid: f8477ed576aa043338dfaff074889c02, type: 3}
-  bossIntroMusic: {fileID: 8300000, guid: 1be5be83a6b1c4ca7a508496f9df6907, type: 3}
-  bossBattleMusicLoop: {fileID: 8300000, guid: e03a478c651da4ea3a4b3fdb2f3ff7c3, type: 3}
-  gameWonMusic: {fileID: 8300000, guid: 42aa888ceed204949a1dd889cd03f7f9, type: 3}
-  musicVolume: 0.8
-  gameStartMusicVolume: 0.8
-  gameplayMusicVolume: 0.8
-  bossIntroMusicVolume: 1
-  bossBattleMusicVolume: 0.85
-  gameWonMusicVolume: 0.9
-  bossTargetOverride: {fileID: 0}
-  planeCameraController: {fileID: 0}
 --- !u!4 &215317336
 Transform:
   m_ObjectHideFlags: 0
@@ -736,8 +715,6 @@ MonoBehaviour:
   minSpeed: 10
   normalThrottle: 10
   responsiveness: 10
-  pitchMultiplier: 1.3
-  yawMultiplier: 1.3
   responseModifierValue: 10
   inputDecaySpeed: 50
   crashTags:
@@ -2593,6 +2570,50 @@ Transform:
   - {fileID: 903168996}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1252324129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1252324131}
+  - component: {fileID: 1252324130}
+  m_Layer: 0
+  m_Name: GameTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1252324130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252324129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bbc58a9146c4c5680692f35f9725d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameTimer
+--- !u!4 &1252324131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252324129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1265790169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,3 +4444,4 @@ SceneRoots:
   - {fileID: 1201178153}
   - {fileID: 1265790170}
   - {fileID: 1791277658}
+  - {fileID: 1252324131}
