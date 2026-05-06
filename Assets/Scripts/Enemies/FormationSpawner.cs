@@ -4,11 +4,10 @@ using UnityEngine;
 /// <summary>
 /// Spawns enemies in a configurable formation.
 /// Each spawned unit carries its own EnemyHealth component.
+/// Follows the player position and respawns after a delay or when all enemies are gone.
 /// </summary>
 public class FormationSpawner : MonoBehaviour
 {
-    // ── Formation Types ──────────────────────────────────────────────────────
-
     public enum FormationType
     {
         Line,
@@ -17,8 +16,6 @@ public class FormationSpawner : MonoBehaviour
         Circle,
         Diamond
     }
-
-    // ── Inspector Fields ─────────────────────────────────────────────────────
 
     [Header("Prefab")]
     [SerializeField] private GameObject enemyPrefab;
@@ -38,23 +35,58 @@ public class FormationSpawner : MonoBehaviour
 
     [Header("Spawn Options")]
     [SerializeField] private bool spawnOnStart = true;
-    [SerializeField] private Transform spawnParent; // Optional organisational parent
+    [SerializeField] private Transform spawnParent;
 
-    // ── Runtime State ────────────────────────────────────────────────────────
+    [Header("Player Follow")]
+    [SerializeField] private Transform player;
+    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private Vector3 followOffset = new Vector3(0f, 20f, 100f);
+    [SerializeField] private bool followPlayer = true;
+
+    [Header("Respawn")]
+    [SerializeField] private float respawnDelay = 15f;
 
     private readonly List<GameObject> spawnedUnits = new();
-
-    // ── Unity Callbacks ──────────────────────────────────────────────────────
+    private float respawnTimer;
+    private bool formationActive;
 
     private void Start()
     {
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
+
+        respawnTimer = respawnDelay;
+
         if (spawnOnStart)
             SpawnFormation();
     }
 
-    // ── Public API ───────────────────────────────────────────────────────────
+    private void Update()
+    {
+        FollowPlayer();
+        CleanupDestroyedUnits();
 
-    /// <summary>Clears any existing units and spawns a fresh formation.</summary>
+        if (!formationActive)
+        {
+            respawnTimer -= Time.deltaTime;
+
+            if (respawnTimer <= 0f)
+                SpawnFormation();
+        }
+        else
+        {
+            if (AllSpawnedUnitsDestroyed())
+            {
+                formationActive = false;
+                respawnTimer = respawnDelay;
+            }
+        }
+    }
+
     public void SpawnFormation()
     {
         ClearFormation();
@@ -67,15 +99,18 @@ public class FormationSpawner : MonoBehaviour
 
         List<Vector3> positions = GeneratePositions();
 
-        
         foreach (Vector3 localOffset in positions)
         {
-            Vector3 worldPos = transform.TransformPoint(localOffset);
-            GameObject unit = Instantiate(enemyPrefab, worldPos, Quaternion.Euler(-90,0,0), spawnParent);
+            Vector3 worldPos = transform.position + localOffset;
 
-            // Ensure the unit has a health component, then initialise it.
-            EnemyHealth health = unit.GetComponent<EnemyHealth>()
-                              ?? unit.AddComponent<EnemyHealth>();
+            GameObject unit = Instantiate(
+                enemyPrefab,
+                worldPos,
+                Quaternion.identity,
+                spawnParent
+            );
+
+            EnemyHealth health = unit.GetComponent<EnemyHealth>() ?? unit.AddComponent<EnemyHealth>();
 
             int hp = randomiseHealth
                 ? Random.Range(minHealth, maxHealth + 1)
@@ -85,10 +120,12 @@ public class FormationSpawner : MonoBehaviour
             spawnedUnits.Add(unit);
         }
 
+        formationActive = spawnedUnits.Count > 0;
+        respawnTimer = respawnDelay;
+
         Debug.Log($"[FormationSpawner] Spawned {spawnedUnits.Count} units in {formationType} formation.");
     }
 
-    /// <summary>Destroys all units that were spawned by this spawner.</summary>
     public void ClearFormation()
     {
         foreach (GameObject unit in spawnedUnits)
@@ -96,10 +133,47 @@ public class FormationSpawner : MonoBehaviour
             if (unit != null)
                 Destroy(unit);
         }
+
         spawnedUnits.Clear();
+        formationActive = false;
     }
 
-    // ── Position Generators ──────────────────────────────────────────────────
+private void FollowPlayer()
+{
+    if (!followPlayer || player == null)
+        return;
+
+    Vector3 flatForward = player.forward;
+    flatForward.y = 0f;
+
+    if (flatForward.sqrMagnitude < 0.001f)
+        flatForward = Vector3.forward;
+    else
+        flatForward.Normalize();
+
+    Vector3 spawnCenter =
+        player.position +
+        flatForward * followOffset.z +
+        Vector3.up * followOffset.y +
+        Vector3.right * followOffset.x;
+
+    transform.position = spawnCenter;
+}
+
+    private void CleanupDestroyedUnits()
+    {
+        for (int i = spawnedUnits.Count - 1; i >= 0; i--)
+        {
+            if (spawnedUnits[i] == null)
+                spawnedUnits.RemoveAt(i);
+        }
+    }
+
+    private bool AllSpawnedUnitsDestroyed()
+    {
+        CleanupDestroyedUnits();
+        return spawnedUnits.Count == 0;
+    }
 
     private List<Vector3> GeneratePositions() => formationType switch
     {
@@ -111,7 +185,6 @@ public class FormationSpawner : MonoBehaviour
         _                     => GenerateGrid()
     };
 
-    // Single row of `columns` units.
     private List<Vector3> GenerateLine()
     {
         var positions = new List<Vector3>();
@@ -122,15 +195,15 @@ public class FormationSpawner : MonoBehaviour
             float x = -totalWidth / 2f + c * spacingX;
             positions.Add(new Vector3(x, 0f, 0f));
         }
+
         return positions;
     }
 
-    // Rows × Columns rectangular grid.
     private List<Vector3> GenerateGrid()
     {
         var positions = new List<Vector3>();
-        float totalWidth  = (columns - 1) * spacingX;
-        float totalDepth  = (rows    - 1) * spacingZ;
+        float totalWidth = (columns - 1) * spacingX;
+        float totalDepth = (rows - 1) * spacingZ;
 
         for (int r = 0; r < rows; r++)
         {
@@ -141,10 +214,10 @@ public class FormationSpawner : MonoBehaviour
                 positions.Add(new Vector3(x, 0f, z));
             }
         }
+
         return positions;
     }
 
-    // V-shaped wedge: each subsequent row is one unit wider and offset back.
     private List<Vector3> GenerateVWedge()
     {
         var positions = new List<Vector3>();
@@ -161,10 +234,10 @@ public class FormationSpawner : MonoBehaviour
                 positions.Add(new Vector3(x, 0f, z));
             }
         }
+
         return positions;
     }
 
-    // `columns` units arranged in a circle (rows is ignored for this type).
     private List<Vector3> GenerateCircle()
     {
         var positions = new List<Vector3>();
@@ -177,14 +250,14 @@ public class FormationSpawner : MonoBehaviour
             float z = Mathf.Cos(angle) * radius;
             positions.Add(new Vector3(x, 0f, z));
         }
+
         return positions;
     }
 
-    // Diamond/rhombus pattern using rows × columns but skipping corners.
     private List<Vector3> GenerateDiamond()
     {
         var positions = new List<Vector3>();
-        int halfR = rows    / 2;
+        int halfR = rows / 2;
         int halfC = columns / 2;
 
         for (int r = -halfR; r <= halfR; r++)
@@ -195,10 +268,9 @@ public class FormationSpawner : MonoBehaviour
                 positions.Add(new Vector3(c * spacingX, 0f, r * spacingZ));
             }
         }
+
         return positions;
     }
-
-    // ── Gizmos ───────────────────────────────────────────────────────────────
 
     private void OnDrawGizmosSelected()
     {
@@ -209,7 +281,7 @@ public class FormationSpawner : MonoBehaviour
 
         foreach (Vector3 offset in preview)
         {
-            Vector3 world = transform.TransformPoint(offset);
+            Vector3 world = transform.position + offset;
             Gizmos.DrawWireSphere(world, 0.35f);
         }
     }
