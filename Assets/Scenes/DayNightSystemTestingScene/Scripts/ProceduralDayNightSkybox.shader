@@ -26,8 +26,12 @@ Shader "Skybox/Procedural Day Night URP"
         _SunsetIntensity("Sunset Intensity", Range(0, 5)) = 1.5
         _SunsetHeight("Sunset Height", Range(0.01, 1.0)) = 0.35
         _SunsetWidth("Sunset Width", Range(0.01, 1.0)) = 0.45
-
+        
         [Header(Moon)]
+        [NoScaleOffset] _MoonTex("Moon Texture", 2D) = "white" {}
+        _MoonTextureStrength("Moon Texture Strength", Range(0, 2)) = 1
+        _MoonTextureRotation("Moon Texture Rotation", Range(0, 360)) = 0
+        
         _MoonColor("Moon Color", Color) = (0.75, 0.85, 1.0, 1)
         _MoonSize("Moon Size", Range(0.0001, 0.1)) = 0.025
         _MoonGlowSize("Moon Glow Size", Range(0.01, 1.0)) = 0.15
@@ -86,6 +90,9 @@ Shader "Skybox/Procedural Day Night URP"
                 float4 positionCS : SV_POSITION;
                 float3 directionWS : TEXCOORD0;
             };
+            
+            TEXTURE2D(_MoonTex);
+            SAMPLER(sampler_MoonTex);
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _DayTopColor;
@@ -106,7 +113,10 @@ Shader "Skybox/Procedural Day Night URP"
                 half _SunsetIntensity;
                 half _SunsetHeight;
                 half _SunsetWidth;
-
+            
+                half _MoonTextureStrength;
+                float _MoonTextureRotation;
+            
                 half4 _MoonColor;
                 half _MoonSize;
                 half _MoonGlowSize;
@@ -157,6 +167,22 @@ Shader "Skybox/Procedural Day Night URP"
                 p = frac(p * float2(123.34, 456.21));
                 p += dot(p, p + 45.32);
                 return frac(p.x * p.y);
+            }
+            
+            float2 RotateUV(float2 uv, float degrees)
+            {
+                float radians = degrees * PI / 180.0;
+                float s;
+                float c;
+                sincos(radians, s, c);
+
+                uv -= 0.5;
+
+                float2x2 rotationMatrix = float2x2(c, -s, s, c);
+                uv = mul(rotationMatrix, uv);
+
+                uv += 0.5;
+                return uv;
             }
 
             half4 frag(Varyings input) : SV_Target
@@ -211,7 +237,7 @@ Shader "Skybox/Procedural Day Night URP"
                 finalColor.rgb += sunColor * sunGlow * 0.35;
                 finalColor.rgb += sunColor * sunDisk;
 
-                // Moon disk and glow
+                // Moon disk, texture, and glow
                 float3 moonDir = normalize(_MoonDirection.xyz);
                 float moonDot = saturate(dot(dir, moonDir));
 
@@ -221,11 +247,47 @@ Shader "Skybox/Procedural Day Night URP"
 
                 // Fade based on whether the moon is above or below the horizon
                 float moonVisibility = smoothstep(_MoonFadeEnd, _MoonFadeStart, moonDir.y);
-                
+
                 half3 moonColor = _MoonColor.rgb * _MoonIntensity * moonVisibility;
 
+                // Build a local 2D coordinate system around the moon direction.
+                // This lets the shader project a 2D moon texture onto the sky direction.
+                float3 moonRight = normalize(cross(float3(0.0, 1.0, 0.0), moonDir));
+
+                // Safety fallback in case the moon is almost straight up/down.
+                moonRight = length(moonRight) < 0.001 ? float3(1.0, 0.0, 0.0) : moonRight;
+
+                float3 moonUp = normalize(cross(moonDir, moonRight));
+
+                float2 moonLocal;
+                moonLocal.x = dot(dir, moonRight);
+                moonLocal.y = dot(dir, moonUp);
+
+                // Convert local direction around moon into 0-1 UV.
+                // _MoonSize controls the visible radius.
+                float2 moonUV = moonLocal / _MoonSize * 0.5 + 0.5;
+                moonUV = RotateUV(moonUV, _MoonTextureRotation);
+
+                // Only sample/show texture inside the disk area.
+                float insideMoonUV =
+                    step(0.0, moonUV.x) *
+                    step(moonUV.x, 1.0) *
+                    step(0.0, moonUV.y) *
+                    step(moonUV.y, 1.0);
+
+                half4 moonTex = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, moonUV);
+
+                // Use texture alpha if available.
+                // The circular disk also helps mask the moon.
+                float moonTextureMask = moonTex.a * insideMoonUV * moonDisk;
+
+                // Glow stays procedural.
                 finalColor.rgb += moonColor * moonGlow * 0.20;
-                finalColor.rgb += moonColor * moonDisk;
+
+                // Texture becomes the moon surface.
+                half3 texturedMoon = moonTex.rgb * _MoonColor.rgb * _MoonIntensity;
+
+                finalColor.rgb += texturedMoon * moonTextureMask * moonVisibility * _MoonTextureStrength;
 
                 // Static procedural stars
                 float2 starUV = dir.xz / max(dir.y + 1.0, 0.001);
