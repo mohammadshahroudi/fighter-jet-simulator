@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   powerUpType: 1
   healthAmount: 0
-  boostMultiplier: 10
+  boostMultiplier: 5
   boostDuration: 2
   pickupEffect: {fileID: 0}
 --- !u!65 &4419486969447634266
