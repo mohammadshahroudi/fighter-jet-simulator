@@ -175,6 +175,7 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  cinematicLookDamping: 8
 --- !u!114 &73653264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +747,7 @@ MonoBehaviour:
   - Ground
   crashVFXPrefab: {fileID: 9209252962504903126, guid: ded10f69f1fb84c22bea1cc912091d66, type: 3}
   gameInput: {fileID: 401267049}
-  boostMultiplier: 2
+  boostMultiplier: 10
 --- !u!114 &318293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3845,6 +3846,19 @@ MonoBehaviour:
   hudRoot: {fileID: 0}
   gameOverSFX: {fileID: 0}
   victorySFX: {fileID: 0}
+  gameStartMusic: {fileID: 0}
+  gameplayMusicLoop: {fileID: 0}
+  bossIntroMusic: {fileID: 0}
+  bossBattleMusicLoop: {fileID: 0}
+  gameWonMusic: {fileID: 0}
+  musicVolume: 0.8
+  gameStartMusicVolume: 0.8
+  gameplayMusicVolume: 0.8
+  bossIntroMusicVolume: 1
+  bossBattleMusicVolume: 0.85
+  gameWonMusicVolume: 0.9
+  bossTargetOverride: {fileID: 0}
+  planeCameraController: {fileID: 0}
 --- !u!4 &1938760659
 Transform:
   m_ObjectHideFlags: 0
