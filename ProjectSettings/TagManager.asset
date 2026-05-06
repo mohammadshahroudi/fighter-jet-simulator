@@ -4,25 +4,21 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - AirportChunk
-  - RunwayChunk
-  - BaseChunk
   - WaterChunk
   - Ground
   - Terrain
   - Building
   - PowerUp
   - Cloud
-  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemies
+  - 
   - Water
   - UI
   - Cloud
-  - Terrain
+  - Enemy
   - 
   - 
   - 
