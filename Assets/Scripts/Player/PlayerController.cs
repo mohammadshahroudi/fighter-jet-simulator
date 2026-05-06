@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
     private void HandleInputs()
     {
         float rawRoll  = gameInput.GetRoll()  / 3;
-        float rawPitch = gameInput.GetPitch() / 3;
-        float rawYaw   = gameInput.GetYaw()   / 3;
+        float rawPitch = gameInput.GetPitch() ;
+        float rawYaw   = gameInput.GetYaw()   ;
 
         float decay = Mathf.Exp(-inputDecaySpeed * Time.deltaTime);
 
@@ -107,8 +107,6 @@ public class PlayerController : MonoBehaviour
             throttle = Mathf.Clamp(throttle + throttleIncrement, minSpeed, maxSpeed);
         else if (gameInput.GetThrottleDown())
             throttle = Mathf.Clamp(throttle - throttleIncrement, minSpeed, maxSpeed);
-        else
-            throttle = Mathf.MoveTowards(throttle, normalThrottle, throttleReturnSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
