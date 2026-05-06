@@ -20,7 +20,7 @@ MonoBehaviour:
     health: 350
     damage: 25
     price: 0
-    state: 2
+    state: 1
     previewObject: {fileID: 0}
     planePrefab: {fileID: 4880688868680380564, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
   - planeId: Swift L1
@@ -30,7 +30,7 @@ MonoBehaviour:
     health: 500
     damage: 20
     price: 900
-    state: 0
+    state: 1
     previewObject: {fileID: 0}
     planePrefab: {fileID: 3280384310271628014, guid: 871ec326cd83ebb46b99b01bf9237e1e, type: 3}
   - planeId: Viper ZX
@@ -40,9 +40,9 @@ MonoBehaviour:
     health: 750
     damage: 30
     price: 1000
-    state: 0
+    state: 2
     previewObject: {fileID: 0}
-    planePrefab: {fileID: 835737604007996434, guid: 33d2fc1d0c07999469310c08d25cdf22, type: 3}
+    planePrefab: {fileID: 2723431253010827434, guid: 662c05f1cafe2cb44bb2faec10efdd41, type: 3}
   - planeId: Titan MK2
     planeName: Titan MK2
     gunType: 2
@@ -60,6 +60,6 @@ MonoBehaviour:
     health: 1500
     damage: 60
     price: 3000
-    state: 1
+    state: 0
     previewObject: {fileID: 0}
     planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}
