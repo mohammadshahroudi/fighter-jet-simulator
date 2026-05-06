@@ -81,5 +81,4 @@ public class PlayerStats : MonoBehaviour, IDamageable
             currentHealth += amount;
             onHealthChanged?.Invoke(currentHealth);
         }
-    
 }
