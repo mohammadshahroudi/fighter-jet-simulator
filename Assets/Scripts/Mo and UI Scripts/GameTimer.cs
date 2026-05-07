@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-   private static float timeLeft = 10f;
+   private static float timeLeft = 120f;
    private bool timerActive = true;
    private static float timerCounter;
    // float seconds;
@@ -35,10 +35,10 @@ public class GameTimer : MonoBehaviour
 
          // This is supposed to add about 30 seconds if the player 
          // kills an enemy
-         /*if (timeLeft <= 110)
+         if (timeLeft <= 110f)
          {
             timeLeft += 30f;
-         }*/
+         }
          
          // This is supposed to be if the player 
          // survives for about 300 seconds which is equivalent
