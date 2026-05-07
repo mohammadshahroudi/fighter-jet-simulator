@@ -170,4 +170,4 @@ MonoBehaviour:
   healthAmount: 40
   boostMultiplier: 1.4
   boostDuration: 2
-  pickupEffect: {fileID: 1000011210275196, guid: 61a6b3a108030e54ba372fe7097916d0, type: 3}
+  pickupEffect: {fileID: 2971803206113032685, guid: a9d9c62d5bb5341dbbb53a7b945f7ff4, type: 3}
