@@ -50,6 +50,10 @@ public class GameStateManager : MonoBehaviour
     [Tooltip("Root of the in-game HUD — hidden when game ends.")]
     public GameObject hudRoot;
 
+    [Header("UI Game Canvas")]
+    [Tooltip("Root canvas for the in-game UI that should be disabled when game over or victory appears.")]
+    public GameObject uiGameCanvas;
+
     [Header("Audio")]
     public AudioClip gameOverSFX;
     public AudioClip victorySFX;
@@ -118,6 +122,7 @@ public class GameStateManager : MonoBehaviour
 
         // Hide UI panels at start
         SetPanelActive(hudRoot, true);
+        SetPanelActive(uiGameCanvas, true);
         SetPanelActive(gameOverPanel, false);
         SetPanelActive(victoryPanel,  false);
 
@@ -194,6 +199,7 @@ public class GameStateManager : MonoBehaviour
         if (gameOverSFX != null) audioSource.PlayOneShot(gameOverSFX);
 
         SetPanelActive(hudRoot, false);
+        SetPanelActive(uiGameCanvas, false);
         SetPanelActive(gameOverPanel, true);
 
         // Populate score label
@@ -222,6 +228,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         SetPanelActive(hudRoot, false);
+        SetPanelActive(uiGameCanvas, false);
         SetPanelActive(victoryPanel, true);
 
         int score = GetCurrentScore();
@@ -380,5 +387,6 @@ public class GameStateManager : MonoBehaviour
         bossBattleStarted = false;
         bossDetectionArmed = false;
         pendingBossTarget = null;
+        SetPanelActive(uiGameCanvas, true);
     }
 }

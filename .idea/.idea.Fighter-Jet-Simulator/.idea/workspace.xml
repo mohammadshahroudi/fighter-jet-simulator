@@ -21,8 +21,6 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu &amp; UI Scripts/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu &amp; UI Scripts/PauseMenu.cs" afterDir="false" />
     <list default="true" id="13c1eca7-9154-40b6-a9e7-7534b09dc2bf" name="Changes" comment="Merge branch 'main' into TheEric-Branch&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml&#10;#&#9;Assets/Prefabs/Weapons/BurstGunMK2.prefab.meta&#10;#&#9;Assets/Prefabs/Weapons/Line.prefab">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fighter-Jet-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Line.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Weapons/Line.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PowerUps/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PowerUps/PowerUp.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
