@@ -3,29 +3,58 @@ using System.Collections;
 using System.Collections.Generic;
 public class PowerUp : MonoBehaviour
 {
-    public float multiplier = 1.4f;
-    public float duration = 2f;
-    public GameObject pickupEffect;
-
-    void OnTriggerEnter(Collider other)
+    public enum PowerUpType
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(Pickup(other));
-        }
+        Health,
+        Boost,
+        HealthAndBoost
     }
 
-IEnumerator Pickup(Collider player)
-{
-    Instantiate(pickupEffect, transform.position, transform.rotation);
-    PlayerStats stats = player.GetComponent<PlayerStats>();
-     // Increase max and current HP by 40
-    stats.IncreaseMaxHealth(40);
+    [SerializeField] private PowerUpType powerUpType;
 
-    GetComponent<MeshRenderer>().enabled = false;
-    GetComponent<Collider>().enabled = false;
+    [Header("Health")]
+    [SerializeField] private int healthAmount = 40;
 
-    yield return new WaitForSeconds(duration);
-    Destroy(gameObject);
-}
+    [Header("Boost")]
+    [SerializeField] private float boostMultiplier = 1.4f;
+    [SerializeField] private float boostDuration = 2f;
+
+    [Header("Effects")]
+    [SerializeField] private GameObject pickupEffect;
+
+    private bool pickedUp;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pickedUp) return;
+        if (!other.CompareTag("Player")) return;
+
+        pickedUp = true;
+        Pickup(other);
+    }
+
+    private void Pickup(Collider player)
+    {
+        if (pickupEffect != null)
+        {
+            Instantiate(pickupEffect, transform.position, transform.rotation);
+        }
+
+        PlayerStats stats = player.GetComponent<PlayerStats>();
+        PlayerController controller = player.GetComponent<PlayerController>();
+
+        if (stats != null &&
+            (powerUpType == PowerUpType.Health || powerUpType == PowerUpType.HealthAndBoost))
+        {
+            stats.IncreaseMaxHealth(healthAmount);
+        }
+
+        if (controller != null &&
+            (powerUpType == PowerUpType.Boost || powerUpType == PowerUpType.HealthAndBoost))
+        {
+            controller.ApplyBoostPowerUp(boostMultiplier, boostDuration);
+        }
+
+        Destroy(gameObject);
+    }
 }
