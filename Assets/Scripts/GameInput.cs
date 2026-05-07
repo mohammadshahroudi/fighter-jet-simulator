@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class GameInput : MonoBehaviour
 {
     private PlayerInput inputActions;
+    public PlayerInput InputActions => inputActions;
 
     private void Awake()
     {
