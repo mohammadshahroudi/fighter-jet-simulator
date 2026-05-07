@@ -389,9 +389,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   powerUpType: 1
   healthAmount: 0
-  boostMultiplier: 5
+  boostMultiplier: 4
   boostDuration: 2
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 2971803206113032685, guid: e8cd780ea687643699eb685ef666c907, type: 3}
 --- !u!65 &4419486969447634266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4872248, y: 35, z: 2}
+  m_Size: {x: 9, y: 31.37, z: 10.87}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-5164703053294653155
 Rigidbody:

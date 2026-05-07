@@ -108,9 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
   powerUpType: 2
   healthAmount: 100
-  boostMultiplier: 10
+  boostMultiplier: 6
   boostDuration: 5
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 2971803206113032685, guid: 3e2d3c6d6122740a093eeb0c280a84e6, type: 3}
 --- !u!65 &-2480910914217742378
 BoxCollider:
   m_ObjectHideFlags: 0
