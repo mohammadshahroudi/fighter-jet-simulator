@@ -1415,7 +1415,7 @@ MonoBehaviour:
   scoreText: {fileID: 2169381912651300415}
   moneyText: {fileID: 5807046460921182830}
   scoreFormat: 'S: {0:D6}'
-  moneyFormat: 'M: {0:D6}'
+  moneyFormat: '$: {0:D6}'
 --- !u!1 &8433331756496312143
 GameObject:
   m_ObjectHideFlags: 0
