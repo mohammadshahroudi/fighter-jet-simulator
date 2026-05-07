@@ -22,25 +22,25 @@ public class SoundMixerManager : MonoBehaviour
             SetMasterVolume(1f);
         }
         
-        // if (PlayerPrefs.HasKey("musicVol"))
-        // {
-        //     musicVolSlider.value = PlayerPrefs.GetFloat("musicVol");
-        //     SetMusicVolume(musicVolSlider.value);
-        // }
-        // else
-        // {
-        //     SetMusicVolume(1f);
-        // }
-        //
-        // if (PlayerPrefs.HasKey("SFXVol"))
-        // {
-        //     SFXVolSlider.value = PlayerPrefs.GetFloat("SFXVol");
-        //     SetSFXVolume(musicVolSlider.value);
-        // }
-        // else
-        // {
-        //     SetSFXVolume(1f);
-        // }
+        if (PlayerPrefs.HasKey("musicVol"))
+        {
+            musicVolSlider.value = PlayerPrefs.GetFloat("musicVol");
+            SetMusicVolume(musicVolSlider.value);
+        }
+        else
+        {
+            SetMusicVolume(1f);
+        }
+        
+        if (PlayerPrefs.HasKey("SFXVol"))
+        {
+            SFXVolSlider.value = PlayerPrefs.GetFloat("SFXVol");
+            SetSFXVolume(musicVolSlider.value);
+        }
+        else
+        {
+            SetSFXVolume(1f);
+        }
     }
 
     public void SetMasterVolume(float value)
@@ -49,13 +49,14 @@ public class SoundMixerManager : MonoBehaviour
         
         PlayerPrefs.SetFloat("masterVol", value);
     }
+    
     public void SetMusicVolume(float value)
     {
         audioMixer.SetFloat("Mixer_MusicVol", ValueToVolume(value));
         
         PlayerPrefs.SetFloat("musicVol", value);
     }
-
+    
     public void SetSFXVolume(float value)
     {
         audioMixer.SetFloat("Mixer_SFXVol", ValueToVolume(value));
