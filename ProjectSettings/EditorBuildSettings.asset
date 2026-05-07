@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Overworld + Environment.unity
     guid: 0fd98f00e4442c14f9481779f1944e7d
   - enabled: 0
-    path: Assets/Scenes/Overworld.unity
+    path: Assets/Scenes/MoOverworld.unity
     guid: 91edca22741b241938a9a6c4c793c1dd
   - enabled: 0
     path: Assets/Scenes/RhuDev/Rhu_WorkScene.unity
