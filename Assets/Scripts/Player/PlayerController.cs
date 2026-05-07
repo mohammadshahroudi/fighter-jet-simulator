@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,6 +52,33 @@ public class PlayerController : MonoBehaviour
     private float pitch;
     private float yaw;
     private bool  hasCrashed = false;
+
+    private float baseBoostMultiplier;
+    private Coroutine boostPowerUpCoroutine;
+
+    private void Start()
+    {
+        baseBoostMultiplier = boostMultiplier;
+    }
+
+    public void ApplyBoostPowerUp(float multiplier, float duration)
+    {
+        if (boostPowerUpCoroutine != null)
+        {
+            StopCoroutine(boostPowerUpCoroutine);
+        }
+        boostPowerUpCoroutine = StartCoroutine(BoostPowerUpRoutine(multiplier, duration));
+        
+    }
+
+    private IEnumerator BoostPowerUpRoutine(float multiplier, float duration)
+    {
+        boostMultiplier = baseBoostMultiplier * multiplier;
+        yield return new WaitForSeconds(duration);
+
+        boostMultiplier = baseBoostMultiplier;
+        boostPowerUpCoroutine = null;
+    }
 
     private void Awake()
     {
@@ -166,15 +194,15 @@ public class PlayerController : MonoBehaviour
         GameStateManager.Instance?.TriggerGameOver();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PowerUp"))
-        {
-            other.gameObject.SetActive(false);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+        //if (other.gameObject.CompareTag("PowerUp"))
+        //{
+         //   other.gameObject.SetActive(false);
+        //}
+    //}
     public void InitialiseSpeed(int baseSpeed)
-{
+    {
     maxSpeed = baseSpeed;
-}
+    }
 }

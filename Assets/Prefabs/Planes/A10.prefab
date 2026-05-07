@@ -45,10 +45,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MachineGunMK2
       objectReference: {fileID: 0}
-    - target: {fileID: 5281698133587121778, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
+    - target: {fileID: 8165376809418786132, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+      propertyPath: gunLogic
+      value: 
+      objectReference: {fileID: 3969143122221884040}
+    - target: {fileID: 8165376809418786132, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+      propertyPath: lockRotationRoot
+      value: 
+      objectReference: {fileID: 8194867300104141880}
     - target: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -63,7 +67,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.452
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -71,7 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.81
+      value: 9.29
       objectReference: {fileID: 0}
     - target: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -106,6 +110,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+--- !u!114 &3969143122221884040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4087999940128457066, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+  m_PrefabInstance: {fileID: 1129916331409581026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf74b8f70b91b4296aad6d9da57d2ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunLogic
 --- !u!4 &8194867300104141880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9084957329421459418, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
