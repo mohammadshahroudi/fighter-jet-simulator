@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DynamicCrosshair : MonoBehaviour
+public class DynamicCrosshairUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GunLogic gunLogic;
-    [SerializeField] private SpriteRenderer crosshairSprite;
+    [SerializeField] private Image crosshairImage;
     [SerializeField] private Transform lockRotationRoot;
 
     [Header("Crosshair Colors")]
@@ -30,11 +31,10 @@ public class DynamicCrosshair : MonoBehaviour
     [Header("Return To Center")]
     [SerializeField] private float returnDecay = 8f;
 
-    private Transform crosshairTransform;
-    private Camera cam;
-
+    private RectTransform crosshairRect;
     private Color currentColor;
     private Color targetColor;
+
     private float nextCheckTime;
     private Transform firePoint;
     private Transform ownerRoot;
@@ -42,8 +42,6 @@ public class DynamicCrosshair : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
-
         if (gunLogic == null)
             gunLogic = FindFirstObjectByType<GunLogic>();
 
@@ -63,13 +61,13 @@ public class DynamicCrosshair : MonoBehaviour
         if (targetLayers.value == 0)
             targetLayers = Physics.DefaultRaycastLayers;
 
-        if (crosshairSprite == null)
-            crosshairSprite = GetComponent<SpriteRenderer>();
+        if (crosshairImage == null)
+            crosshairImage = GetComponent<Image>();
 
-        if (crosshairSprite != null)
+        if (crosshairImage != null)
         {
-            crosshairTransform = crosshairSprite.transform;
-            crosshairSprite.color = defaultColor;
+            crosshairRect = crosshairImage.GetComponent<RectTransform>();
+            crosshairImage.color = defaultColor;
         }
 
         currentColor = defaultColor;
@@ -89,50 +87,24 @@ public class DynamicCrosshair : MonoBehaviour
             lockedTarget = null;
         }
 
-        if (lockedTarget == null)
+        // Return to center (0,0 in UI space)
+        if (lockedTarget == null && crosshairRect != null)
         {
-            ResetCrosshairToScreenCenter();
+            crosshairRect.anchoredPosition = Decay(
+                crosshairRect.anchoredPosition,
+                Vector2.zero,
+                returnDecay
+            );
         }
 
         if (autoLockEnabled)
             UpdateAutoLock();
 
         // Color transition
-        if (crosshairSprite != null)
+        if (crosshairImage != null)
         {
             currentColor = Color.Lerp(currentColor, targetColor, Time.deltaTime * colorTransitionSpeed);
-            crosshairSprite.color = currentColor;
-        }
-    }
-
-    void ResetCrosshairToScreenCenter()
-    {
-        if (crosshairTransform == null || cam == null)
-            return;
-
-        float distance = Mathf.Abs(crosshairTransform.position.z - cam.transform.position.z);
-
-        Vector3 screenCenter = new Vector3(
-            Screen.width * 0.5f,
-            Screen.height * 0.5f,
-            distance
-        );
-
-        Vector3 worldCenter = cam.ScreenToWorldPoint(screenCenter);
-
-        crosshairTransform.position = Decay(
-            crosshairTransform.position,
-            worldCenter,
-            returnDecay
-        );
-
-        // Prevent rotation drift from parent
-        crosshairTransform.rotation = cam.transform.rotation;
-
-        // Snap when close
-        if (Vector3.Distance(crosshairTransform.position, worldCenter) < 0.01f)
-        {
-            crosshairTransform.position = worldCenter;
+            crosshairImage.color = currentColor;
         }
     }
 
@@ -164,10 +136,10 @@ public class DynamicCrosshair : MonoBehaviour
 
         lockedTarget = GetBestTargetInCone(origin, direction, effectiveLayers);
 
-        bool targetFound = lockedTarget != null;
-        targetColor = targetFound ? targetAcquiredColor : defaultColor;
+        bool found = lockedTarget != null;
+        targetColor = found ? targetAcquiredColor : defaultColor;
 
-        gunLogic?.OnTargetInCrosshair?.Invoke(targetFound);
+        gunLogic?.OnTargetInCrosshair?.Invoke(found);
     }
 
     bool IsTargetStillValid()
@@ -276,8 +248,8 @@ public class DynamicCrosshair : MonoBehaviour
         return true;
     }
 
-    Vector3 Decay(Vector3 current, Vector3 target, float decay)
+    Vector2 Decay(Vector2 current, Vector2 target, float decay)
     {
         return target + (current - target) * Mathf.Exp(-decay * Time.deltaTime);
     }
-}
+}   
