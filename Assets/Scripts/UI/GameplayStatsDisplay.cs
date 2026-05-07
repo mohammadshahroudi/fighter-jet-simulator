@@ -1,14 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// GameplayStatsDisplay — displays both current score and money during gameplay.
-/// 
-/// Setup:
-///   1. Attach to a parent container or separate GameObject in your game scene.
-///   2. Assign TextMeshProUGUI elements for score and money display.
-///   3. Updates every frame to show live stats.
-/// </summary>
 public class GameplayStatsDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;

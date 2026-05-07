@@ -202,6 +202,10 @@ public class GameStateManager : MonoBehaviour
         SetPanelActive(uiGameCanvas, false);
         SetPanelActive(gameOverPanel, true);
 
+        // Refresh game over / win stats display if present
+        var goStats = gameOverPanel != null ? gameOverPanel.GetComponentInChildren<GameOverWinStatsDisplay>() : null;
+        if (goStats != null) goStats.Refresh();
+
         // Populate score label
         int score = GetCurrentScore();
         if (gameOverScoreLabel != null)
@@ -230,6 +234,10 @@ public class GameStateManager : MonoBehaviour
         SetPanelActive(hudRoot, false);
         SetPanelActive(uiGameCanvas, false);
         SetPanelActive(victoryPanel, true);
+
+        // Refresh game over / win stats display if present
+        var winStats = victoryPanel != null ? victoryPanel.GetComponentInChildren<GameOverWinStatsDisplay>() : null;
+        if (winStats != null) winStats.Refresh();
 
         int score = GetCurrentScore();
         if (victoryScoreLabel != null)
