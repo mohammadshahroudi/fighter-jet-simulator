@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 752915275160914740}
   - component: {fileID: 4959881837059715928}
   - component: {fileID: 3374036093970085174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4666408346718706643}
   - component: {fileID: 5316606710686781303}
   - component: {fileID: 6029521629975832799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300289229840977344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 2150201901507275259}
   - component: {fileID: 859597386066095591}
   - component: {fileID: 7111722001759267812}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6155652638064414101}
   - component: {fileID: 9198440788183421120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,8 +527,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313856215386913536}
-  - component: {fileID: 557691531126529078}
-  m_Layer: 0
+  - component: {fileID: 6219496888168750977}
+  m_Layer: 7
   m_Name: _BaseUFO
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ Transform:
   - {fileID: 6300289229840977344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &557691531126529078
+--- !u!114 &6219496888168750977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 20
-  currentHealth: 20
+  currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -594,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3460446460543361590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
