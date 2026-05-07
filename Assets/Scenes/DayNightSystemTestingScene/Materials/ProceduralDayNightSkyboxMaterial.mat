@@ -102,7 +102,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 0.44593537
+    - _Blend: 0.000053167343
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -161,13 +161,13 @@ Material:
     - _DayTopColor: {r: 0.049999982, g: 0.34999996, b: 0.9, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MoonColor: {r: 0.75, g: 0.85, b: 1, a: 1}
-    - _MoonDirection: {r: -0, g: -0.089426406, b: -0.99599344, a: 0}
+    - _MoonDirection: {r: -0, g: -0.96460676, b: -0.2636928, a: 0}
     - _NightHorizonColor: {r: 0, g: 0.1137255, b: 0.3803922, a: 1}
     - _NightTopColor: {r: 0, g: 0.019607844, b: 0.121568635, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _StarColor: {r: 1, g: 1, b: 1, a: 1}
     - _SunColor: {r: 0.9528302, g: 0.6950056, b: 0, a: 1}
-    - _SunDirection: {r: -0, g: 0.089426495, b: 0.9959935, a: 0}
+    - _SunDirection: {r: -0, g: 0.96460676, b: 0.2636932, a: 0}
     - _SunsetColor: {r: 1, g: 0.34999996, b: 0.079999976, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
