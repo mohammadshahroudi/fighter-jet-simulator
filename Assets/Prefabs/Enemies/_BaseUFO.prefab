@@ -527,7 +527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313856215386913536}
-  - component: {fileID: 6219496888168750977}
+  - component: {fileID: 557691531126529078}
   m_Layer: 0
   m_Name: _BaseUFO
   m_TagString: Enemy
@@ -551,7 +551,7 @@ Transform:
   - {fileID: 6300289229840977344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6219496888168750977
+--- !u!114 &557691531126529078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6448769473528024094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ab50893c5697047be3f534f0a456c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 887808f681d936b41b1df7168d3bac5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 20
@@ -573,7 +573,7 @@ MonoBehaviour:
       m_Calls: []
   triggerVictoryOnDeath: 0
   forceRootHitbox: 0
-  autoFitRootHitboxToRenderers: 0
+  autoFitRootHitboxToRenderers: 1
   rootHitboxCenter: {x: 0, y: 0, z: 0}
   rootHitboxRadius: 250
   healthVisualRenderer: {fileID: 0}

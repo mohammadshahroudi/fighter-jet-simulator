@@ -5729,6 +5729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 557691531126529078, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+      propertyPath: triggerVictoryOnDeath
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: forceRootHitbox
       value: 0
