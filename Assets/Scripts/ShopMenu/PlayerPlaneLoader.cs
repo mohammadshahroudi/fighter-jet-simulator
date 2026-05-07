@@ -4,6 +4,8 @@ public class PlayerPlaneLoader : MonoBehaviour
 {
   [SerializeField] private PlaneList planeDatabase;
     [SerializeField] private PlayerStats playerStats;
+        [SerializeField] private bool disableGunsOnSpawn;
+
 void Start()
 {
     string equippedPlaneId = ShopPersistence.GetSavedEquippedPlaneId();
@@ -20,6 +22,7 @@ void Start()
     {
         // Spawn the equipped plane and capture the instance
         GameObject spawned = Instantiate(equippedPlane.PlanePrefab, transform);
+        ApplyGunState(spawned);
 
         // Set player health to match equipped plane
         if (playerStats != null)
@@ -46,6 +49,23 @@ void Start()
     {
         Debug.LogError("Equipped plane not found or prefab missing! Using default plane instead.");
         GameObject spawned = Instantiate(defaultPlane.PlanePrefab, transform);
+        ApplyGunState(spawned);
     }
 }
+
+    private void ApplyGunState(GameObject spawnedPlane)
+    {
+        if (spawnedPlane == null)
+        {
+            return;
+        }
+
+        foreach (Transform child in spawnedPlane.GetComponentsInChildren<Transform>(true))
+        {
+            if (child.CompareTag("Gun"))
+            {
+                child.gameObject.SetActive(!disableGunsOnSpawn);
+            }
+        }
+    }
 }

@@ -5788,8 +5788,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+      propertyPath: maxHealth
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: currentHealth
-      value: 20
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: forceRootHitbox
