@@ -1089,6 +1089,7 @@ MonoBehaviour:
   victoryRestartButton: {fileID: 0}
   victoryQuitButton: {fileID: 0}
   hudRoot: {fileID: 168910476}
+  uiGameCanvas: {fileID: 0}
   gameOverSFX: {fileID: 8300000, guid: 3c982c15745bd4840ba123a5f3b1cf71, type: 3}
   victorySFX: {fileID: 0}
   gameStartMusic: {fileID: 0}
@@ -1215,25 +1216,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04ae39d6db833f449dc1b41c30e3610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFighterAI
-  cruiseSpeed: 30
-  attackSpeed: 40
+  cruiseSpeed: 60
+  attackSpeed: 90
   repositionSpeed: 50
   turnRate: 2.5
-  rollSmoothing: 4
-  detectionRange: 400
-  losAngle: 60
   attackRange: 250
   gunRange: 180
   fireRate: 0.8
   aimTolerance: 8
   steerLeadTime: 0.4
   fireLeadTime: 0.25
-  evasionChance: 0.25
+  spawnInAttackRun: 0
+  evasionChance: 0.05
   evasionDuration: 1.2
-  formationLeader: {fileID: 0}
-  formationOffset: {x: 30, y: 0, z: -20}
   damagedThreshold: 0.4
-  patrolWaypoints: []
   minAltitude: 50
   altitudeCorrectionStrength: 2
   playerAvoidDistance: 40
@@ -1242,16 +1238,35 @@ MonoBehaviour:
   terrainAvoidanceStrength: 2.5
   minGroundClearance: 35
   terrainMask:
-    serializedVersion: 2
     m_Bits: 4294967295
   squadAvoidDistance: 35
   squadAvoidStrength: 2
   squadMask:
-    serializedVersion: 2
     m_Bits: 4294967295
   nearMissDistance: 55
   nearMissOffset: 45
   nearMissCommitTime: 0.9
+  gameplayCamera: {fileID: 0}
+  screenEdgeBuffer: 0.2
+  cameraReturnStrength: 150
+  cameraDepthOffset: 100
+  centerPassInterval: 6
+  centerPassCommitTime: 1.4
+  centerPassDepth: 80
+  centerExitSpread: 35
+  centerPassChance: 0.8
+  firePoint: {fileID: 0}
+  laserLinePrefab: {fileID: 0}
+  laserDuration: 0.12
+  fireSfx: {fileID: 0}
+  firePitchRange: {x: 0.95, y: 1.05}
+  deathEffectPrefab: {fileID: 0}
+  deathSmokeEffect: {fileID: 0}
+  deathSfx: {fileID: 0}
+  destroyDelay: 3
+  deathShakeDuration: 0.25
+  deathShakeStrength: 0.35
+  hitStopDuration: 0.06
 --- !u!54 &1078517744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1349,6 +1364,13 @@ MonoBehaviour:
   crashVFXPrefab: {fileID: 0}
   gameInput: {fileID: 1954360741}
   boostMultiplier: 2
+  maxBoostSeconds: 5
+  boostDrainPerSecond: 1
+  boostRechargePerSecond: 1
+  boostRechargeDelaySeconds: 0.5
+  onStaminaChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1148225717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,6 +1463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
   planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
   playerStats: {fileID: 1148225721}
+  disableGunsOnSpawn: 0
 --- !u!114 &1148225721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,6 +1774,12 @@ PrefabInstance:
     - target: {fileID: 7019296819077472009, guid: 2a934f026de8aa649999cdb10543252c, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080336068959837736, guid: 2a934f026de8aa649999cdb10543252c, type: 3}
+      propertyPath: m_text
+      value: 'alt: 000
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10845,6 +10845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5978460466294615860}
+  - component: {fileID: 437190478138317008}
   m_Layer: 5
   m_Name: Hi-Score Tab
   m_TagString: Untagged
@@ -10873,6 +10874,20 @@ RectTransform:
   m_AnchoredPosition: {x: 710, y: 457.63354}
   m_SizeDelta: {x: 664.1265, y: 93.21887}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &437190478138317008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357159891407119943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72982af271233404db70ee546bef66e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighScoreDisplay
+  highScoreText: {fileID: 2326360055503726659}
+  displayFormat: 'HS: {0:D6}'
 --- !u!1 &8412849142170800878
 GameObject:
   m_ObjectHideFlags: 0

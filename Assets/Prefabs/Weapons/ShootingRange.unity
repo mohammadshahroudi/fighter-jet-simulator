@@ -2183,6 +2183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
   planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
   playerStats: {fileID: 1351457907}
+  disableGunsOnSpawn: 0
 --- !u!1 &1424216142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,6 +2618,63 @@ MonoBehaviour:
   pulseSpeed: 6
   pulseStrength: 0.35
   damageFlashOverlay: {fileID: 0}
+--- !u!1001 &1945307163
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 112.52624
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.21758
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 57.00477
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141150753324386105, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770714342513764513, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
+      propertyPath: m_Name
+      value: KillScoreManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d7441641b056b4ca9b38247f6138146d, type: 3}
 --- !u!1 &1967724195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,3 +3244,4 @@ SceneRoots:
   - {fileID: 1981747291}
   - {fileID: 893698468}
   - {fileID: 1341786643}
+  - {fileID: 1945307163}
