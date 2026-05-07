@@ -8,7 +8,8 @@ public static class Loader
         LoadingScreen, 
         MainMenu, 
         Overworld,
-        OverworldEnviorment, 
+        MoOverworld,
+        OverworldEnvironment, 
         ShopUI
     }
     

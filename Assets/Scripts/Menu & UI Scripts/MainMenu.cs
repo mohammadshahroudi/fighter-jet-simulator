@@ -7,7 +7,7 @@ public class MainMenu : MenuBase
    {
       // Uncomment out sections as needed. 
       
-      Loader.Load(Loader.Scene.Overworld);
+      Loader.Load(Loader.Scene.MoOverworld);
       // Loader.Load(Loader.Scene.OverworldEnviorment);
 
    }
