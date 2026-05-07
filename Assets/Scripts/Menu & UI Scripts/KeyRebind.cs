@@ -65,7 +65,8 @@ public class KeyRebind : MonoBehaviour
         Yaw_Left,
         ThrottleUp, 
         ThrottleDown, 
-        TogglePause, 
+        TogglePause,
+        Boost, 
     }
 
     public string GetBindingText(Binding binding)
@@ -91,6 +92,8 @@ public class KeyRebind : MonoBehaviour
                     return _playerInput.Player.ThrottleDown.bindings[0].ToDisplayString();
                 case Binding.TogglePause:
                     return _playerInput.Player.TogglePause.bindings[0].ToDisplayString(); 
+                case Binding.Boost: 
+                    return _playerInput.Player.Boost.bindings[0].ToDisplayString(); 
         }
     }
 
@@ -116,6 +119,7 @@ public class KeyRebind : MonoBehaviour
         throttleUpButton.onClick.AddListener(() => {RebindAndDisplay(Binding.ThrottleUp);});
         throttleDownButton.onClick.AddListener(() => {RebindAndDisplay(Binding.ThrottleDown);});
         pauseButton.onClick.AddListener(() => {RebindAndDisplay(Binding.TogglePause);});
+        boostButton.onClick.AddListener(() => {RebindAndDisplay(Binding.Boost);});
         
     }
 
@@ -139,7 +143,7 @@ public class KeyRebind : MonoBehaviour
 
         
         // TODO: boost isn't connected to the unity input system, ask for clarification
-        boostBindingText.text = "Space"; 
+        boostBindingText.text = GetBindingText(Binding.Boost); 
 
     }
 
@@ -186,6 +190,10 @@ public class KeyRebind : MonoBehaviour
                 bindingIndex = 0;
                 break;
             case Binding.TogglePause:
+                inputAction = _playerInput.Player.TogglePause;
+                bindingIndex = 0;
+                break;
+            case Binding.Boost:
                 inputAction = _playerInput.Player.TogglePause;
                 bindingIndex = 0;
                 break;

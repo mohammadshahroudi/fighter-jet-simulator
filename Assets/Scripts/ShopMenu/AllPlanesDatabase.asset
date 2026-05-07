@@ -40,7 +40,7 @@ MonoBehaviour:
     health: 750
     damage: 30
     price: 1000
-    state: 2
+    state: 1
     previewObject: {fileID: 0}
     planePrefab: {fileID: 2723431253010827434, guid: 662c05f1cafe2cb44bb2faec10efdd41, type: 3}
   - planeId: Titan MK2
@@ -60,6 +60,6 @@ MonoBehaviour:
     health: 1500
     damage: 60
     price: 3000
-    state: 0
+    state: 2
     previewObject: {fileID: 0}
     planePrefab: {fileID: 6719424853283353284, guid: 7ab255a1383a4a8479b3c1e7bcdb4e99, type: 3}
