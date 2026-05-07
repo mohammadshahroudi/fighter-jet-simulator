@@ -10,6 +10,7 @@ public class GunLogic : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] private bool acceptPlayerInput = true;
+    [SerializeField] [Range(0f, 1f)] private float gamepadTriggerPressPoint = 0.15f;
 
     [Header("Fire Rate Settings")]
     [SerializeField] private float fireRate = 0.1f; // Time between shots
@@ -32,6 +33,9 @@ public class GunLogic : MonoBehaviour
     [SerializeField] private bool enableAimAssist = true;
     [SerializeField] [Range(0f, 10f)] private float aimAssistConeAngle = 2f;
     [SerializeField] private int aimAssistRayCount = 8;
+    [SerializeField] private bool damageAllTargetsInReticle = true;
+    [SerializeField] [Range(1, 32)] private int maxTargetsPerShot = 8;
+    [SerializeField] [Range(0f, 2f)] private float targetLineOfSightPadding = 0.5f;
     [SerializeField] private bool debugDrawConeRays = false;
     [SerializeField] private Color debugConeRayColor = Color.cyan;
 
@@ -65,6 +69,11 @@ public class GunLogic : MonoBehaviour
     private float lastShotTime = -999f;
     private float lastImpactTime = -999f;
     private GameObject activeImpact;
+    private GameObject muzzleFlashInstance;
+    private ParticleSystem muzzleFlashSystem;
+    private readonly Collider[] reticleCandidateBuffer = new Collider[128];
+    private readonly IDamageable[] reticleDamageableBuffer = new IDamageable[32];
+    private readonly Vector3[] reticlePointBuffer = new Vector3[32];
 
     private int cloudLayer = -1;
 
@@ -94,6 +103,7 @@ public class GunLogic : MonoBehaviour
         }
 
         InitializeTracerPool();
+        InitializeMuzzleFlash();
     }
 
     void InitializeTracerPool()
@@ -288,8 +298,10 @@ public class GunLogic : MonoBehaviour
 
         bool isFiringThisFrame = false;
 
-        // Left click to shoot
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed && Time.time >= nextFireTime)
+        bool mousePressed = Mouse.current != null && Mouse.current.leftButton.isPressed;
+        bool controllerPressed = IsControllerFirePressed();
+
+        if ((mousePressed || controllerPressed) && Time.time >= nextFireTime)
         {
             ShootRaycast();
             nextFireTime = Time.time + fireRate;
@@ -300,6 +312,119 @@ public class GunLogic : MonoBehaviour
         UpdateLoopingShotSound(isFiringThisFrame);
     }
 
+    bool IsControllerFirePressed()
+    {
+        for (int i = 0; i < Gamepad.all.Count; i++)
+        {
+            Gamepad gamepad = Gamepad.all[i];
+            if (gamepad == null || !gamepad.added) continue;
+
+            if (gamepad.rightTrigger.ReadValue() >= gamepadTriggerPressPoint)
+                return true;
+        }
+
+        for (int i = 0; i < Joystick.all.Count; i++)
+        {
+            Joystick joystick = Joystick.all[i];
+            if (joystick == null || !joystick.added) continue;
+
+            if (joystick.trigger != null && joystick.trigger.isPressed)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool HasTargetInReticle()
+    {
+        if (!enableAimAssist || firePoint == null) return false;
+
+        Vector3 origin = firePoint.position;
+        Vector3 centerDirection = -firePoint.up;
+        LayerMask effectiveHitLayers = hitLayers;
+        effectiveHitLayers &= ~ignoredLayers.value;
+
+        return GatherReticleTargets(origin, centerDirection, effectiveHitLayers, out _, out _);
+    }
+
+    bool GatherReticleTargets(Vector3 origin, Vector3 centerDirection, LayerMask effectiveHitLayers, out int targetCount, out Vector3 bestTargetPoint)
+    {
+        targetCount = 0;
+        bestTargetPoint = origin + centerDirection * raycastRange;
+
+        float maxAngle = Mathf.Max(0.01f, aimAssistConeAngle);
+        int cappedMaxTargets = Mathf.Clamp(maxTargetsPerShot, 1, reticleDamageableBuffer.Length);
+
+        int candidateCount = Physics.OverlapSphereNonAlloc(
+            origin,
+            raycastRange,
+            reticleCandidateBuffer,
+            effectiveHitLayers,
+            QueryTriggerInteraction.Ignore
+        );
+
+        float bestScore = float.MaxValue;
+
+        for (int i = 0; i < candidateCount; i++)
+        {
+            Collider candidate = reticleCandidateBuffer[i];
+            if (candidate == null) continue;
+
+            IDamageable damageable = candidate.GetComponentInParent<IDamageable>();
+            if (damageable == null) continue;
+            if (candidate.transform.root == transform.root) continue;
+
+            bool alreadyAdded = false;
+            for (int j = 0; j < targetCount; j++)
+            {
+                if (reticleDamageableBuffer[j] == damageable)
+                {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+
+            if (alreadyAdded) continue;
+
+            Vector3 candidatePoint = candidate.ClosestPoint(origin);
+            if ((candidatePoint - origin).sqrMagnitude < 0.0001f)
+                candidatePoint = candidate.bounds.center;
+
+            Vector3 toCandidate = candidatePoint - origin;
+            float distance = toCandidate.magnitude;
+            if (distance <= 0.01f || distance > raycastRange) continue;
+
+            Vector3 direction = toCandidate / distance;
+            float angle = Vector3.Angle(centerDirection, direction);
+            if (angle > maxAngle) continue;
+
+            if (!Physics.Raycast(origin, direction, out RaycastHit lineHit, distance + targetLineOfSightPadding, effectiveHitLayers, QueryTriggerInteraction.Ignore))
+                continue;
+
+            IDamageable lineHitDamageable = lineHit.collider != null ? lineHit.collider.GetComponentInParent<IDamageable>() : null;
+            if (lineHitDamageable != damageable) continue;
+
+            if (targetCount < cappedMaxTargets)
+            {
+                reticleDamageableBuffer[targetCount] = damageable;
+                reticlePointBuffer[targetCount] = candidatePoint;
+                targetCount++;
+            }
+
+            float score = (angle / maxAngle) * 0.8f + (distance / Mathf.Max(1f, raycastRange)) * 0.2f;
+            if (score < bestScore)
+            {
+                bestScore = score;
+                bestTargetPoint = candidatePoint;
+            }
+        }
+
+        for (int i = 0; i < candidateCount; i++)
+            reticleCandidateBuffer[i] = null;
+
+        return targetCount > 0;
+    }
+
     void ShootRaycast()
     {
         if (firePoint == null) return;
@@ -308,59 +433,58 @@ public class GunLogic : MonoBehaviour
 
         PlayShotSound();
 
+        Vector3 startPoint = firePoint.position;
         Vector3 shootDirection = -firePoint.up;
         LayerMask effectiveHitLayers = hitLayers;
         effectiveHitLayers &= ~ignoredLayers.value;
 
-        // Show muzzle flash
-        if (muzzleFlash != null)
+        bool hasReticleTargets = enableAimAssist && GatherReticleTargets(startPoint, shootDirection, effectiveHitLayers, out int reticleTargetCount, out Vector3 bestTargetPoint);
+        if (hasReticleTargets)
+            shootDirection = (bestTargetPoint - startPoint).normalized;
+
+        PlayMuzzleFlash(shootDirection);
+
+        if (damageAllTargetsInReticle && hasReticleTargets)
         {
-            GameObject flash = Instantiate(muzzleFlash, firePoint.position, Quaternion.LookRotation(shootDirection));
-            ParticleSystem ps = flash.GetComponent<ParticleSystem>();
-            if (ps != null)
+            for (int i = 0; i < reticleTargetCount; i++)
             {
-                Destroy(flash, ps.main.duration + ps.main.startLifetime.constantMax);
+                IDamageable damageable = reticleDamageableBuffer[i];
+                if (damageable != null)
+                    damageable.TakeDamage(damage);
             }
-            else
-            {
-                Destroy(flash, 2f);
-            }
+
+            SpawnImpactEffect(bestTargetPoint, -shootDirection);
+            SpawnRaycastTracer(startPoint, bestTargetPoint);
+            OnTargetHit?.Invoke(bestTargetPoint);
+
+            if (drawDebugRays)
+                Debug.DrawLine(startPoint, bestTargetPoint, debugHitColor, debugRayDuration);
+
+            return;
         }
 
-        Vector3 startPoint = firePoint.position;
-
         // Use cone raycast system
-        if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageable))
+        if (PerformConeRaycast(startPoint, shootDirection, effectiveHitLayers, out RaycastHit hit, out IDamageable damageableByRaycast))
         {
-            // Apply damage if target has the IDamageable interface
-            if (damageable != null && hit.collider.transform.root != transform.root)
+            if (damageableByRaycast != null && hit.collider.transform.root != transform.root)
             {
-                damageable.TakeDamage(damage);
-                // Notify UI systems of hit
+                damageableByRaycast.TakeDamage(damage);
                 OnTargetHit?.Invoke(hit.point);
             }
 
-            // Impact effect
             SpawnImpactEffect(hit.point, hit.normal);
-
-            // Show tracer to hit point
             SpawnRaycastTracer(startPoint, hit.point);
 
             if (drawDebugRays)
-            {
                 Debug.DrawLine(startPoint, hit.point, debugHitColor, debugRayDuration);
-            }
         }
         else
         {
-            // No hit, show tracer to max range
             Vector3 endPoint = startPoint + shootDirection * raycastRange;
             SpawnRaycastTracer(startPoint, endPoint);
 
             if (drawDebugRays)
-            {
                 Debug.DrawRay(startPoint, shootDirection * raycastRange, debugMissColor, debugRayDuration);
-            }
         }
     }
 
@@ -420,6 +544,39 @@ public class GunLogic : MonoBehaviour
 
         GameObject impact = Instantiate(impactEffect, point, Quaternion.LookRotation(normal));
         Destroy(impact, impactEffectLifetime);
+    }
+
+    void InitializeMuzzleFlash()
+    {
+        if (muzzleFlash == null || firePoint == null || muzzleFlashInstance != null) return;
+
+        muzzleFlashInstance = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation, firePoint);
+        muzzleFlashSystem = muzzleFlashInstance.GetComponentInChildren<ParticleSystem>(true);
+
+        if (muzzleFlashSystem != null)
+            muzzleFlashSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    void PlayMuzzleFlash(Vector3 shootDirection)
+    {
+        if (muzzleFlash == null || firePoint == null) return;
+
+        if (muzzleFlashInstance == null)
+            InitializeMuzzleFlash();
+
+        if (muzzleFlashInstance == null) return;
+
+        muzzleFlashInstance.transform.SetPositionAndRotation(firePoint.position, Quaternion.LookRotation(shootDirection));
+
+        if (muzzleFlashSystem != null)
+        {
+            muzzleFlashSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            muzzleFlashSystem.Play(true);
+            return;
+        }
+
+        muzzleFlashInstance.SetActive(false);
+        muzzleFlashInstance.SetActive(true);
     }
 
     void PlayShotSound()

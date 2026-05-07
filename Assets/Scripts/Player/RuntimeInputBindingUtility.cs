@@ -21,7 +21,8 @@ public static class RuntimeInputBindingUtility
     public static string BuildAxisProcessors(bool invert, float sensitivity, float deadzone)
     {
         string invertPart = invert ? "Invert," : string.Empty;
-        return $"{invertPart}Scale(factor={Mathf.Max(0f, sensitivity)}),Deadzone(min={Mathf.Clamp01(deadzone)})";
+        string deadzonePart = deadzone > 0f ? $",Deadzone(min={Mathf.Clamp01(deadzone)})" : string.Empty;
+        return $"{invertPart}Scale(factor={Mathf.Max(0f, sensitivity)}){deadzonePart}";
     }
 
     public static void AddBindingIfMissing(InputAction action, string path, string processor = null)
