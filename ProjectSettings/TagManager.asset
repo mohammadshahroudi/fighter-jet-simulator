@@ -10,6 +10,8 @@ TagManager:
   - Building
   - PowerUp
   - Cloud
+  - Enemy
+  - Gun
   layers:
   - Default
   - TransparentFX

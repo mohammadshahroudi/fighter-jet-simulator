@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2138457826545905048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5601175707643224047}
+  - component: {fileID: 5577076436892267937}
+  m_Layer: 0
+  m_Name: PlanesLoaderMainMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5601175707643224047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138457826545905048}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.044572264, y: 0.19922498, z: 0.008538682, w: 0.9789024}
+  m_LocalPosition: {x: -9.734778, y: 2.5898478, z: -15.415087}
+  m_LocalScale: {x: 1.0064, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 4.811, y: 23.091, z: 1.983}
+--- !u!114 &5577076436892267937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138457826545905048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43e23ad2bcf4464a17860ff5d3e349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPlaneLoader
+  planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
+  playerStats: {fileID: 0}
+  disableGunsOnSpawn: 1

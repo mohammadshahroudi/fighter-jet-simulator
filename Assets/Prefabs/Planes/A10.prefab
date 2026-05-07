@@ -45,6 +45,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MachineGunMK2
       objectReference: {fileID: 0}
+    - target: {fileID: 5281698133587121778, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 8165376809418786132, guid: eef308fa69a9246e3a511e48b970913e, type: 3}
       propertyPath: gunLogic
       value: 
