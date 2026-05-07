@@ -50,6 +50,10 @@ public class GameStateManager : MonoBehaviour
     [Tooltip("Root of the in-game HUD — hidden when game ends.")]
     public GameObject hudRoot;
 
+    [Header("UI Game Canvas")]
+    [Tooltip("Root canvas for the in-game UI that should be disabled when game over or victory appears.")]
+    public GameObject uiGameCanvas;
+
     [Header("Audio")]
     public AudioClip gameOverSFX;
     public AudioClip victorySFX;
@@ -99,6 +103,8 @@ public class GameStateManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
+        ResetGameplayState();
+
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 0f;
 
@@ -115,6 +121,8 @@ public class GameStateManager : MonoBehaviour
         totalRings = FindObjectsByType<Ring>(FindObjectsSortMode.None).Length;
 
         // Hide UI panels at start
+        SetPanelActive(hudRoot, true);
+        SetPanelActive(uiGameCanvas, true);
         SetPanelActive(gameOverPanel, false);
         SetPanelActive(victoryPanel,  false);
 
@@ -138,6 +146,7 @@ public class GameStateManager : MonoBehaviour
             Instance = null;
 
         EnemyHealth.OnEnemyEnabled -= HandleEnemyEnabled;
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
     // -------------------------------------------------------------------------
@@ -190,6 +199,7 @@ public class GameStateManager : MonoBehaviour
         if (gameOverSFX != null) audioSource.PlayOneShot(gameOverSFX);
 
         SetPanelActive(hudRoot, false);
+        SetPanelActive(uiGameCanvas, false);
         SetPanelActive(gameOverPanel, true);
 
         // Populate score label
@@ -218,6 +228,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         SetPanelActive(hudRoot, false);
+        SetPanelActive(uiGameCanvas, false);
         SetPanelActive(victoryPanel, true);
 
         int score = GetCurrentScore();
@@ -237,7 +248,9 @@ public class GameStateManager : MonoBehaviour
     void RestartScene()
     {
         StopMusic();
-        Time.timeScale = 1f;
+        ResetGameplayState();
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+        SceneManager.sceneLoaded += HandleSceneLoaded;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -358,5 +371,22 @@ public class GameStateManager : MonoBehaviour
     {
         if (musicAudioSource != null)
             musicAudioSource.Stop();
+    }
+
+    void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+        ResetGameplayState();
+    }
+
+    void ResetGameplayState()
+    {
+        Time.timeScale = 1f;
+        CurrentState = GameState.Playing;
+        ringsCollected = 0;
+        bossBattleStarted = false;
+        bossDetectionArmed = false;
+        pendingBossTarget = null;
+        SetPanelActive(uiGameCanvas, true);
     }
 }
