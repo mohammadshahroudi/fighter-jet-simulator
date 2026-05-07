@@ -22,22 +22,16 @@ public class HotasInputBindingInstaller : MonoBehaviour
 
         if (targetGameInput == null)
         {
-            Debug.LogWarning("HotasInputBindingInstaller: No GameInput found in scene.");
+            Debug.LogError("GameInput not found!");
             return;
         }
 
-        if (!RuntimeInputBindingUtility.TryGetRuntimeActions(targetGameInput, out PlayerInput runtimeActions))
-        {
-            Debug.LogWarning("HotasInputBindingInstaller: Could not get runtime PlayerInput actions.");
-            return;
-        }
-
-        InstallHotasBindings(runtimeActions);
+        InstallHotasBindings(targetGameInput.InputActions);
     }
 
     private void InstallHotasBindings(PlayerInput actions)
     {
-        // T.Flight HOTAS One X: stick X=roll, Y=pitch, twist=rudder/yaw.
+        // T.Flight HOTAS One X
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Roll, "<Joystick>/stick/x", RuntimeInputBindingUtility.BuildAxisProcessors(true, rollSensitivity, stickDeadzone));
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Roll, "<Joystick>/x", RuntimeInputBindingUtility.BuildAxisProcessors(true, rollSensitivity, stickDeadzone));
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Pitch, "<Joystick>/stick/y", RuntimeInputBindingUtility.BuildAxisProcessors(false, pitchSensitivity, stickDeadzone));
@@ -46,12 +40,9 @@ public class HotasInputBindingInstaller : MonoBehaviour
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Yaw, "<Joystick>/z", RuntimeInputBindingUtility.BuildAxisProcessors(false, yawSensitivity, stickDeadzone));
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Yaw, "<Joystick>/rz", RuntimeInputBindingUtility.BuildAxisProcessors(false, yawSensitivity, stickDeadzone));
 
-        // Fallback yaw for non-twist devices.
-        RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Yaw, "<Joystick>/hat/x", RuntimeInputBindingUtility.BuildAxisProcessors(false, yawSensitivity, stickDeadzone));
-
         // Boost button.
         RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.Boost, "<Joystick>/button2");
-        RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.TogglePause, "<Joystick>/button10");
+        RuntimeInputBindingUtility.AddBindingIfMissing(actions.Player.TogglePause, "<Joystick>/button14");
 
         // Throttle is handled by HotasThrottle using the physical throttle axis.
 

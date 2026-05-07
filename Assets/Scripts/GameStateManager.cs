@@ -99,6 +99,8 @@ public class GameStateManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
+        ResetGameplayState();
+
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 0f;
 
@@ -115,6 +117,7 @@ public class GameStateManager : MonoBehaviour
         totalRings = FindObjectsByType<Ring>(FindObjectsSortMode.None).Length;
 
         // Hide UI panels at start
+        SetPanelActive(hudRoot, true);
         SetPanelActive(gameOverPanel, false);
         SetPanelActive(victoryPanel,  false);
 
@@ -138,6 +141,7 @@ public class GameStateManager : MonoBehaviour
             Instance = null;
 
         EnemyHealth.OnEnemyEnabled -= HandleEnemyEnabled;
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
     // -------------------------------------------------------------------------
@@ -237,7 +241,9 @@ public class GameStateManager : MonoBehaviour
     void RestartScene()
     {
         StopMusic();
-        Time.timeScale = 1f;
+        ResetGameplayState();
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+        SceneManager.sceneLoaded += HandleSceneLoaded;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -358,5 +364,21 @@ public class GameStateManager : MonoBehaviour
     {
         if (musicAudioSource != null)
             musicAudioSource.Stop();
+    }
+
+    void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+        ResetGameplayState();
+    }
+
+    void ResetGameplayState()
+    {
+        Time.timeScale = 1f;
+        CurrentState = GameState.Playing;
+        ringsCollected = 0;
+        bossBattleStarted = false;
+        bossDetectionArmed = false;
+        pendingBossTarget = null;
     }
 }
