@@ -9,6 +9,7 @@ void Start()
     string equippedPlaneId = ShopPersistence.GetSavedEquippedPlaneId();
     var allPlanes = planeDatabase.allPlanes;
     PlaneData equippedPlane = allPlanes.Find(plane => plane != null && plane.PlaneId == equippedPlaneId);
+    PlaneData defaultPlane = allPlanes.Find(plane => plane != null && plane.PlaneId == "Falcon X1");
 
     if (transform.childCount > 0)
     {
@@ -43,7 +44,8 @@ void Start()
     }
     else
     {
-        Debug.LogError("Equipped plane not found or prefab missing!");
+        Debug.LogError("Equipped plane not found or prefab missing! Using default plane instead.");
+        GameObject spawned = Instantiate(defaultPlane.PlanePrefab, transform);
     }
 }
 }
