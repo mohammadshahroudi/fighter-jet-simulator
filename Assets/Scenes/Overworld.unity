@@ -1656,9 +1656,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpSpawner
   powerUpPrefabs:
   - {fileID: 3400199709860577521, guid: f49b5e7f9b5f0404885867c98bae3c9a, type: 3}
+  - {fileID: 4624051202472014103, guid: 9fb60fe3022084e9a9399694fd4de575, type: 3}
+  - {fileID: 8378114320112242781, guid: 62db6ff1f3c3144eeaf1aa651b719369, type: 3}
   spawnInterval: 5
   powerUpLifeTime: 15
-  player: {fileID: 0}
+  player: {fileID: 318293104}
   forwardDistance: 200
   sideRange: 50
   heightRange: 30
