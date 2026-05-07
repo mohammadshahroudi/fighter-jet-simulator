@@ -9,7 +9,7 @@ public class HotasThrottle : MonoBehaviour
     [SerializeField] private PlayerController playerController;
 
     [Header("Axis Mapping")]
-    [SerializeField] private string[] throttleAxisCandidates = { "throttle", "slider", "rz", "z" };
+    [SerializeField] private string[] throttleAxisCandidates = { "twist", "throttle", "slider", "slider/x", "throttle/x", "z", "rz" };
     [SerializeField] private bool invertThrottleAxis = true;
     [SerializeField] [Range(0f, 1f)] private float axisChangeThreshold = 0.01f;
 
@@ -21,6 +21,7 @@ public class HotasThrottle : MonoBehaviour
     private FieldInfo throttleField;
     private string resolvedAxisName;
     private float lastAxisValue;
+    private bool hasInitialAxisSample;
 
     private void Awake()
     {
@@ -42,10 +43,13 @@ public class HotasThrottle : MonoBehaviour
 
     private void Update()
     {
-        if (playerController == null || throttleField == null || Joystick.current == null) return;
+        if (playerController == null || throttleField == null) return;
 
-        float axis = ReadThrottleAxis();
-        if (Mathf.Abs(axis - lastAxisValue) < axisChangeThreshold) return;
+        Joystick joystick = GetHotas();
+        if (joystick == null) return;
+
+        float axis = ReadThrottleAxis(joystick);
+        if (hasInitialAxisSample && Mathf.Abs(axis - lastAxisValue) < axisChangeThreshold) return;
 
         float normalized = NormalizeThrottleAxis(axis);
         float targetThrottle = Mathf.Lerp(minThrottle, maxThrottle, normalized);
@@ -55,11 +59,12 @@ public class HotasThrottle : MonoBehaviour
 
         throttleField.SetValue(playerController, Mathf.Clamp(smoothed, minThrottle, maxThrottle));
         lastAxisValue = axis;
+        hasInitialAxisSample = true;
     }
 
     private void ResolveAxisName()
     {
-        Joystick joystick = Joystick.current;
+        Joystick joystick = GetHotas();
         if (joystick == null || throttleAxisCandidates == null) return;
 
         for (int i = 0; i < throttleAxisCandidates.Length; i++)
@@ -76,11 +81,8 @@ public class HotasThrottle : MonoBehaviour
         }
     }
 
-    private float ReadThrottleAxis()
+    private float ReadThrottleAxis(Joystick joystick)
     {
-        Joystick joystick = Joystick.current;
-        if (joystick == null) return 0f;
-
         if (string.IsNullOrWhiteSpace(resolvedAxisName))
         {
             ResolveAxisName();
@@ -92,6 +94,21 @@ public class HotasThrottle : MonoBehaviour
 
         float value = axis.ReadValue();
         return invertThrottleAxis ? -value : value;
+    }
+
+    private static Joystick GetHotas()
+    {
+        if (Joystick.current != null && Joystick.current.added)
+            return Joystick.current;
+
+        for (int i = 0; i < Joystick.all.Count; i++)
+        {
+            Joystick joystick = Joystick.all[i];
+            if (joystick != null && joystick.added)
+                return joystick;
+        }
+
+        return null;
     }
 
     private static float NormalizeThrottleAxis(float axis)
