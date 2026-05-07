@@ -1345,8 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2152249183746114423}
   - component: {fileID: 8433148305313912354}
-  - component: {fileID: 362200469861339149}
-  - component: {fileID: 6724554339050273424}
+  - component: {fileID: 5888871655324044945}
   m_Layer: 5
   m_Name: Score & Currency
   m_TagString: Untagged
@@ -1401,7 +1400,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &362200469861339149
+--- !u!114 &5888871655324044945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1410,25 +1409,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7196808979378079187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4c71593bb88946bb90d71ef5a0f0c5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 93153b3cbb54c4d6baf53e7816dc7033, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CurrentScoreDisplay
+  m_EditorClassIdentifier: Assembly-CSharp::GameplayStatsDisplay
   scoreText: {fileID: 2169381912651300415}
-  displayFormat: 'S: {0:D6}'
---- !u!114 &6724554339050273424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7196808979378079187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 958f4e71c12cd4fb39dc40c402244d68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CurrentMoneyDisplay
   moneyText: {fileID: 5807046460921182830}
-  displayFormat: '$: {0:D6}'
+  scoreFormat: 'S: {0:D6}'
+  moneyFormat: 'M: {0:D6}'
 --- !u!1 &8433331756496312143
 GameObject:
   m_ObjectHideFlags: 0
