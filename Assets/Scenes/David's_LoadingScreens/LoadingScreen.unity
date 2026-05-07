@@ -2925,7 +2925,7 @@ Transform:
   m_GameObject: {fileID: 568790719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 111.7, y: -65, z: 75.6}
+  m_LocalPosition: {x: 111.7, y: -20, z: 75.6}
   m_LocalScale: {x: 23.676714, y: 23.6767, z: 23.6767}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3440,6 +3440,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778537454}
   m_CullTransparentMesh: 1
+--- !u!1 &880202747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 880202748}
+  - component: {fileID: 880202749}
+  m_Layer: 5
+  m_Name: KeyBinds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &880202748
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880202747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1400844612}
+  - {fileID: 1252606743}
+  m_Father: {fileID: 1323334392}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -312.4, y: 280}
+  m_SizeDelta: {x: 260, y: 420}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &880202749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880202747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad754afaa15914d45b91ac74c4d74c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayKeybinds
+  upBindingText: {fileID: 42836404}
+  downBindingText: {fileID: 914849936}
+  leftBindingText: {fileID: 427778214}
+  rightBindingText: {fileID: 485849943}
+  rollLeftBindingText: {fileID: 1885055781}
+  throttleUpBindingText: {fileID: 1222397263}
+  throttleDownBindingText: {fileID: 1913389983}
+  boostBindingText: {fileID: 1774758758}
+  pauseBindingText: {fileID: 268268852}
+  rollRightBindingText: {fileID: 1302180374}
 --- !u!1 &912916208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,7 +4141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0767abcd02ce842afcabffca5d2aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bounce
-  amp: 1
+  amp: 4
   freq: 1
 --- !u!4 &1238600772
 Transform:
@@ -4124,7 +4184,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252606742}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4134,11 +4194,11 @@ RectTransform:
   - {fileID: 1915705367}
   - {fileID: 1459643265}
   - {fileID: 444337025}
-  m_Father: {fileID: 1323334392}
+  m_Father: {fileID: 880202748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49.1, y: -170}
+  m_AnchoredPosition: {x: 129.99997, y: -210}
   m_SizeDelta: {x: 260, y: 420}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1252606744
@@ -4487,8 +4547,7 @@ RectTransform:
   m_Children:
   - {fileID: 205981698}
   - {fileID: 452374914}
-  - {fileID: 1252606743}
-  - {fileID: 1400844612}
+  - {fileID: 880202748}
   - {fileID: 230377263}
   - {fileID: 1829748130}
   m_Father: {fileID: 1997687126}
@@ -4909,7 +4968,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400844611}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4919,11 +4978,11 @@ RectTransform:
   - {fileID: 324950329}
   - {fileID: 1177447433}
   - {fileID: 82221562}
-  m_Father: {fileID: 1323334392}
+  m_Father: {fileID: 880202748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -170}
+  m_AnchoredPosition: {x: 400.90002, y: -210}
   m_SizeDelta: {x: 260, y: 420}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1400844613
@@ -5854,6 +5913,7 @@ MonoBehaviour:
     be able to fly. \r\nIts wings are too small to get \r\nits fat little body off
     the ground. \r\nThe bee, of course, flies anyway\r\nbeause bees don't care what
     humans think is impossible. \r\nBARRY BENSON: \r\n"
+  - beeb boop boop bop
 --- !u!1 &1885055779
 GameObject:
   m_ObjectHideFlags: 0

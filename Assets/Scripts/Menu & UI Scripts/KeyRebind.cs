@@ -52,9 +52,9 @@ public class KeyRebind : MonoBehaviour
     
     
     // [PRIVATE FIELDS] 
-    private const string PLAYER_PREFS_BINDINGS = "InputBindings";
+    public const string PLAYER_PREFS_BINDINGS = "InputBindings";
     
-    private PlayerInput _playerInput; 
+    private static PlayerInput _playerInput; 
     public enum Binding
     {
         Roll_Right, 
@@ -69,7 +69,7 @@ public class KeyRebind : MonoBehaviour
         Boost, 
     }
 
-    public string GetBindingText(Binding binding)
+    public static string GetBindingText(Binding binding)
     {
         switch (binding)
         {
@@ -129,7 +129,7 @@ public class KeyRebind : MonoBehaviour
         
     }
 
-    private void UpdateBindings()
+    public void UpdateBindings()
     {
         rollRightBindingText.text = GetBindingText(Binding.Roll_Right); 
         rollLeftBindingText.text = GetBindingText(Binding.Roll_Left);
@@ -194,7 +194,7 @@ public class KeyRebind : MonoBehaviour
                 bindingIndex = 0;
                 break;
             case Binding.Boost:
-                inputAction = _playerInput.Player.TogglePause;
+                inputAction = _playerInput.Player.Boost;
                 bindingIndex = 0;
                 break;
         }
@@ -212,8 +212,6 @@ public class KeyRebind : MonoBehaviour
 
                 _playerInput.SaveBindingOverridesAsJson();
                 PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, _playerInput.SaveBindingOverridesAsJson()); 
-                
-                
 
             }) 
             .Start();
