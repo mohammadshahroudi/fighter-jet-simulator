@@ -18,6 +18,11 @@ public class GunAutoLock : MonoBehaviour
     [SerializeField] private float minLockDot = 0.3f;
     [SerializeField] private float lockGraceTime = 0.5f;
 
+    [Header("Screen Cone Targeting")]
+    [SerializeField] private Camera worldCamera;
+    [SerializeField] private float screenConeRadius = 250f;
+    [SerializeField] private bool requireTargetOnScreen = true;
+
     public Transform CurrentTarget { get; private set; }
 
     private Transform firePoint;
@@ -56,6 +61,8 @@ public class GunAutoLock : MonoBehaviour
 
     void FindRuntimeReferences()
     {
+        if (worldCamera == null)
+            worldCamera = Camera.main;
         if (gunLogic == null)
             gunLogic = FindFirstObjectByType<GunLogic>();
 
@@ -71,80 +78,121 @@ public class GunAutoLock : MonoBehaviour
         }
     }
 
-    void FindBestTarget()
+   void FindBestTarget()
+{
+    if (firePoint == null || worldCamera == null)
+        return;
+
+    Collider[] hits = Physics.OverlapSphere(
+        firePoint.position,
+        targetCheckRange,
+        targetLayers
+    );
+
+    Transform bestTarget = null;
+    float bestScore = -Mathf.Infinity;
+
+    Vector2 screenCenter = new Vector2(
+        Screen.width * 0.5f,
+        Screen.height * 0.5f
+    );
+
+    foreach (Collider hit in hits)
     {
-        if (firePoint == null)
-            return;
+        Transform root = hit.transform.root;
 
-        Collider[] hits = Physics.OverlapSphere(
-            firePoint.position,
-            targetCheckRange,
-            targetLayers
-        );
+        if (!root.CompareTag(enemyTag))
+            continue;
 
-        Transform bestTarget = null;
-        float bestScore = -Mathf.Infinity;
+        if (ownerRoot != null && root == ownerRoot)
+            continue;
 
-        foreach (Collider hit in hits)
+        Vector3 screenPos = worldCamera.WorldToScreenPoint(root.position);
+
+        if (screenPos.z <= 0f)
+            continue;
+
+        if (requireTargetOnScreen)
         {
-            Transform root = hit.transform.root;
-
-            if (!root.CompareTag(enemyTag))
-                continue;
-
-            if (ownerRoot != null && root == ownerRoot)
-                continue;
-
-            Vector3 toTarget = root.position - firePoint.position;
-            float distance = toTarget.magnitude;
-
-            if (distance <= 0.001f)
-                continue;
-
-            float dot = Vector3.Dot(-firePoint.up, toTarget.normalized);
-
-            if (dot < minLockDot)
-                continue;
-
-            float score = dot * 2f - distance * 0.001f;
-
-            if (score > bestScore)
+            if (screenPos.x < 0f || screenPos.x > Screen.width ||
+                screenPos.y < 0f || screenPos.y > Screen.height)
             {
-                bestScore = score;
-                bestTarget = root;
+                continue;
             }
         }
 
-        CurrentTarget = bestTarget;
+        Vector2 screenOffset = (Vector2)screenPos - screenCenter;
+        float screenDistance = screenOffset.magnitude;
 
-        if (CurrentTarget != null)
-            lastSeenTime = Time.time;
+        if (screenDistance > screenConeRadius)
+            continue;
+
+        Vector3 toTarget = root.position - firePoint.position;
+        float worldDistance = toTarget.magnitude;
+
+        if (worldDistance > targetCheckRange || worldDistance <= 0.001f)
+            continue;
+
+        // Higher score = closer to screen center and closer in world distance
+        float centerScore = 1f - (screenDistance / screenConeRadius);
+        float distanceScore = 1f - Mathf.Clamp01(worldDistance / targetCheckRange);
+
+        float score = centerScore * 3f + distanceScore;
+
+        if (score > bestScore)
+        {
+            bestScore = score;
+            bestTarget = root;
+        }
     }
+
+    CurrentTarget = bestTarget;
+
+    if (CurrentTarget != null)
+        lastSeenTime = Time.time;
+}
 
     bool IsTargetStillValid()
+{
+    if (CurrentTarget == null || firePoint == null || worldCamera == null)
+        return false;
+
+    if (!CurrentTarget.gameObject.activeInHierarchy)
+        return false;
+
+    Vector3 toTarget = CurrentTarget.position - firePoint.position;
+    float distance = toTarget.magnitude;
+
+    if (distance > targetCheckRange || distance <= 0.001f)
+        return false;
+
+    Vector3 screenPos = worldCamera.WorldToScreenPoint(CurrentTarget.position);
+
+    if (screenPos.z <= 0f)
+        return false;
+
+    if (requireTargetOnScreen)
     {
-        if (CurrentTarget == null || firePoint == null)
-            return false;
-
-        if (!CurrentTarget.gameObject.activeInHierarchy)
-            return false;
-
-        Vector3 toTarget = CurrentTarget.position - firePoint.position;
-        float distance = toTarget.magnitude;
-
-        if (distance > targetCheckRange || distance <= 0.001f)
-            return false;
-
-        float dot = Vector3.Dot(-firePoint.up, toTarget.normalized);
-
-        if (dot >= minLockDot)
+        if (screenPos.x < 0f || screenPos.x > Screen.width ||
+            screenPos.y < 0f || screenPos.y > Screen.height)
         {
-            lastSeenTime = Time.time;
-            return true;
+            return false;
         }
-
-        return Time.time - lastSeenTime < lockGraceTime;
     }
+
+    Vector2 screenCenter = new Vector2(
+        Screen.width * 0.5f,
+        Screen.height * 0.5f
+    );
+
+    float screenDistance = Vector2.Distance(screenPos, screenCenter);
+
+    if (screenDistance > screenConeRadius)
+        return false;
+
+    lastSeenTime = Time.time;
+    return true;
+}   
 
     void AimGunAtTarget()
     {

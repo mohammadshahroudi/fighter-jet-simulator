@@ -479,8 +479,7 @@ PrefabInstance:
       propertyPath: m_Autodestruct
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6219496888168750977, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6919770162056173111, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
     m_AddedGameObjects:

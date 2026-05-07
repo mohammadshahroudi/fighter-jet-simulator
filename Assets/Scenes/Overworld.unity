@@ -330,11 +330,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingSpawner
   ringPrefab: {fileID: 1994167215615997567, guid: 70d369a6ecf652444a8fc99eddd15064, type: 3}
-  pattern: 0
   player: {fileID: 0}
+  pattern: 0
   followPlayer: 1
   followOffset: {x: 0, y: 0, z: 120}
   followSmoothTime: 0.15
+  periodicSpawning: 1
+  spawnInterval: 4
+  spawnDistanceInFrontOfPlayer: 120
+  clearOldRingsBeforeNewSpawn: 1
   ringCount: 8
   spacingDistance: 30
   arcAngleDegrees: 90
@@ -346,10 +350,6 @@ MonoBehaviour:
   faceApproachDirection: 0
   approachDirection: {x: 0, y: 0, z: 0}
   spawnOnStart: 1
-  periodicSpawning: 1
-  spawnInterval: 4
-  spawnDistanceInFrontOfPlayer: 120
-  clearOldRingsBeforeNewSpawn: 1
 --- !u!4 &159273125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3273580001574703676, guid: 81049dba603c04f8d9706e70b2f174e7, type: 3}
