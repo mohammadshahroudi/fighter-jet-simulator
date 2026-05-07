@@ -527,7 +527,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313856215386913536}
-  - component: {fileID: 6219496888168750977}
   m_Layer: 7
   m_Name: _BaseUFO
   m_TagString: Enemy
@@ -551,40 +550,6 @@ Transform:
   - {fileID: 6300289229840977344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6219496888168750977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6448769473528024094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887808f681d936b41b1df7168d3bac5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 20
-  currentHealth: 0
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerVictoryOnDeath: 0
-  forceRootHitbox: 0
-  autoFitRootHitboxToRenderers: 1
-  rootHitboxCenter: {x: 0, y: 0, z: 0}
-  rootHitboxRadius: 250
-  healthVisualRenderer: {fileID: 0}
-  fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
-  midHealthColor: {r: 1, g: 0.5, b: 0, a: 1}
-  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  colorLerpSpeed: 8
-  lowHealthPulseThreshold: 0.35
-  pulseSpeed: 6
-  pulseStrength: 0.35
-  damageFlashOverlay: {fileID: 0}
 --- !u!1 &6919770162056173111
 GameObject:
   m_ObjectHideFlags: 0

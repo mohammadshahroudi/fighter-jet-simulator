@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3770777812931614360}
   - component: {fileID: 7822304303475640163}
   - component: {fileID: 4763836786259050716}
+  - component: {fileID: 4546644418767769941}
+  - component: {fileID: 2818114201161755850}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -90,6 +92,39 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &4546644418767769941
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492326668121663898}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.009807855
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2818114201161755850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492326668121663898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee03f78647efc44880543ec1e9c894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitProxy
 --- !u!1 &1260957524734484821
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +136,6 @@ GameObject:
   - component: {fileID: 632518521829177863}
   - component: {fileID: 6987923656637722569}
   - component: {fileID: 8559066634734460572}
-  - component: {fileID: 1461642202655764593}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -181,29 +215,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1461642202655764593
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260957524734484821}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1298003259095139450
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +304,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.7866174e-38, z: 4.83e-43, w: 0}
+  m_BoundingSphereOverride: {x: 1.7086692e+19, y: 1.8319336e+25, z: 4.9432675e-20, w: 3.581646e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -5179,7 +5190,8 @@ GameObject:
   - component: {fileID: 2240771494767033831}
   - component: {fileID: 6126420180808466343}
   - component: {fileID: 2598664295432067528}
-  - component: {fileID: 8473165275807793598}
+  - component: {fileID: 832791454244656700}
+  - component: {fileID: 8377419679161936763}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -5259,33 +5271,39 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &8473165275807793598
-Rigidbody:
+--- !u!65 &832791454244656700
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2252998905436091867}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.08098884, y: 0.08098883, z: 0.020306049}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8377419679161936763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252998905436091867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee03f78647efc44880543ec1e9c894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitProxy
 --- !u!1 &2639907366215583039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5413,6 +5431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9184058584721141848}
+  - component: {fileID: 663605550894337206}
   m_Layer: 7
   m_Name: OnHit
   m_TagString: Untagged
@@ -5437,6 +5456,24 @@ Transform:
   - {fileID: 6509225372738795157}
   m_Father: {fileID: 7827853601480065969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &663605550894337206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029102568340747808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6facdcce49497c847aba2b49a8324d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlashOverlay
+  flashVisualRoot: {fileID: 0}
+  flashPeakAlpha: 0.7
+  fadeInTime: 0.03
+  fadeOutTime: 0.12
+  colorProperty: _Color
+  baseColorProperty: _BaseColor
 --- !u!1 &3496025489715233138
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,7 +5575,6 @@ GameObject:
   - component: {fileID: 337997417480458475}
   - component: {fileID: 4607445789102061937}
   - component: {fileID: 3425203203644387960}
-  - component: {fileID: 3779857950219165833}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -5618,27 +5654,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3779857950219165833
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4474430725203242856}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4833396143565363101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5895,14 +5910,17 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9067155280265686744}
+      addedObject: {fileID: 6958111266222729436}
+    - targetCorrespondingSourceObject: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 417063930251561485}
   m_SourcePrefab: {fileID: 100100000, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
 --- !u!1 &5097088408446137519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
   m_PrefabInstance: {fileID: 2288637085318658225}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9067155280265686744
+--- !u!114 &6958111266222729436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5911,24 +5929,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 5097088408446137519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb4c625a5922c8b4cb7b3ad3d71c7b76, type: 3}
+  m_Script: {fileID: 11500000, guid: 6facdcce49497c847aba2b49a8324d55, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossSwoopAttack
-  player: {fileID: 0}
-  startDelay: 1
-  attackCooldown: 4
-  swoopStartHeight: 0
-  swoopStartForwardOffset: 0
-  escapeHeight: 70
-  escapeBehindDistance: 80
-  diveSpeed: 5
-  pullUpSpeed: 10
-  turnSpeed: 8
-  predictionTime: 0.2
-  maxDiveTime: 4
-  damageAmount: 25
-  hitDistance: 6
-  damagePlayerOnHit: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlashOverlay
+  flashVisualRoot: {fileID: 3029102568340747808}
+  flashPeakAlpha: 0.7
+  fadeInTime: 0.03
+  fadeOutTime: 0.12
+  colorProperty: _Color
+  baseColorProperty: _BaseColor
+--- !u!114 &417063930251561485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097088408446137519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887808f681d936b41b1df7168d3bac5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 20
+  currentHealth: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerVictoryOnDeath: 0
+  forceRootHitbox: 0
+  autoFitRootHitboxToRenderers: 1
+  rootHitboxCenter: {x: 0, y: 0, z: 0}
+  rootHitboxRadius: 250
+  healthVisualRenderer: {fileID: 4763836786259050716}
+  fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  midHealthColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  colorLerpSpeed: 8
+  lowHealthPulseThreshold: 0.35
+  pulseSpeed: 6
+  pulseStrength: 0.35
+  damageFlashOverlay: {fileID: 6958111266222729436}
 --- !u!4 &5237054015322207601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300289229840977344, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
