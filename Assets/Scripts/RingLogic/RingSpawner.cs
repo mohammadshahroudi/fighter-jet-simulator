@@ -25,6 +25,14 @@ public class RingSpawner : MonoBehaviour
     [Header("Pattern")]
     public SpawnPatternList pattern = SpawnPatternList.Line;
 
+    [Header("Follow Player")]
+    public Transform player;
+    public bool followPlayer = true;
+    public Vector3 followOffset = new Vector3(0f, 0f, 120f);
+    public float followSmoothTime = 0.15f;
+
+    private Vector3 followVelocity;
+
     public enum SpawnPatternList
     {
         Line,       // rings in a straight corridor
@@ -61,6 +69,14 @@ public class RingSpawner : MonoBehaviour
     [Header("Spawn on Start")]
     public bool spawnOnStart = true;
 
+    [Header("Periodic Spawning")]
+    public bool periodicSpawning = true;
+    public float spawnInterval = 4f;
+    public float spawnDistanceInFrontOfPlayer = 120f;
+    public bool clearOldRingsBeforeNewSpawn = true;
+
+private float spawnTimer;
+
     // Spawned ring references for cleanup
     private List<GameObject> spawnedRings = new List<GameObject>();
 
@@ -74,24 +90,35 @@ public class RingSpawner : MonoBehaviour
             SpawnPattern();
     }
 
+    void Update()
+{
+    if (!periodicSpawning || player == null) return;
+
+    spawnTimer += Time.deltaTime;
+
+    if (spawnTimer >= spawnInterval)
+    {
+        spawnTimer = 0f;
+        SpawnPatternInFrontOfPlayer();
+    }
+}
+
     // -------------------------------------------------------------------------
     // Public API
     // -------------------------------------------------------------------------
 
     /// <summary>Spawns rings according to the currently selected pattern.</summary>
     public void SpawnPattern()
+{
+    switch (pattern)
     {
-        ClearRings();
-
-        switch (pattern)
-        {
-            case SpawnPatternList.Line:    SpawnLine();    break;
-            case SpawnPatternList.Arc:     SpawnArc();     break;
-            case SpawnPatternList.Circle:  SpawnCircle();  break;
-            case SpawnPatternList.Scatter: SpawnScatter(); break;
-            case SpawnPatternList.Custom:  SpawnCustom();  break;
-        }
+        case SpawnPatternList.Line:    SpawnLine();    break;
+        case SpawnPatternList.Arc:     SpawnArc();     break;
+        case SpawnPatternList.Circle:  SpawnCircle();  break;
+        case SpawnPatternList.Scatter: SpawnScatter(); break;
+        case SpawnPatternList.Custom:  SpawnCustom();  break;
     }
+}
 
     /// <summary>Destroys all rings spawned by this spawner.</summary>
     public void ClearRings()
@@ -195,20 +222,63 @@ public class RingSpawner : MonoBehaviour
     // Helpers
     // -------------------------------------------------------------------------
 
-    void SpawnAt(Vector3 worldPos, Vector3 faceDir)
+   void SpawnAt(Vector3 worldPos, Vector3 faceDir)
+{
+    if (ringPrefab == null)
     {
-        if (ringPrefab == null)
-        {
-            Debug.LogError("[RingSpawner] Ring prefab not assigned!");
-            return;
-        }
+        Debug.LogError("[RingSpawner] Ring prefab not assigned!");
+        return;
+    }
 
-        Quaternion rot = faceApproachDirection && faceDir != Vector3.zero
-            ? Quaternion.LookRotation(faceDir, Vector3.up)
-            : Quaternion.identity;
+    Quaternion rot = faceApproachDirection && faceDir != Vector3.zero
+        ? Quaternion.LookRotation(faceDir, Vector3.up)
+        : Quaternion.identity;
 
-        var go = Instantiate(ringPrefab, worldPos, rot);
-        spawnedRings.Add(go);
+    GameObject go = Instantiate(ringPrefab, worldPos, rot);
+
+    Ring ring = go.GetComponent<Ring>();
+    if (ring != null)
+    {
+        ring.SetPlayer(player);
+        ring.ResetRing();
+    }
+
+    spawnedRings.Add(go);
+}
+
+    public void SpawnPatternInFrontOfPlayer()
+{
+    Vector3 spawnPosition =
+        player.position +
+        player.forward * spawnDistanceInFrontOfPlayer;
+
+    transform.position = spawnPosition;
+    transform.rotation = player.rotation;
+
+    if (clearOldRingsBeforeNewSpawn)
+        ClearRings();
+
+    SpawnPattern();
+}
+
+    void LateUpdate()
+    {
+        if (!followPlayer || player == null) return;
+
+        Vector3 targetPosition =
+            player.position +
+            player.right * followOffset.x +
+            player.up * followOffset.y +
+            player.forward * followOffset.z;
+
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            targetPosition,
+            ref followVelocity,
+            followSmoothTime
+        );
+
+        transform.rotation = player.rotation;
     }
 
     Vector3 GetApproachDir()
