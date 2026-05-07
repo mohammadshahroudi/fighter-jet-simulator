@@ -32,9 +32,15 @@ public class Ring : MonoBehaviour
     [Header("Collect Animation")]
     public float collectFlashDuration = 0.18f;
 
+    private Collider ringCollider;
+
     [Header("Audio / VFX")]
     public AudioClip collectSFX;
     public GameObject collectVFXPrefab;
+
+    [Header("Facing")]
+    public bool facePlayer = true;
+    public float facePlayerSpeed = 15f;
 
     private enum RingState { Idle, Snapping, Collecting }
     private RingState state = RingState.Idle;
@@ -50,6 +56,8 @@ public class Ring : MonoBehaviour
 
     private static readonly int s_emissionColorID = Shader.PropertyToID("_EmissionColor");
     private Color baseEmissionColor = Color.cyan;
+
+    public Vector3 ringFacingOffsetEuler = new Vector3(90f, 0f, 0f);
 
     void Awake()
     {
@@ -97,6 +105,8 @@ public class Ring : MonoBehaviour
             if (mat.HasProperty(s_emissionColorID))
                 baseEmissionColor = mat.GetColor(s_emissionColorID);
         }
+        if (ringCollider == null)
+            ringCollider = GetComponentInChildren<Collider>();
     }
 
     public void SetPlayer(Transform player)
@@ -106,6 +116,8 @@ public class Ring : MonoBehaviour
 
     public void ResetRing()
     {
+        if (ringCollider != null)
+            ringCollider.enabled = true;
         state = RingState.Idle;
         collected = false;
 
@@ -121,7 +133,8 @@ public class Ring : MonoBehaviour
 
     void UpdateIdle()
     {
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.World);
+        FacePlayer();
+        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
 
         bobTimer += Time.deltaTime;
         float bobY = Mathf.Sin(bobTimer * bobFrequency * Mathf.PI * 2f) * bobAmplitude;
@@ -170,7 +183,8 @@ public class Ring : MonoBehaviour
 
         previousError = error;
 
-        transform.Rotate(Vector3.up, rotationSpeed * 3f * Time.deltaTime, Space.World);
+        FacePlayer();
+        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
 
         float dist = error.magnitude;
         float t = Mathf.Clamp01(1f - dist / snapDistance);
@@ -187,6 +201,8 @@ public class Ring : MonoBehaviour
 
         collected = true;
         state = RingState.Collecting;
+        if (ringCollider != null)
+            ringCollider.enabled = false;
 
         if (RingScoreManager.Instance != null)
             RingScoreManager.Instance.HandleRingCollected(pointValue, transform.position);
@@ -217,6 +233,28 @@ public class Ring : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    void FacePlayer()
+{
+    if (!facePlayer || playerTransform == null) return;
+
+    Vector3 dir = playerTransform.position - transform.position;
+
+    if (dir.sqrMagnitude < 0.0001f)
+        return;
+
+    Quaternion lookRot = Quaternion.LookRotation(dir.normalized, Vector3.up);
+
+    Quaternion offset = Quaternion.Euler(ringFacingOffsetEuler);
+
+    Quaternion finalRot = lookRot * offset;
+
+    transform.rotation = Quaternion.Slerp(
+        transform.rotation,
+        finalRot,
+        facePlayerSpeed * Time.deltaTime
+    );
+}
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
