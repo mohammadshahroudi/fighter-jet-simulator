@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -31,8 +32,21 @@ public class PlayerController : MonoBehaviour
     [Header("Boost")]
     [Tooltip("Multiplier applied to forward thrust while Boost is held (Space)")]
     [SerializeField] private float boostMultiplier = 2f;
+    [Tooltip("How many seconds of boost the player has at full charge")]
+    [SerializeField] private float maxBoostSeconds = 5f;
+    [Tooltip("How many boost seconds are consumed per second while boosting")]
+    [SerializeField] private float boostDrainPerSecond = 1f;
+    [Tooltip("How many boost seconds are recovered per second after recharge starts")]
+    [SerializeField] private float boostRechargePerSecond = 1f;
+    [Tooltip("How long after boost stops before recharge begins")]
+    [SerializeField] private float boostRechargeDelaySeconds = 0.5f;
+
+    [Header("Events")]
+    public UnityEvent<float> onStaminaChanged;  // passes normalized stamina (0-1)
 
     private Rigidbody rb;
+    private float currentBoostSeconds;
+    private float timeSinceBoostEnded = 0f;
     private float throttle = 10f;
     private float roll;
     private float pitch;
@@ -82,7 +96,8 @@ public class PlayerController : MonoBehaviour
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
-        // rb.linearVelocity = new Vector3( 0,0,minSpeed);
+        currentBoostSeconds = maxBoostSeconds;
+        timeSinceBoostEnded = boostRechargeDelaySeconds;
     }
 
     private void Update()
@@ -115,10 +130,23 @@ public class PlayerController : MonoBehaviour
 
         float responseModifier = rb.mass / responseModifierValue;
         float thrustForce      = (throttle / 100f) * maxThrottle;
-        bool isBoosting = gameInput != null && gameInput.GetBoost();
+        bool isBoosting = gameInput != null && gameInput.GetBoost() && currentBoostSeconds > 0f;
+        
         if (isBoosting)
         {
             thrustForce *= boostMultiplier;
+            currentBoostSeconds = Mathf.Max(0f, currentBoostSeconds - boostDrainPerSecond * Time.deltaTime);
+            timeSinceBoostEnded = 0f;
+            onStaminaChanged?.Invoke(currentBoostSeconds / Mathf.Max(0.0001f, maxBoostSeconds));
+        }
+        else
+        {
+            timeSinceBoostEnded += Time.deltaTime;
+            if (timeSinceBoostEnded >= boostRechargeDelaySeconds)
+            {
+                currentBoostSeconds = Mathf.Min(maxBoostSeconds, currentBoostSeconds + boostRechargePerSecond * Time.deltaTime);
+                onStaminaChanged?.Invoke(currentBoostSeconds / Mathf.Max(0.0001f, maxBoostSeconds));
+            }
         }
 
         rb.AddRelativeForce(Vector3.forward * thrustForce);

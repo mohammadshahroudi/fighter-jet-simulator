@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 752915275160914740}
   - component: {fileID: 4959881837059715928}
   - component: {fileID: 3374036093970085174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4666408346718706643}
   - component: {fileID: 5316606710686781303}
   - component: {fileID: 6029521629975832799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300289229840977344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 2150201901507275259}
   - component: {fileID: 859597386066095591}
   - component: {fileID: 7111722001759267812}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6155652638064414101}
   - component: {fileID: 9198440788183421120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8313856215386913536}
   - component: {fileID: 6219496888168750977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _BaseUFO
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -560,11 +560,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6448769473528024094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ab50893c5697047be3f534f0a456c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 887808f681d936b41b1df7168d3bac5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 20
-  currentHealth: 20
+  currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -573,7 +573,7 @@ MonoBehaviour:
       m_Calls: []
   triggerVictoryOnDeath: 0
   forceRootHitbox: 0
-  autoFitRootHitboxToRenderers: 0
+  autoFitRootHitboxToRenderers: 1
   rootHitboxCenter: {x: 0, y: 0, z: 0}
   rootHitboxRadius: 250
   healthVisualRenderer: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3460446460543361590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
