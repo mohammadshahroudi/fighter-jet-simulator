@@ -614,7 +614,7 @@ MonoBehaviour:
   squadAvoidStrength: 2
   squadMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   nearMissDistance: 55
   nearMissOffset: 45
   nearMissCommitTime: 0.9
@@ -634,7 +634,7 @@ MonoBehaviour:
   firePitchRange: {x: 0.95, y: 1.05}
   deathEffectPrefab: {fileID: 0}
   deathSmokeEffect: {fileID: 0}
-  deathSfx: {fileID: 0}
+  deathSfx: {fileID: 8300000, guid: e5812346beb0e4ff79d73c9706d40e66, type: 3}
   destroyDelay: 3
   deathShakeDuration: 0.25
   deathShakeStrength: 0.35
@@ -776,7 +776,7 @@ MonoBehaviour:
       m_Calls: []
   triggerVictoryOnDeath: 0
   forceRootHitbox: 0
-  autoFitRootHitboxToRenderers: 1
+  autoFitRootHitboxToRenderers: 0
   rootHitboxCenter: {x: 0, y: 0, z: 0}
   rootHitboxRadius: 250
   healthVisualRenderer: {fileID: 3650713769637912883}

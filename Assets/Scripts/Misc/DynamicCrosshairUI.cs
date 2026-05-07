@@ -4,252 +4,179 @@ using UnityEngine.UI;
 public class DynamicCrosshairUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GunLogic gunLogic;
+    [SerializeField] private GunAutoLock gunAutoLock;
     [SerializeField] private Image crosshairImage;
-    [SerializeField] private Transform lockRotationRoot;
+    [SerializeField] private Camera worldCamera;
 
-    [Header("Crosshair Colors")]
+    [Header("Colors")]
     [SerializeField] private Color defaultColor = Color.white;
-    [SerializeField] private Color targetAcquiredColor = new Color(1f, 0.2f, 0.2f);
+    [SerializeField] private Color targetColor = new Color(1f, 0.2f, 0.2f);
     [SerializeField] private float colorTransitionSpeed = 10f;
 
-    [Header("Targeting Check")]
-    [SerializeField] private float targetCheckInterval = 0.05f;
-    [SerializeField] private float targetCheckRange = 1000f;
-    [SerializeField] private LayerMask targetLayers;
-    [SerializeField] private bool ignoreClouds = true;
-
-    [Header("Cone Settings")]
-    [SerializeField] [Range(0f, 10f)] private float crosshairConeAngle = 2f;
-    [SerializeField] private int coneRayCount = 8;
-
-    [Header("Auto Lock")]
-    [SerializeField] private bool autoLockEnabled = true;
-    [SerializeField] private float lockTurnSpeed = 720f;
-    [SerializeField] private string enemyTag = "Enemy";
-
-    [Header("Return To Center")]
+    [Header("Movement")]
+    [SerializeField] private float followDecay = 18f;
     [SerializeField] private float returnDecay = 8f;
+    [SerializeField] private float maxScreenOffset = 450f;
+
+    [Header("Prediction")]
+    [SerializeField] private float predictionTime = 0.15f;
+    [SerializeField] private float maxPredictionOffset = 120f;
+    [SerializeField] private float targetSmoothSpeed = 18f;
 
     private RectTransform crosshairRect;
     private Color currentColor;
-    private Color targetColor;
 
-    private float nextCheckTime;
-    private Transform firePoint;
-    private Transform ownerRoot;
-    private Transform lockedTarget;
+    private Vector3 lastTargetPosition;
+    private Vector3 targetVelocity;
+    private bool hasLastTargetPosition;
 
-    void Start()
+    private Vector2 smoothedUIPosition;
+    private bool hasSmoothedTarget;
+
+    void Awake()
     {
-        if (gunLogic == null)
-            gunLogic = FindFirstObjectByType<GunLogic>();
-
-        if (gunLogic != null)
-        {
-            firePoint = gunLogic.GetFirePoint();
-
-            if (firePoint != null)
-            {
-                ownerRoot = firePoint.root;
-
-                if (lockRotationRoot == null)
-                    lockRotationRoot = firePoint.parent;
-            }
-        }
-
-        if (targetLayers.value == 0)
-            targetLayers = Physics.DefaultRaycastLayers;
-
-        if (crosshairImage == null)
-            crosshairImage = GetComponent<Image>();
-
-        if (crosshairImage != null)
-        {
-            crosshairRect = crosshairImage.GetComponent<RectTransform>();
-            crosshairImage.color = defaultColor;
-        }
+        FindRuntimeReferences();
 
         currentColor = defaultColor;
-        targetColor = defaultColor;
+
+        if (crosshairImage != null)
+            crosshairImage.color = currentColor;
     }
 
     void Update()
     {
-        if (Time.time >= nextCheckTime)
-        {
-            CheckForTargets();
-            nextCheckTime = Time.time + targetCheckInterval;
-        }
+        FindRuntimeReferences();
 
-        if (!IsTargetStillValid())
-        {
-            lockedTarget = null;
-        }
+        Transform target = gunAutoLock != null ? gunAutoLock.CurrentTarget : null;
 
-        // Return to center (0,0 in UI space)
-        if (lockedTarget == null && crosshairRect != null)
-        {
-            crosshairRect.anchoredPosition = Decay(
-                crosshairRect.anchoredPosition,
-                Vector2.zero,
-                returnDecay
-            );
-        }
-
-        if (autoLockEnabled)
-            UpdateAutoLock();
-
-        // Color transition
-        if (crosshairImage != null)
-        {
-            currentColor = Color.Lerp(currentColor, targetColor, Time.deltaTime * colorTransitionSpeed);
-            crosshairImage.color = currentColor;
-        }
+        UpdateTargetVelocity(target);
+        UpdateCrosshairPosition(target);
+        UpdateColor(target != null);
     }
 
-    void CheckForTargets()
+    void FindRuntimeReferences()
     {
-        if (firePoint == null)
+        if (gunAutoLock == null)
+            gunAutoLock = FindFirstObjectByType<GunAutoLock>();
+
+        if (crosshairImage == null)
+            crosshairImage = GetComponent<Image>();
+
+        if (crosshairImage != null && crosshairRect == null)
+            crosshairRect = crosshairImage.GetComponent<RectTransform>();
+
+        if (worldCamera == null)
+            worldCamera = Camera.main;
+    }
+
+    void UpdateTargetVelocity(Transform target)
+    {
+        if (target == null)
         {
-            lockedTarget = null;
-            targetColor = defaultColor;
+            hasLastTargetPosition = false;
+            targetVelocity = Vector3.zero;
             return;
         }
 
-        Vector3 origin = firePoint.position;
-        Vector3 direction = -firePoint.up;
-
-        LayerMask effectiveLayers = targetLayers;
-
-        if (ignoreClouds)
+        if (!hasLastTargetPosition)
         {
-            int cloudLayer = LayerMask.NameToLayer("Cloud");
-            int cloudsLayer = LayerMask.NameToLayer("Clouds");
-
-            if (cloudLayer >= 0)
-                effectiveLayers &= ~(1 << cloudLayer);
-
-            if (cloudsLayer >= 0)
-                effectiveLayers &= ~(1 << cloudsLayer);
+            lastTargetPosition = target.position;
+            hasLastTargetPosition = true;
+            return;
         }
 
-        lockedTarget = GetBestTargetInCone(origin, direction, effectiveLayers);
-
-        bool found = lockedTarget != null;
-        targetColor = found ? targetAcquiredColor : defaultColor;
-
-        gunLogic?.OnTargetInCrosshair?.Invoke(found);
+        targetVelocity = (target.position - lastTargetPosition) / Mathf.Max(Time.deltaTime, 0.0001f);
+        lastTargetPosition = target.position;
     }
 
-    bool IsTargetStillValid()
+    void UpdateCrosshairPosition(Transform target)
     {
-        if (lockedTarget == null || firePoint == null)
-            return false;
+        if (crosshairRect == null || worldCamera == null)
+            return;
 
-        if (!lockedTarget.gameObject.activeInHierarchy)
-            return false;
+        Vector2 desiredPosition = Vector2.zero;
 
-        Vector3 dir = lockedTarget.position - firePoint.position;
-
-        if (dir.magnitude > targetCheckRange)
-            return false;
-
-        float dot = Vector3.Dot(-firePoint.up, dir.normalized);
-
-        if (dot < 0.8f)
-            return false;
-
-        if (Physics.Linecast(firePoint.position, lockedTarget.position, out RaycastHit hit, targetLayers))
+        if (target != null)
         {
-            if (hit.transform.root != lockedTarget.root)
-                return false;
-        }
+            Vector3 currentScreenPos = worldCamera.WorldToScreenPoint(target.position);
+            Vector3 predictedWorldPos = target.position + targetVelocity * predictionTime;
+            Vector3 predictedScreenPos = worldCamera.WorldToScreenPoint(predictedWorldPos);
 
-        return true;
-    }
-
-    Transform GetBestTargetInCone(Vector3 origin, Vector3 centerDirection, LayerMask layers)
-    {
-        Transform bestTarget = null;
-        float bestDistance = Mathf.Infinity;
-
-        CheckRay(origin, centerDirection, layers, ref bestTarget, ref bestDistance);
-
-        float angleRad = crosshairConeAngle * Mathf.Deg2Rad;
-
-        Vector3 up = Vector3.up;
-        if (Vector3.Dot(centerDirection, up) > 0.99f)
-            up = Vector3.right;
-
-        Vector3 right = Vector3.Cross(centerDirection, up).normalized;
-        Vector3 actualUp = Vector3.Cross(right, centerDirection).normalized;
-
-        for (int i = 0; i < coneRayCount; i++)
-        {
-            float angle = (i / (float)coneRayCount) * Mathf.PI * 2f;
-
-            Vector3 offset =
-                (right * Mathf.Cos(angle) + actualUp * Mathf.Sin(angle)) *
-                Mathf.Tan(angleRad);
-
-            Vector3 rayDir = (centerDirection + offset).normalized;
-
-            CheckRay(origin, rayDir, layers, ref bestTarget, ref bestDistance);
-        }
-
-        return bestTarget;
-    }
-
-    void CheckRay(Vector3 origin, Vector3 direction, LayerMask layers,
-        ref Transform bestTarget, ref float bestDistance)
-    {
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, targetCheckRange, layers))
-        {
-            if (!IsValidEnemyHit(hit))
-                return;
-
-            if (hit.distance < bestDistance)
+            if (currentScreenPos.z > 0f && predictedScreenPos.z > 0f)
             {
-                bestDistance = hit.distance;
-                bestTarget = hit.collider.transform.root;
+                Vector2 screenCenter = new Vector2(
+                    Screen.width * 0.5f,
+                    Screen.height * 0.5f
+                );
+
+                Vector2 currentOffset = (Vector2)currentScreenPos - screenCenter;
+                Vector2 predictedOffset = (Vector2)predictedScreenPos - screenCenter;
+
+                Vector2 predictionDelta = predictedOffset - currentOffset;
+                predictionDelta = Vector2.ClampMagnitude(predictionDelta, maxPredictionOffset);
+
+                Vector2 rawPosition = currentOffset + predictionDelta;
+                rawPosition = Vector2.ClampMagnitude(rawPosition, maxScreenOffset);
+
+                if (!hasSmoothedTarget)
+                {
+                    smoothedUIPosition = rawPosition;
+                    hasSmoothedTarget = true;
+                }
+                else
+                {
+                    smoothedUIPosition = Vector2.Lerp(
+                        smoothedUIPosition,
+                        rawPosition,
+                        Time.deltaTime * targetSmoothSpeed
+                    );
+                }
+
+                desiredPosition = smoothedUIPosition;
+            }
+            else
+            {
+                hasSmoothedTarget = false;
             }
         }
-    }
+        else
+        {
+            hasSmoothedTarget = false;
+        }
 
-    void UpdateAutoLock()
-    {
-        if (lockedTarget == null || lockRotationRoot == null)
-            return;
+        float decay = target != null ? followDecay : returnDecay;
 
-        Vector3 dir = lockedTarget.position - lockRotationRoot.position;
-
-        if (dir.sqrMagnitude < 0.001f)
-            return;
-
-        Quaternion targetRot = Quaternion.LookRotation(dir, Vector3.up);
-
-        lockRotationRoot.rotation = Quaternion.RotateTowards(
-            lockRotationRoot.rotation,
-            targetRot,
-            lockTurnSpeed * Time.deltaTime
+        crosshairRect.anchoredPosition = Decay(
+            crosshairRect.anchoredPosition,
+            desiredPosition,
+            decay
         );
+
+        if (target == null &&
+            Vector2.Distance(crosshairRect.anchoredPosition, Vector2.zero) < 0.1f)
+        {
+            crosshairRect.anchoredPosition = Vector2.zero;
+        }
     }
 
-    bool IsValidEnemyHit(RaycastHit hit)
+    void UpdateColor(bool hasTarget)
     {
-        if (!hit.collider.CompareTag(enemyTag) &&
-            !hit.collider.transform.root.CompareTag(enemyTag))
-            return false;
+        if (crosshairImage == null)
+            return;
 
-        if (ownerRoot != null && hit.collider.transform.root == ownerRoot)
-            return false;
+        Color desiredColor = hasTarget ? targetColor : defaultColor;
 
-        return true;
+        currentColor = Color.Lerp(
+            currentColor,
+            desiredColor,
+            Time.deltaTime * colorTransitionSpeed
+        );
+
+        crosshairImage.color = currentColor;
     }
 
     Vector2 Decay(Vector2 current, Vector2 target, float decay)
     {
         return target + (current - target) * Mathf.Exp(-decay * Time.deltaTime);
     }
-}   
+}
