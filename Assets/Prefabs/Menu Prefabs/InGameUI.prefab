@@ -471,8 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b529401f9b9f946e29e8ae9d9abb0ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KillTimer
-  startTimeSeconds: 20
-  secondsAddedPerKill: 30
+  startTimeSeconds: 90
+  secondsAddedPerKill: 15
   timerText: {fileID: 8619079714431503899}
   triggerGameOverOnZero: 1
   lowTimeThreshold: 10

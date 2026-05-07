@@ -1377,6 +1377,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5107671945702897040, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 5358776942127399545, guid: 34c610e4358d04441b5741a05a7284a1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -1856,7 +1860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   planeDatabase: {fileID: 11400000, guid: fa0ee41e0c557462ea9849e3c4377e1b, type: 2}
-  selectedPlaneIndex: 4
+  selectedPlaneIndex: 0
 --- !u!1 &1210258203
 GameObject:
   m_ObjectHideFlags: 0
