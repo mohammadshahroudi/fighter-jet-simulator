@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9783a275657fd4f469c2248e3144d17a, type: 3}
   m_Name: TimeSettings
   m_EditorClassIdentifier: Assembly-CSharp::TimeSettings
-  timeMultiplier: 1000
+  timeMultiplier: 500
   startHour: 12
   sunriseHour: 6
   sunsetHour: 18

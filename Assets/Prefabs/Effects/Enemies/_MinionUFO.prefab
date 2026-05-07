@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2646902546952247583}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: OnHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4296424020678404174}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8459020951034849513}
   - component: {fileID: 5950173983338810530}
   - component: {fileID: 3623545098699771409}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 8119497356093452920}
   - component: {fileID: 2460881266502487528}
   - component: {fileID: 4403039487070189436}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 353674343248330106}
   - component: {fileID: 9159435354113037889}
   - component: {fileID: 4692814106010262371}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 90494293337036310, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 293765085232980439, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_LocalPosition.y
@@ -361,23 +361,27 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4341fc375c3b90f4795ad55fd5cbaafc, type: 2}
     - target: {fileID: 2603321962177224555, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3020528254395637793, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3020528254395637793, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3020528254395637793, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3760359283345884178, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5443744588738785879, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5443744588738785879, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_IsActive
@@ -417,7 +421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6448769473528024094, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
       propertyPath: m_TagString
@@ -610,7 +614,7 @@ MonoBehaviour:
   squadAvoidStrength: 2
   squadMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   nearMissDistance: 55
   nearMissOffset: 45
   nearMissCommitTime: 0.9
@@ -630,7 +634,7 @@ MonoBehaviour:
   firePitchRange: {x: 0.95, y: 1.05}
   deathEffectPrefab: {fileID: 0}
   deathSmokeEffect: {fileID: 0}
-  deathSfx: {fileID: 0}
+  deathSfx: {fileID: 8300000, guid: e5812346beb0e4ff79d73c9706d40e66, type: 3}
   destroyDelay: 3
   deathShakeDuration: 0.25
   deathShakeStrength: 0.35
@@ -772,7 +776,7 @@ MonoBehaviour:
       m_Calls: []
   triggerVictoryOnDeath: 0
   forceRootHitbox: 0
-  autoFitRootHitboxToRenderers: 1
+  autoFitRootHitboxToRenderers: 0
   rootHitboxCenter: {x: 0, y: 0, z: 0}
   rootHitboxRadius: 250
   healthVisualRenderer: {fileID: 3650713769637912883}
@@ -783,7 +787,7 @@ MonoBehaviour:
   lowHealthPulseThreshold: 0.35
   pulseSpeed: 6
   pulseStrength: 0.35
-  damageFlashOverlay: {fileID: 0}
+  damageFlashOverlay: {fileID: 5951158057909187671}
 --- !u!4 &8049070582080186311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300289229840977344, guid: c6c0bf8b7d5ef504298beb9c50aa0691, type: 3}
