@@ -235,7 +235,7 @@ MonoBehaviour:
   autoIgnoredLayerNames:
   - Cloud
   - Clouds
-  impactEffect: {fileID: 7905612801494095918}
+  impactEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   muzzleFlash: {fileID: 7905612801494095918}
   tracerLine: {fileID: 1714701499340243713}
   tracerDuration: 5

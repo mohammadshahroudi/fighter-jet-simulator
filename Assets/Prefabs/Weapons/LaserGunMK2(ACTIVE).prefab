@@ -238,7 +238,7 @@ MonoBehaviour:
   - Cloud
   - Clouds
   impactEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  muzzleFlash: {fileID: 100006, guid: c888f0c922d622147bbdbe2ca794142b, type: 3}
+  muzzleFlash: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
   tracerLine: {fileID: 1140096833144175086}
   tracerDuration: 0.1
   tracerWidth: 0.15
