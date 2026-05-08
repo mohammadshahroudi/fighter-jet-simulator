@@ -7533,6 +7533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3599616978374061268}
+  - component: {fileID: 2155271533947504570}
   m_Layer: 5
   m_Name: Cash Tab
   m_TagString: Untagged
@@ -7561,6 +7562,19 @@ RectTransform:
   m_AnchoredPosition: {x: 1048.9138, y: 359}
   m_SizeDelta: {x: 916.1724, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2155271533947504570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380787319085180418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4428f9352b8e44e10891b03d5c2a35a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoneyUI
+  moneyText: {fileID: 1853715879393690639}
 --- !u!1 &5387873638796422653
 GameObject:
   m_ObjectHideFlags: 0
@@ -10866,6 +10880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5978460466294615860}
+  - component: {fileID: 8322095601095799695}
   m_Layer: 5
   m_Name: Hi-Score Tab
   m_TagString: Untagged
@@ -10894,6 +10909,20 @@ RectTransform:
   m_AnchoredPosition: {x: 710, y: 457.63354}
   m_SizeDelta: {x: 664.1265, y: 93.21887}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8322095601095799695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357159891407119943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e8303ad510d4f08bf1ad60bf6cd49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighScoreDisplay
+  highScoreText: {fileID: 2326360055503726659}
+  displayFormat: 'HS: {0:D6}'
 --- !u!1 &8412849142170800878
 GameObject:
   m_ObjectHideFlags: 0

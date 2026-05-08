@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 840957096222261220}
+  m_Father: {fileID: 2830162413183453078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &6889340857419882152
 AudioSource:
@@ -160,8 +160,7 @@ Transform:
   m_Children:
   - {fileID: 6100887312640527523}
   - {fileID: 5248604119492549396}
-  - {fileID: 1173951355018195298}
-  m_Father: {fileID: 9084957329421459418}
+  m_Father: {fileID: 2830162413183453078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &5281698133587121778
 GameObject:
@@ -173,7 +172,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9084957329421459418}
   - component: {fileID: 4087999940128457066}
-  - component: {fileID: 8165376809418786132}
   - component: {fileID: 4674287997892936921}
   m_Layer: 0
   m_Name: MachineGunMK2(ACTIVE)
@@ -196,8 +194,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4905085056854935743}
-  - {fileID: 840957096222261220}
-  - {fileID: 8661694075193248463}
   - {fileID: 2830162413183453078}
   - {fileID: 1309322694828348383}
   m_Father: {fileID: 0}
@@ -215,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunLogic
   acceptPlayerInput: 1
-  gamepadTriggerPressPoint: 0.15
+  gunAutoLock: {fileID: 4674287997892936921}
   fireRate: 0.1
   firePoint: {fileID: 840957096222261220}
   shotAudioSource: {fileID: 6889340857419882152}
@@ -226,11 +222,11 @@ MonoBehaviour:
   raycastRange: 1000
   hitLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   enableAimAssist: 1
-  aimAssistConeAngle: 2
+  aimAssistConeAngle: 0.2
   aimAssistRayCount: 8
-  debugDrawConeRays: 0
+  debugDrawConeRays: 1
   debugConeRayColor: {r: 0, g: 1, b: 1, a: 1}
   ignoredLayers:
     serializedVersion: 2
@@ -282,36 +278,6 @@ MonoBehaviour:
   debugRayDuration: 0.1
   debugHitColor: {r: 1, g: 0, b: 0, a: 1}
   debugMissColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!114 &8165376809418786132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5281698133587121778}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769dce4031e95488aa2d9dc7e73c5cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicCrosshair
-  gunLogic: {fileID: 0}
-  crosshairSprite: {fileID: 0}
-  lockRotationRoot: {fileID: 0}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  targetAcquiredColor: {r: 1, g: 0.2, b: 0.2, a: 1}
-  colorTransitionSpeed: 10
-  targetCheckInterval: 0.05
-  targetCheckRange: 1000
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  ignoreClouds: 1
-  crosshairConeAngle: 2
-  coneRayCount: 8
-  autoLockEnabled: 1
-  lockTurnSpeed: 720
-  enemyTag: Enemy
-  returnDecay: 8
 --- !u!114 &4674287997892936921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunAutoLock
   gunLogic: {fileID: 0}
   lockRotationRoot: {fileID: 0}
-  targetCheckRange: 3000
+  targetCheckRange: 1000
   targetCheckInterval: 0.05
   targetLayers:
     serializedVersion: 2
@@ -335,7 +301,7 @@ MonoBehaviour:
   autoLockEnabled: 1
   lockTurnSpeed: 720
   minLockDot: 0.3
-  lockGraceTime: 0.5
+  lockGraceTime: 1
 --- !u!1 &8706641075118424978
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,10 +333,7 @@ Transform:
   m_LocalScale: {x: 0.16, y: 0.31999993, z: 0.15999997}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8543511253185000329}
-  - {fileID: 7668569867183469585}
   - {fileID: 840957096222261220}
-  - {fileID: 3088867051554163719}
   - {fileID: 1173951355018195298}
   m_Father: {fileID: 9084957329421459418}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

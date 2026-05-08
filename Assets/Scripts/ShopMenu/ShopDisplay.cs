@@ -282,6 +282,14 @@ public class ShopDisplay : MonoBehaviour
         if (selected != null && selected.PlanePrefab != null)
         {
             GameObject instance = Instantiate(selected.PlanePrefab, centerDisplayParent, false);
+
+            foreach (Transform child in instance.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.CompareTag("Gun"))
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
