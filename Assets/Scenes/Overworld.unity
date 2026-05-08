@@ -710,6 +710,9 @@ GameObject:
   - component: {fileID: 318293105}
   - component: {fileID: 318293110}
   - component: {fileID: 318293109}
+  - component: {fileID: 318293113}
+  - component: {fileID: 318293112}
+  - component: {fileID: 318293111}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -883,6 +886,70 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &318293111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318293103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a9d03e0d6024f748ea53fa1c65146c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadInputBindingInstaller
+  targetGameInput: {fileID: 401267049}
+  rollSensitivity: 0.7
+  pitchSensitivity: 1
+  yawSensitivity: 1
+  stickDeadzone: 0.15
+--- !u!114 &318293112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318293103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f939e71fb1186457eb027ce848e44a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HotasThrottle
+  playerController: {fileID: 318293108}
+  throttleAxisCandidates:
+  - twist
+  - throttle
+  - slider
+  - slider/x
+  - throttle/x
+  - z
+  - rz
+  invertThrottleAxis: 1
+  axisChangeThreshold: 0.01
+  minThrottle: 10
+  maxThrottle: 120
+  responseSpeed: 12
+--- !u!114 &318293113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318293103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8dbb7b08400463086ae5c55822e047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HotasInputBindingInstaller
+  targetGameInput: {fileID: 401267049}
+  rollSensitivity: 0.7
+  pitchSensitivity: 1
+  yawSensitivity: 1
+  rollDeadzone: 0
+  pitchDeadzone: 0
+  yawDeadzone: 0
+  enableLegacyAxisFallbacks: 0
+  includeYawAxisFallbacks: 1
 --- !u!4 &356263370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8828034997791826183, guid: 49650b1bfe0e44c00ba3c6ebf2d07211, type: 3}
