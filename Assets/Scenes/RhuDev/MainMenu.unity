@@ -1553,11 +1553,12 @@ PrefabInstance:
         Back up Integrator, Tester/QA and Designer of the project\r\n\r\nCarson Cardoza
         \r\nPrimary Integrator\r\n\r\nDavid Martinez \r\nShop UI, Loading scene UI,
         and Plane Stats (currency, speed, damage, health)\r\n\r\nEric Rubio Salazer
-        \r\n\r\nRhu Paatan\r\nMenu UI & General Menu Layouts, UI Asset Art, 3D Modelling,
-        Sound Manager & Key Rebinding\r\n\r\nHector Rodriguez Duenas \r\nEnemy AI,
-        Flight Controls, Ring Logic \r\n\r\nAlan Alvarez\r\nProcedural Terrain Generation,
-        Day/Night System, Post-Processing Effects, Top-Down Map UI Display\r\n\r\ncredits
-        here or something like that \r\n\r\n"
+        \r\nWorked on Power Ups, Power up logic, Plane and power up materials, and
+        worked on game over and mission passed scenes\n\r\nRhu Paatan\r\nMenu UI
+        & General Menu Layouts, UI Asset Art, 3D Modelling, Sound Manager & Key Rebinding\r\n\r\nHector
+        Rodriguez Duenas \r\nEnemy AI, Flight Controls, Ring Logic \r\n\r\nAlan Alvarez\r\nProcedural
+        Terrain Generation, Day/Night System, Post-Processing Effects, Top-Down Map
+        UI Display\r\n\r\ncredits here or something like that \r\n\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1871218051731873187, guid: 6ad2dc6306bfccc4ab89f73ac5eca08a, type: 3}
       propertyPath: m_margin.w
