@@ -7,7 +7,7 @@ public class PauseMenu : MenuBase
    
    // [SerializeField] public InputActionReference ActionToggle; 
    
-   private bool isGamePaused = false;
+   public static bool isGamePaused = false;
 
   // Event Functions
    private void Update()
@@ -17,17 +17,6 @@ public class PauseMenu : MenuBase
          TogglePauseGame();
       }
    }
-
-   // private void Awake()
-   // {
-   //    ActionToggle.action.performed += ActionToggle_InteractPerformed; 
-   // }
-   //
-   // private void ActionToggle_InteractPerformed(InputAction.CallbackContext obj)
-   // {
-   //    Debug.Log("THIS WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORKS IT WORKS WIT WORKS IT OWKRKKSK");
-   //    TogglePauseGame();
-   // }
 
    // Pause Menu Toggles 
    private void TogglePauseGame()

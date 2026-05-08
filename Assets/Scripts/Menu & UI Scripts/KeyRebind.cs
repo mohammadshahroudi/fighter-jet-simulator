@@ -52,9 +52,9 @@ public class KeyRebind : MonoBehaviour
     
     
     // [PRIVATE FIELDS] 
-    private const string PLAYER_PREFS_BINDINGS = "InputBindings";
+    public const string PLAYER_PREFS_BINDINGS = "InputBindings";
     
-    private PlayerInput _playerInput; 
+    private static PlayerInput _playerInput; 
     public enum Binding
     {
         Roll_Right, 
@@ -65,10 +65,11 @@ public class KeyRebind : MonoBehaviour
         Yaw_Left,
         ThrottleUp, 
         ThrottleDown, 
-        TogglePause, 
+        TogglePause,
+        Boost, 
     }
 
-    public string GetBindingText(Binding binding)
+    public static string GetBindingText(Binding binding)
     {
         switch (binding)
         {
@@ -91,6 +92,8 @@ public class KeyRebind : MonoBehaviour
                     return _playerInput.Player.ThrottleDown.bindings[0].ToDisplayString();
                 case Binding.TogglePause:
                     return _playerInput.Player.TogglePause.bindings[0].ToDisplayString(); 
+                case Binding.Boost: 
+                    return _playerInput.Player.Boost.bindings[0].ToDisplayString(); 
         }
     }
 
@@ -116,6 +119,7 @@ public class KeyRebind : MonoBehaviour
         throttleUpButton.onClick.AddListener(() => {RebindAndDisplay(Binding.ThrottleUp);});
         throttleDownButton.onClick.AddListener(() => {RebindAndDisplay(Binding.ThrottleDown);});
         pauseButton.onClick.AddListener(() => {RebindAndDisplay(Binding.TogglePause);});
+        boostButton.onClick.AddListener(() => {RebindAndDisplay(Binding.Boost);});
         
     }
 
@@ -125,7 +129,7 @@ public class KeyRebind : MonoBehaviour
         
     }
 
-    private void UpdateBindings()
+    public void UpdateBindings()
     {
         rollRightBindingText.text = GetBindingText(Binding.Roll_Right); 
         rollLeftBindingText.text = GetBindingText(Binding.Roll_Left);
@@ -139,7 +143,7 @@ public class KeyRebind : MonoBehaviour
 
         
         // TODO: boost isn't connected to the unity input system, ask for clarification
-        boostBindingText.text = "Space"; 
+        boostBindingText.text = GetBindingText(Binding.Boost); 
 
     }
 
@@ -189,6 +193,10 @@ public class KeyRebind : MonoBehaviour
                 inputAction = _playerInput.Player.TogglePause;
                 bindingIndex = 0;
                 break;
+            case Binding.Boost:
+                inputAction = _playerInput.Player.Boost;
+                bindingIndex = 0;
+                break;
         }
 
         inputAction.PerformInteractiveRebinding(bindingIndex)
@@ -204,8 +212,6 @@ public class KeyRebind : MonoBehaviour
 
                 _playerInput.SaveBindingOverridesAsJson();
                 PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, _playerInput.SaveBindingOverridesAsJson()); 
-                
-                
 
             }) 
             .Start();
